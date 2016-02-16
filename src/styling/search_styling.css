@@ -1,0 +1,10 @@
+#searchTab .button {
+    -fx-text-fill: #202b19;
+    -fx-font-family: "Calibri Light";
+    -fx-background-color: linear-gradient(#d1e7d1, #e0efe0);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+#searchTab .button:hover {
+	-fx-background-color: #bee5a5;
+}
