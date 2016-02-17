@@ -8,7 +8,7 @@ public class Main extends Application {
 	
 	@Override
     public void start(Stage primaryStage) throws Exception {
-       primaryStage.setTitle("IMat");
+       primaryStage.setTitle("Intermätt");
        Pane myPane = (Pane) FXMLLoader.load(getClass().getResource("fxml/main.fxml"));
        Scene scene = new Scene(myPane);
        primaryStage.setScene(scene);

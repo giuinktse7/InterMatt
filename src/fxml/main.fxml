@@ -14,128 +14,52 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="rootPane" minHeight="600.0" stylesheets="@../styling/main_styling.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
-         <children>
-      <VBox prefHeight="200.0" prefWidth="100.0">
-         <children>
-                  <StackPane fx:id="contentPane" alignment="TOP_LEFT" VBox.vgrow="ALWAYS">
-                     <children>
-                        <VBox fx:id="storePane" prefHeight="200.0" prefWidth="400.0" visible="false">
-                           <children>
-            				<TabPane minWidth="650.0" prefHeight="110.0" prefWidth="925.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="200.0" tabMaxWidth="200.0" tabMinHeight="35.0" tabMinWidth="45.0">
-                          <tabs>
-                            <Tab closable="false" text="Kött &amp; Fisk">
-                              <content>
-                                <AnchorPane minWidth="300.0" prefHeight="120.0" prefWidth="925.0">
-                                       <children>
-                                          <HBox alignment="BOTTOM_LEFT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <children>
-                                                <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
-                                                   <children>
-                                                      <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="Griskött">
-                                                         <HBox.margin>
-                                                            <Insets left="14.0" right="14.0" />
-                                                         </HBox.margin>
-                                                      </Button>
-                                                      <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="Nötkött">
-                                                         <HBox.margin>
-                                                            <Insets left="14.0" right="14.0" />
-                                                         </HBox.margin>
-                                                      </Button>
-                                                      <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="Fisk">
-                                                         <HBox.margin>
-                                                            <Insets left="14.0" right="14.0" />
-                                                         </HBox.margin>
-                                                      </Button>
-                                                   </children>
-                                                   <HBox.margin>
-                                                      <Insets bottom="14.0" top="14.0" />
-                                                   </HBox.margin>
-                                                </HBox>
-                                                <HBox id="searchBox" alignment="BOTTOM_RIGHT" maxHeight="-Infinity">
-                                                   <children>
-                                                      <TextField prefHeight="31.0" prefWidth="166.0">
-                                                         <HBox.margin>
-                                                            <Insets bottom="7.0" right="7.0" />
-                                                         </HBox.margin>
-                                                      </TextField>
-                                                      <Button mnemonicParsing="false" text="Sök">
-                                                         <HBox.margin>
-                                                            <Insets bottom="7.0" right="7.0" />
-                                                         </HBox.margin>
-                                                      </Button>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                          </HBox>
-                                       </children>
-                                    </AnchorPane>
-                              </content>
-                            </Tab>
-                            <Tab closable="false" text="Frukt &amp; Grönt">
-                              <content>
-                                <AnchorPane prefHeight="180.0" prefWidth="200.0" />
-                              </content>
-                            </Tab>
-                              <Tab closable="false" text="Bröd" />
-                          </tabs>
-                        </TabPane>
-                              <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="0.0" VBox.vgrow="ALWAYS">
-                                 <VBox.margin>
-                                    <Insets bottom="14.0" left="14.0" top="14.0" />
-                                 </VBox.margin>
-                                 <content>
-                                    <TilePane hgap="56.0" maxHeight="-Infinity" prefColumns="0" prefRows="0" prefTileHeight="120.0" prefTileWidth="100.0" prefWidth="631.0" tileAlignment="TOP_LEFT" vgap="28.0">
-                                       <children>
-                                          <Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
-                                          <Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
-                                          <Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
-                                          <Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
-                                          <Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
-                                          <Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
-                                          <Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
-                                          <Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
-                                          <Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
-                                          <Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
-                                          <Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
-                                          <Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
-                                          <Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
-                                          <Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
-                                          <Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
-                                          <Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
-                                       </children>
-                                    </TilePane>
-                                 </content>
-                              </ScrollPane>
-                           </children>
-                        </VBox>
-                        <fx:include fx:id="loadListPane" source="load_list.fxml" />
-                  <AnchorPane fx:id="welcomePane" prefHeight="200.0" prefWidth="200.0">
-                     <StackPane.margin>
-                        <Insets left="14.0" top="14.0" />
-                     </StackPane.margin>
-                     <children>
-                        <VBox alignment="CENTER" prefHeight="170.0" prefWidth="636.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <Label text="Välkommen!">
-                                 <font>
-                                    <Font size="64.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                     </children>
-                  </AnchorPane>
-                     </children>
-                  </StackPane>
-                 <AnchorPane prefHeight="60.0">
-                     <children>
-                        <Button fx:id="nextButton" layoutX="485.0" layoutY="15.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="135.0" text="Gå till kassan" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="0.0" />
-                        <Button fx:id="prevButton" layoutX="29.0" layoutY="15.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="135.0" text="Gå till startsidan" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-         </children>
-      </VBox>
-            <fx:include fx:id="shoppingCart" source="shopping_cart.fxml" />
-         </children>
-      </HBox>
+<HBox fx:id="rootPane" minHeight="600.0" stylesheets="@../styling/main_styling.css"
+	xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="controllers.MainController">
+	<children>
+		<VBox prefHeight="200.0" prefWidth="100.0">
+			<children>
+				<StackPane fx:id="contentPane" alignment="TOP_LEFT"
+					VBox.vgrow="ALWAYS">
+					<children>
+						<fx:include fx:id="storePane" source="store.fxml" />
+						<fx:include fx:id="loadListPane" source="load_list.fxml" />
+						<AnchorPane fx:id="welcomePane" disable="true"
+							prefHeight="200.0" prefWidth="200.0" visible="false">
+							<StackPane.margin>
+								<Insets left="14.0" top="14.0" />
+							</StackPane.margin>
+							<children>
+								<VBox alignment="CENTER" prefHeight="170.0" prefWidth="636.0"
+									AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+									AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+									<children>
+										<Label text="Välkommen!">
+											<font>
+												<Font size="64.0" />
+											</font>
+										</Label>
+									</children>
+								</VBox>
+							</children>
+						</AnchorPane>
+					</children>
+				</StackPane>
+				<AnchorPane prefHeight="60.0">
+					<children>
+						<Button fx:id="nextButton" layoutX="485.0" layoutY="15.0"
+							minWidth="-Infinity" mnemonicParsing="false" prefWidth="135.0"
+							text="Gå till kassan" AnchorPane.bottomAnchor="14.0"
+							AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="0.0" />
+						<Button fx:id="prevButton" layoutX="29.0" layoutY="15.0"
+							minWidth="-Infinity" mnemonicParsing="false" prefWidth="135.0"
+							text="Gå till startsidan" AnchorPane.bottomAnchor="14.0"
+							AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="0.0" />
+					</children>
+				</AnchorPane>
+			</children>
+		</VBox>
+		<fx:include fx:id="shoppingCart" source="shopping_cart.fxml" />
+	</children>
+</HBox>
