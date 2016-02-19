@@ -11,8 +11,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
@@ -33,7 +35,7 @@ public class MainController implements Initializable {
 	private View nextView = View.STORE;
 	
 	
-	@FXML HBox shoppingCart;
+	@FXML private AnchorPane shoppingCart;
 	@FXML ShoppingCartController shoppingCartController;
 	@FXML LoadListController loadListPaneController;
 	

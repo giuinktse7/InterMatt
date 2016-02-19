@@ -1,0 +1,27 @@
+
+/* DEFAULT COLORS: 
+ * -tab-bg-color: #36750f;
+ * -background-color: #6fc238;
+ */
+/* Configure colors here and use derivations elsewhere*/
+.root {
+	-fx-tab-bg-color: #36750f;
+	-fx-back-color: #6fc238;
+	-fx-start-color: #F8F8EC;
+	-fx-fruit-color: #A8DBA8;
+	-fx-bread-color: #F5DF98;
+	-fx-meat-color: #CF4647;
+	-fx-dairy-color: #e0ebf2;
+	-fx-cabinet-color: #D6D3B2;
+	-fx-fridaycuddling-color: #FFAAAA;
+}
+
+.split-pane > .split-pane-divider {  
+    -fx-width: 2;  
+    -fx-background-color: rgba(0,0,0,0);
+} 
+
+#borderFix {
+	-fx-border-width: 1px;
+	-fx-border-style: hidden hidden solid hidden;
+}
