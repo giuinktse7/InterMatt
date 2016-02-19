@@ -11,92 +11,147 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="storePane" prefHeight="600.0" prefWidth="925.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
-							<children>
-								<TabPane minHeight="-Infinity" minWidth="650.0" prefHeight="110.0" prefWidth="925.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="200.0" tabMaxWidth="200.0" tabMinHeight="35.0" tabMinWidth="45.0">
-									<tabs>
-										<Tab closable="false" text="Kött &amp; Fisk">
-											<content>
-												<AnchorPane minWidth="300.0" prefHeight="120.0" prefWidth="925.0">
-													<children>
-														<HBox alignment="BOTTOM_LEFT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-															<children>
-																<HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
-																	<children>
-																		<Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="Griskött">
-																			<HBox.margin>
-																				<Insets left="14.0" right="14.0" />
-																			</HBox.margin>
-																		</Button>
-																		<Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="Nötkött">
-																			<HBox.margin>
-																				<Insets left="14.0" right="14.0" />
-																			</HBox.margin>
-																		</Button>
-																		<Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="Fisk">
-																			<HBox.margin>
-																				<Insets left="14.0" right="14.0" />
-																			</HBox.margin>
-																		</Button>
-																	</children>
-																	<HBox.margin>
-																		<Insets bottom="14.0" top="14.0" />
-																	</HBox.margin>
-																</HBox>
-																<HBox id="searchBox" alignment="BOTTOM_RIGHT" maxHeight="-Infinity">
-																	<children>
-																		<TextField prefHeight="31.0" prefWidth="166.0">
-																			<HBox.margin>
-																				<Insets bottom="7.0" right="7.0" />
-																			</HBox.margin>
-																		</TextField>
-																		<Button mnemonicParsing="false" text="Sök">
-																			<HBox.margin>
-																				<Insets bottom="7.0" right="7.0" />
-																			</HBox.margin>
-																		</Button>
-																	</children>
-																</HBox>
-															</children>
-														</HBox>
-													</children>
-												</AnchorPane>
-											</content>
-										</Tab>
-										<Tab closable="false" text="Frukt &amp; Grönt">
-											<content>
-												<AnchorPane prefHeight="180.0" prefWidth="200.0" />
-											</content>
-										</Tab>
-										<Tab closable="false" text="Bröd" />
-									</tabs>
-								</TabPane>
-								<ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="-Infinity" VBox.vgrow="ALWAYS">
-									<VBox.margin>
-										<Insets bottom="14.0" left="14.0" top="14.0" />
-									</VBox.margin>
-									<content>
-										<TilePane hgap="56.0" maxHeight="-Infinity" prefColumns="0" prefRows="0" prefTileHeight="120.0" prefTileWidth="100.0" prefWidth="631.0" tileAlignment="TOP_LEFT" vgap="28.0">
-											<children>
-												<Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
-												<Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
-												<Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
-												<Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
-												<Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
-												<Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
-												<Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
-												<Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
-												<Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
-												<Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
-												<Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
-												<Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
-												<Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
-												<Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
-												<Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
-												<Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
-											</children>
-										</TilePane>
-									</content>
-								</ScrollPane>
-							</children>
-						</VBox>
+<VBox fx:id="storePane" prefHeight="600.0" prefWidth="1215.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StoreController">
+	<children>
+      <AnchorPane>
+         <children>
+      		<TabPane minHeight="-Infinity" minWidth="650.0" prefHeight="88.0" prefWidth="925.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="200.0" tabMaxWidth="200.0" tabMinHeight="35.0" tabMinWidth="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      			<tabs>
+                  <Tab id="startTab" fx:id="startTab" closable="false" styleClass="startTabContent" text="Start">
+                     <content>
+                        <AnchorPane maxHeight="40.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="925.0" styleClass="startTabContent">
+                           <children>
+                              <TabPane layoutX="11.0" prefHeight="40.0" prefWidth="131.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="60.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="-11.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab closable="false" text="Frukt &amp; Grönt">
+                     <content>
+                        <AnchorPane maxHeight="40.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="925.0">
+                           <children>
+                              <TabPane layoutX="-4.0" layoutY="-4.0" prefHeight="40.0" prefWidth="131.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <tabs>
+                                    <Tab text="Kött" />
+                                    <Tab text="Fisk" />
+                                 </tabs>
+                              </TabPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab closable="false" text="Bröd &amp; Bakverk">
+                     <content>
+                        <AnchorPane maxHeight="40.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="925.0">
+                           <children>
+                              <TabPane layoutX="-4.0" layoutY="-4.0" prefHeight="40.0" prefWidth="131.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <tabs>
+                                    <Tab text="Kött" />
+                                    <Tab text="Fisk" />
+                                 </tabs>
+                              </TabPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab closable="false" text="Kött &amp; Fisk">
+                     <content>
+                        <AnchorPane maxHeight="40.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="925.0">
+                           <children>
+                              <TabPane layoutX="-4.0" layoutY="-4.0" prefHeight="40.0" prefWidth="131.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <tabs>
+                                    <Tab text="Kött" />
+                                    <Tab text="Fisk" />
+                                 </tabs>
+                              </TabPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab closable="false" text="Mejeri">
+                     <content>
+                        <AnchorPane maxHeight="40.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="925.0">
+                           <children>
+                              <TabPane layoutX="-4.0" layoutY="-4.0" prefHeight="40.0" prefWidth="131.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <tabs>
+                                    <Tab text="Kött" />
+                                    <Tab text="Fisk" />
+                                 </tabs>
+                              </TabPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab closable="false" text="Skafferi">
+                     <content>
+                        <AnchorPane maxHeight="40.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="925.0">
+                           <children>
+                              <TabPane layoutX="-4.0" layoutY="-4.0" prefHeight="40.0" prefWidth="131.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <tabs>
+                                    <Tab text="Kött" />
+                                    <Tab text="Fisk" />
+                                 </tabs>
+                              </TabPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab closable="false" text="Fredagsmys">
+                     <content>
+                        <AnchorPane maxHeight="40.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="925.0">
+                           <children>
+                              <TabPane layoutX="-4.0" layoutY="-4.0" prefHeight="40.0" prefWidth="131.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <tabs>
+                                    <Tab text="Kött" />
+                                    <Tab text="Fisk" />
+                                 </tabs>
+                              </TabPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+      			</tabs>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+      		</TabPane>
+            <HBox alignment="BOTTOM_RIGHT" prefWidth="354.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="8.0">
+               <children>
+                  <TextField prefHeight="31.0" prefWidth="270.0" promptText="Sök">
+                     <HBox.margin>
+                        <Insets right="7.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+		<ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="-Infinity" VBox.vgrow="ALWAYS">
+			<VBox.margin>
+				<Insets bottom="14.0" left="7.0" right="7.0" top="14.0" />
+			</VBox.margin>
+			<content>
+				<TilePane hgap="56.0" maxHeight="-Infinity" prefColumns="0" prefRows="0" prefTileHeight="120.0" prefTileWidth="100.0" prefWidth="631.0" tileAlignment="TOP_LEFT" vgap="28.0">
+					<children>
+						<Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
+						<Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
+						<Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
+						<Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
+						<Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
+						<Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
+						<Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
+						<Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
+						<Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
+						<Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
+						<Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
+						<Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
+						<Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
+						<Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
+						<Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
+						<Button minHeight="120.0" minWidth="100.0" mnemonicParsing="false" />
+					</children>
+				</TilePane>
+			</content>
+		</ScrollPane>
+	</children>
+</VBox>

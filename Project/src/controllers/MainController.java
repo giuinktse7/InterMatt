@@ -42,7 +42,6 @@ public class MainController implements Initializable {
 		});
 		
 		bringToFront(View.WELCOME);
-		
 	}
 	
 	private void bringToFront(View view) {

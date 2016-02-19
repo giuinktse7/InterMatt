@@ -9,65 +9,80 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="popup" disable="true" maxHeight="300.0" maxWidth="300.0" opacity="0.95" prefHeight="300.0" prefWidth="300.0" stylesheets="@../styling/load_list_styling.css" visible="false" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoadListController">
-         <children>
-      <VBox layoutX="14.0" layoutY="14.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Label text="Välj en inköpslista">
-               <VBox.margin>
-                  <Insets bottom="14.0" left="14.0" top="7.0" />
-               </VBox.margin>
-            </Label>
-                  <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
-                     <children>
-                        <HBox prefHeight="260.0" VBox.vgrow="ALWAYS">
-                           <children>
-                              <VBox alignment="TOP_CENTER" prefHeight="277.0" prefWidth="155.0">
-                                 <children>
-                                    <Label text="Välj lista">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                       <VBox.margin>
-                                          <Insets bottom="7.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <ListView prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="TOP_CENTER" prefHeight="284.0" prefWidth="192.0" HBox.hgrow="ALWAYS">
-                                 <children>
-                                    <Label text="List_Name">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                       <VBox.margin>
-                                          <Insets bottom="7.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <ListView prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-                                 </children>
-                                 <HBox.margin>
-                                    <Insets left="14.0" />
-                                 </HBox.margin>
-                              </VBox>
-                           </children>
-                           <VBox.margin>
-                              <Insets bottom="14.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <AnchorPane prefHeight="60.0">
-                           <children>
-                              <Button layoutX="485.0" layoutY="15.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="120.0" text="Ladda in lista" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                              <Button layoutX="29.0" layoutY="15.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="120.0" text="Fortsätt handla" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                           </children>
-                        </AnchorPane>
-                     </children>
-               <VBox.margin>
-                  <Insets left="14.0" />
-               </VBox.margin>
-                  </VBox>
-         </children>
-      </VBox>
-         </children>
-      </AnchorPane>
+<AnchorPane fx:id="popup" disable="true" maxHeight="300.0"
+	maxWidth="300.0" opacity="0.95" prefHeight="300.0" prefWidth="300.0"
+	stylesheets="@../styling/load_list_styling.css" visible="false"
+	xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="controllers.LoadListController">
+	<children>
+		<VBox layoutX="14.0" layoutY="14.0" AnchorPane.bottomAnchor="14.0"
+			AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="14.0"
+			AnchorPane.topAnchor="0.0">
+			<children>
+				<Label text="Välj en inköpslista">
+					<VBox.margin>
+						<Insets bottom="14.0" left="14.0" top="7.0" />
+					</VBox.margin>
+				</Label>
+				<VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+					<children>
+						<HBox prefHeight="260.0" VBox.vgrow="ALWAYS">
+							<children>
+								<VBox alignment="TOP_CENTER" prefHeight="277.0" prefWidth="155.0">
+									<children>
+										<Label text="Välj lista">
+											<font>
+												<Font size="20.0" />
+											</font>
+											<VBox.margin>
+												<Insets bottom="7.0" />
+											</VBox.margin>
+										</Label>
+										<ListView prefHeight="200.0" prefWidth="200.0"
+											VBox.vgrow="ALWAYS" />
+									</children>
+								</VBox>
+								<VBox alignment="TOP_CENTER" prefHeight="284.0" prefWidth="192.0"
+									HBox.hgrow="ALWAYS">
+									<children>
+										<Label text="List_Name">
+											<font>
+												<Font size="20.0" />
+											</font>
+											<VBox.margin>
+												<Insets bottom="7.0" />
+											</VBox.margin>
+										</Label>
+										<ListView prefHeight="200.0" prefWidth="200.0"
+											VBox.vgrow="ALWAYS" />
+									</children>
+									<HBox.margin>
+										<Insets left="14.0" />
+									</HBox.margin>
+								</VBox>
+							</children>
+							<VBox.margin>
+								<Insets bottom="14.0" />
+							</VBox.margin>
+						</HBox>
+						<AnchorPane prefHeight="60.0">
+							<children>
+								<Button layoutX="485.0" layoutY="15.0" minWidth="-Infinity"
+									mnemonicParsing="false" prefWidth="120.0" text="Ladda in lista"
+									AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0"
+									AnchorPane.topAnchor="0.0" />
+								<Button layoutX="29.0" layoutY="15.0" minWidth="-Infinity"
+									mnemonicParsing="false" prefWidth="120.0" text="Fortsätt handla"
+									AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+									AnchorPane.topAnchor="0.0" />
+							</children>
+						</AnchorPane>
+					</children>
+					<VBox.margin>
+						<Insets left="14.0" />
+					</VBox.margin>
+				</VBox>
+			</children>
+		</VBox>
+	</children>
+</AnchorPane>

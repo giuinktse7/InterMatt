@@ -5,18 +5,22 @@
  */
 /* Configure colors here and use derivations elsewhere*/
 .root {
--tab-bg-color: #36750f;
--background-color: #6fc238;
+	-fx-tab-bg-color: #36750f;
+	-fx-back-color: #6fc238;
+	-fx-start-color: #e0ebf2;
 }
 
-.tab *.tab-label {
+.tab:selected .tab-label {
 	-fx-text-fill: #202b19;
     -fx-font-family: "Helvetica";
     -fx-font-size: 18 pt;
+    -fx-border-width: 2px;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-color: red red red red;
 }
 
 .tab-content-area {
-	-fx-background-color: linear-gradient(to top, derive(-background-color, 30%), derive(-background-color,60%));
+	-fx-background-color: linear-gradient(to top, derive(-fx-back-color, 30%), derive(-fx-back-color,60%));
 	-fx-padding: 0.0em; /* 0 */
 }
 
@@ -29,7 +33,7 @@
 }
 
 .tab {
-	-fx-background-color: linear-gradient(to top, derive(-tab-bg-color, 75%), derive(-tab-bg-color, 90%));
+	-fx-background-color: linear-gradient(to top, derive(-fx-tab-bg-color, 75%), derive(-fx-tab-bg-color, 90%));
 	-fx-background-insets: 0, 1, 2;
 	-fx-background-radius: 5 5 0 0, 4 4 0 0, 3 3 0 0;
 	-fx-padding: 0.083333em 0.5em 0.083333em 0.5em; /* 1 6 1 6 */
@@ -39,7 +43,7 @@
 }
 
 .tab:selected {
-    -fx-background-color: linear-gradient(to top, derive(-background-color,60%), derive(-background-color,85%));
+    -fx-background-color: linear-gradient(to top, derive(-fx-back-color,60%), derive(-fx-back-color,85%));
 	-fx-background-insets: 0, 1 1 0 1;
 	-fx-background-radius: 5 5 0 0, 4 4 0 0;
 }
@@ -51,11 +55,11 @@
 }
 
 .tab:hover {
-	-fx-background-color: linear-gradient(to top, derive(-tab-bg-color,90%), derive(-tab-bg-color,110%));
+	-fx-background-color: linear-gradient(to top, derive(-fx-tab-bg-color,90%), derive(-fx-tab-bg-color,110%));
 }
 
 .tab:selected:hover {
-	-fx-background-color: linear-gradient(to top, derive(-background-color,60%), derive(-background-color,75%));
+	-fx-background-color: linear-gradient(to top, derive(-fx-back-color,60%), derive(-fx-back-color,75%));
 }
 
 .tab-pane:top *.tab-header-area {
@@ -64,7 +68,7 @@
 }
 
 .button {
-	-fx-background-color: linear-gradient(to top, derive(-background-color, 25%), derive(-background-color, 35%));
+	-fx-background-color: linear-gradient(to top, derive(-fx-back-color, 25%), derive(-fx-back-color, 35%));
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
     -fx-background-insets: 0 0 0 0, 0, 0, 0;
     -fx-background-radius: 0 0 0 0, 0, 0, 0;
@@ -72,5 +76,19 @@
 }
 
 .button:hover {
-	-fx-background-color: linear-gradient(to top, derive(-background-color, 35%), derive(-background-color, 45%));
+	-fx-background-color: linear-gradient(to top, derive(-fx-back-color, 35%), derive(-fx-back-color, 45%));
+}
+
+
+/* TAB COLOURS */
+.startTabContent {
+	-fx-background-color: -fx-start-color;
+}
+
+#startTab:hover {
+	-fx-background-color: linear-gradient(to top, derive(-fx-start-color, 35%), derive(-fx-start-color, 45%));
+}
+
+#startTab:selected {
+    -fx-background-color: -fx-start-color;
 }
