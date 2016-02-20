@@ -3,23 +3,24 @@ package controllers;
 import java.net.URL;
 
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class MainController implements Initializable {
-	
 	
 	private enum View {
 		WELCOME, STORE, CHECKOUT, PURCHASE
@@ -27,61 +28,49 @@ public class MainController implements Initializable {
 	
 	@FXML private HBox rootPane;
 	@FXML private StackPane contentPane;
-	@FXML private AnchorPane loadListPane;
 	@FXML private Button prevButton;
 	@FXML private Button nextButton;
 	
+	@SuppressWarnings("unused")
 	private View prevView = View.WELCOME;
+	@SuppressWarnings("unused")
 	private View nextView = View.STORE;
 	
 	
+	@FXML private VBox storePane;
+	@FXML private BorderPane welcomePane;
 	@FXML private AnchorPane shoppingCart;
-	@FXML ShoppingCartController shoppingCartController;
-	@FXML LoadListController loadListPaneController;
+	@FXML private ShoppingCartController shoppingCartController;
+	@FXML private StoreController storePaneController;
+	
 	
 	public void initialize(URL url, ResourceBundle bundle) {
-		shoppingCartController.getShoppingListButton().setOnAction((e) -> {
-		});
-		
-		bringToFront(View.WELCOME);
+		bringToFront(View.STORE);
 	}
 	
 	private void bringToFront(View view) {
-		EventHandler<ActionEvent> nextAction = (e) -> {}; 
-		EventHandler<ActionEvent> previousAction = (e) -> {};
-		
-		String id = "";
 		
 		switch(view) {
 		case WELCOME:
 			prevView = View.WELCOME;
 			nextView = View.STORE;
-			previousAction = (e) -> bringToFront(prevView);
-			nextAction = (e) -> bringToFront(nextView);
-			id = "welcomePane";
+			prevButton.setOnAction(e -> welcomePane.toFront());
+			nextButton.setOnAction(e -> storePane.toFront());
+			welcomePane.toFront();
+			
 			
 			break;
 		case STORE:
-			prevView = view.WELCOME;
+			prevView = View.WELCOME;
 			nextView = View.CHECKOUT;
-			previousAction = (e) -> bringToFront(prevView);
-			nextAction = (e) -> bringToFront(nextView);
-			id = "storePane";
+			prevButton.setOnAction(e -> welcomePane.toFront());
+			nextButton.setOnAction(e -> storePane.toFront());
+			
+			storePane.toFront();
 			break;
 			
 			default:
 				break;
-		}
-		
-		prevButton.setOnAction(previousAction);
-		nextButton.setOnAction(nextAction);
-		
-		for (int i = 0; i < contentPane.getChildren().size(); ++i) {
-			Node child = contentPane.getChildren().get(i);
-			
-			boolean b = id.equals(child.getId());
-			child.setDisable(!b);
-			child.setVisible(b);
 		}
 	}
 

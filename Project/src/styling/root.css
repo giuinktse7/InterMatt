@@ -4,7 +4,8 @@
  * -background-color: #6fc238;
  */
 /* Configure colors here and use derivations elsewhere*/
-.root {
+* {
+	-fx-glass-color: rgba(111, 194, 56, 0.9);
 	-fx-tab-bg-color: #36750f;
 	-fx-back-color: #6fc238;
 	-fx-start-color: #F8F8EC;
@@ -14,14 +15,35 @@
 	-fx-dairy-color: #e0ebf2;
 	-fx-cabinet-color: #D6D3B2;
 	-fx-fridaycuddling-color: #FFAAAA;
+	
+	-itempane-color: white;
+	-buy-button-color: 	#ff3030;
+}
+
+.tab-pane .tab-pane .tab:selected {
+	-fx-background-color: -itempane-color;
+}
+
+.tab-pane .tab-pane {
+	-fx-border-width: 1px;
+	-fx-border-style: hidden hidden solid hidden;
 }
 
 .split-pane > .split-pane-divider {  
-    -fx-width: 2;  
+    -fx-border-width: 2;  
     -fx-background-color: rgba(0,0,0,0);
-} 
+}
 
-#borderFix {
+.tile-pane, 
+.scroll-pane {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-background-color: -itempane-color, transparent;
+    -fx-background-insets: 0, 0;
+    -fx-padding: 0;
+}
+
+#borderFixPane {
 	-fx-border-width: 1px;
 	-fx-border-style: hidden hidden solid hidden;
 }
