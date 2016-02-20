@@ -84,8 +84,6 @@ public class StoreController implements Initializable {
 		display.setAlignment(Pos.CENTER);
 		display.getStyleClass().add("item-display");
 		display.setPadding(new Insets(14, 35, 14, 35));
-		display.addEventHandler(MouseEvent.MOUSE_ENTERED, (e) -> display.seteff(new DropShadow()));
-		display.addEventHandler(MouseEvent.MOUSE_EXITED, (e) -> display.setEffect(null));
 		display.getChildren().add(button);
 		return display;
 	}
