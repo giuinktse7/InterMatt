@@ -9,23 +9,32 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="rootPane" fx:id="popup" maxHeight="448.0" maxWidth="615.0" prefHeight="447.0" prefWidth="615.0" stylesheets="@../styling/load_list.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoadListController">
+<AnchorPane id="rootPane" fx:id="popup" maxHeight="448.0"
+	maxWidth="615.0" prefHeight="447.0" prefWidth="615.0"
+	stylesheets="@../styling/load_list.css" xmlns="http://javafx.com/javafx/8.0.65"
+	xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoadListController">
 	<children>
-		<VBox layoutX="14.0" layoutY="14.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+		<VBox layoutX="14.0" layoutY="14.0" style="-fx-background-color: transparent;"
+			AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<children>
-            <AnchorPane id="modalTop" maxHeight="-Infinity" minHeight="-Infinity" opacity="0.7" prefHeight="45.0" prefWidth="200.0">
-               <children>
-                  <Label layoutX="119.0" layoutY="90.0" text="Inköpslistor" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                     <padding>
-                        <Insets left="14.0" />
-                     </padding>
-                  </Label>
-               </children>
-            </AnchorPane>
-				<VBox id="background" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+				<AnchorPane id="modalTop" maxHeight="-Infinity"
+					minHeight="-Infinity" opacity="0.7" prefHeight="45.0" prefWidth="200.0">
+					<children>
+						<Label layoutX="119.0" layoutY="90.0" text="Inköpslistor"
+							AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+							AnchorPane.topAnchor="0.0">
+							<font>
+								<Font size="24.0" />
+							</font>
+							<padding>
+								<Insets left="14.0" />
+							</padding>
+						</Label>
+					</children>
+				</AnchorPane>
+				<VBox id="background" prefHeight="200.0" prefWidth="100.0"
+					VBox.vgrow="ALWAYS">
 					<children>
 						<HBox prefHeight="260.0" VBox.vgrow="ALWAYS">
 							<children>
@@ -39,13 +48,16 @@
 												<Insets bottom="7.0" />
 											</VBox.margin>
 										</Label>
-										<ListView prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                                 <VBox.margin>
-                                    <Insets left="14.0" />
-                                 </VBox.margin></ListView>
+										<ListView prefHeight="200.0" prefWidth="200.0"
+											VBox.vgrow="ALWAYS">
+											<VBox.margin>
+												<Insets left="14.0" />
+											</VBox.margin>
+										</ListView>
 									</children>
 								</VBox>
-								<VBox alignment="TOP_CENTER" prefHeight="284.0" prefWidth="192.0" HBox.hgrow="ALWAYS">
+								<VBox alignment="TOP_CENTER" prefHeight="284.0" prefWidth="192.0"
+									HBox.hgrow="ALWAYS">
 									<children>
 										<Label text="List_Name">
 											<font>
@@ -55,10 +67,12 @@
 												<Insets bottom="7.0" />
 											</VBox.margin>
 										</Label>
-										<ListView prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                                 <VBox.margin>
-                                    <Insets right="14.0" />
-                                 </VBox.margin></ListView>
+										<ListView prefHeight="200.0" prefWidth="200.0"
+											VBox.vgrow="ALWAYS">
+											<VBox.margin>
+												<Insets right="14.0" />
+											</VBox.margin>
+										</ListView>
 									</children>
 									<HBox.margin>
 										<Insets left="14.0" />
@@ -71,20 +85,26 @@
 						</HBox>
 						<AnchorPane prefHeight="60.0">
 							<children>
-								<Button fx:id="yesButton" layoutX="485.0" layoutY="15.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="120.0" text="Ladda in lista" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="0.0" />
-								<Button fx:id="cancelButton" layoutX="29.0" layoutY="15.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="120.0" text="Fortsätt handla" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="0.0" />
+								<Button fx:id="yesButton" layoutX="485.0" layoutY="15.0"
+									minWidth="-Infinity" mnemonicParsing="false" prefWidth="120.0"
+									text="Ladda in lista" AnchorPane.bottomAnchor="0.0"
+									AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="0.0" />
+								<Button fx:id="cancelButton" layoutX="29.0" layoutY="15.0"
+									minWidth="-Infinity" mnemonicParsing="false" prefWidth="120.0"
+									text="Fortsätt handla" AnchorPane.bottomAnchor="0.0"
+									AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="0.0" />
 							</children>
-                     <VBox.margin>
-                        <Insets bottom="14.0" />
-                     </VBox.margin>
+							<VBox.margin>
+								<Insets bottom="14.0" />
+							</VBox.margin>
 						</AnchorPane>
 					</children>
 					<VBox.margin>
 						<Insets />
 					</VBox.margin>
-               <padding>
-                  <Insets top="7.0" />
-               </padding>
+					<padding>
+						<Insets top="7.0" />
+					</padding>
 				</VBox>
 			</children>
 		</VBox>

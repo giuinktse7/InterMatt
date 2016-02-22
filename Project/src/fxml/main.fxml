@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<!--  FIX CSS to root -->
 <SplitPane dividerPositions="0.75" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../styling/root.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
    <items>
       <AnchorPane minWidth="1000.0">
@@ -24,6 +25,8 @@
       					<children>
       						<fx:include fx:id="storePane" source="store.fxml" />
       						<fx:include fx:id="welcomePane" source="welcome_screen.fxml" />
+      						<fx:include fx:id="credentialsPane" source="credentials.fxml" />
+      						<fx:include fx:id="purchasePane" source="purchase.fxml" />
       					</children>
                      <VBox.margin>
                         <Insets />

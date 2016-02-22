@@ -4,6 +4,8 @@ package controllers;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import Util.ShoppingCartHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -13,12 +15,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import se.chalmers.ait.dat215.project.*;
@@ -69,6 +68,8 @@ public class StoreController implements Initializable {
 	}
 	
 	private Node getProductDisplay(Product product) {
+		ShoppingCartHandler cart = ShoppingCartHandler.getInstance();
+		
 		Label title = new Label(product.getName());
 		title.getStyleClass().add("title-label");
 		ImageView image = new ImageView(db.getFXImage(product, pictureWidth, pictureHeight));
@@ -79,6 +80,7 @@ public class StoreController implements Initializable {
 		
 		
 		Button button = new Button("Köp");
+		button.setOnAction(e -> cart.addProduct(product));
 		VBox display = new VBox(title, image, infoBox);
 		button.setPrefSize(pictureWidth, 40);
 		display.setAlignment(Pos.CENTER);

@@ -5,39 +5,30 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import Util.ConfirmationDialog;
+import Util.ShoppingCartHandler;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.layout.Pane;
 
 public class ShoppingCartController implements Initializable {
 
-	@FXML Button gotoShoppingListButton;
+	@FXML private Button gotoShoppingListButton;
+	@FXML private ListView<Node> cart;
 	
 	private Pane listPane;
 	private LoadListController controller;
 
 	@Override
 	public void initialize(URL url, ResourceBundle bundle) {
-		gotoShoppingListButton.setOnAction(e -> {
-			System.out.println("hi");
-				try {
-				loadListView();
-				} catch(IOException exception) {
-					exception.printStackTrace();
-				}
-				ConfirmationDialog confirmationDialog = new ConfirmationDialog(gotoShoppingListButton.getScene().getWindow(),
-						listPane, controller.getYesButton(), controller.getCancelButton());
-				confirmationDialog.setOwnerEffect(createGreyOutEffect());
-				confirmationDialog.setNoButtonAction(event -> System.out.println("Clicked on " + e.getSource()));
-				confirmationDialog.setYesButtonAction(event -> System.out.println("Clicked on " + e.getSource()));
-				confirmationDialog.showAndWait();
-				confirmationDialog.setCenter();
-			}
-	);
-
+		ShoppingCartHandler.getInstance().setCart(cart);
+		gotoShoppingListButton.setOnAction(openListLoadView());
 	}
 
 	public Button getShoppingListButton() {
@@ -58,5 +49,22 @@ public class ShoppingCartController implements Initializable {
 		this.listPane = view.load();
 		
 		this.controller = view.getController();
+	}
+	
+	private EventHandler<ActionEvent> openListLoadView() {
+		return e -> {
+			try {
+			loadListView();
+			} catch(IOException exception) {
+				exception.printStackTrace();
+			}
+			ConfirmationDialog confirmationDialog = new ConfirmationDialog(gotoShoppingListButton.getScene().getWindow(),
+					listPane, controller.getYesButton(), controller.getCancelButton());
+			confirmationDialog.setOwnerEffect(createGreyOutEffect());
+			confirmationDialog.setNoButtonAction(event -> System.out.println("Clicked on " + e.getSource()));
+			confirmationDialog.setYesButtonAction(event -> System.out.println("Clicked on " + e.getSource()));
+			confirmationDialog.showAndWait();
+			confirmationDialog.setCenter();
+		};
 	}
 }
