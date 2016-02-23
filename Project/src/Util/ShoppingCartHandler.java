@@ -2,6 +2,7 @@ package Util;
 
 import java.text.DecimalFormat;
 
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -80,11 +81,11 @@ public class ShoppingCartHandler {
 	        });
 
 		Button decAmountBtn = new Button("-");
-		decAmountBtn.setOnAction(changeTxtValue(txtAmount, -1));
+		decAmountBtn.setOnAction(changeTextValue(txtAmount, -1));
 		HBox.setMargin(decAmountBtn, new Insets(0, 3, 0, 0));
 		
 		Button incAmountBtn = new Button("+");
-		incAmountBtn.setOnAction(changeTxtValue(txtAmount, 1));
+		incAmountBtn.setOnAction(changeTextValue(txtAmount, 1));
 		HBox.setMargin(incAmountBtn, new Insets(0, 0, 0, 3));
 		
 		middleBox = new HBox(decAmountBtn, quantityPane, incAmountBtn);
@@ -130,8 +131,9 @@ public class ShoppingCartHandler {
 		return container;
 	}
 
-	/** Event that changes the value of a TextField by <code>change</code>. */
-	private static EventHandler<ActionEvent> changeTxtValue(TextField textField, int change) {
+	/** Event that changes the value of a TextField by <code>change</code>.
+	 * If textField contains an int, changes the value of it. Otherwise, sets the textField's value to 1 */
+	private static EventHandler<ActionEvent> changeTextValue(TextField textField, int change) {
 		return event -> {
 			String text = textField.getText();
 			if (isInteger(text)) {
@@ -139,7 +141,7 @@ public class ShoppingCartHandler {
 				textField.setText(Integer.toString(value + change));
 			}
 			else
-				textField.setText("0");
+				textField.setText("1");
 		};
 	}
 	

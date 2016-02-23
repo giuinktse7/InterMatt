@@ -21,7 +21,7 @@ public enum ProductType {
 		for (ProductType type : ProductType.values())
 			productSets.put(type, new HashSet<Product>());
 		
-		addProducts(FRUIT, ProductCategory.FRUIT, ProductCategory.CITRUS_FRUIT, ProductCategory.EXOTIC_FRUIT);
+		ProductType.addProducts(FRUIT, ProductCategory.BERRY, ProductCategory.FRUIT, ProductCategory.CITRUS_FRUIT);
 	}
 	
 	public static void addProducts(ProductType type, ProductCategory... categories) {

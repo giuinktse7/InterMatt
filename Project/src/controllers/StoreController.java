@@ -43,7 +43,7 @@ public class StoreController implements Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle bundle) {
 		new Thread(r).start();
-		populateStore();
+		populateStore(ProductType.getProducts(ProductType.FRUIT));
 	}
 
 	
@@ -61,10 +61,9 @@ public class StoreController implements Initializable {
 	};
 	
 	
-	private void populateStore() {
-		Set<Product> fruits = ProductType.getProducts(ProductType.FRUIT);
+	private void populateStore(Set<Product> products) {
 		
-		for (Product product : fruits)
+		for (Product product : products)
 			content.getChildren().add(getProductDisplay(product));
 	}
 	
