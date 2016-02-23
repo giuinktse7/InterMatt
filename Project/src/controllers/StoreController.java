@@ -4,7 +4,9 @@ package controllers;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 
+import Util.ProductType;
 import Util.ShoppingCartHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -50,19 +52,18 @@ public class StoreController implements Initializable {
 	}
 	
 	Runnable r = () -> {
-		while(mainTabPane.getHeight() == 0)
+		while(mainTabPane.getTabMaxHeight() == 0)
 			try { Thread.sleep(100); }
 			catch (InterruptedException e) { e.printStackTrace(); }
 		
-		AnchorPane.setTopAnchor(borderFixPane, mainTabPane.getTabMaxHeight() + 11);
+		AnchorPane.setTopAnchor(borderFixPane, mainTabPane.getTabMaxHeight());
+		System.out.println(mainTabPane.getLayoutX());
 	};
 	
 	
 	private void populateStore() {
-		List<Product> veggies = db.getProducts(ProductCategory.VEGETABLE_FRUIT);
-		List<Product> fruits = db.getProducts(ProductCategory.FRUIT);
-		for (Product product : veggies)
-			content.getChildren().add(getProductDisplay(product));
+		Set<Product> fruits = ProductType.getProducts(ProductType.FRUIT);
+		
 		for (Product product : fruits)
 			content.getChildren().add(getProductDisplay(product));
 	}

@@ -1,4 +1,4 @@
-import Util.ShoppingCartHandler;
+import Util.ProductType;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,7 +9,10 @@ public class Main extends Application {
 	
 	@Override
     public void start(Stage primaryStage) throws Exception {
-       primaryStage.setTitle("Intermï¿½tt");
+		//Initialise ProductType sets
+		ProductType.initialize();
+		
+       primaryStage.setTitle("Intermätt");
        SplitPane myPane = (SplitPane) FXMLLoader.load(getClass().getResource("fxml/main.fxml"));
        Scene scene = new Scene(myPane);
        primaryStage.setScene(scene);

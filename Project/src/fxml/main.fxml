@@ -28,9 +28,6 @@
       						<fx:include fx:id="credentialsPane" source="credentials.fxml" />
       						<fx:include fx:id="purchasePane" source="purchase.fxml" />
       					</children>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
       				</StackPane>
       				<AnchorPane prefHeight="60.0">
       					<children>

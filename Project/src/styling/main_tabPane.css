@@ -17,31 +17,38 @@
     -fx-border-color: rgba(255, 255, 255, 0.5);
 }
 
-.tab-header-background {
-	-fx-opacity: 0;
+#mainTabPane > .tab-header-background {
+	-fx-background-color: white;
 }
 
+.tab-header-background {
+	-fx-background-color: transparent;
+	-fx-border-width: 1px;
+	-fx-border-style: hidden hidden solid hidden;
+}
+
+/*Working css for tab */
 .tab {
-	-fx-background-color: linear-gradient(to top, derive(-fx-tab-bg-color, 75%), derive(-fx-tab-bg-color, 90%));
-	-fx-background-insets: 0, 1, 2;
-	-fx-background-radius: 5 5 0 0, 4 4 0 0, 3 3 0 0;
+	-fx-background-insets: 0 0.5em 0 0;
 	
+	
+	-fx-border-color: rgba(0, 0, 0, 0.5);
+	-fx-border-style: hidden hidden solid hidden;
+	-fx-border-insets: 0 0.5em 0 0, 0 0 0 0.5em;
+	-fx-border-width: 1;
+	-fx-border-radius: 4 4 0 0;
 	
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
-    -fx-border-width: 1px;
-    -fx-border-style: hidden hidden solid hidden;
-    -fx-border-color: rgba(0, 0, 0, 0.5);
 }
 
+
 .tab:selected {
-    -fx-background-color: linear-gradient(to top, derive(-fx-back-color,60%), derive(-fx-back-color,85%));
-	-fx-background-insets: 0, 1 1 0 1;
-	-fx-background-radius: 5 5 0 0, 4 4 0 0;
-	-fx-border-width: 1px;
-	-fx-border-style: solid solid hidden solid;
 	-fx-border-color: rgba(0, 0, 0, 0.5);
-	-fx-border-radius: 5 5 0 0, 4 4 0 0;
+	-fx-border-style: solid solid hidden solid;
+	-fx-border-insets: 0 0.5em 0 0, 0 0 0 0.5em;
+	-fx-border-width: 1;
+	-fx-border-radius: 4 4 0 0;
 }
 
 
@@ -52,18 +59,6 @@
 
 .tab:selected:hover {
 	-fx-background-color: linear-gradient(to top, derive(-fx-back-color,60%), derive(-fx-back-color,75%));
-}
-
-.button {
-	-fx-background-color: linear-gradient(to top, derive(-fx-back-color, 25%), derive(-fx-back-color, 35%));
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
-    -fx-background-insets: 0 0 0 0, 0, 0, 0;
-    -fx-background-radius: 0 0 0 0, 0, 0, 0;
-    -fx-border-width: 0 0 0 0, 0, 0, 0;
-}
-
-.button:hover {
-	-fx-background-color: linear-gradient(to top, derive(-fx-back-color, 35%), derive(-fx-back-color, 45%));
 }
 
 

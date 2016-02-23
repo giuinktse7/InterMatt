@@ -20,14 +20,12 @@
 	-buy-button-color: 	#ff3030;
 }
 
-.tab-pane .tab-pane .tab:selected {
-	-fx-background-color: -itempane-color;
+.backdrop {
+	-fx-background-color: white;
 }
 
-
-.tab-pane .tab-pane {
-	-fx-border-width: 1px;
-	-fx-border-style: hidden hidden solid hidden;
+.tab-pane .tab-pane .tab:selected {
+	-fx-background-color: -itempane-color;
 }
 
 .tab-pane > .tab-header-area {
@@ -47,9 +45,4 @@
     -fx-background-color: -itempane-color, transparent;
     -fx-background-insets: 0, 0;
     -fx-padding: 0;
-}
-
-#borderFixPane {
-	-fx-border-width: 1px;
-	-fx-border-style: hidden hidden solid hidden;
 }
