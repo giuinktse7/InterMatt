@@ -60,19 +60,10 @@ public class ShoppingCartHandler {
 		leftBox.setAlignment(Pos.CENTER_LEFT);
 
 		TextField txtAmount = new TextField();
+		txtAmount.setPrefWidth(20);
 		
 		Label unitLabel = new Label(p.getUnitSuffix());
 		unitLabel.setMouseTransparent(true);
-		
-		
-		// TODO
-		//Ugly hack to get a proper size for the quantity textfield
-		new Thread(() -> { try {
-			while(unitLabel.getWidth() == 0)
-				Thread.sleep(10);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} txtAmount.setPrefWidth(35 + unitLabel.getWidth()); } ).start();
 		
 		StackPane quantityPane = new StackPane(txtAmount, unitLabel);
 		quantityPane.setAlignment(Pos.CENTER_RIGHT);
@@ -121,6 +112,20 @@ public class ShoppingCartHandler {
 		HBox.setHgrow(rightBox, Priority.ALWAYS);
 		
 		txtAmount.setText("1");
+		
+		// TODO
+		//Ugly hack, see below
+		container.setVisible(false);
+		
+		// TODO
+		//Ugly hack to get a proper size for the quantity textfield
+		new Thread(() -> { try {
+			while(unitLabel.getWidth() == 0)
+				Thread.sleep(100);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} txtAmount.setPrefWidth(35 + unitLabel.getWidth());
+			container.setVisible(true); } ).start();
 
 		return container;
 	}

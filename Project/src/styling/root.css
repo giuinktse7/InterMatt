@@ -20,11 +20,8 @@
 	-buy-button-color: 	#ff3030;
 }
 
+.tab-pane .tab-pane .tab:selected,
 .backdrop {
-	-fx-background-color: white;
-}
-
-.tab-pane .tab-pane .tab:selected {
 	-fx-background-color: -itempane-color;
 }
 
