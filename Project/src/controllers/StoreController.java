@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
-import java.util.TreeSet;
 
 import Util.ShoppingCartHandler;
 import Util.SubCategory;
@@ -57,17 +56,9 @@ public class StoreController implements Initializable {
 		
 		content.getChildren().addAll(subCategory.getProductViews());
 	}
-
+	
 	private void initializeSubCategories() {
-		Map<Integer, Set<SubCategory>> categories = new HashMap<Integer, Set<SubCategory>>();
-		categories.put(0, new HashSet<SubCategory>());
-		SubCategory test = new SubCategory("Test");
-		test.addProducts(2, 5, 1);
-		categories.get(0).add(test);
-		
-		SubCategory test2 = new SubCategory("Works!");
-		test2.addProducts(5, 17, 55, 67, 33, 81, 22, 23, 29);
-		categories.get(0).add(test2);
+		Map<Integer, Set<SubCategory>> categories = categorize();
 		
 
 		
@@ -106,4 +97,63 @@ public class StoreController implements Initializable {
 
 		return tabPanes.toArray(new TabPane[0]);
 	}
+	
+	//Frukt & Grönt
+		private final SubCategory berries = new SubCategory("Bär", ProductCategory.BERRY);
+		private final SubCategory fruits = new SubCategory("Frukter", ProductCategory.CITRUS_FRUIT, ProductCategory.EXOTIC_FRUIT, ProductCategory.FRUIT, ProductCategory.MELONS);
+		private final SubCategory vegitables = new SubCategory("Grönsaker", ProductCategory.VEGETABLE_FRUIT, ProductCategory.CABBAGE);
+		private final SubCategory herbs = new SubCategory("Örter", ProductCategory.HERB);
+		private final SubCategory roots = new SubCategory("Rotfrukter", ProductCategory.ROOT_VEGETABLE, ProductCategory.POTATO_RICE);
+		private final SubCategory pod = new SubCategory("Baljväxter", ProductCategory.POD);
+		private final SubCategory nuts = new SubCategory("Nötter & Frön", ProductCategory.NUTS_AND_SEEDS);
+		//Kött & Fisk
+		private final SubCategory meat = new SubCategory("Kött", ProductCategory.MEAT);
+		private final SubCategory fish = new SubCategory("Fisk", ProductCategory.FISH);
+		//Mejeri
+		private final SubCategory dairies = new SubCategory("Mejeri", ProductCategory.DAIRIES);
+		//Bröd & bakverk
+		private final SubCategory breads = new SubCategory("Bröd", ProductCategory.BREAD);
+		//Skafferi
+		private final SubCategory powderStuff = new SubCategory("Torrvaror", ProductCategory.FLOUR_SUGAR_SALT);
+		private final SubCategory pasta = new SubCategory("Pasta", ProductCategory.PASTA);
+		//Fredagsmys
+		private final SubCategory coldDrinks = new SubCategory("Kalla drycker", ProductCategory.COLD_DRINKS);
+		private final SubCategory hotDrinks = new SubCategory("Varma drycker", ProductCategory.HOT_DRINKS);
+		private final SubCategory sweets = new SubCategory("Sötsaker", ProductCategory.SWEET);
+		
+		public Map<Integer, Set<SubCategory>> categorize(){
+			Map<Integer, Set<SubCategory>> superCategories = new HashMap<Integer, Set<SubCategory>>();
+			Set<SubCategory> greens = new HashSet<SubCategory>();
+			Set<SubCategory> cabinet = new HashSet<SubCategory>();
+			Set<SubCategory> bread = new HashSet<SubCategory>();
+			Set<SubCategory> dairy = new HashSet<SubCategory>();
+			Set<SubCategory> protein = new HashSet<SubCategory>();
+			Set<SubCategory> fridayCuddle = new HashSet<SubCategory>();
+			
+			greens.add(berries);
+			greens.add(fruits);
+			greens.add(vegitables);
+			greens.add(herbs);
+			greens.add(roots);
+			greens.add(pod);
+			greens.add(nuts);
+			protein.add(meat);
+			protein.add(fish);
+			dairy.add(dairies);
+			bread.add(breads);
+			cabinet.add(powderStuff);
+			cabinet.add(pasta);
+			fridayCuddle.add(coldDrinks);
+			fridayCuddle.add(hotDrinks);
+			fridayCuddle.add(sweets);
+
+			superCategories.put(0, greens);
+			superCategories.put(1, protein);
+			superCategories.put(2, dairy);
+			superCategories.put(3, bread);
+			superCategories.put(4, cabinet);
+			superCategories.put(5, fridayCuddle);
+			
+			return superCategories;
+		}
 }

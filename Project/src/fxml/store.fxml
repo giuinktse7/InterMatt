@@ -41,10 +41,7 @@
 							<content>
 								<TabPane styleClass="fruitTabContent" tabClosingPolicy="UNAVAILABLE"
 									tabMinWidth="60.0">
-									<tabs>
-										<Tab text="Citrusfrukter" />
-										<Tab text="Get" />
-									</tabs>
+
 								</TabPane>
 							</content>
 						</Tab>
@@ -52,10 +49,6 @@
 							<content>
 								<TabPane styleClass="breadTabContent" tabClosingPolicy="UNAVAILABLE"
 									tabMinWidth="60.0">
-									<tabs>
-										<Tab text="Citrusfrukter" />
-										<Tab text="Get" />
-									</tabs>
 								</TabPane>
 							</content>
 						</Tab>
@@ -63,10 +56,6 @@
 							<content>
 								<TabPane styleClass="meatTabContent" tabClosingPolicy="UNAVAILABLE"
 									tabMinWidth="60.0">
-									<tabs>
-										<Tab text="Citrusfrukter" />
-										<Tab text="Get" />
-									</tabs>
 								</TabPane>
 							</content>
 						</Tab>
@@ -74,10 +63,6 @@
 							<content>
 								<TabPane styleClass="dairyTabContent" tabClosingPolicy="UNAVAILABLE"
 									tabMinWidth="60.0">
-									<tabs>
-										<Tab text="Citrusfrukter" />
-										<Tab text="Get" />
-									</tabs>
 								</TabPane>
 							</content>
 						</Tab>
@@ -85,10 +70,6 @@
 							<content>
 								<TabPane styleClass="cabinetTabContent" tabClosingPolicy="UNAVAILABLE"
 									tabMinWidth="60.0">
-									<tabs>
-										<Tab text="Citrusfrukter" />
-										<Tab text="Get" />
-									</tabs>
 								</TabPane>
 							</content>
 						</Tab>
@@ -96,10 +77,6 @@
 														<content>
 										<TabPane styleClass="fridaycuddlingTabContent"
 											tabClosingPolicy="UNAVAILABLE" tabMinWidth="60.0">
-											<tabs>
-												<Tab text="Citrusfrukter" />
-												<Tab text="Get" />
-											</tabs>
 										</TabPane>
 							</content>
 						</Tab>

@@ -31,22 +31,33 @@ public class SubCategory {
 		productViews = new ArrayList<Node>();
 	}
 	
-	public void addProducts(SubCategory type, ProductCategory... categories) {
+	public SubCategory(String name, ProductCategory... categories){
+		this.name = name;
+		products = new HashSet<Product>();
+		productViews = new ArrayList<Node>();
+		addProducts(categories);
+	}
+	
+	public void addProducts(ProductCategory... categories) {
 		Set<Product> products = new HashSet<Product>();
 		
-		for (ProductCategory category : categories)
+		for (ProductCategory category : categories) {
 			products.addAll(IMatDataHandler.getInstance().getProducts(category));
+			for (Product product : db.getProducts(category))
+				productViews.add(getProductDisplay(product));
+		}
 		
 		products.addAll(products);
 	}
 	
-	public void addProduct(SubCategory type, Product product) {
+	public void addProduct(Product product) {
 		products.add(product);
 		productViews.add(getProductDisplay(product));
 	}
 	
+
 	/** Does not remove products from view right now. Solve! */
-	public void removeProduct(SubCategory type, Product product) {
+	public void removeProduct(Product product) {
 		products.remove(product);
 	}
 	
