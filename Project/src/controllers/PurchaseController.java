@@ -3,16 +3,21 @@ package controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 
 import java.net.URL;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class PurchaseController implements Initializable {
-
+	@FXML private RadioButton rbPayByCard;
+	
 	// 4 credit card fields.
 	@FXML private TextField txt_cardnr_1;
 	@FXML private TextField txt_cardnr_2;
@@ -143,7 +148,22 @@ public class PurchaseController implements Initializable {
 	}
 
 	public final boolean verifyInput(){
-		//Impl will come soon... 
+		if(rbPayByCard.selectedProperty().getValue()){
+			if (txt_cardnr_1.getText().length() != 4) return false;
+			if (txt_cardnr_2.getText().length() != 4) return false;
+			if (txt_cardnr_3.getText().length() != 4) return false;
+			if (txt_cardnr_4.getText().length() != 4) return false;
+			 
+			if (cb_card_year.getSelectionModel().getSelectedIndex() == 0 || 
+					cb_card_month.getSelectionModel().getSelectedIndex() == 0) return false;
+			
+			int year = Integer.parseInt(cb_card_year.getSelectionModel().getSelectedItem().toString());
+			int month = cb_card_month.getSelectionModel().getSelectedIndex();
+			Calendar c = new GregorianCalendar(year, month, -1);
+			Calendar today = Calendar.getInstance();
+			if (!c.getTime().after(today.getTime())) return false;
+			if (txt_card_cvv.getText().length() != 3) return false;
+		}
 		return true;
 	}
 
