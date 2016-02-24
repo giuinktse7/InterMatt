@@ -11,14 +11,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox styleClass="backdrop" fillWidth="true" prefHeight="600.0" prefWidth="1215.0"
-	xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"
+<VBox styleClass="backdrop" fillWidth="true" prefHeight="600.0"
+	prefWidth="1215.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"
 	fx:controller="controllers.StoreController">
 	<children>
 		<AnchorPane>
 			<children>
-				<Pane fx:id="borderFixPane" AnchorPane.leftAnchor="0"
-					AnchorPane.rightAnchor="0" />
 				<TabPane id="mainTabPane" fx:id="mainTabPane" minWidth="650.0"
 					stylesheets="@../styling/main_tabPane.css" tabClosingPolicy="UNAVAILABLE"
 					tabMinHeight="35.0" tabMaxHeight="35" tabMaxWidth="200.0"
@@ -31,7 +29,7 @@
 									minWidth="300.0" prefHeight="40.0" prefWidth="925.0"
 									styleClass="startTabContent">
 									<children>
-										<TabPane layoutX="11.0" prefHeight="40.0" prefWidth="131.0"
+										<TabPane layoutX="0" prefHeight="40.0" prefWidth="131.0"
 											tabClosingPolicy="UNAVAILABLE" tabMinWidth="60.0"
 											AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"
 											AnchorPane.topAnchor="0.0" />
@@ -41,116 +39,68 @@
 						</Tab>
 						<Tab id="fruitTab" closable="false" text="Frukt &amp; Grönt">
 							<content>
-								<AnchorPane maxHeight="40.0" minHeight="40.0"
-									minWidth="300.0" prefHeight="40.0" prefWidth="925.0">
-									<children>
-										<TabPane layoutX="-4.0" layoutY="-4.0" prefHeight="40.0"
-											prefWidth="131.0" styleClass="fruitTabContent"
-											tabClosingPolicy="UNAVAILABLE" tabMinWidth="60.0"
-											AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-											AnchorPane.topAnchor="0.0">
-											<tabs>
-												<Tab text="Kött" />
-												<Tab text="Fisk" />
-											</tabs>
-										</TabPane>
-									</children>
-								</AnchorPane>
+								<TabPane styleClass="fruitTabContent" tabClosingPolicy="UNAVAILABLE"
+									tabMinWidth="60.0">
+									<tabs>
+										<Tab text="Citrusfrukter" />
+										<Tab text="Get" />
+									</tabs>
+								</TabPane>
 							</content>
 						</Tab>
 						<Tab id="breadTab" closable="false" text="Bröd &amp; Bakverk">
 							<content>
-								<AnchorPane maxHeight="40.0" minHeight="40.0"
-									minWidth="300.0" prefHeight="40.0" prefWidth="925.0">
-									<children>
-										<TabPane layoutX="-4.0" layoutY="-4.0" prefHeight="40.0"
-											prefWidth="131.0" styleClass="breadTabContent"
-											tabClosingPolicy="UNAVAILABLE" tabMinWidth="60.0"
-											AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-											AnchorPane.topAnchor="0.0">
-											<tabs>
-												<Tab text="Kött" />
-												<Tab text="Fisk" />
-											</tabs>
-										</TabPane>
-									</children>
-								</AnchorPane>
+								<TabPane styleClass="breadTabContent" tabClosingPolicy="UNAVAILABLE"
+									tabMinWidth="60.0">
+									<tabs>
+										<Tab text="Citrusfrukter" />
+										<Tab text="Get" />
+									</tabs>
+								</TabPane>
 							</content>
 						</Tab>
 						<Tab id="meatTab" closable="false" text="Kött &amp; Fisk">
 							<content>
-								<AnchorPane maxHeight="40.0" minHeight="40.0"
-									minWidth="300.0" prefHeight="40.0" prefWidth="925.0">
-									<children>
-										<TabPane layoutX="-4.0" layoutY="-4.0" prefHeight="40.0"
-											prefWidth="131.0" styleClass="meatTabContent"
-											tabClosingPolicy="UNAVAILABLE" tabMinWidth="60.0"
-											AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-											AnchorPane.topAnchor="0.0">
-											<tabs>
-												<Tab text="Kött" />
-												<Tab text="Fisk" />
-											</tabs>
-										</TabPane>
-									</children>
-								</AnchorPane>
+								<TabPane styleClass="meatTabContent" tabClosingPolicy="UNAVAILABLE"
+									tabMinWidth="60.0">
+									<tabs>
+										<Tab text="Citrusfrukter" />
+										<Tab text="Get" />
+									</tabs>
+								</TabPane>
 							</content>
 						</Tab>
 						<Tab id="dairyTab" closable="false" text="Mejeri">
 							<content>
-								<AnchorPane maxHeight="40.0" minHeight="40.0"
-									minWidth="300.0" prefHeight="40.0" prefWidth="925.0">
-									<children>
-										<TabPane layoutX="-4.0" layoutY="-4.0" prefHeight="40.0"
-											prefWidth="131.0" styleClass="dairyTabContent"
-											tabClosingPolicy="UNAVAILABLE" tabMinWidth="60.0"
-											AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-											AnchorPane.topAnchor="0.0">
-											<tabs>
-												<Tab text="Kött" />
-												<Tab text="Fisk" />
-											</tabs>
-										</TabPane>
-									</children>
-								</AnchorPane>
+								<TabPane styleClass="dairyTabContent" tabClosingPolicy="UNAVAILABLE"
+									tabMinWidth="60.0">
+									<tabs>
+										<Tab text="Citrusfrukter" />
+										<Tab text="Get" />
+									</tabs>
+								</TabPane>
 							</content>
 						</Tab>
 						<Tab id="cabinetTab" closable="false" text="Skafferi">
 							<content>
-								<AnchorPane maxHeight="40.0" minHeight="40.0"
-									minWidth="300.0" prefHeight="40.0" prefWidth="925.0">
-									<children>
-										<TabPane layoutX="-4.0" layoutY="-4.0" prefHeight="40.0"
-											prefWidth="131.0" styleClass="cabinetTabContent"
-											tabClosingPolicy="UNAVAILABLE" tabMinWidth="60.0"
-											AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-											AnchorPane.topAnchor="0.0">
-											<tabs>
-												<Tab text="Kött" />
-												<Tab text="Fisk" />
-											</tabs>
-										</TabPane>
-									</children>
-								</AnchorPane>
+								<TabPane styleClass="cabinetTabContent" tabClosingPolicy="UNAVAILABLE"
+									tabMinWidth="60.0">
+									<tabs>
+										<Tab text="Citrusfrukter" />
+										<Tab text="Get" />
+									</tabs>
+								</TabPane>
 							</content>
 						</Tab>
 						<Tab id="fridaycuddlingTab" closable="false" text="Fredagsmys">
-							<content>
-								<AnchorPane maxHeight="40.0" minHeight="40.0"
-									minWidth="300.0" prefHeight="40.0" prefWidth="925.0">
-									<children>
-										<TabPane layoutX="-4.0" layoutY="-4.0" prefHeight="40.0"
-											prefWidth="131.0" styleClass="fridaycuddlingTabContent"
-											tabClosingPolicy="UNAVAILABLE" tabMinWidth="60.0"
-											AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-											AnchorPane.topAnchor="0.0">
+														<content>
+										<TabPane styleClass="fridaycuddlingTabContent"
+											tabClosingPolicy="UNAVAILABLE" tabMinWidth="60.0">
 											<tabs>
-												<Tab text="Kött" />
-												<Tab text="Fisk" />
+												<Tab text="Citrusfrukter" />
+												<Tab text="Get" />
 											</tabs>
 										</TabPane>
-									</children>
-								</AnchorPane>
 							</content>
 						</Tab>
 					</tabs>

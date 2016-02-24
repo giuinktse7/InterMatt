@@ -42,7 +42,6 @@ public class StoreController implements Initializable {
 	
 	@Override
 	public void initialize(URL url, ResourceBundle bundle) {
-		new Thread(r).start();
 		populateStore(ProductType.getProducts(ProductType.FRUIT));
 	}
 
@@ -50,16 +49,6 @@ public class StoreController implements Initializable {
 	public Button getShoppingListButton() {
 		return gotoShoppingListButton;
 	}
-	
-	Runnable r = () -> {
-		while(mainTabPane.getTabMaxHeight() == 0)
-			try { Thread.sleep(100); }
-			catch (InterruptedException e) { e.printStackTrace(); }
-		
-		AnchorPane.setTopAnchor(borderFixPane, mainTabPane.getTabMaxHeight());
-		System.out.println(mainTabPane.getLayoutX());
-	};
-	
 	
 	private void populateStore(Set<Product> products) {
 		
