@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
@@ -29,13 +30,19 @@ public class ShoppingCartHandler {
 	private ListView<Node> cart;
 	public static ShoppingCartHandler instance = new ShoppingCartHandler();
 	private static ShoppingCart dbCart  = IMatDataHandler.getInstance().getShoppingCart();
+	
+	//Used to unfocus textField when text is set to 1 through usage of minus button
+	private Node dummyNode = new Label();
 
 	private ShoppingCartHandler() {
 	}
 
 	public void setCart(ListView<Node> cart) {
 		this.cart = cart;
-		
+	}
+	
+	public boolean isEmpty() {
+		return cart.getItems().size() == 0;
 	}
 
 	public static ShoppingCartHandler getInstance() {
@@ -53,24 +60,33 @@ public class ShoppingCartHandler {
 	 * @param p the product which values will be used.
 	 * @return a Pane containing information about the product.
 	 */
-	private Pane getProductContainer(Product p) {
+	/*private Pane getProductContainer(Product p) {
 		HBox leftBox, middleBox, rightBox;
 
 		Label name = new Label(p.getName());
-		leftBox = new HBox(name);
-		leftBox.setAlignment(Pos.CENTER_LEFT);
+		middleBox = new HBox(name);
+		HBox.setHgrow(middleBox, Priority.ALWAYS);
 
+		dummyNode = name;
 		TextField txtAmount = new TextField();
-		txtAmount.setPrefWidth(20);
+<<<<<<< HEAD
+=======
+		txtAmount.setPrefWidth(100);
+>>>>>>> 7610b75dcceb859eb7bf40f72481afe2f95de26d
 		
 		Label unitLabel = new Label(p.getUnitSuffix());
 		unitLabel.setMouseTransparent(true);
 		
-		StackPane quantityPane = new StackPane(txtAmount, unitLabel);
-		quantityPane.setAlignment(Pos.CENTER_RIGHT);
+		txtAmount.prefWidthProperty().bind(unitLabel.widthProperty().add(35));
 		
+		StackPane quantityPane = new StackPane(txtAmount, unitLabel);
+		StackPane.setAlignment(unitLabel, Pos.CENTER_RIGHT);
 		// only integers are allowed as amount
 		txtAmount.textProperty().addListener((obs, oldValue, newValue) -> {
+			//Disallow empty text & 0 (does not account for several zeroes!)
+			if (newValue.equals("") || newValue.equals("0"))
+				txtAmount.setText("1");
+			else {
 				String text = newValue;
 	            if (!newValue.matches("\\d*"))
 	            	text = text.replaceAll("[^\\d]", "");
@@ -78,6 +94,7 @@ public class ShoppingCartHandler {
 	            int intValue = Integer.parseInt(text);
 	            intValue = Math.min(MAX_QUANTITY, intValue);
 	            txtAmount.setText("" + intValue);
+			}
 	        });
 
 		Button decAmountBtn = new Button("-");
@@ -88,8 +105,8 @@ public class ShoppingCartHandler {
 		incAmountBtn.setOnAction(changeTextValue(txtAmount, 1));
 		HBox.setMargin(incAmountBtn, new Insets(0, 0, 0, 3));
 		
-		middleBox = new HBox(decAmountBtn, quantityPane, incAmountBtn);
-		middleBox.setAlignment(Pos.CENTER);
+		leftBox = new HBox(decAmountBtn, quantityPane, incAmountBtn);
+		HBox.setHgrow(quantityPane, Priority.ALWAYS);
 
 		Label lblPrice = new Label(p.getPrice() + ":-");
 		ImageView removeProductIcon = new ImageView();
@@ -101,9 +118,6 @@ public class ShoppingCartHandler {
 		txtAmount.textProperty().addListener((obs, oldValue, newValue) -> {
 			container.setAmount(newValue);
 			
-			if (newValue.equals("1"))
-				name.requestFocus();
-			
 			decAmountBtn.setDisable(newValue.equals("1"));
 				
 			String price = new DecimalFormat("0.#").format(p.getPrice() * Integer.parseInt(newValue));
@@ -113,27 +127,82 @@ public class ShoppingCartHandler {
 		HBox.setHgrow(rightBox, Priority.ALWAYS);
 		
 		txtAmount.setText("1");
+<<<<<<< HEAD
 		
-		// TODO
-		//Ugly hack, see below
-		container.setVisible(false);
+		txtAmount.requestFocus();
+		unitLabel.requestFocus();
+
+		return container;
+	}*/
+	
+	private Pane getProductContainer(Product p) {
+		ProductHBox container;
 		
-		// TODO
-		//Ugly hack to get a proper size for the quantity textfield
-		new Thread(() -> { try {
-			while(unitLabel.getWidth() == 0)
-				Thread.sleep(100);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} txtAmount.setPrefWidth(35 + unitLabel.getWidth());
-			container.setVisible(true); } ).start();
+		Label name = new Label(p.getName());
+
+		dummyNode = name;
+		TextField txtAmount = new TextField();
+		txtAmount.setPrefWidth(45);
+		txtAmount.setMinHeight(35);
+		
+		Button decAmountBtn = new Button("-");
+		decAmountBtn.setOnAction(changeTextValue(txtAmount, -1));
+		HBox.setMargin(decAmountBtn, new Insets(0, 3, 0, 0));
+		
+		Button incAmountBtn = new Button("+");
+		incAmountBtn.setOnAction(changeTextValue(txtAmount, 1));
+		HBox.setMargin(incAmountBtn, new Insets(0, 0, 0, 3));
+		
+		Label unitLabel = new Label(p.getUnitSuffix());
+		unitLabel.setMouseTransparent(true);
+		
+		StackPane quantityPane = new StackPane(txtAmount, unitLabel);
+		StackPane.setAlignment(unitLabel, Pos.CENTER_RIGHT);
+		HBox quantityBox = new HBox(decAmountBtn, quantityPane, incAmountBtn);
+		quantityBox.setAlignment(Pos.CENTER_LEFT);
+
+		
+		Label lblPrice = new Label(p.getPrice() + ":-");
+		lblPrice.setPrefWidth(45);
+		
+		HBox priceWrapperBox = new HBox(lblPrice);
+		priceWrapperBox.setAlignment(Pos.CENTER_RIGHT);
+		
+		container = new ProductHBox(quantityBox, name, priceWrapperBox);
+		container.setSpacing(7);
+		container.setAlignment(Pos.CENTER_LEFT);
+		
+		// only integers are allowed as amount
+		txtAmount.textProperty().addListener((obs, oldValue, newValue) -> {
+			//Disallow empty text & 0 (does not account for several zeroes!)
+			if (newValue.equals("") || newValue.equals("0"))
+				txtAmount.setText("1");
+			else {
+				String text = newValue;
+	            if (!newValue.matches("\\d*"))
+	            	text = text.replaceAll("[^\\d]", "");
+	            
+	            int intValue = Integer.parseInt(text);
+	            intValue = Math.min(MAX_QUANTITY, intValue);
+	            txtAmount.setText("" + intValue);
+			}
+			
+			container.setAmount(newValue);
+				
+			decAmountBtn.setDisable(newValue.equals("1"));
+					
+			String price = new DecimalFormat("0.#").format(p.getPrice() * Integer.parseInt(newValue));
+			lblPrice.setText((price + ":-"));
+	        });
+		
+		txtAmount.setText("1");
 
 		return container;
 	}
 
 	/** Event that changes the value of a TextField by <code>change</code>.
 	 * If textField contains an int, changes the value of it. Otherwise, sets the textField's value to 1 */
-	private static EventHandler<ActionEvent> changeTextValue(TextField textField, int change) {
+	private EventHandler<ActionEvent> changeTextValue(TextField textField, int change) {
 		return event -> {
 			String text = textField.getText();
 			if (isInteger(text)) {
@@ -142,6 +211,9 @@ public class ShoppingCartHandler {
 			}
 			else
 				textField.setText("1");
+			
+			if (textField.getText().equals("1"))
+				dummyNode.requestFocus();
 		};
 	}
 	

@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -26,8 +27,7 @@ import se.chalmers.ait.dat215.project.*;
 
 public class StoreController implements Initializable {
 
-	private static final int pictureWidth = 180;
-	private static final int pictureHeight = 160;
+	private static final int PICTURE_WIDTH = 180;
 	
 	
 	@FXML private Button gotoShoppingListButton;
@@ -61,7 +61,7 @@ public class StoreController implements Initializable {
 		
 		Label title = new Label(product.getName());
 		title.getStyleClass().add("title-label");
-		ImageView image = new ImageView(db.getFXImage(product, pictureWidth, pictureHeight));
+		ImageView image = new ImageView(preserveRatio(product, PICTURE_WIDTH));
 		Label priceLabel = new Label(product.getPrice() + " " + product.getUnit());
 		AnchorPane.setLeftAnchor(priceLabel, 0d);
 		
@@ -71,11 +71,17 @@ public class StoreController implements Initializable {
 		Button button = new Button("Köp");
 		button.setOnAction(e -> cart.addProduct(product));
 		VBox display = new VBox(title, image, infoBox);
-		button.setPrefSize(pictureWidth, 40);
+		button.setPrefSize(PICTURE_WIDTH, 40);
 		display.setAlignment(Pos.CENTER);
 		display.getStyleClass().add("item-display");
 		display.setPadding(new Insets(14, 35, 14, 35));
 		display.getChildren().add(button);
 		return display;
+	}
+	
+	private Image preserveRatio(Product product, int newWidth) {
+		Image rawImage = db.getFXImage(product);
+		double ratio = rawImage.getWidth() / newWidth;
+		return db.getFXImage(product, newWidth, rawImage.getHeight() / ratio);
 	}
 }
