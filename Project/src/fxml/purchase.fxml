@@ -40,7 +40,7 @@
 						</Label>
 						<HBox layoutX="2.0" layoutY="28.0" spacing="14.0">
 							<children>
-								<RadioButton mnemonicParsing="false" text="Kortbetalning" />
+								<RadioButton fx:id="rbPayByCard" mnemonicParsing="false" text="Kortbetalning" />
 								<RadioButton mnemonicParsing="false" text="Faktura" />
 								<RadioButton mnemonicParsing="false" text="Betala vid leverans" />
 							</children>

@@ -140,10 +140,12 @@ public class PurchaseController implements Initializable {
 			}
 		});
 
-
-
 	}
 
+	public final boolean verifyInput(){
+		//Impl will come soon... 
+		return true;
+	}
 
 
 
