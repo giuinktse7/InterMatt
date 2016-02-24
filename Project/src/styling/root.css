@@ -25,10 +25,7 @@
 	-fx-background-color: -itempane-color;
 }
 
-.tab-pane > .tab-header-area {
-	-fx-outer-border-width: 1px;
-	-fx-outer-border-style: hidden hidden solid hidden;
-}
+
 
 .split-pane > .split-pane-divider {  
     -fx-border-width: 2;  
