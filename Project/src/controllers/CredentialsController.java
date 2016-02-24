@@ -33,7 +33,6 @@ public class CredentialsController implements Initializable {
 		if (txtCity.getText().isEmpty()) return false;
 		
 		if (Pattern.matches("[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}", txtEmail.getText())) return false;
-		System.out.println("Verification ok");
 		return true;
 	}
 

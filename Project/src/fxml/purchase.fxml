@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
@@ -10,10 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox id="purchasePane" fx:id="purchasePane" alignment="TOP_CENTER"
-	prefHeight="600.0" prefWidth="1215.0" stylesheets="@../styling/credentials.css"
-	xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="controllers.PurchaseController">
+<HBox id="purchasePane" fx:id="purchasePane" alignment="TOP_CENTER" prefHeight="600.0" prefWidth="1215.0" stylesheets="@../styling/credentials.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PurchaseController">
 	<children>
 		<VBox alignment="TOP_CENTER">
 			<children>
@@ -31,15 +33,14 @@
 				</HBox>
 				<AnchorPane>
 					<children>
-						<Label text="Betalningssätt" AnchorPane.leftAnchor="0.0"
-							AnchorPane.topAnchor="0.0">
+						<Label text="Betalningssätt" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
 							<font>
 								<Font name="Georgia" size="18.0" />
 							</font>
 						</Label>
 						<HBox layoutX="2.0" layoutY="28.0" spacing="14.0">
 							<children>
-								<RadioButton mnemonicParsing="false" text="Kortbetalning" />
+								<RadioButton fx:id="rbPayByCard" mnemonicParsing="false" text="Kortbetalning" />
 								<RadioButton mnemonicParsing="false" text="Faktura" />
 								<RadioButton mnemonicParsing="false" text="Betala vid leverans" />
 							</children>
@@ -48,22 +49,17 @@
 				</AnchorPane>
 				<AnchorPane>
 					<children>
-						<Label text="Kortnummer" AnchorPane.leftAnchor="0.0"
-							AnchorPane.topAnchor="0.0">
+						<Label text="Kortnummer" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
 							<font>
 								<Font name="Georgia" size="18.0" />
 							</font>
 						</Label>
 						<HBox layoutY="28.0" spacing="7.0">
 							<children>
-								<TextField prefHeight="31.0" prefWidth="65.0"
-									promptText="0000" />
-								<TextField prefHeight="31.0" prefWidth="65.0"
-									promptText="0000" />
-								<TextField prefHeight="31.0" prefWidth="65.0"
-									promptText="0000" />
-								<TextField prefHeight="31.0" prefWidth="65.0"
-									promptText="0000" />
+								<TextField fx:id="txt_cardnr_1" alignment="CENTER" prefHeight="31.0" prefWidth="65.0" promptText="0000" />
+								<TextField fx:id="txt_cardnr_2" alignment="CENTER" prefHeight="31.0" prefWidth="65.0" promptText="0000" />
+								<TextField fx:id="txt_cardnr_3" alignment="CENTER" prefHeight="31.0" prefWidth="65.0" promptText="0000" />
+								<TextField fx:id="txt_cardnr_4" alignment="CENTER" prefHeight="31.0" prefWidth="65.0" promptText="0000" />
 							</children>
 						</HBox>
 					</children>
@@ -73,26 +69,23 @@
 				</AnchorPane>
 				<AnchorPane>
 					<children>
-						<Label text="Utgångsdatum" AnchorPane.leftAnchor="0.0"
-							AnchorPane.topAnchor="0.0">
+						<Label text="Utgångsdatum" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
 							<font>
 								<Font name="Georgia" size="18.0" />
 							</font>
 						</Label>
 						<HBox layoutY="28.0" spacing="7.0">
 							<children>
-								<ChoiceBox prefHeight="31.0" prefWidth="80.0" />
-								<ChoiceBox prefHeight="31.0" prefWidth="60.0" />
+								<ChoiceBox fx:id="cb_card_year" prefHeight="31.0" prefWidth="90.0" />
+								<ChoiceBox fx:id="cb_card_month" prefHeight="31.0" prefWidth="110.0" />
 							</children>
 						</HBox>
-						<Label layoutX="187.0" layoutY="11.0" text="CVV"
-							AnchorPane.topAnchor="0.0">
+						<Label layoutX="216.0" layoutY="11.0" text="CVV" AnchorPane.topAnchor="0.0">
 							<font>
 								<Font name="Georgia" size="18.0" />
 							</font>
 						</Label>
-						<TextField layoutX="187.0" layoutY="28.0" prefHeight="31.0"
-							prefWidth="65.0" promptText="0000" />
+						<TextField fx:id="txt_card_cvv" alignment="CENTER" layoutX="216.0" layoutY="28.0" prefHeight="31.0" prefWidth="65.0" promptText="000" />
 					</children>
 					<VBox.margin>
 						<Insets top="21.0" />

@@ -27,15 +27,16 @@ public class MainController implements Initializable {
 	@FXML private BorderPane welcomePane;
 	@FXML private AnchorPane shoppingCart; 
 	@FXML private CredentialsController credentialsPaneController;
+	@FXML private PurchaseController purchasePaneController;
 	
 	private ShoppingCartHandler cartHandler = ShoppingCartHandler.getInstance();
 	private enum View {
-		WELCOME, STORE, CREDENTIALS, PURCHASE;
+		STORE, CREDENTIALS, PURCHASE;
 		
 		private static View[] values = View.values();
 		
 		public View previous() {
-			return values[Math.max(0, this.ordinal() - 1)];
+			return values[this.ordinal() == 0 ? values.length - 1 : this.ordinal() - 1];
 		}
 		
 		public View next() {
@@ -43,10 +44,10 @@ public class MainController implements Initializable {
 		}
 	}
 	
-	private View currentView = View.WELCOME;
+	private View currentView = View.STORE;
 	
 	public void initialize(URL url, ResourceBundle bundle) {
-		NEXT_SCREEN.handle(null);
+		storePane.toFront();
 		nextButton.setOnAction(NEXT_SCREEN);
 		prevButton.setOnAction(PREV_SCREEN);
 	}
@@ -66,15 +67,15 @@ public class MainController implements Initializable {
 	};
 	
 	private Pane[] getPanes() {
-		return new Pane[]{welcomePane, storePane, credentialsPane, purchasePane};
+		return new Pane[]{storePane, credentialsPane, purchasePane};
 	}
 	
 	private ScreenTransition[] getScreenTransitions(){
 		return new ScreenTransition[]{
-				pane -> pane.toFront(), 
-				pane -> pane.toFront(),
-				SHOW_CREDENTIALS_VIEW,
-				SHOW_PURCHASE_VIEW
+				//Replace with comments to perform checks
+				pane -> pane.toFront(), //SHOW_STORE_VIEW, 
+				pane -> pane.toFront(), //SHOW_CREDENTIALS_VIEW,
+				pane -> pane.toFront() //SHOW_PURCHASE_VIEW
 		};
 	}
 	private final ScreenTransition SHOW_CREDENTIALS_VIEW = pane -> {
@@ -87,6 +88,16 @@ public class MainController implements Initializable {
 	
 	private final ScreenTransition SHOW_PURCHASE_VIEW = pane -> {
 		if (credentialsPaneController.verifyInput()){
+			pane.toFront();
+		}
+		else {
+			currentView = currentView.previous();
+		}
+	};
+	
+	private final ScreenTransition SHOW_STORE_VIEW = pane -> {
+		System.out.println(purchasePaneController.verifyInput());
+		if (purchasePaneController.verifyInput()){
 			pane.toFront();
 		}
 		else {
