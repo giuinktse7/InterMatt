@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
 
-import Util.ProductType;
 import Util.ShoppingCartHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -42,7 +41,7 @@ public class StoreController implements Initializable {
 	
 	@Override
 	public void initialize(URL url, ResourceBundle bundle) {
-		populateStore(ProductType.getProducts(ProductType.FRUIT));
+		//populateStore(getProducts());
 	}
 
 	
