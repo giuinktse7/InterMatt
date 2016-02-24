@@ -39,7 +39,10 @@ public class ShoppingCartHandler {
 
 	public void setCart(ListView<Node> cart) {
 		this.cart = cart;
-		
+	}
+	
+	public boolean isEmpty() {
+		return cart.getItems().size() == 0;
 	}
 
 	public static ShoppingCartHandler getInstance() {
@@ -66,6 +69,10 @@ public class ShoppingCartHandler {
 
 		dummyNode = name;
 		TextField txtAmount = new TextField();
+<<<<<<< HEAD
+=======
+		txtAmount.setPrefWidth(100);
+>>>>>>> 7610b75dcceb859eb7bf40f72481afe2f95de26d
 		
 		Label unitLabel = new Label(p.getUnitSuffix());
 		unitLabel.setMouseTransparent(true);
@@ -120,6 +127,7 @@ public class ShoppingCartHandler {
 		HBox.setHgrow(rightBox, Priority.ALWAYS);
 		
 		txtAmount.setText("1");
+<<<<<<< HEAD
 		
 		txtAmount.requestFocus();
 		unitLabel.requestFocus();
