@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -13,8 +14,8 @@ public class Main extends Application {
 		//Initialise ProductType sets
 		ProductType.initialize();
 		
-       primaryStage.setTitle("Intermätt");
-       SplitPane myPane = (SplitPane) FXMLLoader.load(getClass().getResource("fxml/main.fxml"));
+       primaryStage.setTitle("Intermï¿½tt");
+       VBox myPane = (VBox) FXMLLoader.load(getClass().getResource("fxml/main.fxml"));
        Scene scene = new Scene(myPane);
        primaryStage.setScene(scene);
        primaryStage.show();
