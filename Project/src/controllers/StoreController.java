@@ -1,12 +1,17 @@
 package controllers;
 
-
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
+import java.util.TreeSet;
 
 import Util.ShoppingCartHandler;
+import Util.SubCategory;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -27,8 +32,7 @@ import se.chalmers.ait.dat215.project.*;
 public class StoreController implements Initializable {
 
 	private static final int PICTURE_WIDTH = 180;
-	
-	
+
 	@FXML private Button gotoShoppingListButton;
 	@FXML private Tab startTab;
 	@FXML private TabPane mainTabPane;
@@ -38,49 +42,68 @@ public class StoreController implements Initializable {
 	@FXML private TilePane content;
 	
 	private static IMatDataHandler db = IMatDataHandler.getInstance();
-	
+
 	@Override
 	public void initialize(URL url, ResourceBundle bundle) {
-		//populateStore(getProducts());
+		initializeSubCategories();
 	}
 
-	
 	public Button getShoppingListButton() {
 		return gotoShoppingListButton;
 	}
-	
-	private void populateStore(Set<Product> products) {
+
+	private void populateStore(SubCategory subCategory) {
+		content.getChildren().clear();
 		
-		for (Product product : products)
-			content.getChildren().add(getProductDisplay(product));
+		content.getChildren().addAll(subCategory.getProductViews());
 	}
-	
-	private Node getProductDisplay(Product product) {
-		ShoppingCartHandler cart = ShoppingCartHandler.getInstance();
+
+	private void initializeSubCategories() {
+		Map<Integer, Set<SubCategory>> categories = new HashMap<Integer, Set<SubCategory>>();
+		categories.put(0, new HashSet<SubCategory>());
+		SubCategory test = new SubCategory("Test");
+		test.addProducts(2, 5, 1);
+		categories.get(0).add(test);
 		
-		Label title = new Label(product.getName());
-		title.getStyleClass().add("title-label");
-		ImageView image = new ImageView(preserveRatio(product, PICTURE_WIDTH));
-		Label priceLabel = new Label(product.getPrice() + " " + product.getUnit());
-		AnchorPane.setLeftAnchor(priceLabel, 0d);
+		SubCategory test2 = new SubCategory("Works!");
+		test2.addProducts(5, 17, 55, 67, 33, 81, 22, 23, 29);
+		categories.get(0).add(test2);
 		
-		AnchorPane infoBox = new AnchorPane(priceLabel);
+
 		
-		
-		Button button = new Button("Köp");
-		button.setOnAction(e -> cart.addProduct(product));
-		VBox display = new VBox(title, image, infoBox);
-		button.setPrefSize(PICTURE_WIDTH, 40);
-		display.setAlignment(Pos.CENTER);
-		display.getStyleClass().add("item-display");
-		display.setPadding(new Insets(14, 35, 14, 35));
-		display.getChildren().add(button);
-		return display;
+		TabPane[] superCategories = getTabPanes();
+		for (int i : categories.keySet()) {
+			TabPane tabPane = superCategories[i];
+
+			for (SubCategory subCategory : categories.get(i)) {
+				Tab tab = new Tab(subCategory.getName());
+				tab.setOnSelectionChanged(e -> {
+					if (tab.isSelected())
+						populateStore(subCategory);
+				});
+				tabPane.getTabs().add(tab);
+			}
+		}
 	}
-	
-	private Image preserveRatio(Product product, int newWidth) {
-		Image rawImage = db.getFXImage(product);
-		double ratio = rawImage.getWidth() / newWidth;
-		return db.getFXImage(product, newWidth, rawImage.getHeight() / ratio);
+
+	private TabPane[] getTabPanes() {
+		List<TabPane> tabPanes = new ArrayList<TabPane>();
+
+		for (Tab tab : mainTabPane.getTabs()) {
+
+			if (tab.getContent().getClass().equals(TabPane.class))
+				tabPanes.add((TabPane) tab.getContent());
+			else {
+				Pane content = (Pane) tab.getContent();
+
+				for (Node n : content.getChildren())
+					if (n.getClass().equals(TabPane.class)) {
+						tabPanes.add((TabPane) n);
+						break;
+					}
+			}
+		}
+
+		return tabPanes.toArray(new TabPane[0]);
 	}
 }

@@ -29,7 +29,7 @@
 									minWidth="300.0" prefHeight="40.0" prefWidth="925.0"
 									styleClass="startTabContent">
 									<children>
-										<TabPane layoutX="0" prefHeight="40.0" prefWidth="131.0"
+										<TabPane fx:id="skipTabPane" layoutX="0" prefHeight="40.0" prefWidth="131.0"
 											tabClosingPolicy="UNAVAILABLE" tabMinWidth="60.0"
 											AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"
 											AnchorPane.topAnchor="0.0" />
