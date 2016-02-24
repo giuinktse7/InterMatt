@@ -35,7 +35,10 @@ public class ShoppingCartHandler {
 
 	public void setCart(ListView<Node> cart) {
 		this.cart = cart;
-		
+	}
+	
+	public boolean isEmpty() {
+		return cart.getItems().size() == 0;
 	}
 
 	public static ShoppingCartHandler getInstance() {
@@ -61,7 +64,7 @@ public class ShoppingCartHandler {
 		leftBox.setAlignment(Pos.CENTER_LEFT);
 
 		TextField txtAmount = new TextField();
-		txtAmount.setPrefWidth(20);
+		txtAmount.setPrefWidth(100);
 		
 		Label unitLabel = new Label(p.getUnitSuffix());
 		unitLabel.setMouseTransparent(true);
@@ -113,20 +116,6 @@ public class ShoppingCartHandler {
 		HBox.setHgrow(rightBox, Priority.ALWAYS);
 		
 		txtAmount.setText("1");
-		
-		// TODO
-		//Ugly hack, see below
-		container.setVisible(false);
-		
-		// TODO
-		//Ugly hack to get a proper size for the quantity textfield
-		new Thread(() -> { try {
-			while(unitLabel.getWidth() == 0)
-				Thread.sleep(100);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} txtAmount.setPrefWidth(35 + unitLabel.getWidth());
-			container.setVisible(true); } ).start();
 
 		return container;
 	}
