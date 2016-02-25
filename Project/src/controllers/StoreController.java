@@ -11,6 +11,8 @@ import java.util.Set;
 
 import Util.ShoppingCartHandler;
 import Util.SubCategory;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -20,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -39,12 +42,25 @@ public class StoreController implements Initializable {
 	//Fixes the border for the main TabPane.
 	@FXML private Pane borderFixPane;
 	@FXML private TilePane content;
+	@FXML private TextField txtSearch;
 	
 	private static IMatDataHandler db = IMatDataHandler.getInstance();
 
 	@Override
 	public void initialize(URL url, ResourceBundle bundle) {
 		initializeSubCategories();
+		
+		txtSearch.textProperty().addListener(new ChangeListener<String>(){
+			@Override
+	        public void changed(ObservableValue<? extends String> observable,
+	                            String oldValue, String newValue) {
+				/**
+				 * Causes lag when many results are found.
+				 * Try to run on separate thread if possible. 
+				 * Look more into this after Friday*/
+				search(newValue);
+	        }
+		});
 	}
 
 	public Button getShoppingListButton() {
@@ -55,6 +71,10 @@ public class StoreController implements Initializable {
 		content.getChildren().clear();
 		
 		content.getChildren().addAll(subCategory.getProductViews());
+	}
+	
+	private void search(String searchString){
+		populateStore(new SubCategory("Search", searchString));
 	}
 	
 	private void initializeSubCategories() {
@@ -147,12 +167,12 @@ public class StoreController implements Initializable {
 			fridayCuddle.add(hotDrinks);
 			fridayCuddle.add(sweets);
 
-			superCategories.put(0, greens);
-			superCategories.put(1, protein);
-			superCategories.put(2, dairy);
-			superCategories.put(3, bread);
-			superCategories.put(4, cabinet);
-			superCategories.put(5, fridayCuddle);
+			superCategories.put(1, greens);
+			superCategories.put(2, bread);
+			superCategories.put(3, protein);
+			superCategories.put(4, dairy);
+			superCategories.put(5, cabinet);
+			superCategories.put(6, fridayCuddle);
 			
 			return superCategories;
 		}

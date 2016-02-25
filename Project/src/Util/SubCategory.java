@@ -38,6 +38,16 @@ public class SubCategory {
 		addProducts(categories);
 	}
 	
+	public SubCategory(String name, String searchString){
+		this.name = name;
+		products = new HashSet<Product>();
+		productViews = new ArrayList<Node>();
+		List<Product> productsFound = db.findProducts(searchString);
+		for (Product product : productsFound){
+			addProduct(product);
+		}
+	}
+	
 	public void addProducts(ProductCategory... categories) {
 		Set<Product> products = new HashSet<Product>();
 		
@@ -92,7 +102,7 @@ public class SubCategory {
 
 		AnchorPane infoBox = new AnchorPane(priceLabel);
 
-		Button button = new Button("Köp");
+		Button button = new Button("Kï¿½p");
 		button.setOnAction(e -> cart.addProduct(product));
 		VBox display = new VBox(title, image, infoBox);
 		button.setPrefSize(PICTURE_WIDTH, 40);
