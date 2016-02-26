@@ -16,7 +16,8 @@ public class ModalPopup {
 	
 	public ModalPopup(Node content) {
 		this.content = content;
-		container.getChildren().add(content);
+		if (!container.getChildren().contains(content))
+		container.getChildren().add(0, content);
 		
 		setDefaultFade();
 	}
@@ -32,6 +33,8 @@ public class ModalPopup {
 	}
 	
 	public void show() {
+		content.prefWidth(container.getPrefWidth());
+		content.prefHeight(container.getPrefHeight());
 		content.toFront();
 		appearAnimation.play();
 	}
@@ -39,7 +42,7 @@ public class ModalPopup {
 	/** Closes the popup. */
 	public void close() {
 		disappearAnimation.play();
-		disappearAnimation.setOnFinished(event -> { mainProgramContent.toFront(); System.out.println(container.getChildren().get(0)); });
+		disappearAnimation.setOnFinished(event -> mainProgramContent.toFront());
 	}
 	
 	/** Equivalent to <code>close()</code>. */
@@ -54,12 +57,12 @@ public class ModalPopup {
 	}
 	
 	private void setDefaultFade() {
-		appearAnimation = new FadeTransition(Duration.millis(500), content);
+		appearAnimation = new FadeTransition(Duration.millis(300), content);
 		FadeTransition fade = (FadeTransition) appearAnimation;
 		fade.setFromValue(0);
 		fade.setToValue(1);
 		
-		disappearAnimation = new FadeTransition(Duration.millis(500), content);
+		disappearAnimation = new FadeTransition(Duration.millis(300), content);
 		fade = (FadeTransition) disappearAnimation;
 		fade.setFromValue(1);
 		fade.setToValue(0);

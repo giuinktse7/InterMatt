@@ -14,7 +14,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.layout.Pane;
-import util.ConfirmationDialog;
 import util.ModalPopup;
 import util.ShoppingCartHandler;
 

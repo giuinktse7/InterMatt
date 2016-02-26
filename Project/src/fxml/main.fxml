@@ -1,24 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-
-<!-- FIX CSS to root -->
 
 <StackPane fx:id="wrapperStackPane" stylesheets="@../styling/root.css"
-	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+	xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"
 	fx:controller="controllers.MainController">
 	<children>
 		<VBox fx:id="mainContentWrapper">
@@ -34,10 +25,9 @@
 										<StackPane fx:id="contentPane" alignment="TOP_LEFT"
 											VBox.vgrow="ALWAYS">
 											<children>
-												<fx:include fx:id="storePane" source="store.fxml" />
-												<fx:include fx:id="welcomePane" source="welcome_screen.fxml" />
-												<fx:include fx:id="credentialsPane" source="credentials.fxml" />
 												<fx:include fx:id="purchasePane" source="purchase.fxml" />
+												<fx:include fx:id="credentialsPane" source="credentials.fxml" />
+												<fx:include fx:id="storePane" source="store.fxml" />
 											</children>
 										</StackPane>
 									</children>
@@ -46,7 +36,10 @@
 						</AnchorPane>
 						<AnchorPane prefHeight="601.0" prefWidth="142.0">
 							<children>
+								<Button fx:id="purchaseHistoryButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false"
+									prefHeight="44.0" prefWidth="116.0" text="Köphistorik" />
 								<fx:include fx:id="shoppingCart" source="shopping_cart.fxml" />
+
 							</children>
 						</AnchorPane>
 					</items>
@@ -84,5 +77,6 @@
 				</AnchorPane>
 			</children>
 		</VBox>
+		<fx:include fx:id="purchaseHistoryPane" maxWidth="-Infinity" maxHeight="-Infinity" source="purchase_history.fxml"/>
 	</children>
 </StackPane>

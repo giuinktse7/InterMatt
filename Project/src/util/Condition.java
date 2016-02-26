@@ -1,5 +1,8 @@
 package util;
 
+import interfaces.Performable;
+import interfaces.Requirement;
+
 public class Condition {
 
 	private Requirement requirement;

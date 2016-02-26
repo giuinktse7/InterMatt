@@ -1,20 +1,22 @@
 package controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import interfaces.Performable;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import util.Condition;
 import util.ContentView;
 import util.ModalPopup;
-import util.Performable;
 import util.ShoppingCartHandler;
 import util.ViewDisplay;
 
@@ -22,15 +24,17 @@ public class MainController implements Initializable {
 	@FXML private StackPane contentPane;
 	@FXML private Button prevButton;
 	@FXML private Button nextButton;
+	@FXML private Button purchaseHistoryButton;
 	
 	@FXML private Pane purchasePane;
 	@FXML private Pane credentialsPane;
-	@FXML private VBox storePane;
-	@FXML private BorderPane welcomePane;
-	@FXML private AnchorPane shoppingCart; 
+	@FXML private Pane storePane;
+	@FXML private Pane shoppingCart;
+	@FXML private Pane purchaseHistoryPane;
 	@FXML private StoreController storePaneController;
 	@FXML private CredentialsController credentialsPaneController;
 	@FXML private PurchaseController purchasePaneController;
+	@FXML private PurchaseHistoryController purchaseHistoryPaneController;
 	
 	@FXML private StackPane wrapperStackPane;
 	@FXML private VBox mainContentWrapper;
@@ -61,13 +65,13 @@ public class MainController implements Initializable {
 		prevButton.setOnAction(event -> display.previous());
 		nextButton.setOnAction(event -> display.next());
 		
-		Button button = new Button("BHYE");
-		button.setPrefWidth(300);
-		button.setPrefHeight(300);
-		ModalPopup p = new ModalPopup(button);
-		button.setOnAction(event -> p.hide());
-		p.show();
 		
+		purchaseHistoryPane.setMaxWidth(Double.MAX_VALUE);
+		purchaseHistoryPane.setMaxHeight(Double.MAX_VALUE);
+		
+		ModalPopup historyPopup = new ModalPopup(purchaseHistoryPane);
+		purchaseHistoryButton.setOnAction(event -> historyPopup.show());
+		purchaseHistoryPaneController.setCloseAction(() -> historyPopup.hide());
 	}
 	private final Condition CART_NOT_EMPTY = new Condition(() -> { return !cartHandler.isEmpty(); }, print("You can not proceed with an empty cart!"));
 	
