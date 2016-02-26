@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import Util.ConfirmationDialog;
-import Util.ShoppingCartHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -16,6 +14,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.layout.Pane;
+import util.ConfirmationDialog;
+import util.ShoppingCartHandler;
 
 public class ShoppingCartController implements Initializable {
 

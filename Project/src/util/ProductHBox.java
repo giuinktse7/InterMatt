@@ -1,4 +1,4 @@
-package Util;
+package util;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.property.IntegerProperty;

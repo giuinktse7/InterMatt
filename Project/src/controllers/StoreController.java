@@ -9,31 +9,21 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
 
-import Util.ShoppingCartHandler;
-import Util.SubCategory;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
-import javafx.scene.layout.VBox;
 import se.chalmers.ait.dat215.project.*;
+import util.SubCategory;
 
 public class StoreController implements Initializable {
-
-	private static final int PICTURE_WIDTH = 180;
 
 	@FXML private Button gotoShoppingListButton;
 	@FXML private Tab startTab;
@@ -43,8 +33,6 @@ public class StoreController implements Initializable {
 	@FXML private Pane borderFixPane;
 	@FXML private TilePane content;
 	@FXML private TextField txtSearch;
-	
-	private static IMatDataHandler db = IMatDataHandler.getInstance();
 
 	@Override
 	public void initialize(URL url, ResourceBundle bundle) {
@@ -68,13 +56,18 @@ public class StoreController implements Initializable {
 	}
 
 	private void populateStore(SubCategory subCategory) {
+		populateStore(subCategory.getProductViews());
+	}
+	
+	private void populateStore(List<Node> productViews) {
 		content.getChildren().clear();
 		
-		content.getChildren().addAll(subCategory.getProductViews());
+		content.getChildren().addAll(productViews);
 	}
 	
 	private void search(String searchString){
-		populateStore(new SubCategory("Search", searchString));
+		if (searchString.equals("")) return;
+		populateStore(SubCategory.find(searchString));
 	}
 	
 	private void initializeSubCategories() {

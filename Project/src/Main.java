@@ -3,11 +3,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import util.SubCategory;
 
 public class Main extends Application {
 	
 	@Override
     public void start(Stage primaryStage) throws Exception {
+		
+		SubCategory.initializeProductViews();
 		
        primaryStage.setTitle("Intermätt");
        VBox myPane = (VBox) FXMLLoader.load(getClass().getResource("fxml/main.fxml"));

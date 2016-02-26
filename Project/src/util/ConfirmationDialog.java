@@ -1,4 +1,4 @@
-package Util;
+package util;
 /*
  * Taken from https://s3.amazonaws.com/baanthaispa/ConfirmationDialog.zip, 17/02/2016
  * Modified to fit needs

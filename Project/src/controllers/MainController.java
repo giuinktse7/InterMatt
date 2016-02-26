@@ -3,10 +3,6 @@ package controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import Util.ScreenTransition;
-import Util.ShoppingCartHandler;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -15,6 +11,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import util.Condition;
+import util.ContentView;
+import util.Performable;
+import util.ShoppingCartHandler;
+import util.ViewDisplay;
 
 public class MainController implements Initializable {
 	@FXML private StackPane contentPane;
@@ -26,82 +27,38 @@ public class MainController implements Initializable {
 	@FXML private VBox storePane;
 	@FXML private BorderPane welcomePane;
 	@FXML private AnchorPane shoppingCart; 
+	@FXML private StoreController storePaneController;
 	@FXML private CredentialsController credentialsPaneController;
 	@FXML private PurchaseController purchasePaneController;
 	
-	private ShoppingCartHandler cartHandler = ShoppingCartHandler.getInstance();
-	private enum View {
-		STORE, CREDENTIALS, PURCHASE;
-		
-		private static View[] values = View.values();
-		
-		public View previous() {
-			return values[this.ordinal() == 0 ? values.length - 1 : this.ordinal() - 1];
-		}
-		
-		public View next() {
-			return values[(this.ordinal() + 1) % values.length];
-		}
-	}
+	ViewDisplay display;
 	
-	private View currentView = View.STORE;
+	private ShoppingCartHandler cartHandler = ShoppingCartHandler.getInstance();
 	
 	public void initialize(URL url, ResourceBundle bundle) {
-		storePane.toFront();
-		nextButton.setOnAction(NEXT_SCREEN);
-		prevButton.setOnAction(PREV_SCREEN);
-	}
-	
-	private final EventHandler<ActionEvent> NEXT_SCREEN = e -> {
-		//Pane screens[] = {welcomePane, storePane, credentialsPane};
-		currentView = currentView.next();
-		//getPanes()[currentView.ordinal()].toFront();
-		getScreenTransitions()[currentView.ordinal()].run(getPanes()[currentView.ordinal()]);
-	};
-	
-	private final EventHandler<ActionEvent> PREV_SCREEN = e -> {
-		//Pane screens[] = {welcomePane, storePane, credentialsPane};
-		currentView = currentView.previous();
-		getPanes()[currentView.ordinal()].toFront();
+		display = new ViewDisplay(contentPane);
 		
-	};
-	
-	private Pane[] getPanes() {
-		return new Pane[]{storePane, credentialsPane, purchasePane};
+		ContentView storeView = new ContentView(storePane);
+		
+		ContentView credentialsView = new ContentView(credentialsPane);
+		credentialsView.require(CART_NOT_EMPTY);
+		
+		ContentView purchaseView = new ContentView(purchasePane);
+		
+		storeView.setNext(credentialsView);
+		
+		credentialsView.setNext(purchaseView);
+		credentialsView.setPrevious(storeView);
+		
+		purchaseView.setPrevious(credentialsView);
+		
+		display.show(storeView);
+		prevButton.setOnAction(event -> display.previous());
+		nextButton.setOnAction(event -> display.next());
 	}
+	private final Condition CART_NOT_EMPTY = new Condition(() -> { return !cartHandler.isEmpty(); }, print("You can not proceed with an empty cart!"));
 	
-	private ScreenTransition[] getScreenTransitions(){
-		return new ScreenTransition[]{
-				//Replace with comments to perform checks
-				pane -> pane.toFront(), //SHOW_STORE_VIEW, 
-				pane -> pane.toFront(), //SHOW_CREDENTIALS_VIEW,
-				pane -> pane.toFront() //SHOW_PURCHASE_VIEW
-		};
+	private static final Performable print(String s) {
+		return () -> System.out.println(s);
 	}
-	private final ScreenTransition SHOW_CREDENTIALS_VIEW = pane -> {
-		if (!cartHandler.isEmpty())
-			pane.toFront();
-		else {
-			currentView = currentView.previous();
-		}
-	};
-	
-	private final ScreenTransition SHOW_PURCHASE_VIEW = pane -> {
-		if (credentialsPaneController.verifyInput()){
-			pane.toFront();
-		}
-		else {
-			currentView = currentView.previous();
-		}
-	};
-	
-	private final ScreenTransition SHOW_STORE_VIEW = pane -> {
-		System.out.println(purchasePaneController.verifyInput());
-		if (purchasePaneController.verifyInput()){
-			pane.toFront();
-		}
-		else {
-			currentView = currentView.previous();
-		}
-	};
 }

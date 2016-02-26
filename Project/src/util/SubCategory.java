@@ -1,8 +1,10 @@
-package Util;
+package util;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javafx.geometry.Insets;
@@ -17,13 +19,14 @@ import javafx.scene.layout.VBox;
 import se.chalmers.ait.dat215.project.*;
 
 public class SubCategory {
-
+	
 	private static final int PICTURE_WIDTH = 180;
 	
 	private String name;
 	private Set<Product> products;
 	private List<Node> productViews;
-	private IMatDataHandler db = IMatDataHandler.getInstance();
+	private static Map<Integer, Node> allProductViews;
+	private static IMatDataHandler db = IMatDataHandler.getInstance();
 	
 	public SubCategory(String name) {
 		this.name = name;
@@ -38,14 +41,29 @@ public class SubCategory {
 		addProducts(categories);
 	}
 	
-	public SubCategory(String name, String searchString){
-		this.name = name;
+	public SubCategory(Node p, String searchString){
+		this.name = searchString;
 		products = new HashSet<Product>();
 		productViews = new ArrayList<Node>();
 		List<Product> productsFound = db.findProducts(searchString);
 		for (Product product : productsFound){
 			addProduct(product);
 		}
+	}
+	
+	public static List<Node> find(String searchString) {
+		List<Node> views = new ArrayList<Node>();
+		for (Product p : db.findProducts(searchString))
+			views.add(allProductViews.get(p.getProductId()));
+			
+		return views;
+	}
+	
+	public static void initializeProductViews() {
+		allProductViews = new HashMap<Integer, Node>();
+		
+		for (Product product : IMatDataHandler.getInstance().getProducts())
+			allProductViews.put(product.getProductId(), getProductDisplay(product));
 	}
 	
 	public void addProducts(ProductCategory... categories) {
@@ -91,7 +109,7 @@ public class SubCategory {
 		return this.name;
 	}
 	
-	private Node getProductDisplay(Product product) {
+	private static Node getProductDisplay(Product product) {
 		ShoppingCartHandler cart = ShoppingCartHandler.getInstance();
 
 		Label title = new Label(product.getName());
@@ -102,7 +120,7 @@ public class SubCategory {
 
 		AnchorPane infoBox = new AnchorPane(priceLabel);
 
-		Button button = new Button("Kï¿½p");
+		Button button = new Button("Köp");
 		button.setOnAction(e -> cart.addProduct(product));
 		VBox display = new VBox(title, image, infoBox);
 		button.setPrefSize(PICTURE_WIDTH, 40);
@@ -113,7 +131,7 @@ public class SubCategory {
 		return display;
 	}
 	
-	private Image preserveRatio(Product product, int newWidth) {
+	private static Image preserveRatio(Product product, int newWidth) {
 		Image rawImage = db.getFXImage(product);
 		double ratio = rawImage.getWidth() / newWidth;
 		return db.getFXImage(product, newWidth, rawImage.getHeight() / ratio);
