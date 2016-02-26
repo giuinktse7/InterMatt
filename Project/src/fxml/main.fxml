@@ -36,47 +36,75 @@
 						</AnchorPane>
 						<AnchorPane prefHeight="601.0" prefWidth="142.0">
 							<children>
-								<Button fx:id="purchaseHistoryButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false"
-									prefHeight="44.0" prefWidth="116.0" text="Köphistorik" />
+								<Button fx:id="purchaseHistoryButton" layoutX="14.0"
+									layoutY="14.0" mnemonicParsing="false" prefHeight="44.0"
+									prefWidth="116.0" text="Köphistorik" />
 								<fx:include fx:id="shoppingCart" source="shopping_cart.fxml" />
-
 							</children>
 						</AnchorPane>
 					</items>
 				</SplitPane>
-				<AnchorPane prefHeight="103.0" prefWidth="1057.0"
-					styleClass="base-style">
+				<AnchorPane prefHeight="103.0" prefWidth="1057.0" styleClass="base-style">
 					<children>
-						<Button fx:id="nextButton" layoutX="485.0" layoutY="15.0"
-							minWidth="-Infinity" mnemonicParsing="false" styleClass="nav-button"
-							AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="7.0"
-							AnchorPane.topAnchor="14.0">
+						<Button fx:id="nextButton" layoutX="485.0" layoutY="15.0" minWidth="-Infinity" mnemonicParsing="false" styleClass="nav-button" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="14.0">
 							<graphic>
-								<ImageView fitWidth="90.0" pickOnBounds="true"
-									preserveRatio="true">
+								<ImageView fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
 									<image>
 										<Image url="@../resources/pilHöger.png" />
 									</image>
 								</ImageView>
 							</graphic>
 						</Button>
-						<Button fx:id="prevButton" layoutX="29.0" layoutY="15.0"
-							minWidth="-Infinity" mnemonicParsing="false" styleClass="nav-button"
-							AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="7.0"
-							AnchorPane.topAnchor="14.0">
+						<Button fx:id="prevButton" layoutX="29.0" layoutY="15.0" minWidth="-Infinity" mnemonicParsing="false" styleClass="nav-button" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="14.0">
 							<graphic>
-								<ImageView fitWidth="90.0" pickOnBounds="true"
-									preserveRatio="true">
+								<ImageView fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
 									<image>
 										<Image url="@../resources/pilVänster.png" />
 									</image>
 								</ImageView>
 							</graphic>
 						</Button>
+                  <Button layoutX="400.0" layoutY="63.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="nav-button" AnchorPane.bottomAnchor="28.0">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/previous1.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="500.0" layoutY="73.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="nav-button" AnchorPane.bottomAnchor="28.0">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/thisPage2.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="600.0" layoutY="83.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="nav-button" AnchorPane.bottomAnchor="28.0">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/disabled3.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="700.0" layoutY="93.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="nav-button" AnchorPane.bottomAnchor="28.0">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/disabled4.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
 					</children>
 				</AnchorPane>
 			</children>
 		</VBox>
-		<fx:include fx:id="purchaseHistoryPane" maxWidth="-Infinity" maxHeight="-Infinity" source="purchase_history.fxml"/>
+		<fx:include fx:id="purchaseHistoryPane" maxWidth="-Infinity"
+			maxHeight="-Infinity" source="purchase_history.fxml" />
 	</children>
 </StackPane>
