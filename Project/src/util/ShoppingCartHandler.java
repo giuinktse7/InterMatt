@@ -1,6 +1,8 @@
 package util;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
@@ -22,7 +24,9 @@ import se.chalmers.ait.dat215.project.Product;
 public class ShoppingCartHandler {
 
 	private static final int MAX_QUANTITY = 999;
-
+	private Label lblTotalCost;
+	private List<Label> priceLabels  = new ArrayList<Label>();
+	
 	private ListView<Node> cart;
 	public static ShoppingCartHandler instance = new ShoppingCartHandler();
 
@@ -36,6 +40,10 @@ public class ShoppingCartHandler {
 	public void setCart(ListView<Node> cart) {
 		this.cart = cart;
 	}
+	
+	public void passLabel(Label lblTotalCost){
+		this.lblTotalCost = lblTotalCost;
+	}
 
 	public boolean isEmpty() {
 		return cart.getItems().size() == 0;
@@ -43,6 +51,15 @@ public class ShoppingCartHandler {
 
 	public static ShoppingCartHandler getInstance() {
 		return instance;
+	}
+	
+	public void updateTotalCost(){
+		float cost = 0;
+		for (Label price : priceLabels){
+			float p = Float.parseFloat(price.getText().substring(0, price.getText().length()-2).replaceAll(",","."));
+			cost += p;
+		}
+		lblTotalCost.setText("Totalt: " +new DecimalFormat("#.##").format(cost) + ":-");
 	}
 
 	/** Adds the product to the shopping cart */
@@ -55,6 +72,7 @@ public class ShoppingCartHandler {
 			Pane container = getProductContainer(product);
 			cart.getItems().add(container);
 		}
+		updateTotalCost();
 	}
 
 	/**
@@ -91,6 +109,7 @@ public class ShoppingCartHandler {
 		quantityBox.setAlignment(Pos.CENTER_LEFT);
 
 		Label lblPrice = new Label(p.getPrice() + ":-");
+		priceLabels.add(lblPrice);
 		lblPrice.setPrefWidth(70);
 
 		HBox priceWrapperBox = new HBox(lblPrice);
@@ -119,12 +138,10 @@ public class ShoppingCartHandler {
 		});
 
 		Bindings.bindBidirectional(txtAmount.textProperty(), container.quantityProperty(), new NumberStringConverter());
-		lblPrice.textProperty().bind(Bindings.concat(
-				container.quantityProperty().multiply(Integer.parseInt(new DecimalFormat("0.#").format(p.getPrice()))),
+		lblPrice.textProperty().bind(Bindings.concat(container.quantityProperty().multiply(p.getPrice()), //new DecimalFormat("0.#").format(p.getPrice()))),
 				":-"));
-
 		txtAmount.setText("1");
-
+		
 		return container;
 	}
 
@@ -144,6 +161,9 @@ public class ShoppingCartHandler {
 
 			if (textField.getText().equals("1"))
 				dummyNode.requestFocus();
+			
+
+			updateTotalCost();
 		};
 	}
 
