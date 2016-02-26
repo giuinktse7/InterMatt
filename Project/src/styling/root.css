@@ -8,7 +8,7 @@
 	-fx-glass-color: rgba(111, 194, 56, 0.9);
 	-fx-tab-bg-color: #36750f;
 	-fx-back-color: #6fc238;
-	-fx-start-color: #ffc966;
+	-fx-start-color: #fafafa;
 	-fx-fruit-color: #9bc53d;
 	-fx-bread-color: #f0b67f;
 	-fx-meat-color: #e55934;
@@ -18,7 +18,7 @@
 	-fx-main-color: #fafafa;
 	
 	-itempane-color: white;
-	-buy-button-color: 	#ff3030;
+	-buy-button-color: 	#b9d677;
 }
 
 .tab-pane .tab-pane .tab:selected,
@@ -43,6 +43,7 @@
 }
 .nav-button {
 	-fx-background-color: transparent;
+	  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 0.5, 0.0 , 0 , 0.8 );
 }
 .base-style{
 	-fx-background-color: -fx-main-color;
