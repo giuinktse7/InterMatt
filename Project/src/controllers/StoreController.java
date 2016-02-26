@@ -81,6 +81,7 @@ public class StoreController implements Initializable {
 
 			for (SubCategory subCategory : categories.get(i)) {
 				Tab tab = new Tab(subCategory.getName());
+
 				tab.setOnSelectionChanged(e -> {
 					if (tab.isSelected())
 						populateStore(subCategory);
