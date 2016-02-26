@@ -37,7 +37,8 @@ public class MainController implements Initializable {
 	
 	public void initialize(URL url, ResourceBundle bundle) {
 		display = new ViewDisplay(contentPane);
-		
+
+
 		ContentView storeView = new ContentView(storePane);
 		
 		ContentView credentialsView = new ContentView(credentialsPane);

@@ -8,7 +8,6 @@
 .tab .tab-label {
 	-fx-text-fill: #202b19;
     -fx-font-family: "Helvetica";
-    -fx-font-size: 18 pt;
 }
 
 .tab:selected .tab-label {
@@ -16,6 +15,25 @@
     -fx-border-style: hidden hidden solid hidden;
     -fx-border-color: rgba(255, 255, 255, 0.5);
 }
+
+.bigTabs .tab-label{
+    -fx-font-size: 20 pt;
+}
+
+.bigTabs .tab{
+    -fx-padding:3px 14px 3px 14px;
+}
+
+.smallTabs .tab{
+    -fx-padding:4px 7px 4px 7px;
+}
+
+
+.smallTabs .tab-label{
+    -fx-font-size: 18 pt;
+}
+
+
 
 #mainTabPane > .tab-header-background {
 	-fx-background-color: white;
