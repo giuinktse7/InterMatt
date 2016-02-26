@@ -33,7 +33,6 @@ public class ShoppingCartHandler {
 	private static final int MAX_QUANTITY = 999;
 
 	private Label lblTotalCost;
-	private List<Label> priceLabels  = new ArrayList<Label>();
 	
 	private ListView<ProductHBox> cart;
 	private BooleanProperty emptyProperty = new SimpleBooleanProperty(true);
@@ -72,9 +71,9 @@ public class ShoppingCartHandler {
 	
 	public void updateTotalCost(){
 		float cost = 0;
-		for (Label price : priceLabels){
-			float p = Float.parseFloat(price.getText().substring(0, price.getText().length()-2).replaceAll(",","."));
-			cost += p;
+		ObservableList<ProductHBox> list = cart.getItems();
+		for (ProductHBox box : list){
+			cost += box.getQuantity() * box.getProduct().getPrice();
 		}
 		lblTotalCost.setText("Totalt: " +new DecimalFormat("#.##").format(cost) + ":-");
 	}
@@ -126,7 +125,6 @@ public class ShoppingCartHandler {
 		quantityBox.setAlignment(Pos.CENTER_LEFT);
 
 		Label lblPrice = new Label(p.getPrice() + ":-");
-
 		Button removeProductButton = new Button();
 		removeProductButton.setStyle("-fx-background-color: transparent;");
 		removeProductButton.setPrefSize(32, 32);
@@ -166,7 +164,7 @@ public class ShoppingCartHandler {
 		lblPrice.textProperty().bind(Bindings.concat(container.quantityProperty().multiply(p.getPrice()), //new DecimalFormat("0.#").format(p.getPrice()))),
 				":-"));
 		txtAmount.setText("1");
-		removeProductButton.setOnAction(event -> cart.getItems().remove(container));
+		removeProductButton.setOnAction(event -> {cart.getItems().remove(container); updateTotalCost();});
 		return container;
 	}
 
