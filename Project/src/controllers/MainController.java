@@ -33,6 +33,7 @@ public class MainController implements Initializable {
 	@FXML private PurchaseController purchasePaneController;
 	
 	@FXML private StackPane wrapperStackPane;
+	@FXML private VBox mainContentWrapper;
 	
 	ViewDisplay display;
 	
@@ -75,6 +76,6 @@ public class MainController implements Initializable {
 	}
 	
 	private void configurePopupStackPane() {
-		ModalPopup.setContainer(wrapperStackPane);
+		ModalPopup.initialize(wrapperStackPane, mainContentWrapper);
 	}
 }

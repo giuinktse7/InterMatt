@@ -3,6 +3,7 @@ package util;
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.scene.Node;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
@@ -38,7 +39,7 @@ public class ModalPopup {
 	/** Closes the popup. */
 	public void close() {
 		disappearAnimation.play();
-		disappearAnimation.onFinishedProperty().addListener((obs, o, n) -> mainProgramContent.toFront());
+		disappearAnimation.setOnFinished(event -> { mainProgramContent.toFront(); System.out.println(container.getChildren().get(0)); });
 	}
 	
 	/** Equivalent to <code>close()</code>. */
@@ -46,9 +47,10 @@ public class ModalPopup {
 		close();
 	}
 	
-	public static void setContainer(StackPane container) {
+	/** should only be called at program startup. */
+	public static void initialize(StackPane container, Pane mainContent) {
 		ModalPopup.container = container;
-		ModalPopup.mainProgramContent = container.getChildren().get(0);
+		ModalPopup.mainProgramContent = mainContent;
 	}
 	
 	private void setDefaultFade() {

@@ -15,6 +15,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.layout.Pane;
 import util.ConfirmationDialog;
+import util.ModalPopup;
 import util.ShoppingCartHandler;
 
 public class ShoppingCartController implements Initializable {
@@ -58,13 +59,7 @@ public class ShoppingCartController implements Initializable {
 			} catch(IOException exception) {
 				exception.printStackTrace();
 			}
-			ConfirmationDialog confirmationDialog = new ConfirmationDialog(gotoShoppingListButton.getScene().getWindow(),
-					listPane, controller.getYesButton(), controller.getCancelButton());
-			confirmationDialog.setOwnerEffect(createGreyOutEffect());
-			confirmationDialog.setNoButtonAction(event -> System.out.println("Clicked on " + e.getSource()));
-			confirmationDialog.setYesButtonAction(event -> System.out.println("Clicked on " + e.getSource()));
-			confirmationDialog.showAndWait();
-			confirmationDialog.setCenter();
+			ModalPopup loadListPopup = new ModalPopup(listPane);
 		};
 	}
 }
