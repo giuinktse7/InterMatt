@@ -1,6 +1,7 @@
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import util.SubCategory;
@@ -13,7 +14,7 @@ public class Main extends Application {
 		SubCategory.initializeProductViews();
 		
        primaryStage.setTitle("Intermätt");
-       VBox myPane = (VBox) FXMLLoader.load(getClass().getResource("fxml/main.fxml"));
+       StackPane myPane = (StackPane) FXMLLoader.load(getClass().getResource("fxml/main.fxml"));
        Scene scene = new Scene(myPane);
        primaryStage.setScene(scene);
        primaryStage.show();

@@ -13,6 +13,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import util.Condition;
 import util.ContentView;
+import util.ModalPopup;
 import util.Performable;
 import util.ShoppingCartHandler;
 import util.ViewDisplay;
@@ -31,11 +32,14 @@ public class MainController implements Initializable {
 	@FXML private CredentialsController credentialsPaneController;
 	@FXML private PurchaseController purchasePaneController;
 	
+	@FXML private StackPane wrapperStackPane;
+	
 	ViewDisplay display;
 	
 	private ShoppingCartHandler cartHandler = ShoppingCartHandler.getInstance();
 	
 	public void initialize(URL url, ResourceBundle bundle) {
+		configurePopupStackPane();
 		display = new ViewDisplay(contentPane);
 		
 		ContentView storeView = new ContentView(storePane);
@@ -55,10 +59,22 @@ public class MainController implements Initializable {
 		display.show(storeView);
 		prevButton.setOnAction(event -> display.previous());
 		nextButton.setOnAction(event -> display.next());
+		
+		Button button = new Button("BHYE");
+		button.setPrefWidth(300);
+		button.setPrefHeight(300);
+		ModalPopup p = new ModalPopup(button);
+		button.setOnAction(event -> p.hide());
+		p.show();
+		
 	}
 	private final Condition CART_NOT_EMPTY = new Condition(() -> { return !cartHandler.isEmpty(); }, print("You can not proceed with an empty cart!"));
 	
 	private static final Performable print(String s) {
 		return () -> System.out.println(s);
+	}
+	
+	private void configurePopupStackPane() {
+		ModalPopup.setContainer(wrapperStackPane);
 	}
 }

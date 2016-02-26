@@ -37,8 +37,8 @@ public class ShoppingCartController implements Initializable {
 	
 	private ColorAdjust createGreyOutEffect() {
 		ColorAdjust greyOut = new ColorAdjust();
-		greyOut.setSaturation(-0.5);
-		greyOut.setBrightness(+0.2);
+		//greyOut.setSaturation(-0.5);
+		greyOut.setBrightness(-0.2);
 		return greyOut;
 	}
 	

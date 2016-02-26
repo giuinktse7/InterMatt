@@ -4,8 +4,6 @@ package util;
  * Modified to fit needs
  */
 
-
-import java.util.ResourceBundle;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyBooleanProperty;
