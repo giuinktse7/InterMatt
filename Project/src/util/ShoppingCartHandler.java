@@ -3,6 +3,11 @@ package util;
 import java.text.DecimalFormat;
 
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.collections.ListChangeListener.Change;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,17 +18,21 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.util.converter.NumberStringConverter;
 import se.chalmers.ait.dat215.project.Product;
 
 public class ShoppingCartHandler {
-
 	private static final int MAX_QUANTITY = 999;
-
-	private ListView<Node> cart;
+	
+	private BooleanProperty emptyProperty = new SimpleBooleanProperty(true);
+	
+	private ListView<ProductHBox> cart;
 	public static ShoppingCartHandler instance = new ShoppingCartHandler();
 
 	// Used to unfocus textField when text is set to 1 through usage of minus
@@ -32,13 +41,20 @@ public class ShoppingCartHandler {
 
 	private ShoppingCartHandler() {
 	}
+	
+	public BooleanProperty emptyProperty() {
+		return this.emptyProperty;
+	}
 
-	public void setCart(ListView<Node> cart) {
+	public void setCart(ListView<ProductHBox> cart) {
 		this.cart = cart;
+		cart.getItems().addListener((Change<? extends ProductHBox> c) -> {
+			emptyProperty.set(cart.getItems().size() == 0);
+		});
 	}
 
 	public boolean isEmpty() {
-		return cart.getItems().size() == 0;
+		return emptyProperty.get();
 	}
 
 	public static ShoppingCartHandler getInstance() {
@@ -52,7 +68,7 @@ public class ShoppingCartHandler {
 		if (productBox != null)
 			productBox.addQuantity(1);
 		else {
-			Pane container = getProductContainer(product);
+			ProductHBox container = getProductContainer(product);
 			cart.getItems().add(container);
 		}
 	}
@@ -64,14 +80,14 @@ public class ShoppingCartHandler {
 	 *            the product which values will be used.
 	 * @return a Pane containing information about the product.
 	 */
-	private Pane getProductContainer(Product p) {
+	private ProductHBox getProductContainer(Product p) {
 		ProductHBox container;
 
 		Label name = new Label(p.getName());
 
 		dummyNode = name;
 		TextField txtAmount = new TextField();
-		txtAmount.setPrefWidth(45);
+		txtAmount.setPrefWidth(35);
 		txtAmount.setMinHeight(35);
 
 		Button decAmountBtn = new Button("-");
@@ -91,13 +107,21 @@ public class ShoppingCartHandler {
 		quantityBox.setAlignment(Pos.CENTER_LEFT);
 
 		Label lblPrice = new Label(p.getPrice() + ":-");
-		lblPrice.setPrefWidth(70);
-
-		HBox priceWrapperBox = new HBox(lblPrice);
+		
+		Button removeProductButton = new Button();
+		removeProductButton.setStyle("-fx-background-color: transparent;");
+		removeProductButton.setPrefSize(32, 32);
+		Image removeProductImage = new Image("resources/cuteGoat.png", 32, 32, true, true);
+		removeProductButton.setGraphic(new ImageView(removeProductImage));
+		
+		HBox priceWrapperBox = new HBox(lblPrice, removeProductButton);
 		priceWrapperBox.setAlignment(Pos.CENTER_RIGHT);
 
-		container = new ProductHBox(p, quantityBox, name, priceWrapperBox);
-		container.setSpacing(7);
+		HBox nameWrapperBox = new HBox(name);
+		nameWrapperBox.setAlignment(Pos.CENTER);
+		HBox.setHgrow(nameWrapperBox, Priority.ALWAYS);
+		
+		container = new ProductHBox(p, quantityBox, nameWrapperBox, priceWrapperBox);
 		container.setAlignment(Pos.CENTER_LEFT);
 
 		// only integers are allowed as amount
@@ -125,6 +149,7 @@ public class ShoppingCartHandler {
 
 		txtAmount.setText("1");
 
+		removeProductButton.setOnAction(event -> cart.getItems().remove(container));
 		return container;
 	}
 
@@ -157,7 +182,7 @@ public class ShoppingCartHandler {
 	}
 
 	private ProductHBox getProductBoxFromCart(Product product) {
-		ObservableList<Node> productsInCart = cart.getItems();
+		ObservableList<ProductHBox> productsInCart = cart.getItems();
 
 		for (Node node : productsInCart) {
 			ProductHBox box = (ProductHBox) node;

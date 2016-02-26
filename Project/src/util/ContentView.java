@@ -2,10 +2,15 @@ package util;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.Node;
 
 public class ContentView {
 	private Node content;
+	
+	private BooleanProperty activeProperty = new SimpleBooleanProperty();
 	
 	private ContentView previous;
 	private ContentView next;
@@ -59,5 +64,13 @@ public class ContentView {
 				pass = false;
 		
 		return pass;
+	}
+	
+	public BooleanProperty activeProperty() {
+		return this.activeProperty;
+	}
+	
+	public boolean isDisabled() {
+		return !activeProperty.get();
 	}
 }
