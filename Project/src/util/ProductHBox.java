@@ -1,14 +1,11 @@
 package util;
 
-import javafx.beans.InvalidationListener;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import se.chalmers.ait.dat215.project.Product;
+
 
 public class ProductHBox extends HBox {
 

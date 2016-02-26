@@ -16,16 +16,17 @@ import javafx.scene.control.ListView;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.layout.Pane;
 import util.ModalPopup;
+import util.ProductHBox;
 import util.ShoppingCartHandler;
 
 public class ShoppingCartController implements Initializable {
 
 	@FXML private Button gotoShoppingListButton;
-	@FXML private ListView<Node> cart;
+
 	@FXML private Label lblTotalCost;
+	@FXML private ListView<ProductHBox> cart;
 	
 	private Pane listPane;
-	private LoadListController controller;
 
 	@Override
 	public void initialize(URL url, ResourceBundle bundle) {
@@ -39,20 +40,11 @@ public class ShoppingCartController implements Initializable {
 		return gotoShoppingListButton;
 	}
 	
-	private ColorAdjust createGreyOutEffect() {
-		ColorAdjust greyOut = new ColorAdjust();
-		//greyOut.setSaturation(-0.5);
-		greyOut.setBrightness(-0.2);
-		return greyOut;
-	}
-	
 	private void loadListView() throws IOException {
 		FXMLLoader view = new FXMLLoader();
 		view.setLocation(this.getClass().getResource("../fxml/load_list.fxml"));
 		
 		this.listPane = view.load();
-		
-		this.controller = view.getController();
 	}
 	
 	private EventHandler<ActionEvent> openListLoadView() {
