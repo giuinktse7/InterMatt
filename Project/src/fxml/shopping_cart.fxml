@@ -14,28 +14,23 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane styleClass="backdrop" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="80.0"
-	AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="7.0"
-	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="controllers.ShoppingCartController">
+<AnchorPane styleClass="backdrop" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="80.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ShoppingCartController">
 	<children>
-		<Label alignment="CENTER" layoutX="55.0" layoutY="6.0" text="Varukorg"
-			AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="7.0">
+		<Label alignment="CENTER" layoutX="55.0" layoutY="6.0" text="Varukorg" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="7.0">
 			<font>
 				<Font size="24.0" />
 			</font>
 		</Label>
-		<Button fx:id="gotoShoppingListButton" layoutX="14.0" layoutY="260.0"
-			minWidth="-Infinity" mnemonicParsing="false" prefWidth="135.0" text="Inköpslistor"
-			AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0"
-			AnchorPane.rightAnchor="0.0" />
-		<ListView fx:id="cart" layoutX="14.0" layoutY="46.0"
-			prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="56.0"
-			AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-			AnchorPane.topAnchor="42.0" VBox.vgrow="ALWAYS">
+		<Button fx:id="gotoShoppingListButton" layoutX="14.0" layoutY="260.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="135.0" text="Inköpslistor" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+		<ListView fx:id="cart" layoutX="14.0" layoutY="46.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="62.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="42.0" VBox.vgrow="ALWAYS">
 			<VBox.margin>
 				<Insets bottom="14.0" left="14.0" right="14.0" top="6.0" />
 			</VBox.margin>
 		</ListView>
+      <Label fx:id="lblTotalCost" alignment="CENTER" layoutX="86.0" layoutY="242.0" text="Total: 0:-" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <font>
+            <Font name="System Italic" size="16.0" />
+         </font>
+      </Label>
 	</children>
 </AnchorPane>

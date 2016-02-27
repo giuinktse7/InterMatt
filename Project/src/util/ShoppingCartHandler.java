@@ -1,6 +1,8 @@
 package util;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.DoubleBinding;
@@ -31,10 +33,12 @@ import se.chalmers.ait.dat215.project.Product;
 
 public class ShoppingCartHandler {
 	private static final int MAX_QUANTITY = 999;
-	
-	private BooleanProperty emptyProperty = new SimpleBooleanProperty(true);
+
+	private Label lblTotalCost;
 	
 	private ListView<ProductHBox> cart;
+	private BooleanProperty emptyProperty = new SimpleBooleanProperty(true);
+	
 	public static ShoppingCartHandler instance = new ShoppingCartHandler();
 
 	// Used to unfocus textField when text is set to 1 through usage of minus
@@ -54,6 +58,10 @@ public class ShoppingCartHandler {
 			emptyProperty.set(cart.getItems().size() == 0);
 		});
 	}
+	
+	public void passLabel(Label lblTotalCost){
+		this.lblTotalCost = lblTotalCost;
+	}
 
 	public boolean isEmpty() {
 		return emptyProperty.get();
@@ -61,6 +69,15 @@ public class ShoppingCartHandler {
 
 	public static ShoppingCartHandler getInstance() {
 		return instance;
+	}
+	
+	public void updateTotalCost(){
+		float cost = 0;
+		ObservableList<ProductHBox> list = cart.getItems();
+		for (ProductHBox box : list){
+			cost += box.getQuantity() * box.getProduct().getPrice();
+		}
+		lblTotalCost.setText("Totalt: " +new DecimalFormat("#.##").format(cost) + ":-");
 	}
 
 	/** Adds the product to the shopping cart */
@@ -73,6 +90,7 @@ public class ShoppingCartHandler {
 			ProductHBox container = getProductContainer(product);
 			cart.getItems().add(container);
 		}
+		updateTotalCost();
 	}
 
 	/**
@@ -109,7 +127,6 @@ public class ShoppingCartHandler {
 		quantityBox.setAlignment(Pos.CENTER_LEFT);
 
 		Label lblPrice = new Label(p.getPrice() + ":-");
-		
 		Button removeProductButton = new Button();
 		removeProductButton.setStyle("-fx-background-color: transparent;");
 		removeProductButton.setPrefSize(32, 32);
@@ -117,6 +134,7 @@ public class ShoppingCartHandler {
 		removeProductButton.setGraphic(new ImageView(removeProductImage));
 		
 		HBox priceWrapperBox = new HBox(lblPrice, removeProductButton);
+
 		priceWrapperBox.setAlignment(Pos.CENTER_RIGHT);
 
 		HBox nameWrapperBox = new HBox(name);
@@ -146,14 +164,10 @@ public class ShoppingCartHandler {
 
 		Bindings.bindBidirectional(txtAmount.textProperty(), container.quantityProperty(), new NumberStringConverter());
 		
-		Bindings.bindBidirectional(txtAmount.textProperty(), container.quantityProperty(), new NumberStringConverter());
-		lblPrice.textProperty().bind(Bindings.concat(
-				container.quantityProperty().multiply(Integer.parseInt(new DecimalFormat("0.#").format(p.getPrice()))),
+		lblPrice.textProperty().bind(Bindings.concat(container.quantityProperty().multiply(p.getPrice()), //new DecimalFormat("0.#").format(p.getPrice()))),
 				":-"));
-
 		txtAmount.setText("1");
-
-		removeProductButton.setOnAction(event -> cart.getItems().remove(container));
+		removeProductButton.setOnAction(event -> {cart.getItems().remove(container); updateTotalCost();});
 		return container;
 	}
 
@@ -173,6 +187,9 @@ public class ShoppingCartHandler {
 
 			if (textField.getText().equals("1"))
 				dummyNode.requestFocus();
+			
+
+			updateTotalCost();
 		};
 	}
 
