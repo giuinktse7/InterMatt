@@ -1,0 +1,49 @@
+* {
+	-fx-glass-color: rgba(111, 194, 56, 0.9);
+	-fx-tab-bg-color: #36750f;
+	-fx-back-color: #6fc238;
+	-fx-start-color: #F8F8EC;
+	
+	-itempane-color: white;
+	-buy-button-color: 	#ff3030;
+}
+
+#modalTop,
+#content {
+	-fx-border-width: 1px;
+	-fx-border-radius: 2;
+	-fx-background-radius: 2;
+	-fx-border-color: black;
+}
+
+#modalTop {
+	-fx-background-color: rgba(238, 95, 99);
+	-fx-border-style: solid solid hidden solid;
+}
+
+
+.label {
+	-fx-font-size: 18pt;
+}
+
+.bottomPane {
+	-fx-background-color: rgba(0, 0, 0, 0.2);
+}
+
+#content {
+	-fx-background-color: white;
+	-fx-border-style: hidden solid solid solid;
+}
+
+#tableBox {
+	-fx-background-image: url("../resources/purchase_history_backdrop.jpg");
+	-fx-background-position: center center;
+}
+
+.table-view .label {
+	-fx-fill: #c6ab96;
+}
+
+.title {
+	-fx-font-size: 24pt;
+}

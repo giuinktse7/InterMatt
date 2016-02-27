@@ -12,12 +12,13 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
+import util.ModalPopup;
 import util.SimpleTable;
 
 public class PurchaseHistoryController implements Initializable {
 	
+	@FXML private ModalPopup bottomPane;
 	@FXML private Button closeButton;
-	@FXML private Pane bottomPane;
 	@FXML private Pane contentPane;
 	@FXML private VBox tableBox;
 	
@@ -25,23 +26,13 @@ public class PurchaseHistoryController implements Initializable {
 	private IMatDataHandler db = IMatDataHandler.getInstance();
 	
 	public void initialize(URL location, ResourceBundle resources) {
-		
-		DropShadow dropShadow = new DropShadow();
-		 dropShadow.setRadius(5.0);
-		 dropShadow.setOffsetX(3.0);
-		 dropShadow.setOffsetY(3.0);
-		 dropShadow.setColor(Color.color(0.4, 0.5, 0.5));
-		 contentPane.setEffect(dropShadow);
-		
-		
 		SimpleTable table = new SimpleTable(tableBox, "Date", "Order ID");
 		db.getShoppingCart().addProduct(db.getProduct(0));
 		table.addOrder(db.placeOrder());
 	}
 	
 	public void setCloseAction(Action c) {
-		closeButton.setOnAction(e -> c.call());
-		bottomPane.setOnMouseClicked(e -> c.call());
+		closeButton.setOnAction(e -> bottomPane.close());
 	}
 	
 }

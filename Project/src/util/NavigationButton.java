@@ -1,30 +1,98 @@
 package util;
 
-import java.util.ArrayList;
-import java.util.List;
-import javafx.beans.binding.BooleanBinding;
+import interfaces.Action;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class NavigationButton extends Button {
 	ContentView view;
-	List<BooleanBinding> bindings = new ArrayList<BooleanBinding>();
 	
-	public void setView(ContentView view) {
-		this.view = view;
+	private static final int SELECTED = 0;
+	private static final int UNSELECTED = 1;
+	private static final int DISABLED = 2;
+	
+	private static final String IMAGE_PATHS[] = {"resources/thisPage%s.png", "resources/previous%s.png", "resources/disabled%s.png"};
+	
+	private ImageView[] images = null;
+	
+	//Used since we only have one group of navigation buttons. Would pose a problem otherwise.
+	private static ViewDisplay viewDisplay;
+	
+	BindingGroup bindings = new BindingGroup();
+	NavigationButton nextButton;
+
+	public NavigationButton() {
+		bindings = new BindingGroup();
+		bindings.setOnFalseAction(() -> setDisable(true));
+		bindings.setOnTrueAction(() -> setDisable(false));
+	}
+
+	public void setOnTrueAction(Action action) {
+		bindings.setOnTrueAction(action);
 	}
 	
-	public void addBinding(BooleanBinding binding) {
-		bindings.add(binding);
-		binding.addListener((obs, oldValue, newValue) -> update());
+	public void setOnFalseAction(Action action) {
+		bindings.setOnFalseAction(action);
 	}
 	
-	public void update() {
-		for (BooleanBinding binding : bindings)
-			if (!binding.get()) {
-				setDisable(true);
-				return;
-			}
+	public BindingGroup getBindingGroup() {
+		return this.bindings;
+	}
+	
+	/**
+	 * Associates a view with this <code>NavigationButton</code>, and assigns it an action.
+	 */
+	public void initialize(ContentView view, EventHandler<ActionEvent> e, NavigationButton nextButton) {
 		
-		setDisable(false);
+		//Since the last actual NavigationButton won't have a nextButton, create a dummy-button.
+		if (nextButton == null)
+			nextButton = new NavigationButton();
+		
+		this.nextButton = nextButton;
+		this.view = view;
+		this.setOnAction(e);
+		
+		disabledProperty().addListener((obs, oldValue, disabled) -> {
+			if (disabled)
+				this.nextButton.setDisable(true);
+			else
+				this.nextButton.getBindingGroup().update();
+		});
+		disabledProperty().addListener((obs, oldValue, newValue) -> updateImage(this.view.equals(newValue)));
+		viewDisplay.getCurrentView().addListener((obs, oldValue, newValue) ->  updateImage(this.view.equals(newValue)));
+		
+		updateImage(this.view.equals(viewDisplay.getCurrentView().getValue()));
+	}
+	
+	private void updateImage(boolean onSelectedPage) {
+		if(images == null)
+			loadImages(IMAGE_PATHS);
+		
+		ImageView graphic = isDisabled() ? images[DISABLED] : images[UNSELECTED];
+		
+		if (onSelectedPage)
+			graphic = images[SELECTED];	
+		
+		setGraphic(graphic);
+	}
+	
+	public static void setViewDisplay(ViewDisplay viewDisplay) {
+		NavigationButton.viewDisplay = viewDisplay;
+	}
+	
+	private void loadImages(String[] paths) {
+		ImageView[] imageViews = new ImageView[paths.length];
+		
+		char id = getId().charAt(getId().length() - 1);
+		
+		for (int i = 0; i < paths.length; ++i) {
+			Image image = new Image(String.format(paths[i], id), 64, 64, true, true);
+			imageViews[i] = new ImageView(image);
+		}
+		
+		images = imageViews;
 	}
 }

@@ -5,31 +5,19 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
+import util.ModalPopup;
 
 public class LoadListController implements Initializable {
 
-	@FXML private AnchorPane popup;
+	@FXML private ModalPopup bottomPane;
 	@FXML private Button yesButton;
 	@FXML private Button cancelButton;
 	
 	@Override
 	public void initialize(URL url, ResourceBundle bundle) {
-		
-	}
-	
-	public Node getRoot() {
-		return this.popup;
-	}
-	
-	public Button getYesButton() {
-		return yesButton;
-	}
-	
-	public Button getCancelButton() {
-		return cancelButton;
+		yesButton.setOnAction(e -> bottomPane.close());
+		cancelButton.setOnAction(e -> bottomPane.close());
 	}
 
 }

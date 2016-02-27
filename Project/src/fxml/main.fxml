@@ -13,6 +13,10 @@
 	xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"
 	fx:controller="controllers.MainController">
 	<children>
+		<fx:include fx:id="purchaseHistoryPopup" maxWidth="-Infinity"
+			maxHeight="-Infinity" source="purchase_history.fxml" />
+		<fx:include fx:id="loadListPopup" maxWidth="-Infinity"
+			maxHeight="-Infinity" source="load_list.fxml" />
 		<VBox fx:id="mainContentWrapper">
 			<children>
 				<SplitPane dividerPositions="0.75" prefHeight="700.0"
@@ -74,8 +78,8 @@
 								</ImageView>
 							</graphic>
 						</Button>
-						<NavigationButton fx:id="navButton1" layoutX="400.0" layoutY="63.0"
-							minHeight="60.0" minWidth="60.0" mnemonicParsing="false"
+						<NavigationButton fx:id="navButton1" layoutX="400.0"
+							layoutY="63.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false"
 							prefHeight="60.0" prefWidth="60.0" styleClass="nav-button"
 							AnchorPane.bottomAnchor="28.0">
 							<graphic>
@@ -87,9 +91,9 @@
 								</ImageView>
 							</graphic>
 						</NavigationButton>
-						<NavigationButton fx:id="navButton2" layoutX="500.0" layoutY="73.0"
-							minHeight="60.0" minWidth="60.0" mnemonicParsing="false"
-							prefHeight="60.0" prefWidth="60.0" styleClass="nav-button"
+						<NavigationButton fx:id="navButton2" disable="true" layoutX="500.0"
+							layoutY="73.0" minHeight="64.0" minWidth="64.0" mnemonicParsing="false"
+							prefHeight="64.0" prefWidth="64.0" styleClass="nav-button"
 							AnchorPane.bottomAnchor="28.0">
 							<graphic>
 								<ImageView fitHeight="50.0" fitWidth="50.0"
@@ -100,12 +104,12 @@
 								</ImageView>
 							</graphic>
 						</NavigationButton>
-						<NavigationButton fx:id="navButton3" layoutX="600.0" layoutY="83.0"
-							minHeight="60.0" minWidth="60.0" mnemonicParsing="false"
+						<NavigationButton fx:id="navButton3" disable="true" layoutX="600.0"
+							layoutY="83.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false"
 							prefHeight="60.0" prefWidth="60.0" styleClass="nav-button"
 							AnchorPane.bottomAnchor="28.0">
 							<graphic>
-								<ImageView fitHeight="50.0" fitWidth="50.0"
+								<ImageView fitHeight="50.0" disable="true" fitWidth="50.0"
 									pickOnBounds="true" preserveRatio="true">
 									<image>
 										<Image url="@../resources/disabled3.png" />
@@ -113,8 +117,8 @@
 								</ImageView>
 							</graphic>
 						</NavigationButton>
-						<NavigationButton fx:id="navButton4" layoutX="700.0" layoutY="93.0"
-							minHeight="60.0" minWidth="60.0" mnemonicParsing="false"
+						<NavigationButton fx:id="navButton4" disable="true" layoutX="700.0"
+							layoutY="93.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false"
 							prefHeight="60.0" prefWidth="60.0" styleClass="nav-button"
 							AnchorPane.bottomAnchor="28.0">
 							<graphic>
@@ -130,7 +134,5 @@
 				</AnchorPane>
 			</children>
 		</VBox>
-		<fx:include fx:id="purchaseHistoryPane" maxWidth="-Infinity"
-			maxHeight="-Infinity" source="purchase_history.fxml" />
 	</children>
 </StackPane>

@@ -1,5 +1,5 @@
 package util;
-
+import javafx.beans.value.ObservableValue;
 import javafx.scene.layout.Pane;
 
 /** Holds and manages ContentViews. */ 
@@ -7,7 +7,7 @@ public class ViewDisplay {
 
 	private Pane area;
 	
-	private ContentView currentView;
+	private ObservableContentView currentView = new ObservableContentView(null);
 	
 	public ViewDisplay(Pane area) {
 		this.area = area;
@@ -19,15 +19,19 @@ public class ViewDisplay {
 		
 		if (view.validate()) {
 			area.getChildren().setAll(view.getContent());
-			currentView = view;
+			currentView.setValue(view);
 		}
 	}
 	
 	public void next() {
-		show(currentView.next());
+		show(currentView.getValue().next());
 	}
 	
 	public void previous() {
-		show(currentView.previous());
+		show(currentView.getValue().previous());
+	}
+	
+	public ObservableValue<ContentView> getCurrentView() {
+		return this.currentView;
 	}
 }

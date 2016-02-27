@@ -3,6 +3,8 @@ package util;
 import java.text.DecimalFormat;
 
 import javafx.beans.binding.Bindings;
+import javafx.beans.binding.DoubleBinding;
+import javafx.beans.binding.IntegerBinding;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -142,6 +144,8 @@ public class ShoppingCartHandler {
 			decAmountBtn.setDisable(newValue.equals("1"));
 		});
 
+		Bindings.bindBidirectional(txtAmount.textProperty(), container.quantityProperty(), new NumberStringConverter());
+		
 		Bindings.bindBidirectional(txtAmount.textProperty(), container.quantityProperty(), new NumberStringConverter());
 		lblPrice.textProperty().bind(Bindings.concat(
 				container.quantityProperty().multiply(Integer.parseInt(new DecimalFormat("0.#").format(p.getPrice()))),
