@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -17,84 +19,182 @@
 
 <HBox id="purchasePane" fx:id="purchasePane" alignment="TOP_CENTER" prefHeight="600.0" prefWidth="1215.0" stylesheets="@../styling/credentials.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PurchaseController">
 	<children>
-		<VBox alignment="TOP_CENTER">
+		<VBox id="main_pane" alignment="TOP_CENTER" prefHeight="629.0" prefWidth="1300.0">
 			<children>
-				<HBox>
-					<VBox.margin>
-						<Insets bottom="28.0" />
-					</VBox.margin>
-					<children>
-						<Label text="Betalningsuppgifter">
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+						<Label id="pane_title" prefHeight="62.0" prefWidth="1011.0" text="Hur vill du betala dina varor?" textFill="#413e4a">
 							<font>
-								<Font name="Georgia" size="36.0" />
+								<Font size="42.0" />
 							</font>
 						</Label>
-					</children>
-				</HBox>
-				<AnchorPane>
-					<children>
-						<Label text="Betalningssätt" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-							<font>
-								<Font name="Georgia" size="18.0" />
-							</font>
-						</Label>
-						<HBox layoutX="2.0" layoutY="28.0" spacing="14.0">
-							<children>
-								<RadioButton fx:id="rbPayByCard" mnemonicParsing="false" text="Kortbetalning" />
-								<RadioButton mnemonicParsing="false" text="Faktura" />
-								<RadioButton mnemonicParsing="false" text="Betala vid leverans" />
-							</children>
-						</HBox>
-					</children>
-				</AnchorPane>
-				<AnchorPane>
-					<children>
-						<Label text="Kortnummer" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-							<font>
-								<Font name="Georgia" size="18.0" />
-							</font>
-						</Label>
-						<HBox layoutY="28.0" spacing="7.0">
-							<children>
-								<TextField fx:id="txt_cardnr_1" alignment="CENTER" prefHeight="31.0" prefWidth="65.0" promptText="0000" />
-								<TextField fx:id="txt_cardnr_2" alignment="CENTER" prefHeight="31.0" prefWidth="65.0" promptText="0000" />
-								<TextField fx:id="txt_cardnr_3" alignment="CENTER" prefHeight="31.0" prefWidth="65.0" promptText="0000" />
-								<TextField fx:id="txt_cardnr_4" alignment="CENTER" prefHeight="31.0" prefWidth="65.0" promptText="0000" />
-							</children>
-						</HBox>
-					</children>
-					<VBox.margin>
-						<Insets top="21.0" />
-					</VBox.margin>
-				</AnchorPane>
-				<AnchorPane>
-					<children>
-						<Label text="Utgångsdatum" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-							<font>
-								<Font name="Georgia" size="18.0" />
-							</font>
-						</Label>
-						<HBox layoutY="28.0" spacing="7.0">
-							<children>
-								<ChoiceBox fx:id="cb_card_year" prefHeight="31.0" prefWidth="90.0" />
-								<ChoiceBox fx:id="cb_card_month" prefHeight="31.0" prefWidth="110.0" />
-							</children>
-						</HBox>
-						<Label layoutX="216.0" layoutY="11.0" text="CVV" AnchorPane.topAnchor="0.0">
-							<font>
-								<Font name="Georgia" size="18.0" />
-							</font>
-						</Label>
-						<TextField fx:id="txt_card_cvv" alignment="CENTER" layoutX="216.0" layoutY="28.0" prefHeight="31.0" prefWidth="65.0" promptText="000" />
-					</children>
-					<VBox.margin>
-						<Insets top="21.0" />
-					</VBox.margin>
-				</AnchorPane>
+                  <Group>
+                     <children>
+                        <ToggleButton fx:id="btn_pay_delivery" graphicTextGap="7.0" mnemonicParsing="false" onAction="#payment_mode_changed" selected="true" text="Betala vid leverans" textFill="#413e4a">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/delivery.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="group_payments" />
+                           </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton fx:id="btn_pay_creditcard" alignment="CENTER_RIGHT" graphicTextGap="7.0" layoutX="603.0" mnemonicParsing="false" onAction="#payment_mode_changed" text="Betala med kort" textFill="#413e4a" toggleGroup="$group_payments">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/creditcard.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </ToggleButton>
+                        <ToggleButton fx:id="btn_pay_bill" graphicTextGap="7.0" layoutX="300.0" mnemonicParsing="false" onAction="#payment_mode_changed" text="Betala med faktura" textFill="#413e4a" toggleGroup="$group_payments">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/bill.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </ToggleButton>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="42.0" />
+                     </VBox.margin>
+                  </Group>
+               </children>
+            </VBox>
+            <StackPane prefHeight="150.0" prefWidth="200.0">
+               <children>
+                  <HBox fx:id="pane_pay_bill_delivery" prefHeight="100.0" prefWidth="200.0" styleClass="pane-background">
+                     <children>
+                        <Text fx:id="txt_pay_info" fill="#413e4a" strokeType="OUTSIDE" strokeWidth="0.0" text="BLABLALBLAKSDLKASJDL KJASLD KJALS DKJASL DKJA LSKDJ ALSKDJLSKDA J" wrappingWidth="958.13671875">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox id="hbox_credit_info" fx:id="pane_pay_creditcard" prefHeight="100.0" prefWidth="200.0" styleClass="pane-background">
+                     <children>
+            				<AnchorPane>
+            					<children>
+            						<Label text="Kreditkortsnummer" textFill="#413e4a" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            							<font>
+            								<Font size="22.0" />
+            							</font>
+            						</Label>
+            						<HBox layoutY="28.0" spacing="7.0">
+            							<children>
+            								<TextField fx:id="txt_cardnr_1" alignment="CENTER" prefHeight="31.0" prefWidth="65.0" promptText="0000">
+                                       <HBox.margin>
+                                          <Insets top="14.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </TextField>
+            								<TextField fx:id="txt_cardnr_2" alignment="CENTER" prefHeight="31.0" prefWidth="65.0" promptText="0000">
+                                       <HBox.margin>
+                                          <Insets top="14.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </TextField>
+            								<TextField fx:id="txt_cardnr_3" alignment="CENTER" prefHeight="31.0" prefWidth="65.0" promptText="0000">
+                                       <HBox.margin>
+                                          <Insets top="14.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </TextField>
+            								<TextField fx:id="txt_cardnr_4" alignment="CENTER" prefHeight="31.0" prefWidth="65.0" promptText="0000">
+                                       <HBox.margin>
+                                          <Insets top="14.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </TextField>
+            							</children>
+            						</HBox>
+            					</children>
+                           <padding>
+                              <Insets right="21.0" />
+                           </padding>
+            				</AnchorPane>
+            				<AnchorPane>
+            					<children>
+            						<Label text="Utgångsdatum" textFill="#413e4a" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            							<font>
+            								<Font size="22.0" />
+            							</font>
+            						</Label>
+            						<HBox layoutY="28.0" spacing="7.0">
+            							<children>
+            								<ChoiceBox fx:id="cb_card_year" prefHeight="38.0" prefWidth="110.0">
+                                       <HBox.margin>
+                                          <Insets top="14.0" />
+                                       </HBox.margin>
+                                    </ChoiceBox>
+            								<ChoiceBox fx:id="cb_card_month" prefHeight="38.0" prefWidth="130.0">
+                                       <HBox.margin>
+                                          <Insets top="14.0" />
+                                       </HBox.margin>
+                                    </ChoiceBox>
+            							</children>
+            						</HBox>
+            						<Label layoutX="256.0" layoutY="11.0" text="CVV" textFill="#413e4a" AnchorPane.topAnchor="0.0">
+            							<font>
+            								<Font size="22.0" />
+            							</font>
+            						</Label>
+            						<TextField fx:id="txt_card_cvv" alignment="CENTER" layoutX="256.0" layoutY="41.0" prefHeight="31.0" prefWidth="65.0" promptText="000">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </TextField>
+            					</children>
+                           <HBox.margin>
+                              <Insets left="21.0" />
+                           </HBox.margin>
+            				</AnchorPane>
+                     </children>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="21.0" />
+               </VBox.margin>
+            </StackPane>
+            <Button mnemonicParsing="false" text="Slutför köp">
+               <font>
+                  <Font size="32.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="28.0" />
+               </VBox.margin>
+            </Button>
 			</children>
 			<HBox.margin>
-				<Insets top="28.0" />
+				<Insets bottom="56.0" left="56.0" right="56.0" top="56.0" />
 			</HBox.margin>
+         <padding>
+            <Insets bottom="21.0" left="21.0" right="21.0" top="21.0" />
+         </padding>
 		</VBox>
 	</children>
 </HBox>

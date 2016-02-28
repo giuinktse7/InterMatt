@@ -2,10 +2,10 @@ package controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.Arrays;
@@ -16,7 +16,20 @@ import java.util.ResourceBundle;
 
 public class PurchaseController implements Initializable {
 	@FXML private RadioButton rbPayByCard;
-	
+
+	// Payment toggle buttons
+	@FXML private ToggleButton btn_pay_creditcard;
+	@FXML private ToggleButton btn_pay_delivery;
+	@FXML private ToggleButton btn_pay_bill;
+
+	// Payment panes
+	@FXML private HBox pane_pay_creditcard;
+	@FXML private HBox pane_pay_bill_delivery;
+
+	// Information about payment with bill or delivery
+	@FXML private Text txt_pay_info;
+
+
 	// 4 credit card fields.
 	@FXML private TextField txt_cardnr_1;
 	@FXML private TextField txt_cardnr_2;
@@ -36,6 +49,7 @@ public class PurchaseController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		setupInputConstraints();
+		payment_mode_changed();
 	}
 	
 	private void setupInputConstraints() {
@@ -166,6 +180,31 @@ public class PurchaseController implements Initializable {
 			if (txt_card_cvv.getText().length() != 3) return false;
 		}
 		return true;
+	}
+
+
+	public void payment_mode_changed(){
+		pane_pay_creditcard.setVisible(false);
+		pane_pay_bill_delivery.setVisible(false);
+
+
+
+		if (btn_pay_creditcard.isSelected()) {
+			pane_pay_creditcard.toFront();
+			pane_pay_creditcard.setVisible(true);
+		}
+
+		if (btn_pay_bill.isSelected()) {
+			pane_pay_bill_delivery.toFront();
+			pane_pay_bill_delivery.setVisible(true);
+			txt_pay_info.setText("Du betalar med pappersfaktura. Den skickas hem till dig och ska betalas inom 30 dagar. Detta är inte bra för miljön. Tänk på träden Hjördis. Illa.");
+		}
+
+		if (btn_pay_delivery.isSelected()){
+			pane_pay_bill_delivery.toFront();
+			pane_pay_bill_delivery.setVisible(true);
+			txt_pay_info.setText("Du betalar vid dörren när varorna har anlänt. Du kan betala med antingen kort eller kontanter.");
+		}
 	}
 
 
