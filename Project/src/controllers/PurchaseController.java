@@ -2,10 +2,17 @@ package controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import sun.applet.Main;
+import util.ModalPopup;
 
 import java.net.URL;
 import java.util.Arrays;
@@ -29,7 +36,6 @@ public class PurchaseController implements Initializable {
 	// Information about payment with bill or delivery
 	@FXML private Text txt_pay_info;
 
-
 	// 4 credit card fields.
 	@FXML private TextField txt_cardnr_1;
 	@FXML private TextField txt_cardnr_2;
@@ -44,6 +50,10 @@ public class PurchaseController implements Initializable {
 
 	// Credit card CVV fields
 	@FXML private TextField txt_card_cvv;
+
+	public MainController mainController;
+
+
 
 
 	@Override
@@ -205,6 +215,12 @@ public class PurchaseController implements Initializable {
 			pane_pay_bill_delivery.setVisible(true);
 			txt_pay_info.setText("Du betalar vid dörren när varorna har anlänt. Du kan betala med antingen kort eller kontanter.");
 		}
+	}
+
+
+	// Show a recipe and finish payment
+	public void finish_payment(){
+		mainController.showRecipePopup();
 	}
 
 

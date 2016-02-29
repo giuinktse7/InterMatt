@@ -44,6 +44,10 @@ public class MainController implements Initializable {
 	@FXML private PurchaseHistoryController purchaseHistoryPopupController;
 	@FXML private LoadListController loadListPopupController;
 	@FXML private ShoppingCartController shoppingCartController;
+
+	// Recipe
+	@FXML private ModalPopup recipePopup;
+	@FXML private RecipeController recipeController;
 	
 	@FXML private StackPane wrapperStackPane;
 	@FXML private VBox mainContentWrapper;
@@ -53,6 +57,10 @@ public class MainController implements Initializable {
 	ViewDisplay viewDisplay;
 	
 	private ShoppingCartHandler cartHandler = ShoppingCartHandler.getInstance();
+
+	public void showRecipePopup(){
+		recipePopup.show();
+	}
 	
 	public void initialize(URL url, ResourceBundle bundle) {
 		configurePopupStackPane();
@@ -80,6 +88,10 @@ public class MainController implements Initializable {
 		purchaseHistoryButton.setOnAction(event -> purchaseHistoryPopup.show());
 		purchaseHistoryPopupController.setCloseAction(() -> purchaseHistoryPopup.hide());
 		shoppingCartController.getShoppingListButton().setOnAction(e -> loadListPopup.show());
+
+
+		purchasePaneController.mainController = this;
+
 		//Setup navigation-button bindings
 		initiateNavigationButtons();
 	}
