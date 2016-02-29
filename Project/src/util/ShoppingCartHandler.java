@@ -130,7 +130,7 @@ public class ShoppingCartHandler {
 		Button removeProductButton = new Button();
 		removeProductButton.setStyle("-fx-background-color: transparent;");
 		removeProductButton.setPrefSize(32, 32);
-		Image removeProductImage = new Image("resources/cuteGoat.png", 32, 32, true, true);
+		Image removeProductImage = new Image("resources/remove.png", 20, 20, true, true);
 		removeProductButton.setGraphic(new ImageView(removeProductImage));
 		
 		HBox priceWrapperBox = new HBox(lblPrice, removeProductButton);
