@@ -112,14 +112,22 @@ public class ShoppingCartHandler {
 		txtAmount.setPrefWidth(35);
 		txtAmount.setMinHeight(35);
 
-		Button decAmountBtn = new Button("-");
+		Button decAmountBtn = new Button();
 		decAmountBtn.setOnAction(changeTextValue(txtAmount, -1));
 		HBox.setMargin(decAmountBtn, new Insets(0, 3, 0, 0));
+		decAmountBtn.setStyle("-fx-background-color: transparent;");
+		decAmountBtn.setPrefSize(15, 15);
+		Image decAmountBtnImage = new Image("resources/minus.png", 15, 15, true, true);
+		decAmountBtn.setGraphic(new ImageView(decAmountBtnImage));
 
-		Button incAmountBtn = new Button("+");
+		Button incAmountBtn = new Button();
 		incAmountBtn.setOnAction(changeTextValue(txtAmount, 1));
 		HBox.setMargin(incAmountBtn, new Insets(0, 0, 0, 3));
-
+		incAmountBtn.setStyle("-fx-background-color: transparent;");
+		incAmountBtn.setPrefSize(15, 15);
+		Image incAmountBtnImage = new Image("resources/plus.png", 15, 15, true, true);
+		incAmountBtn.setGraphic(new ImageView(incAmountBtnImage));
+		
 		Label unitLabel = new Label(p.getUnitSuffix());
 		unitLabel.setFont(new Font(14));
 		unitLabel.setMouseTransparent(true);
@@ -133,8 +141,8 @@ public class ShoppingCartHandler {
 		Label lblPrice = new Label(p.getPrice() + ":-");
 		Button removeProductButton = new Button();
 		removeProductButton.setStyle("-fx-background-color: transparent;");
-		removeProductButton.setPrefSize(32, 32);
-		Image removeProductImage = new Image("resources/remove.png", 20, 20, true, true);
+		removeProductButton.setPrefSize(15, 15);
+		Image removeProductImage = new Image("resources/remove.png", 15, 15, true, true);
 		removeProductButton.setGraphic(new ImageView(removeProductImage));
 		
 		HBox priceWrapperBox = new HBox(lblPrice, removeProductButton);
