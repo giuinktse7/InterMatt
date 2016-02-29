@@ -128,7 +128,7 @@ public class ShoppingCartHandler {
 		Image incAmountBtnImage = new Image("resources/plus.png", 15, 15, true, true);
 		incAmountBtn.setGraphic(new ImageView(incAmountBtnImage));
 		
-		Label unitLabel = new Label(p.getUnitSuffix());
+		Label unitLabel = new Label(p.getUnitSuffix()+" ");
 		unitLabel.setFont(new Font(14));
 		unitLabel.setMouseTransparent(true);
 
@@ -139,6 +139,7 @@ public class ShoppingCartHandler {
 		quantityBox.setAlignment(Pos.CENTER_LEFT);
 
 		Label lblPrice = new Label(p.getPrice() + ":-");
+		lblPrice.setFont(new Font(14));
 		Button removeProductButton = new Button();
 		removeProductButton.setStyle("-fx-background-color: transparent;");
 		removeProductButton.setPrefSize(15, 15);
@@ -171,6 +172,7 @@ public class ShoppingCartHandler {
 				txtAmount.setText("" + intValue);
 			}
 			decAmountBtn.setDisable(newValue.equals("1"));
+			updateTotalCost();
 		});
 
 		Bindings.bindBidirectional(txtAmount.textProperty(), container.quantityProperty(), new NumberStringConverter());
@@ -196,8 +198,8 @@ public class ShoppingCartHandler {
 			} else
 				textField.setText("1");
 
-			if (textField.getText().equals("1"))
-				dummyNode.requestFocus();
+			if (textField.getText().equals("1")){
+				dummyNode.requestFocus();}
 			
 
 			updateTotalCost();

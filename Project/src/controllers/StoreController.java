@@ -78,7 +78,6 @@ public class StoreController implements Initializable {
 		TabPane[] superCategories = getTabPanes();
 		for (int i : categories.keySet()) {
 			TabPane tabPane = superCategories[i];
-
 			for (SubCategory subCategory : categories.get(i)) {
 				Tab tab = new Tab(subCategory.getName());
 
@@ -88,6 +87,10 @@ public class StoreController implements Initializable {
 				});
 				tabPane.getTabs().add(tab);
 			}
+			mainTabPane.getTabs().get(i).setOnSelectionChanged(e ->
+				{ 
+					populateStore((SubCategory)categories.get(i).toArray()[0]);
+			});;
 		}
 	}
 
