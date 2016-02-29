@@ -22,29 +22,29 @@
 				<Font size="24.0" />
 			</font>
 		</Label>
-		<Button fx:id="gotoShoppingListButton" layoutY="257.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="54.0" prefWidth="126.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0">
-         <graphic>
-            <ImageView fitHeight="41.0" fitWidth="111.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../resources/Inköpslistor.png" />
-               </image>
-            </ImageView>
-         </graphic></Button>
-		<ListView fx:id="cart" layoutX="14.0" layoutY="46.0" prefHeight="140.0" prefWidth="200.0" AnchorPane.bottomAnchor="122.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="42.0" VBox.vgrow="ALWAYS">
+		<ListView fx:id="cart" layoutX="14.0" layoutY="46.0" prefHeight="163.0" prefWidth="318.0" AnchorPane.bottomAnchor="106.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="42.0" VBox.vgrow="ALWAYS">
 			<VBox.margin>
 				<Insets bottom="14.0" left="14.0" right="14.0" top="6.0" />
 			</VBox.margin>
 		</ListView>
-      <Label fx:id="lblTotalCost" alignment="CENTER" layoutY="182.0" text="Total: 0:-" AnchorPane.bottomAnchor="102.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <Label fx:id="lblTotalCost" alignment="CENTER" layoutY="207.0" text="Total: 0:-" AnchorPane.bottomAnchor="84.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <font>
             <Font name="System Italic" size="16.0" />
          </font>
       </Label>
-      <Button layoutX="129.0" layoutY="257.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="86.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="0.0">
+		<Button fx:id="gotoShoppingListButton" layoutY="257.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="74.0" prefWidth="173.0" style="-fx-background-color: transparent;" textAlignment="RIGHT" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="145.0">
          <graphic>
-            <ImageView fitHeight="41.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="63.0" fitWidth="165.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/sparaLista.png" />
+                  <Image url="@../resources/groceryList2.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button layoutX="171.0" layoutY="257.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="147.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="171.0" AnchorPane.rightAnchor="0.0">
+         <graphic>
+            <ImageView fitHeight="63.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/saveList2.png" />
                </image>
             </ImageView>
          </graphic>
