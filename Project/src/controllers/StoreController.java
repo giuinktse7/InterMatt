@@ -42,10 +42,8 @@ public class StoreController implements Initializable {
 			@Override
 	        public void changed(ObservableValue<? extends String> observable,
 	                            String oldValue, String newValue) {
-				/**
-				 * Causes lag when many results are found.
-				 * Try to run on separate thread if possible. 
-				 * Look more into this after Friday*/
+				/** Changes selected tab to "start" */
+				mainTabPane.getSelectionModel().select(0);
 				search(newValue);
 	        }
 		});
