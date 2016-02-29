@@ -28,6 +28,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.util.converter.NumberStringConverter;
 import se.chalmers.ait.dat215.project.Product;
 
@@ -104,7 +106,7 @@ public class ShoppingCartHandler {
 		ProductHBox container;
 
 		Label name = new Label(p.getName());
-
+		name.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
 		dummyNode = name;
 		TextField txtAmount = new TextField();
 		txtAmount.setPrefWidth(35);
@@ -119,10 +121,12 @@ public class ShoppingCartHandler {
 		HBox.setMargin(incAmountBtn, new Insets(0, 0, 0, 3));
 
 		Label unitLabel = new Label(p.getUnitSuffix());
+		unitLabel.setFont(new Font(14));
 		unitLabel.setMouseTransparent(true);
 
 		StackPane quantityPane = new StackPane(txtAmount, unitLabel);
 		StackPane.setAlignment(unitLabel, Pos.CENTER_RIGHT);
+		quantityPane.setMinWidth(60);
 		HBox quantityBox = new HBox(decAmountBtn, quantityPane, incAmountBtn);
 		quantityBox.setAlignment(Pos.CENTER_LEFT);
 
@@ -158,13 +162,12 @@ public class ShoppingCartHandler {
 				intValue = Math.min(MAX_QUANTITY, intValue);
 				txtAmount.setText("" + intValue);
 			}
-
 			decAmountBtn.setDisable(newValue.equals("1"));
 		});
 
 		Bindings.bindBidirectional(txtAmount.textProperty(), container.quantityProperty(), new NumberStringConverter());
-		
-		lblPrice.textProperty().bind(Bindings.concat(container.quantityProperty().multiply(p.getPrice()), //new DecimalFormat("0.#").format(p.getPrice()))),
+		//Post formattering fungerar ej med bindings. Skall vi visa pris avrundat till .## måste vi skriva om
+		lblPrice.textProperty().bind(Bindings.concat(container.quantityProperty().multiply(Math.round(p.getPrice())), 
 				":-"));
 		txtAmount.setText("1");
 		removeProductButton.setOnAction(event -> {cart.getItems().remove(container); updateTotalCost();});
