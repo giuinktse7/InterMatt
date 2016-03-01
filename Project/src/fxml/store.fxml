@@ -90,7 +90,7 @@
 						<Insets />
 					</opaqueInsets>
 				</TabPane>
-				<TextField fx:id="txtSearch" layoutX="945.0" layoutY="8.0" prefHeight="37.0" prefWidth="200" promptText="Sök" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="7.0">
+				<TextField fx:id="txtSearch" layoutX="945.0" layoutY="8.0" prefHeight="37.0" promptText="Sök" AnchorPane.leftAnchor="890.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="7.0">
 					<font>
 						<Font size="18.0" />
 					</font>

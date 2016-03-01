@@ -42,10 +42,8 @@ public class StoreController implements Initializable {
 			@Override
 	        public void changed(ObservableValue<? extends String> observable,
 	                            String oldValue, String newValue) {
-				/**
-				 * Causes lag when many results are found.
-				 * Try to run on separate thread if possible. 
-				 * Look more into this after Friday*/
+				/** Changes selected tab to "start" */
+				mainTabPane.getSelectionModel().select(0);
 				search(newValue);
 	        }
 		});
@@ -78,7 +76,6 @@ public class StoreController implements Initializable {
 		TabPane[] superCategories = getTabPanes();
 		for (int i : categories.keySet()) {
 			TabPane tabPane = superCategories[i];
-
 			for (SubCategory subCategory : categories.get(i)) {
 				Tab tab = new Tab(subCategory.getName());
 
@@ -88,6 +85,10 @@ public class StoreController implements Initializable {
 				});
 				tabPane.getTabs().add(tab);
 			}
+			mainTabPane.getTabs().get(i).setOnSelectionChanged(e ->
+				{ 
+					populateStore((SubCategory)categories.get(i).toArray()[0]);
+			});;
 		}
 	}
 
