@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import util.ModalPopup?>
+<?import control.ModalPopup?>
 
 <ModalPopup fx:id="bottomPane" alignment="CENTER"
 	columnHalignment="CENTER" styleClass="bottomPane" stylesheets="@../styling/modal_popup.css"

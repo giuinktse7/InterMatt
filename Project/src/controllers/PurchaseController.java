@@ -12,7 +12,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sun.applet.Main;
-import util.ModalPopup;
 
 import java.net.URL;
 import java.util.Arrays;
@@ -20,6 +19,8 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import control.ModalPopup;
 
 public class PurchaseController implements Initializable {
 	@FXML private RadioButton rbPayByCard;

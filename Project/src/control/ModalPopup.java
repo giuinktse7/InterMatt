@@ -1,10 +1,7 @@
-package util;
+package control;
 
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.Node;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.FlowPane;
@@ -14,16 +11,17 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 public class ModalPopup extends FlowPane {
-
-	BooleanProperty mouseInsideContent = new SimpleBooleanProperty();
 	
+	private Node content;
 	private static Node mainProgramContent;
 	private static StackPane container;
 	private Animation appearAnimation, disappearAnimation;
 	
 	public ModalPopup(Node content) {
-		if (content != null)
+		if (content != null) {
 			this.getChildren().add(content);
+			this.content = content;
+		}
 		
 		setDefaultFade();
 		setDropShadow();
@@ -60,15 +58,17 @@ public class ModalPopup extends FlowPane {
 		container.getChildren().add(0, this);
 		}
 		
+		this.content = getChildren().get(0);
+		
 		prefWidth(container.getPrefWidth());
 		prefHeight(container.getPrefHeight());
 		toFront();
 		appearAnimation.play();
 		
-		/*for ()
-		Bindings.createBooleanBinding(() -> {  }, );*/
-		
-		this.setOnMouseClicked(e -> close());
+		this.setOnMousePressed(e -> {
+			if (!content.hoverProperty().get())
+				close();
+			});
 	}
 	
 	/** Closes the popup. */

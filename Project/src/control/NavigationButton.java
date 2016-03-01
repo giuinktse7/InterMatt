@@ -1,4 +1,4 @@
-package util;
+package control;
 
 import interfaces.Action;
 import javafx.event.ActionEvent;
@@ -6,6 +6,9 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import util.BindingGroup;
+import util.ContentView;
+import util.ViewDisplay;
 
 public class NavigationButton extends Button {
 	ContentView view;

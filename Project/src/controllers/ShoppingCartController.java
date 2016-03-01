@@ -3,12 +3,12 @@ package controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import control.ProductHBox;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import util.ProductHBox;
 import util.ShoppingCartHandler;
 
 public class ShoppingCartController implements Initializable {

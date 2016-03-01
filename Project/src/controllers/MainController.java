@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import control.ModalPopup;
+import control.NavigationButton;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
@@ -15,8 +17,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import util.BindingGroup;
 import util.ContentView;
-import util.ModalPopup;
-import util.NavigationButton;
 import util.ShoppingCartHandler;
 import util.ViewDisplay;
 
@@ -85,7 +85,7 @@ public class MainController implements Initializable {
 		navButton3.initialize(getView(purchasePane), event -> viewDisplay.show(getView(purchasePane)), navButton4);
 		navButton4.initialize(new ContentView(null), event -> { }, null);
 		
-		purchaseHistoryButton.setOnAction(event -> purchaseHistoryPopup.show());
+		purchaseHistoryButton.setOnAction(event -> { purchaseHistoryPopupController.update(); purchaseHistoryPopup.show(); });
 		purchaseHistoryPopupController.setCloseAction(() -> purchaseHistoryPopup.hide());
 		shoppingCartController.getShoppingListButton().setOnAction(e -> loadListPopup.show());
 

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import util.NavigationButton?>
+<?import control.NavigationButton?>
 
 <StackPane fx:id="wrapperStackPane" stylesheets="@../styling/root.css"
 	xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"

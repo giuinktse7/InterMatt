@@ -7,10 +7,11 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
-import util.ModalPopup;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import control.ModalPopup;
 
 public class RecipeController implements Initializable {
 
