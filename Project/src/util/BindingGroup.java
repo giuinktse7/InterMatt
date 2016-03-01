@@ -22,6 +22,13 @@ public class BindingGroup {
 		binding.addListener((obs, oldValue, newValue) -> update());
 	}
 	
+	public void addBindings(BooleanBinding... bindings) {
+		for (BooleanBinding binding : bindings) {
+			this.bindings.add(binding);
+			binding.addListener((obs, oldValue, newValue) -> update());
+		}
+	}
+	
 	public void setOnTrueAction(Action action) {
 		this.onTrueAction = action;
 	}
@@ -38,5 +45,23 @@ public class BindingGroup {
 			}
 		
 		onTrueAction.call();
+	}
+	
+	public boolean allMet() {
+		for (BooleanBinding binding : bindings)
+			if (!binding.get())
+				return false;
+		
+		return true;
+	}
+	
+	/** Returns the BooleanBindings of this group. */
+	public List<BooleanBinding> getBinds() {
+		return this.bindings;
+	}
+	
+	/** Replaces the BooleanBindings of this group with those in <code>bindings</code>. */
+	public void setAll(List<BooleanBinding> bindings) {
+		this.bindings = bindings;
 	}
 }

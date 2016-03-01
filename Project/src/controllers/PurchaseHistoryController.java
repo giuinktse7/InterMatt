@@ -43,7 +43,7 @@ public class PurchaseHistoryController implements Initializable {
 	}
 	
 	public void update() {
-		db.placeOrder();
+		
 		List<Order> orders = db.getOrders();
 		
 		Collections.sort(orders, (o1, o2) -> {
@@ -68,10 +68,13 @@ public class PurchaseHistoryController implements Initializable {
 			ordersList.getItems().add(orderBox);
 			});
 		
-		((OrderOverviewBox)ordersList.getItems().get(0)).getChildren().add(0, separator);
-		
-		//Show the first order
-		OrderOverviewBox box = new OrderOverviewBox(((OrderOverviewBox) ordersList.getItems().get(0)).getOrder());
-		productListView.getItems().setAll(box.getProductBoxes());
+		//Add the first separator
+		if (!ordersList.getItems().isEmpty()) {
+			((OrderOverviewBox)ordersList.getItems().get(0)).getChildren().add(0, separator);
+			
+			//Show the first order
+			OrderOverviewBox box = new OrderOverviewBox(((OrderOverviewBox) ordersList.getItems().get(0)).getOrder());
+			productListView.getItems().setAll(box.getProductBoxes());
+		}
 	}
 }

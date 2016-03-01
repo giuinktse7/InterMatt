@@ -8,11 +8,13 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.SelectionModel;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -22,7 +24,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.util.converter.NumberStringConverter;
 import se.chalmers.ait.dat215.project.Product;
-import util.AttributeTextField;
 import util.ShoppingCartHandler;
 
 
@@ -81,15 +82,16 @@ public class ProductHBox extends HBox {
 	}
 	
 	private void initialize() {
+		this.setFocusTraversable(false);
 		Label name = new Label(product.getName());
 		name.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
 		
 		AttributeTextField txtAmount = new AttributeTextField(product, cartHandler.MAX_QUANTITY);
 		
-		txtAmount.setPrefWidth(70);
+		txtAmount.setPrefWidth(65);
 		txtAmount.setMinHeight(35);
 
-		Button decAmountBtn = new Button("-");
+		Button decAmountBtn = new Button();
 		decAmountBtn.setOnAction(e -> { quantityProperty().set(this.quantityProperty().get() - 1); name.requestFocus(); });
 		HBox.setMargin(decAmountBtn, new Insets(0, 3, 0, 0));
 		decAmountBtn.setStyle("-fx-background-color: transparent;");
@@ -97,7 +99,7 @@ public class ProductHBox extends HBox {
 		Image decAmountBtnImage = new Image("resources/minus.png", 15, 15, true, true);
 		decAmountBtn.setGraphic(new ImageView(decAmountBtnImage));
 
-		Button incAmountBtn = new Button("+");
+		Button incAmountBtn = new Button();
 		HBox.setMargin(incAmountBtn, new Insets(0, 0, 0, 3));
 		incAmountBtn.setOnAction(e -> this.quantityProperty().set(this.quantityProperty().get() + 1));
 		incAmountBtn.setStyle("-fx-background-color: transparent;");
@@ -111,7 +113,8 @@ public class ProductHBox extends HBox {
 
 		StackPane quantityPane = new StackPane(txtAmount, unitLabel);
 		StackPane.setAlignment(unitLabel, Pos.CENTER_RIGHT);
-		quantityPane.setMinWidth(60);
+		unitLabel.setPadding(new Insets(0, 2, 0, 0));
+		quantityPane.setMinWidth(65);
 		HBox quantityBox = new HBox(decAmountBtn, quantityPane, incAmountBtn);
 		quantityBox.setAlignment(Pos.CENTER_LEFT);
 
@@ -122,14 +125,16 @@ public class ProductHBox extends HBox {
 		removeProductButton.setStyle("-fx-background-color: transparent;");
 		removeProductButton.setPrefSize(15, 15);
 		Image removeProductImage = new Image("resources/remove.png", 15, 15, true, true);
+		Image removeProductImageRed = new Image("resources/remove_red.png", 15, 15, true, true);
 		removeProductButton.setGraphic(new ImageView(removeProductImage));
+		removeProductButton.hoverProperty().addListener((obs, o, n) -> removeProductButton.setGraphic(new ImageView(n ? removeProductImageRed : removeProductImage)));
 
 		HBox priceWrapperBox = new HBox(lblPrice, removeProductButton);
 		priceWrapperBox.setAlignment(Pos.CENTER_RIGHT);
 
 		HBox nameWrapperBox = new HBox(name);
 		nameWrapperBox.setAlignment(Pos.CENTER);
-		HBox.setHgrow(nameWrapperBox, Priority.ALWAYS);
+		HBox.setHgrow(priceWrapperBox, Priority.ALWAYS);
 
 		this.getChildren().setAll(quantityBox, nameWrapperBox, priceWrapperBox);
 		this.setAlignment(Pos.CENTER_LEFT);

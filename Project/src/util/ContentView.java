@@ -1,8 +1,6 @@
 package util;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.Node;
@@ -11,22 +9,38 @@ public class ContentView {
 	private Node content;
 	
 	private BooleanProperty activeProperty = new SimpleBooleanProperty();
+	BindingGroup requirements = new BindingGroup();
 	
 	private ContentView previous;
 	private ContentView next;
 	
-	private List<Condition> conditions;
-	
-	public ContentView(Node content, ContentView previous, ContentView next) {
+	public ContentView(Node content, ContentView previous, ContentView next, BooleanBinding requirement) {
 		this.content = content;
 		this.previous = previous;
 		this.next = next;
-		
-		conditions = new ArrayList<Condition>();
+		if (requirement != null)
+			requirements.addBinding(requirement);
+	}
+	
+	public ContentView(Node content, ContentView previous, ContentView next) {
+		this(content, previous, next, null);
 	}
 	
 	public ContentView(Node content) {
-		this(content, null, null);
+		this(content, null, null, null);
+	}
+	
+	public ContentView(Node content, BooleanBinding requirement) {
+		this(content, null, null, requirement);
+	}
+	
+	public void addRequirement(BooleanBinding requirement) {
+		requirements.addBinding(requirement);
+	}
+	
+	public void addRequirements(BooleanBinding... bindings) {
+		for (BooleanBinding binding : bindings)
+			requirements.addBinding(binding);
 	}
 	
 	public void setNext(ContentView view) {
@@ -35,10 +49,6 @@ public class ContentView {
 	
 	public void setPrevious(ContentView view) {
 		this.previous = view;
-	}
-	
-	public void require(Condition condition) {
-		conditions.add(condition);
 	}
 	
 	public String getID() {
@@ -57,13 +67,8 @@ public class ContentView {
 		return this.previous;
 	}
 	
-	public boolean validate() {
-		boolean pass = true;
-		for (Condition condition : conditions)
-			if(!condition.isSatisfied())
-				pass = false;
-		
-		return pass;
+	public boolean isLocked() {
+		return !requirements.allMet();
 	}
 	
 	public BooleanProperty activeProperty() {
@@ -72,5 +77,9 @@ public class ContentView {
 	
 	public boolean isDisabled() {
 		return !activeProperty.get();
+	}
+	
+	public BindingGroup getBindingGroup() {
+		return this.requirements;
 	}
 }
