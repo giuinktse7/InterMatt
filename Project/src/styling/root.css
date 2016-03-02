@@ -5,7 +5,7 @@
  */
 /* Configure colors here and use derivations elsewhere*/
 * {
-	-fx-glass-color: rgba(111, 194, 56, 0.9);
+	-fx-glass-color: rgba(111.0, 194.0, 56.0, 0.9);
 	-fx-tab-bg-color: #36750f;
 	-fx-back-color: #6fc238;
 	-fx-start-color: #fafafa;
@@ -19,7 +19,11 @@
 	
 	-itempane-color: white;
 	-buy-button-color: 	#b9d677;
-}
+	-main-text-color: #8C8C8C;
+	-list-item-selected-color: #c1c1c1;
+	-list-item-even-color: white;
+	-list-item-odd-color: #f4f4f4;
+	}
 
 .tab-pane .tab-pane .tab:selected,
 .backdrop {
@@ -29,18 +33,18 @@
 
 
 .split-pane > .split-pane-divider {  
-    -fx-border-width: 2;  
-    -fx-background-color: rgba(0,0,0,0);
+    -fx-border-width: 2.0;  
+    -fx-background-color: rgba(0.0,0.0,0.0,0.0);
 }
 
-.tile-pane, 
-.scroll-pane {
-    -fx-focus-color: transparent;
-    -fx-faint-focus-color: transparent;
-    -fx-background-color: -itempane-color, transparent;
-    -fx-background-insets: 0, 0;
-    -fx-padding: 0;
+#shopping-cart-list .scroll-bar:horizontal .increment-arrow,
+#shopping-cart-list .scroll-bar:horizontal .decrement-arrow,
+#shopping-cart-list .scroll-bar:horizontal .increment-button,
+#shopping-cart-list .scroll-bar:horizontal .decrement-button
+{
+    -fx-padding:0.0;
 }
+
 .nav-button {
 	-fx-background-color: transparent;
 
@@ -48,9 +52,9 @@
 .base-style{
 	-fx-background-color: -fx-main-color;
 }
-.list-view .scroll-bar:horizontal .increment-arrow,
-.list-view .scroll-bar:horizontal .decrement-arrow,
-.list-view .scroll-bar:horizontal .increment-button,
-.list-view .scroll-bar:horizontal .decrement-button {
-    -fx-padding:0;
+
+/* Navigation button */
+.navigation-button:disabled {
+	-fx-opacity: 1;
 }
+

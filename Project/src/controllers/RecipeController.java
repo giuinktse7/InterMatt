@@ -1,12 +1,11 @@
 package controllers;
 
-import interfaces.Action;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import se.chalmers.ait.dat215.project.IMatDataHandler;
+import util.ShoppingCartHandler;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,15 +18,19 @@ public class RecipeController implements Initializable {
     @FXML private Button closeButton;
     @FXML private Pane contentPane;
     @FXML private VBox tableBox;
+	
+	public void initialize(URL location, ResourceBundle resources) {
+		setCloseAction();
+	}
 
-
-    private IMatDataHandler db = IMatDataHandler.getInstance();
-
-    public void initialize(URL location, ResourceBundle resources) {
-    }
-
-    public void setCloseAction(Action c) {
-        closeButton.setOnAction(e -> bottomPane.close());
-    }
+	private void setCloseAction() {
+		bottomPane.setOnExit(() -> {
+			ShoppingCartHandler.getInstance().clearCart();
+			MainController.get().finishPurchase();
+		});
+		closeButton.setOnAction(e -> {
+			bottomPane.close();
+		});
+	}
 
 }

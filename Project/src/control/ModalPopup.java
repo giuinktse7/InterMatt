@@ -1,7 +1,10 @@
 package control;
 
+import interfaces.Action;
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.FlowPane;
@@ -16,6 +19,9 @@ public class ModalPopup extends FlowPane {
 	private static Node mainProgramContent;
 	private static StackPane container;
 	private Animation appearAnimation, disappearAnimation;
+	
+	//TODO Temporary. Replace with a better solution.
+	private Action exitAction = null;
 	
 	public ModalPopup(Node content) {
 		if (content != null) {
@@ -75,6 +81,8 @@ public class ModalPopup extends FlowPane {
 	public void close() {
 		disappearAnimation.play();
 		disappearAnimation.setOnFinished(event -> mainProgramContent.toFront());
+		if (exitAction != null)
+			exitAction.call();
 	}
 	
 	/** Equivalent to <code>close()</code>. */
@@ -98,5 +106,10 @@ public class ModalPopup extends FlowPane {
 		fade = (FadeTransition) disappearAnimation;
 		fade.setFromValue(1);
 		fade.setToValue(0);
+	}
+	
+	//TODO TEMP: REMOVE FOR SOMETHING BETTER
+	public void setOnExit(Action action) {
+		this.exitAction = action;
 	}
 }

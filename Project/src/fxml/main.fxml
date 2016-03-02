@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 <?import control.NavigationButton?>
 
 <StackPane fx:id="wrapperStackPane" stylesheets="@../styling/root.css"
@@ -23,7 +24,7 @@
 			maxHeight="-Infinity" source="recipe.fxml" />
 		<VBox fx:id="mainContentWrapper">
 			<children>
-				<SplitPane dividerPositions="0.75" prefHeight="700.0"
+				<SplitPane fx:id="splitPane" VBox.vgrow="ALWAYS" dividerPositions="0.75" prefHeight="700.0"
 					prefWidth="1000.0" styleClass="backdrop">
 					<items>
 						<AnchorPane minWidth="1000.0">
@@ -45,9 +46,18 @@
 						</AnchorPane>
 						<AnchorPane prefHeight="601.0" prefWidth="142.0">
 							<children>
-								<Button fx:id="purchaseHistoryButton" layoutX="14.0"
-									layoutY="14.0" mnemonicParsing="false" prefHeight="44.0"
-									prefWidth="116.0" text="Köphistorik" />
+									<Button maxWidth="-Infinity" HBox.hgrow="ALWAYS" fx:id="purchaseHistoryButton" mnemonicParsing="false"
+										prefHeight="36" text="Köphistorik" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0"
+									AnchorPane.rightAnchor="0">
+										<graphic>
+											<ImageView fitWidth="32" pickOnBounds="true"
+												preserveRatio="true">
+												<image>
+													<Image url="@../resources/bill.png" />
+												</image>
+											</ImageView>
+										</graphic>
+									</Button>
 								<fx:include fx:id="shoppingCart" source="shopping_cart.fxml" />
 							</children>
 						</AnchorPane>
@@ -82,7 +92,7 @@
 								</ImageView>
 							</graphic>
 						</Button>
-						<NavigationButton fx:id="navButton1" layoutX="400.0"
+						<NavigationButton fx:id="btnToStore" layoutX="400.0"
 							layoutY="63.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false"
 							prefHeight="60.0" prefWidth="60.0" styleClass="nav-button"
 							AnchorPane.bottomAnchor="28.0">
@@ -95,10 +105,10 @@
 								</ImageView>
 							</graphic>
 						</NavigationButton>
-						<NavigationButton fx:id="navButton2" disable="true" layoutX="500.0"
-							layoutY="73.0" minHeight="64.0" minWidth="64.0" mnemonicParsing="false"
-							prefHeight="64.0" prefWidth="64.0" styleClass="nav-button"
-							AnchorPane.bottomAnchor="28.0">
+						<NavigationButton fx:id="btnToCredentials" disable="true"
+							layoutX="500.0" layoutY="73.0" minHeight="64.0" minWidth="64.0"
+							mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0"
+							styleClass="nav-button" AnchorPane.bottomAnchor="28.0">
 							<graphic>
 								<ImageView fitHeight="50.0" fitWidth="50.0"
 									pickOnBounds="true" preserveRatio="true">
@@ -108,10 +118,10 @@
 								</ImageView>
 							</graphic>
 						</NavigationButton>
-						<NavigationButton fx:id="navButton3" disable="true" layoutX="600.0"
-							layoutY="83.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false"
-							prefHeight="60.0" prefWidth="60.0" styleClass="nav-button"
-							AnchorPane.bottomAnchor="28.0">
+						<NavigationButton fx:id="btnToPurchase" disable="true"
+							layoutX="600.0" layoutY="83.0" minHeight="60.0" minWidth="60.0"
+							mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0"
+							styleClass="nav-button" AnchorPane.bottomAnchor="28.0">
 							<graphic>
 								<ImageView fitHeight="50.0" disable="true" fitWidth="50.0"
 									pickOnBounds="true" preserveRatio="true">
@@ -121,10 +131,10 @@
 								</ImageView>
 							</graphic>
 						</NavigationButton>
-						<NavigationButton fx:id="navButton4" disable="true" layoutX="700.0"
-							layoutY="93.0" minHeight="60.0" minWidth="60.0" mnemonicParsing="false"
-							prefHeight="60.0" prefWidth="60.0" styleClass="nav-button"
-							AnchorPane.bottomAnchor="28.0">
+						<NavigationButton fx:id="navButton4" disable="true"
+							layoutX="700.0" layoutY="93.0" minHeight="60.0" minWidth="60.0"
+							mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0"
+							styleClass="nav-button" AnchorPane.bottomAnchor="28.0">
 							<graphic>
 								<ImageView fitHeight="50.0" fitWidth="50.0"
 									pickOnBounds="true" preserveRatio="true">

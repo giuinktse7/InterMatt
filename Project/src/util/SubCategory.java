@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import se.chalmers.ait.dat215.project.*;
 
@@ -111,14 +112,21 @@ public class SubCategory {
 	
 	private static Node getProductDisplay(Product product) {
 		ShoppingCartHandler cart = ShoppingCartHandler.getInstance();
-
+		
 		Label title = new Label(product.getName());
 		title.getStyleClass().add("title-label");
 		ImageView image = new ImageView(preserveRatio(product, PICTURE_WIDTH));
-		Label priceLabel = new Label(product.getPrice() + " " + product.getUnit());
-		AnchorPane.setLeftAnchor(priceLabel, 0d);
+		Label priceLabel = new Label(String.format("%.2f", product.getPrice()).replace('.', ':'));
+		priceLabel.getStyleClass().add("price-label");
+		Label suffixLabel = new Label("/" + product.getUnitSuffix());
+		suffixLabel.getStyleClass().add("suffix-label");
+		suffixLabel.setPadding(new Insets(0, 0, 2, 0));
+		HBox priceBox = new HBox(priceLabel, suffixLabel);
+		priceBox.setAlignment(Pos.BOTTOM_LEFT);
+		
+		AnchorPane.setLeftAnchor(priceBox, 0d);
 
-		AnchorPane infoBox = new AnchorPane(priceLabel);
+		AnchorPane infoBox = new AnchorPane(priceBox);
 
 		Button button = new Button("Köp");
 		button.setOnAction(e -> cart.addProduct(product));

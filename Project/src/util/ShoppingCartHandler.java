@@ -10,6 +10,8 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.ListChangeListener.Change;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -18,7 +20,7 @@ import se.chalmers.ait.dat215.project.Product;
 import se.chalmers.ait.dat215.project.ShoppingItem;
 
 public class ShoppingCartHandler {
-	public final int MAX_QUANTITY = 999;
+	public final int MAX_QUANTITY = 50;
 
 	private Label lblTotalCost;
 	private DoubleProperty totalCost = new SimpleDoubleProperty(0);
@@ -44,7 +46,7 @@ public class ShoppingCartHandler {
 		});
 
 		totalCost.addListener(
-				(obs, oldValue, newValue) -> lblTotalCost.setText(String.format("%.2f", newValue.doubleValue()) +":-"));
+				(obs, oldValue, newValue) -> lblTotalCost.setText(String.format("Totalt: %.2f", newValue.doubleValue()) + ":-"));
 
 		cart.getItems().addListener(UPDATE_TOTAL_COST);
 	}
@@ -124,4 +126,9 @@ public class ShoppingCartHandler {
 	public void addToTotal(double value) {
 		totalCost.set(totalCost.get() + value);
 	}
+	
+	public void clearCart() {
+		this.cart.getItems().clear();
+		totalCost.set(0);
+		}
 }
