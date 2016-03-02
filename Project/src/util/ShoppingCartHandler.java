@@ -1,55 +1,40 @@
 package util;
 
-import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.List;
 
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.DoubleBinding;
-import javafx.beans.binding.IntegerBinding;
+import control.ProductHBox;
 import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.ListChangeListener.Change;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.util.converter.NumberStringConverter;
+import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.Product;
+import se.chalmers.ait.dat215.project.ShoppingItem;
 
 public class ShoppingCartHandler {
-	private static final int MAX_QUANTITY = 999;
+	public final int MAX_QUANTITY = 50;
 
 	private Label lblTotalCost;
-	
+	private DoubleProperty totalCost = new SimpleDoubleProperty(0);
+
 	private ListView<ProductHBox> cart;
 	private BooleanProperty emptyProperty = new SimpleBooleanProperty(true);
-	
-	public static ShoppingCartHandler instance = new ShoppingCartHandler();
 
-	// Used to unfocus textField when text is set to 1 through usage of minus
-	// button
-	private Node dummyNode = new Label();
+	public static ShoppingCartHandler instance = new ShoppingCartHandler();
+	private static IMatDataHandler db = IMatDataHandler.getInstance();
 
 	private ShoppingCartHandler() {
+
 	}
-	
+
 	public BooleanProperty emptyProperty() {
 		return this.emptyProperty;
 	}
@@ -59,9 +44,30 @@ public class ShoppingCartHandler {
 		cart.getItems().addListener((Change<? extends ProductHBox> c) -> {
 			emptyProperty.set(cart.getItems().size() == 0);
 		});
+
+		totalCost.addListener(
+				(obs, oldValue, newValue) -> lblTotalCost.setText(String.format("Totalt: %.2f", newValue.doubleValue()) + ":-"));
+
+		cart.getItems().addListener(UPDATE_TOTAL_COST);
 	}
 	
-	public void passLabel(Label lblTotalCost){
+	public ObservableList<ProductHBox> getItems() {
+		return this.cart.getItems();
+	}
+
+	private ListChangeListener<ProductHBox> UPDATE_TOTAL_COST = c -> {
+		while (c.next()) {
+			for (ProductHBox box : c.getAddedSubList()) {
+				addToTotal(box.getQuantity() * box.getProduct().getPrice());
+			}
+			
+			if (c.wasRemoved())
+				for (ProductHBox box : c.getRemoved())
+					addToTotal( - box.getQuantity() * box.getProduct().getPrice());
+		}
+	};
+
+	public void passLabel(Label lblTotalCost) {
 		this.lblTotalCost = lblTotalCost;
 	}
 
@@ -72,146 +78,22 @@ public class ShoppingCartHandler {
 	public static ShoppingCartHandler getInstance() {
 		return instance;
 	}
-	
-	public void updateTotalCost(){
-		float cost = 0;
-		ObservableList<ProductHBox> list = cart.getItems();
-		for (ProductHBox box : list){
-			cost += box.getQuantity() * box.getProduct().getPrice();
-		}
-		lblTotalCost.setText("Totalt: " +new DecimalFormat("#.##").format(cost) + ":-");
-	}
 
 	/** Adds the product to the shopping cart */
 	public void addProduct(Product product) {
+		// For database
+		ShoppingItem item = getDbShoppingItem(product);
+		if (item != null)
+			item.setAmount(item.getAmount() + 1);
+		else
+			db.getShoppingCart().addItem(new ShoppingItem(product, 1));
+
 		ProductHBox productBox = getProductBoxFromCart(product);
 
 		if (productBox != null)
 			productBox.addQuantity(1);
 		else {
-			ProductHBox container = getProductContainer(product);
-			cart.getItems().add(container);
-		}
-		updateTotalCost();
-	}
-
-	/**
-	 * Constructs a Pane for the given product.
-	 * 
-	 * @param p
-	 *            the product which values will be used.
-	 * @return a Pane containing information about the product.
-	 */
-	private ProductHBox getProductContainer(Product p) {
-		ProductHBox container;
-
-		Label name = new Label(p.getName());
-		name.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
-		dummyNode = name;
-		TextField txtAmount = new TextField();
-		txtAmount.setPrefWidth(35);
-		txtAmount.setMinHeight(35);
-
-		Button decAmountBtn = new Button();
-		decAmountBtn.setOnAction(changeTextValue(txtAmount, -1));
-		HBox.setMargin(decAmountBtn, new Insets(0, 3, 0, 0));
-		decAmountBtn.setStyle("-fx-background-color: transparent;");
-		decAmountBtn.setPrefSize(15, 15);
-		Image decAmountBtnImage = new Image("resources/minus.png", 15, 15, true, true);
-		decAmountBtn.setGraphic(new ImageView(decAmountBtnImage));
-
-		Button incAmountBtn = new Button();
-		incAmountBtn.setOnAction(changeTextValue(txtAmount, 1));
-		HBox.setMargin(incAmountBtn, new Insets(0, 0, 0, 3));
-		incAmountBtn.setStyle("-fx-background-color: transparent;");
-		incAmountBtn.setPrefSize(15, 15);
-		Image incAmountBtnImage = new Image("resources/plus.png", 15, 15, true, true);
-		incAmountBtn.setGraphic(new ImageView(incAmountBtnImage));
-		
-		Label unitLabel = new Label(p.getUnitSuffix()+" ");
-		unitLabel.setFont(new Font(14));
-		unitLabel.setMouseTransparent(true);
-
-		StackPane quantityPane = new StackPane(txtAmount, unitLabel);
-		StackPane.setAlignment(unitLabel, Pos.CENTER_RIGHT);
-		quantityPane.setMinWidth(60);
-		HBox quantityBox = new HBox(decAmountBtn, quantityPane, incAmountBtn);
-		quantityBox.setAlignment(Pos.CENTER_LEFT);
-
-		Label lblPrice = new Label(p.getPrice() + ":-");
-		lblPrice.setFont(new Font(14));
-		Button removeProductButton = new Button();
-		removeProductButton.setStyle("-fx-background-color: transparent;");
-		removeProductButton.setPrefSize(15, 15);
-		Image removeProductImage = new Image("resources/remove.png", 15, 15, true, true);
-		removeProductButton.setGraphic(new ImageView(removeProductImage));
-		
-		HBox priceWrapperBox = new HBox(lblPrice, removeProductButton);
-
-		priceWrapperBox.setAlignment(Pos.CENTER_RIGHT);
-
-		HBox nameWrapperBox = new HBox(name);
-		nameWrapperBox.setAlignment(Pos.CENTER);
-		HBox.setHgrow(nameWrapperBox, Priority.ALWAYS);
-		
-		container = new ProductHBox(p, quantityBox, nameWrapperBox, priceWrapperBox);
-		container.setAlignment(Pos.CENTER_LEFT);
-
-		// only integers are allowed as amount
-		txtAmount.textProperty().addListener((obs, oldValue, newValue) -> {
-			// Disallow empty text & 0 (does not account for several zeroes!)
-			if (newValue.equals("") || newValue.equals("0"))
-				txtAmount.setText("1");
-			else {
-				String text = newValue;
-				if (!newValue.matches("\\d*"))
-					text = text.replaceAll("[^\\d]", "");
-
-				int intValue = Integer.parseInt(text);
-				intValue = Math.min(MAX_QUANTITY, intValue);
-				txtAmount.setText("" + intValue);
-			}
-			decAmountBtn.setDisable(newValue.equals("1"));
-			updateTotalCost();
-		});
-
-		Bindings.bindBidirectional(txtAmount.textProperty(), container.quantityProperty(), new NumberStringConverter());
-		//Post formattering fungerar ej med bindings. Skall vi visa pris avrundat till .## måste vi skriva om
-		lblPrice.textProperty().bind(Bindings.concat(container.quantityProperty().multiply(Math.round(p.getPrice())), 
-				":-"));
-		txtAmount.setText("1");
-		removeProductButton.setOnAction(event -> {cart.getItems().remove(container); updateTotalCost();});
-		return container;
-	}
-
-	/**
-	 * Event that changes the value of a TextField by <code>change</code>. If
-	 * textField contains an int, changes the value of it. Otherwise, sets the
-	 * textField's value to 1
-	 */
-	private EventHandler<ActionEvent> changeTextValue(TextField textField, int change) {
-		return event -> {
-			String text = textField.getText();
-			if (isInteger(text)) {
-				int value = Integer.parseInt(text);
-				textField.setText(Integer.toString(value + change));
-			} else
-				textField.setText("1");
-
-			if (textField.getText().equals("1")){
-				dummyNode.requestFocus();}
-			
-
-			updateTotalCost();
-		};
-	}
-
-	private static boolean isInteger(String value) {
-		try {
-			Integer.parseInt(value);
-			return true;
-		} catch (NumberFormatException nfe) {
-			return false;
+			cart.getItems().add(new ProductHBox(product));
 		}
 	}
 
@@ -226,4 +108,27 @@ public class ShoppingCartHandler {
 
 		return null;
 	}
+
+	/**
+	 * Returns the ShoppingItem with product p. If there is none, returns null.
+	 */
+	public ShoppingItem getDbShoppingItem(Product p) {
+		List<ShoppingItem> items = db.getShoppingCart().getItems();
+
+		for (ShoppingItem item : items)
+			//if (item.getProduct().getProductId() == p.getProductId())
+			if (item.getProduct().equals(p))
+				return item;
+
+		return null;
+	}
+	
+	public void addToTotal(double value) {
+		totalCost.set(totalCost.get() + value);
+	}
+	
+	public void clearCart() {
+		this.cart.getItems().clear();
+		totalCost.set(0);
+		}
 }

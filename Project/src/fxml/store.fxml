@@ -16,73 +16,96 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fillWidth="true" prefHeight="600.0" prefWidth="1215.0" styleClass="backdrop" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StoreController">
+<VBox fillWidth="true" prefHeight="600.0" prefWidth="1215.0"
+	styleClass="backdrop" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="controllers.StoreController">
 	<children>
 		<AnchorPane>
 			<children>
-				<TabPane id="mainTabPane" fx:id="mainTabPane" minWidth="650.0" styleClass="bigTabs" stylesheets="@../styling/main_tabPane.css" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="45" tabMaxWidth="200.0" tabMinHeight="40.0" tabMinWidth="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+				<TabPane id="mainTabPane" fx:id="mainTabPane" minWidth="650.0"
+					styleClass="bigTabs" stylesheets="@../styling/main_tabPane.css"
+					tabClosingPolicy="UNAVAILABLE" tabMaxHeight="45" tabMaxWidth="200.0"
+					tabMinHeight="40.0" tabMinWidth="25.0" AnchorPane.leftAnchor="0.0"
+					AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 					<tabs>
 						<Tab id="startTab" fx:id="startTab" closable="false" text="Start">
 							<content>
-								<AnchorPane maxHeight="40.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="925.0" styleClass="startTabContent">
+								<AnchorPane maxHeight="40.0" minHeight="40.0"
+									minWidth="300.0" prefHeight="40.0" prefWidth="925.0"
+									styleClass="startTabContent">
 									<children>
-										<TabPane fx:id="skipTabPane" layoutX="0" prefHeight="40.0" prefWidth="131.0" styleClass="smallTabs" tabClosingPolicy="UNAVAILABLE" tabMinWidth="60.0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0.0" />
+										<TabPane fx:id="skipTabPane" layoutX="0" prefHeight="40.0"
+											prefWidth="131.0" styleClass="smallTabs" tabClosingPolicy="UNAVAILABLE"
+											tabMinWidth="60.0" AnchorPane.leftAnchor="0"
+											AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0.0" />
 									</children>
 								</AnchorPane>
 							</content>
 						</Tab>
 						<Tab id="fruitTab" closable="false" text="Frukt &amp; Grönt">
 							<content>
-								<TabPane tabClosingPolicy="UNAVAILABLE" tabMaxHeight="35" tabMinHeight="35.0" tabMinWidth="60.0">
-                           <styleClass>
-                              <String fx:value="fruitTabContent" />
-                              <String fx:value="smallTabs" />
-                           </styleClass></TabPane>
+								<TabPane tabClosingPolicy="UNAVAILABLE" tabMaxHeight="35"
+									tabMinHeight="35.0" tabMinWidth="60.0">
+									<styleClass>
+										<String fx:value="fruitTabContent" />
+										<String fx:value="smallTabs" />
+									</styleClass>
+								</TabPane>
 							</content>
 						</Tab>
 						<Tab id="breadTab" closable="false" text="Bröd &amp; Bakverk">
 							<content>
-								<TabPane tabClosingPolicy="UNAVAILABLE" tabMaxHeight="35" tabMinHeight="35.0" tabMinWidth="60.0">
-                           <styleClass>
-                              <String fx:value="breadTabContent" />
-                              <String fx:value="smallTabs" />
-                           </styleClass></TabPane>
+								<TabPane tabClosingPolicy="UNAVAILABLE" tabMaxHeight="35"
+									tabMinHeight="35.0" tabMinWidth="60.0">
+									<styleClass>
+										<String fx:value="breadTabContent" />
+										<String fx:value="smallTabs" />
+									</styleClass>
+								</TabPane>
 							</content>
 						</Tab>
 						<Tab id="meatTab" closable="false" text="Kött &amp; Fisk">
 							<content>
-								<TabPane tabClosingPolicy="UNAVAILABLE" tabMaxHeight="35" tabMinHeight="35.0" tabMinWidth="60.0">
-                           <styleClass>
-                              <String fx:value="meatTabContent" />
-                              <String fx:value="smallTabs" />
-                           </styleClass></TabPane>
+								<TabPane tabClosingPolicy="UNAVAILABLE" tabMaxHeight="35"
+									tabMinHeight="35.0" tabMinWidth="60.0">
+									<styleClass>
+										<String fx:value="meatTabContent" />
+										<String fx:value="smallTabs" />
+									</styleClass>
+								</TabPane>
 							</content>
 						</Tab>
 						<Tab id="dairyTab" closable="false" text="Mejeri">
 							<content>
-								<TabPane tabClosingPolicy="UNAVAILABLE" tabMaxHeight="35" tabMinHeight="35.0" tabMinWidth="60.0">
-                           <styleClass>
-                              <String fx:value="dairyTabContent" />
-                              <String fx:value="smallTabs" />
-                           </styleClass></TabPane>
+								<TabPane tabClosingPolicy="UNAVAILABLE" tabMaxHeight="35"
+									tabMinHeight="35.0" tabMinWidth="60.0">
+									<styleClass>
+										<String fx:value="dairyTabContent" />
+										<String fx:value="smallTabs" />
+									</styleClass>
+								</TabPane>
 							</content>
 						</Tab>
 						<Tab id="cabinetTab" closable="false" text="Skafferi">
 							<content>
-								<TabPane tabClosingPolicy="UNAVAILABLE" tabMaxHeight="35" tabMinHeight="35.0" tabMinWidth="60.0">
-                           <styleClass>
-                              <String fx:value="cabinetTabContent" />
-                              <String fx:value="smallTabs" />
-                           </styleClass></TabPane>
+								<TabPane tabClosingPolicy="UNAVAILABLE" tabMaxHeight="35"
+									tabMinHeight="35.0" tabMinWidth="60.0">
+									<styleClass>
+										<String fx:value="cabinetTabContent" />
+										<String fx:value="smallTabs" />
+									</styleClass>
+								</TabPane>
 							</content>
 						</Tab>
 						<Tab id="fridaycuddlingTab" closable="false" text="Fredagsmys">
-														<content>
-										<TabPane tabClosingPolicy="UNAVAILABLE" tabMaxHeight="35" tabMinHeight="35.0" tabMinWidth="60.0">
-                           <styleClass>
-                              <String fx:value="fridaycuddlingTabContent" />
-                              <String fx:value="smallTabs" />
-                           </styleClass></TabPane>
+							<content>
+								<TabPane tabClosingPolicy="UNAVAILABLE" tabMaxHeight="35"
+									tabMinHeight="35.0" tabMinWidth="60.0">
+									<styleClass>
+										<String fx:value="fridaycuddlingTabContent" />
+										<String fx:value="smallTabs" />
+									</styleClass>
+								</TabPane>
 							</content>
 						</Tab>
 					</tabs>
@@ -90,21 +113,24 @@
 						<Insets />
 					</opaqueInsets>
 				</TabPane>
-				<TextField fx:id="txtSearch" layoutX="945.0" layoutY="8.0" prefHeight="37.0" promptText="Sök" AnchorPane.leftAnchor="890.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="7.0">
+				<TextField fx:id="txtSearch" layoutX="945.0" layoutY="8.0"
+					prefHeight="37.0" promptText="Sök" AnchorPane.leftAnchor="890.0"
+					AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="7.0">
 					<font>
 						<Font size="18.0" />
 					</font>
 				</TextField>
 			</children>
 		</AnchorPane>
-		<AnchorPane id="item-display-anchor" prefHeight="800" prefWidth="800">
+		<AnchorPane id="item-display-anchor" VBox.vgrow="ALWAYS"
+			stylesheets="@../styling/item_display_area.css">
 			<children>
-				<ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="-Infinity" styleClass="scroll-pane" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" VBox.vgrow="ALWAYS">
-					<VBox.margin>
-						<Insets bottom="14.0" />
-					</VBox.margin>
+				<ScrollPane fx:id="scrollPane" fitToWidth="true"
+					maxHeight="-Infinity" styleClass="scroll-pane"
+					AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="56.0"
+					AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" VBox.vgrow="ALWAYS">
 					<content>
-						<TilePane fx:id="content" styleClass="tile-pane" stylesheets="@../styling/items.css">
+						<TilePane fx:id="content" styleClass="tile-pane">
 							<children>
 							</children>
 						</TilePane>

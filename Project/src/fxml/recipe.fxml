@@ -5,12 +5,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<?import util.ModalPopup?>
+<?import control.ModalPopup?>
 
 <ModalPopup fx:id="bottomPane" alignment="CENTER"
             columnHalignment="CENTER" styleClass="bottomPane" stylesheets="@../styling/modal_popup.css"
             xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controllers.PurchaseHistoryController">
+            fx:controller="controllers.RecipeController">
     <children>
         <VBox>
             <AnchorPane id="modalTop" maxHeight="-Infinity" minHeight="-Infinity"

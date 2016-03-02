@@ -15,23 +15,29 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="311.0" prefWidth="222.0" styleClass="backdrop" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="80.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ShoppingCartController">
+<AnchorPane prefHeight="311.0" prefWidth="222.0" styleClass="backdrop"
+	AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+	AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="49.0"
+	stylesheets="@../styling/shopping_cart_styling.css" xmlns="http://javafx.com/javafx/8"
+	xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ShoppingCartController">
 	<children>
-		<Label alignment="CENTER" layoutX="55.0" layoutY="6.0" text="Varukorg" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="7.0">
-			<font>
-				<Font size="24.0" />
-			</font>
+		<Label id="cart-title-label" alignment="CENTER" AnchorPane.topAnchor="0" text="Varukorg"
+			AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0">
 		</Label>
-		<ListView fx:id="cart" layoutX="14.0" layoutY="46.0" prefHeight="163.0" prefWidth="318.0" AnchorPane.bottomAnchor="106.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="42.0" VBox.vgrow="ALWAYS">
+		<ListView id="shopping-cart-list" fx:id="cart" prefWidth="318.0"
+			AnchorPane.bottomAnchor="150" AnchorPane.leftAnchor="0.0"
+			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60" VBox.vgrow="ALWAYS">
 			<VBox.margin>
 				<Insets bottom="14.0" left="14.0" right="14.0" top="6.0" />
 			</VBox.margin>
 		</ListView>
-      <Label fx:id="lblTotalCost" alignment="CENTER" layoutY="207.0" text="Total: 0:-" AnchorPane.bottomAnchor="84.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <font>
-            <Font name="System Italic" size="16.0" />
-         </font>
-      </Label>
+		<Label id="total-price-label" fx:id="lblTotalCost" alignment="CENTER" layoutY="207.0"
+			text="Total: 0:-" AnchorPane.bottomAnchor="84.0"
+			AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+			<font>
+				<Font name="System Italic" size="16.0" />
+			</font>
+		</Label>
 		<Button fx:id="gotoShoppingListButton" layoutY="257.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="74.0" prefWidth="173.0" style="-fx-background-color: transparent;" textAlignment="RIGHT" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="145.0">
          <graphic>
             <ImageView fitHeight="63.0" fitWidth="165.0" pickOnBounds="true" preserveRatio="true">
@@ -40,7 +46,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button layoutX="171.0" layoutY="257.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="147.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="171.0" AnchorPane.rightAnchor="0.0">
+      <Button fx:id="saveShoppingListButton" layoutX="171.0" layoutY="257.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="147.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="171.0" AnchorPane.rightAnchor="0.0">
          <graphic>
             <ImageView fitHeight="63.0" pickOnBounds="true" preserveRatio="true">
                <image>

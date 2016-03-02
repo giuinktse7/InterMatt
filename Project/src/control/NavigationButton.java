@@ -1,4 +1,6 @@
-package util;
+package control;
+
+import java.util.ArrayList;
 
 import interfaces.Action;
 import javafx.event.ActionEvent;
@@ -6,8 +8,12 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import util.BindingGroup;
+import util.ContentView;
+import util.ViewDisplay;
 
 public class NavigationButton extends Button {
+	
 	ContentView view;
 	
 	private static final int SELECTED = 0;
@@ -25,6 +31,7 @@ public class NavigationButton extends Button {
 	NavigationButton nextButton;
 
 	public NavigationButton() {
+		getStyleClass().add("navigation-button");
 		bindings = new BindingGroup();
 		bindings.setOnFalseAction(() -> setDisable(true));
 		bindings.setOnTrueAction(() -> setDisable(false));
@@ -86,7 +93,7 @@ public class NavigationButton extends Button {
 	private void loadImages(String[] paths) {
 		ImageView[] imageViews = new ImageView[paths.length];
 		
-		char id = getId().charAt(getId().length() - 1);
+		int id = getNumberBasedOnFxID();
 		
 		for (int i = 0; i < paths.length; ++i) {
 			Image image = new Image(String.format(paths[i], id), 64, 64, true, true);
@@ -94,5 +101,15 @@ public class NavigationButton extends Button {
 		}
 		
 		images = imageViews;
+	}
+	
+	private int getNumberBasedOnFxID() {
+		ArrayList<String> a = new ArrayList<String>();
+		a.add("btnToStore");
+		a.add("btnToCredentials");
+		a.add("btnToPurchase");
+		a.add("navButton4");
+		
+		return a.indexOf(getId()) + 1;
 	}
 }

@@ -1,10 +1,10 @@
-package util;
+package control;
 
+import interfaces.Action;
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.FlowPane;
@@ -14,16 +14,20 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 public class ModalPopup extends FlowPane {
-
-	BooleanProperty mouseInsideContent = new SimpleBooleanProperty();
 	
+	private Node content;
 	private static Node mainProgramContent;
 	private static StackPane container;
 	private Animation appearAnimation, disappearAnimation;
 	
+	//TODO Temporary. Replace with a better solution.
+	private Action exitAction = null;
+	
 	public ModalPopup(Node content) {
-		if (content != null)
+		if (content != null) {
 			this.getChildren().add(content);
+			this.content = content;
+		}
 		
 		setDefaultFade();
 		setDropShadow();
@@ -60,21 +64,25 @@ public class ModalPopup extends FlowPane {
 		container.getChildren().add(0, this);
 		}
 		
+		this.content = getChildren().get(0);
+		
 		prefWidth(container.getPrefWidth());
 		prefHeight(container.getPrefHeight());
 		toFront();
 		appearAnimation.play();
 		
-		/*for ()
-		Bindings.createBooleanBinding(() -> {  }, );*/
-		
-		this.setOnMouseClicked(e -> close());
+		this.setOnMousePressed(e -> {
+			if (!content.hoverProperty().get())
+				close();
+			});
 	}
 	
 	/** Closes the popup. */
 	public void close() {
 		disappearAnimation.play();
 		disappearAnimation.setOnFinished(event -> mainProgramContent.toFront());
+		if (exitAction != null)
+			exitAction.call();
 	}
 	
 	/** Equivalent to <code>close()</code>. */
@@ -98,5 +106,10 @@ public class ModalPopup extends FlowPane {
 		fade = (FadeTransition) disappearAnimation;
 		fade.setFromValue(1);
 		fade.setToValue(0);
+	}
+	
+	//TODO TEMP: REMOVE FOR SOMETHING BETTER
+	public void setOnExit(Action action) {
+		this.exitAction = action;
 	}
 }

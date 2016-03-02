@@ -11,8 +11,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import se.chalmers.ait.dat215.project.IMatDataHandler;
 import sun.applet.Main;
-import util.ModalPopup;
 
 import java.net.URL;
 import java.util.Arrays;
@@ -21,9 +21,13 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import control.ModalPopup;
+
 public class PurchaseController implements Initializable {
 	@FXML private RadioButton rbPayByCard;
 
+	
+	
 	// Payment toggle buttons
 	@FXML private ToggleButton btn_pay_creditcard;
 	@FXML private ToggleButton btn_pay_delivery;
@@ -41,6 +45,8 @@ public class PurchaseController implements Initializable {
 	@FXML private TextField txt_cardnr_2;
 	@FXML private TextField txt_cardnr_3;
 	@FXML private TextField txt_cardnr_4;
+	
+	@FXML private Button btn_finish_payment;
 
 	// Credit card expiration year and month
 	@FXML private ChoiceBox<String> cb_card_month;

@@ -1,0 +1,35 @@
+.button {
+	-fx-background-color: transparent, transparent;
+}
+
+#total-price-label .text {
+	-fx-font-size: 20pt;
+}
+
+#cart-title-label .text {
+	-fx-font-size: 24pt;
+}
+
+.list-view {
+	-fx-background-color: white;
+	-fx-border-width: 1px;
+	-fx-border-color: derive(-list-item-even-color, -15%);
+}
+
+.list-view:selected {
+	-fx-background-insets: 0;
+	-fx-background-color: white;
+}
+
+.list-cell:even {
+	-fx-background-color: -list-item-even-color;
+}
+
+.list-cell .text {
+	-fx-fill: black;
+}
+
+.list-cell:odd {
+	-fx-background-color: -list-item-odd-color;
+}
+

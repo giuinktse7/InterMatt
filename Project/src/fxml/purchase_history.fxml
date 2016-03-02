@@ -6,19 +6,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.text.Font?>
-<?import util.ModalPopup?>
+<?import control.ModalPopup?>
 
 <ModalPopup fx:id="bottomPane" alignment="CENTER"
-	columnHalignment="CENTER" styleClass="bottomPane" stylesheets="@../styling/modal_popup.css"
+	columnHalignment="CENTER" styleClass="bottomPane" stylesheets="@../styling/purchase_history.css"
 	xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"
 	fx:controller="controllers.PurchaseHistoryController">
 	<children>
 		<VBox>
 			<AnchorPane id="modalTop" maxHeight="-Infinity" minHeight="-Infinity"
-				prefHeight="45.0" prefWidth="200.0">
+				prefHeight="45.0">
 				<children>
-					<Label layoutX="119.0" layoutY="90.0" text="Köphistorik"
+					<Label layoutX="119.0" layoutY="90.0" text="Tidigare beställningar"
 						AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
 						AnchorPane.topAnchor="0.0">
 						<font>
@@ -31,28 +33,10 @@
 				</children>
 			</AnchorPane>
 			<AnchorPane fx:id="contentPane" id="content" maxHeight="-Infinity"
-				maxWidth="-Infinity" prefHeight="500.0" prefWidth="800.0">
+				maxWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0">
 				<children>
-					<VBox prefHeight="200.0" prefWidth="100.0"
-						AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="28.0"
-						AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="28.0">
-						<children>
-							<Label styleClass="title" text="Köphistorik">
-								<VBox.margin>
-									<Insets bottom="14.0" />
-								</VBox.margin>
-							</Label>
-							<VBox fx:id="tableBox" VBox.vgrow="ALWAYS" />
-							<AnchorPane prefHeight="126.0" prefWidth="711.0">
-								<children>
-									<Button fx:id="closeButton" layoutY="14.0"
-										mnemonicParsing="false" prefHeight="51.0" prefWidth="106.0"
-										text="OK" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-										AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-								</children>
-							</AnchorPane>
-						</children>
-					</VBox>
+					<ListView fx:id="ordersList" maxHeight="80" id="order-overview-box" AnchorPane.leftAnchor="14" AnchorPane.topAnchor="14" AnchorPane.rightAnchor="14"></ListView>
+					<ListView fx:id="productListView" prefWidth="450" AnchorPane.leftAnchor="14" AnchorPane.topAnchor="140"  />
 				</children>
 			</AnchorPane>
 		</VBox>
