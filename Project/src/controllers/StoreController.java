@@ -34,7 +34,7 @@ public class StoreController implements Initializable {
 	@FXML private TabPane mainTabPane;
 	@FXML private ScrollPane scrollPane;
 	
-	private final String[] tabStyleClasses = {"start-tab-pane", "greens-tab-pane", "test2", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", };
+	private final String[] tabStyleClasses = {"start-tab-pane", "greens-tab-pane", "bakery-tab-pane", "meat-tab-pane", "dairy-tab-pane", "cabinet-tab-pane", "friday-cuddle-tab-pane", };
 
 	// Fixes the border for the main TabPane.
 	@FXML private Pane borderFixPane;
@@ -126,30 +126,30 @@ public class StoreController implements Initializable {
 	}
 
 	// Frukt & Gr�nt
-	private final SubCategory berries = new SubCategory("B�r", ProductCategory.BERRY);
+	private final SubCategory berries = new SubCategory("Bär", ProductCategory.BERRY);
 	private final SubCategory fruits = new SubCategory("Frukter", ProductCategory.CITRUS_FRUIT,
 			ProductCategory.EXOTIC_FRUIT, ProductCategory.FRUIT, ProductCategory.MELONS);
-	private final SubCategory vegitables = new SubCategory("Gr�nsaker", ProductCategory.VEGETABLE_FRUIT,
+	private final SubCategory vegitables = new SubCategory("Grönsaker", ProductCategory.VEGETABLE_FRUIT,
 			ProductCategory.CABBAGE);
-	private final SubCategory herbs = new SubCategory("�rter", ProductCategory.HERB);
+	private final SubCategory herbs = new SubCategory("Örter", ProductCategory.HERB);
 	private final SubCategory roots = new SubCategory("Rotfrukter", ProductCategory.ROOT_VEGETABLE,
 			ProductCategory.POTATO_RICE);
-	private final SubCategory pod = new SubCategory("Baljv�xter", ProductCategory.POD);
-	private final SubCategory nuts = new SubCategory("N�tter & Fr�n", ProductCategory.NUTS_AND_SEEDS);
+	private final SubCategory pod = new SubCategory("Baljväxter", ProductCategory.POD);
+	private final SubCategory nuts = new SubCategory("Nötter & Frön", ProductCategory.NUTS_AND_SEEDS);
 	// K�tt & Fisk
-	private final SubCategory meat = new SubCategory("K�tt", ProductCategory.MEAT);
+	private final SubCategory meat = new SubCategory("Kött", ProductCategory.MEAT);
 	private final SubCategory fish = new SubCategory("Fisk", ProductCategory.FISH);
 	// Mejeri
 	private final SubCategory dairies = new SubCategory("Mejeri", ProductCategory.DAIRIES);
 	// Br�d & bakverk
-	private final SubCategory breads = new SubCategory("Br�d", ProductCategory.BREAD);
+	private final SubCategory breads = new SubCategory("Bröd", ProductCategory.BREAD);
 	// Skafferi
 	private final SubCategory powderStuff = new SubCategory("Torrvaror", ProductCategory.FLOUR_SUGAR_SALT);
 	private final SubCategory pasta = new SubCategory("Pasta", ProductCategory.PASTA);
 	// Fredagsmys
 	private final SubCategory coldDrinks = new SubCategory("Kalla drycker", ProductCategory.COLD_DRINKS);
 	private final SubCategory hotDrinks = new SubCategory("Varma drycker", ProductCategory.HOT_DRINKS);
-	private final SubCategory sweets = new SubCategory("S�tsaker", ProductCategory.SWEET);
+	private final SubCategory sweets = new SubCategory("Sötsaker", ProductCategory.SWEET);
 
 	public Map<Integer, Set<SubCategory>> categorize() {
 		Map<Integer, Set<SubCategory>> superCategories = new HashMap<Integer, Set<SubCategory>>();

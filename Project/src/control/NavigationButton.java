@@ -68,7 +68,10 @@ public class NavigationButton extends Button {
 			else
 				this.nextButton.getBindingGroup().update();
 		});
-		disabledProperty().addListener((obs, oldValue, newValue) -> updateImage(this.view.equals(newValue)));
+		
+		disabledProperty().addListener((obs, oldValue, newValue) -> {
+		updateImage(this.view.equals(newValue));
+		});
 		viewDisplay.getCurrentView().addListener((obs, oldValue, newValue) ->  updateImage(this.view.equals(newValue)));
 		
 		updateImage(this.view.equals(viewDisplay.getCurrentView().getValue()));

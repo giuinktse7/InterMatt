@@ -3,6 +3,7 @@ package util;
 import java.util.HashMap;
 import java.util.Map;
 
+import controllers.MainController;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
@@ -12,6 +13,7 @@ public class ViewDisplay {
 
 	private Pane area;
 	
+	private ContentView first;
 	private Map<Node, ContentView> views = new HashMap<Node, ContentView>();
 	private ObservableContentView currentView = new ObservableContentView(null);
 
@@ -26,9 +28,21 @@ public class ViewDisplay {
 	public void show(ContentView view) {
 		if (view == null || view.isLocked())
 			return;
-
+		
 		area.getChildren().setAll(view.getContent());
 		currentView.setValue(view);
+		
+		//Update arrows
+		view.getBindingGroup().refreshAND();
+		
+		if (view.next() != null)
+			view.next().getBindingGroup().refreshAND();
+		
+		if (view.previous() != null)
+			view.previous().getBindingGroup().refreshAND();
+		
+		if (view.equals(first))
+			MainController.leftButton.disable();
 	}
 	
 	public void show(Node node) {
@@ -48,11 +62,13 @@ public class ViewDisplay {
 	}
 	
 	public void addPane(Pane pane) {
-		views.put(pane, new ContentView(pane));
+		addView(new ContentView(pane));
 	}
 	
 	public void addView(ContentView view) {
 		views.put(view.getContent(), view);
+		if (first == null)
+			first = view;
 	}
 	
 	/** Gets a view. NOTE: Does not return the current view. Use getCurrentView().getValue() for that.  */
