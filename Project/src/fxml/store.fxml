@@ -127,13 +127,18 @@
 			<children>
 				<ScrollPane fx:id="scrollPane" fitToWidth="true"
 					maxHeight="-Infinity" styleClass="scroll-pane"
-					AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="56.0"
+					AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0"
 					AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" VBox.vgrow="ALWAYS">
 					<content>
+					<AnchorPane>
+					<StackPane id="pls" AnchorPane.leftAnchor="0"
+					AnchorPane.rightAnchor="0" >
 						<TilePane fx:id="content" styleClass="tile-pane">
 							<children>
 							</children>
 						</TilePane>
+						</StackPane>
+						</AnchorPane>
 					</content>
 				</ScrollPane>
 			</children>

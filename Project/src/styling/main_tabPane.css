@@ -10,6 +10,36 @@
     -fx-font-family: "Helvetica";
 }
 
+/* Styling f�r subkategorier */
+.greens-tab-pane .tab {
+	-fx-background-color: #d7e7b1;
+}
+.meat-tab-pane .tab {
+	-fx-background-color: #f7cdc2;
+}
+.cabinet-tab-pane .tab {
+	-fx-background-color: #fef7c9;
+}
+.friday-cuddle-tab-pane .tab {
+	-fx-background-color: #fbcdd2;
+}
+
+.greens-tab-pane .tab:hover {
+	-fx-background-color: #f5f9eb;
+}
+.meat-tab-pane .tab:hover {
+	-fx-background-color: #fceeea;
+}
+.cabinet-tab-pane .tab:hover {
+	-fx-background-color: #fefced;
+}
+.friday-cuddle-tab-pane .tab:hover {
+	-fx-background-color: #fdeef0;
+}
+
+
+
+
 .tab:selected .tab-label {
     -fx-border-width: 2px;
     -fx-border-style: hidden hidden solid hidden;
