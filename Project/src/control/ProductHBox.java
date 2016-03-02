@@ -8,13 +8,11 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.SelectionModel;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -147,8 +145,6 @@ public class ProductHBox extends HBox {
 				double newQuantity = Double.parseDouble(newValue);
 				double change = (newQuantity - oldQuantity) * product.getPrice();
 				cartHandler.addToTotal(change);
-				
-				cartHandler.getDbShoppingItem(product).setAmount(Double.parseDouble(newValue));
 			}
 		});
 		

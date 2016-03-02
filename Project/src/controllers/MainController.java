@@ -1,13 +1,10 @@
 package controllers;
 
 import java.net.URL;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import com.sun.javafx.scene.traversal.Direction;
-import com.sun.org.apache.xml.internal.security.keys.storage.StorageResolver;
 
 import control.ArrowButton;
 import control.ModalPopup;
@@ -16,11 +13,6 @@ import interfaces.Action;
 import interfaces.MultiAction;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -29,7 +21,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
-import sun.security.action.GetBooleanAction;
+import se.chalmers.ait.dat215.project.ShoppingItem;
 import util.BindingGroup;
 import util.ContentView;
 import util.ShoppingCartHandler;
@@ -77,10 +69,6 @@ public class MainController implements Initializable {
 	ViewDisplay viewDisplay;
 	
 	private ShoppingCartHandler cartHandler = ShoppingCartHandler.getInstance();
-
-	public void showRecipePopup(){
-		recipePopup.show();
-	}
 	
 	public void initialize(URL url, ResourceBundle bundle) {
 		leftButton = this.prevButton;
@@ -173,9 +161,6 @@ public class MainController implements Initializable {
 				enableButton(prevButton, credentialsPane)));
 		
 		view.getBindingGroup().setOnFalseAction(disableButton(nextButton, storePane));
-		
-		view.getBindingGroup().update();
-		group.update();
 	}
 	
 	private void setupPurchaseViewValidation() {
@@ -189,9 +174,6 @@ public class MainController implements Initializable {
 		//If we are on credentialsPane and can't go to purchasePane, disable nextButton
 		view.getBindingGroup().setOnTrueAction(enableButton(nextButton, credentialsPane));
 		view.getBindingGroup().setOnFalseAction(disableButton(nextButton, credentialsPane));
-		
-		view.getBindingGroup().update();
-		group.update();
 	}
 	
 	// TODO : Just makes it impossible to reach as of now.
@@ -201,7 +183,6 @@ public class MainController implements Initializable {
 		group.addBinding(CART_NONEMPTY.and(CART_EMPTY));
 		
 		view.getBindingGroup().setOnFalseAction(disableButton(nextButton, purchasePane));
-		group.update();
 	}
 	
 	private void configurePopupStackPane() {
@@ -209,6 +190,10 @@ public class MainController implements Initializable {
 	}
 	
 	public void finishPurchase() {
+		List<ShoppingItem> items = ShoppingCartHandler.getInstance().getCartItems();
+		
+		items.forEach(item -> db.getShoppingCart().addItem(item));
+		
 		db.placeOrder();
 		viewDisplay.show(storePane);
 	}
@@ -236,6 +221,10 @@ public class MainController implements Initializable {
 			if (isCurrentView(pane))
 				button.enable(); 
 			};
+	}
+	
+	public void showRecipePopup(){
+		recipePopup.show();
 	}
 	
 	public static ArrowButton leftButton;

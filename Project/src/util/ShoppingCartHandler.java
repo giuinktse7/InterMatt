@@ -1,5 +1,6 @@
 package util;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import control.ProductHBox;
@@ -10,12 +11,9 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.ListChangeListener.Change;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.Product;
 import se.chalmers.ait.dat215.project.ShoppingItem;
 
@@ -29,7 +27,7 @@ public class ShoppingCartHandler {
 	private BooleanProperty emptyProperty = new SimpleBooleanProperty(true);
 
 	public static ShoppingCartHandler instance = new ShoppingCartHandler();
-	private static IMatDataHandler db = IMatDataHandler.getInstance();
+	//private static IMatDataHandler db = IMatDataHandler.getInstance();
 
 	private ShoppingCartHandler() {
 
@@ -81,13 +79,6 @@ public class ShoppingCartHandler {
 
 	/** Adds the product to the shopping cart */
 	public void addProduct(Product product) {
-		// For database
-		ShoppingItem item = getDbShoppingItem(product);
-		if (item != null)
-			item.setAmount(item.getAmount() + 1);
-		else
-			db.getShoppingCart().addItem(new ShoppingItem(product, 1));
-
 		ProductHBox productBox = getProductBoxFromCart(product);
 
 		if (productBox != null)
@@ -108,20 +99,6 @@ public class ShoppingCartHandler {
 
 		return null;
 	}
-
-	/**
-	 * Returns the ShoppingItem with product p. If there is none, returns null.
-	 */
-	public ShoppingItem getDbShoppingItem(Product p) {
-		List<ShoppingItem> items = db.getShoppingCart().getItems();
-
-		for (ShoppingItem item : items)
-			//if (item.getProduct().getProductId() == p.getProductId())
-			if (item.getProduct().equals(p))
-				return item;
-
-		return null;
-	}
 	
 	public void addToTotal(double value) {
 		totalCost.set(totalCost.get() + value);
@@ -130,5 +107,16 @@ public class ShoppingCartHandler {
 	public void clearCart() {
 		this.cart.getItems().clear();
 		totalCost.set(0);
-		}
+	}
+	
+	/** Returns the cart's items as a List of ShoppingItems. */
+	public List<ShoppingItem> getCartItems() {
+		List<ShoppingItem> items = new ArrayList<ShoppingItem>();
+		cart.getItems().forEach(box -> {
+			ShoppingItem item = new ShoppingItem(box.getProduct(), box.getQuantity());
+			items.add(item);
+		});
+		
+		return items;
+	}
 }
