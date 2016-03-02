@@ -25,8 +25,8 @@ public class RecipeController implements Initializable {
 
 	private void setCloseAction() {
 		bottomPane.setOnExit(() -> {
-			ShoppingCartHandler.getInstance().clearCart();
 			MainController.get().finishPurchase();
+			ShoppingCartHandler.getInstance().clearCart();
 		});
 		closeButton.setOnAction(e -> {
 			bottomPane.close();

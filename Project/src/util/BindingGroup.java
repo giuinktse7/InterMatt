@@ -20,7 +20,9 @@ public class BindingGroup implements ObservableValue<Boolean> {
 	List<BooleanBinding> bindings = new ArrayList<BooleanBinding>();
 	Action onTrueAction, onFalseAction;
 	private List<ChangeListener<? super Boolean>> listeners = new ArrayList<ChangeListener<? super Boolean>>();
-	private BooleanBinding AND = Bindings.createBooleanBinding(() -> propertyForUpdating.get(), propertyForUpdating);
+	
+	/** Combined AND between all BooleanBindings in the group. */
+	private BooleanBinding state = Bindings.createBooleanBinding(() -> propertyForUpdating.get(), propertyForUpdating);
 	
 	//Temporary TODO remove
 	public String name;
@@ -36,7 +38,7 @@ public class BindingGroup implements ObservableValue<Boolean> {
 		bindings.add(binding);
 		binding.addListener((obs, oldValue, newValue) -> update());
 		
-			AND = AND.and(binding);
+			state = state.and(binding);
 		
 		update();
 	}
@@ -59,14 +61,12 @@ public class BindingGroup implements ObservableValue<Boolean> {
 		this.onFalseAction = action;
 	}
 	
+	
 	public void update() {
-		System.out.println("Caught change1!");
-		for (BooleanBinding binding : bindings)
-			if (!binding.get()) {
-				System.out.println("False from " + name);
-				onFalseAction.call();
-				return;
-			}
+		if (!state.get()) {
+			onFalseAction.call();
+			return;
+		}
 		
 		onTrueAction.call();
 	}
@@ -135,8 +135,8 @@ public class BindingGroup implements ObservableValue<Boolean> {
 		listeners.clear();
 	}
 	
-	/** A binding that holds whether or not all bindings have the value <code>true</code>. */
-	public BooleanBinding getAND() {
-		return AND;
+	/** Combined AND between all BooleanBindings in the group. */
+	public BooleanBinding getState() {
+		return state;
 	}
 }
