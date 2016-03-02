@@ -21,7 +21,6 @@
 	-fx-border-style: solid solid hidden solid;
 }
 
-
 .label {
 	-fx-font-size: 18pt;
 }
@@ -47,4 +46,9 @@
 
 .title {
 	-fx-font-size: 24pt;
+}
+
+
+#lblName{
+	-fx-font-size: 14pt;
 }

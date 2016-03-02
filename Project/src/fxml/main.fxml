@@ -17,8 +17,10 @@
 			maxHeight="-Infinity" source="purchase_history.fxml" />
 		<fx:include fx:id="loadListPopup" maxWidth="-Infinity"
 			maxHeight="-Infinity" source="load_list.fxml" />
+		<fx:include fx:id="saveListPopup" maxWidth="-Infinity"
+			maxHeight="-Infinity" source="save_list.fxml" />
 		<fx:include fx:id="recipePopup" maxWidth="-Infinity"
-					maxHeight="-Infinity" source="recipe.fxml" />
+			maxHeight="-Infinity" source="recipe.fxml" />
 		<VBox fx:id="mainContentWrapper">
 			<children>
 				<SplitPane dividerPositions="0.75" prefHeight="700.0"

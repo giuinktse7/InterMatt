@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import se.chalmers.ait.dat215.project.IMatDataHandler;
 import util.BindingGroup;
 import util.ContentView;
 import util.ShoppingCartHandler;
@@ -38,11 +39,13 @@ public class MainController implements Initializable {
 	@FXML private Pane shoppingCart;
 	@FXML private ModalPopup purchaseHistoryPopup;
 	@FXML private ModalPopup loadListPopup;
+	@FXML private ModalPopup saveListPopup;
 	@FXML private StoreController storePaneController;
 	@FXML private CredentialsController credentialsPaneController;
 	@FXML private PurchaseController purchasePaneController;
 	@FXML private PurchaseHistoryController purchaseHistoryPopupController;
 	@FXML private LoadListController loadListPopupController;
+	@FXML private SaveListController saveListPopupController;
 	@FXML private ShoppingCartController shoppingCartController;
 
 	// Recipe
@@ -88,6 +91,7 @@ public class MainController implements Initializable {
 		purchaseHistoryButton.setOnAction(event -> { purchaseHistoryPopupController.update(); purchaseHistoryPopup.show(); });
 		purchaseHistoryPopupController.setCloseAction(() -> purchaseHistoryPopup.hide());
 		shoppingCartController.getShoppingListButton().setOnAction(e -> loadListPopup.show());
+		shoppingCartController.getSaveListButton().setOnAction(e -> saveListPopup.show());
 
 
 		purchasePaneController.mainController = this;
