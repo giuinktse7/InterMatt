@@ -10,6 +10,15 @@
     -fx-font-family: "Helvetica";
 }
 
+/* Styling för subkategorier */
+.greens-tab-pane .tab:hover {
+	-fx-background-color: green;
+}
+
+.greens-tab-pane .tab {
+	-fx-background-color: red;
+}
+
 .tab:selected .tab-label {
     -fx-border-width: 2px;
     -fx-border-style: hidden hidden solid hidden;

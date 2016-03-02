@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -32,6 +33,8 @@ public class StoreController implements Initializable {
 	@FXML private Tab startTab;
 	@FXML private TabPane mainTabPane;
 	@FXML private ScrollPane scrollPane;
+	
+	private final String[] tabStyleClasses = {"start-tab-pane", "greens-tab-pane", "test2", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", };
 
 	// Fixes the border for the main TabPane.
 	@FXML private Pane borderFixPane;
@@ -41,8 +44,13 @@ public class StoreController implements Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle bundle) {
 		initializeSubCategories();
-		/*scrollPane.widthProperty().addListener((obs, o, n) -> content.setMaxWidth(n.doubleValue()));
-		*/
+		int ITEM_WIDTH = 252;
+		//IntegerProperty ITEM_WIDTH = scrollPane.widthProperty().divide(252);
+		content.widthProperty().addListener((obs, o, n) -> {
+			if (n.doubleValue() % ITEM_WIDTH != 0) 
+				content.maxWidthProperty().set(n.doubleValue() - n.doubleValue() % ITEM_WIDTH); 
+			System.out.println(n.doubleValue()); 
+			});
 		txtSearch.textProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -79,6 +87,7 @@ public class StoreController implements Initializable {
 		TabPane[] superCategories = getTabPanes();
 		for (int i : categories.keySet()) {
 			TabPane tabPane = superCategories[i];
+			tabPane.getStyleClass().add(tabStyleClasses[i]);
 			for (SubCategory subCategory : categories.get(i)) {
 				Tab tab = new Tab(subCategory.getName());
 
@@ -116,31 +125,31 @@ public class StoreController implements Initializable {
 		return tabPanes.toArray(new TabPane[0]);
 	}
 
-	// Frukt & Grönt
-	private final SubCategory berries = new SubCategory("Bär", ProductCategory.BERRY);
+	// Frukt & Grï¿½nt
+	private final SubCategory berries = new SubCategory("Bï¿½r", ProductCategory.BERRY);
 	private final SubCategory fruits = new SubCategory("Frukter", ProductCategory.CITRUS_FRUIT,
 			ProductCategory.EXOTIC_FRUIT, ProductCategory.FRUIT, ProductCategory.MELONS);
-	private final SubCategory vegitables = new SubCategory("Grönsaker", ProductCategory.VEGETABLE_FRUIT,
+	private final SubCategory vegitables = new SubCategory("Grï¿½nsaker", ProductCategory.VEGETABLE_FRUIT,
 			ProductCategory.CABBAGE);
-	private final SubCategory herbs = new SubCategory("Örter", ProductCategory.HERB);
+	private final SubCategory herbs = new SubCategory("ï¿½rter", ProductCategory.HERB);
 	private final SubCategory roots = new SubCategory("Rotfrukter", ProductCategory.ROOT_VEGETABLE,
 			ProductCategory.POTATO_RICE);
-	private final SubCategory pod = new SubCategory("Baljväxter", ProductCategory.POD);
-	private final SubCategory nuts = new SubCategory("Nötter & Frön", ProductCategory.NUTS_AND_SEEDS);
-	// Kött & Fisk
-	private final SubCategory meat = new SubCategory("Kött", ProductCategory.MEAT);
+	private final SubCategory pod = new SubCategory("Baljvï¿½xter", ProductCategory.POD);
+	private final SubCategory nuts = new SubCategory("Nï¿½tter & Frï¿½n", ProductCategory.NUTS_AND_SEEDS);
+	// Kï¿½tt & Fisk
+	private final SubCategory meat = new SubCategory("Kï¿½tt", ProductCategory.MEAT);
 	private final SubCategory fish = new SubCategory("Fisk", ProductCategory.FISH);
 	// Mejeri
 	private final SubCategory dairies = new SubCategory("Mejeri", ProductCategory.DAIRIES);
-	// Bröd & bakverk
-	private final SubCategory breads = new SubCategory("Bröd", ProductCategory.BREAD);
+	// Brï¿½d & bakverk
+	private final SubCategory breads = new SubCategory("Brï¿½d", ProductCategory.BREAD);
 	// Skafferi
 	private final SubCategory powderStuff = new SubCategory("Torrvaror", ProductCategory.FLOUR_SUGAR_SALT);
 	private final SubCategory pasta = new SubCategory("Pasta", ProductCategory.PASTA);
 	// Fredagsmys
 	private final SubCategory coldDrinks = new SubCategory("Kalla drycker", ProductCategory.COLD_DRINKS);
 	private final SubCategory hotDrinks = new SubCategory("Varma drycker", ProductCategory.HOT_DRINKS);
-	private final SubCategory sweets = new SubCategory("Sötsaker", ProductCategory.SWEET);
+	private final SubCategory sweets = new SubCategory("Sï¿½tsaker", ProductCategory.SWEET);
 
 	public Map<Integer, Set<SubCategory>> categorize() {
 		Map<Integer, Set<SubCategory>> superCategories = new HashMap<Integer, Set<SubCategory>>();
