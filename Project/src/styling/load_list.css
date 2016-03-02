@@ -1,32 +1,62 @@
 * {
-	-fx-glass-color: fafafa;
+	-fx-glass-color: rgba(111, 194, 56, 0.9);
 	-fx-tab-bg-color: #36750f;
-	-fx-back-color: #b9d677;
+	-fx-back-color: #6fc238;
+	-fx-start-color: #F8F8EC;
+	
+	-itempane-color: white;
+	-buy-button-color: 	#ff3030;
+}
+
+.label {
+	-fx-font-size: 18pt;
+}
+
+#modalTop,
+#content {
+	-fx-border-width: 1px;
+	-fx-border-radius: 2;
+	-fx-background-radius: 2;
+	-fx-border-color: black;
+}
+
+#content .label {
+	-fx-font-size: 14pt;
+}
+
+#listName {
+	-fx-font-weight: bold;
 }
 
 #modalTop {
-	-fx-background-color: rgba(255, 255, 255, 0.9);
+	-fx-background-color: #eaeaea;
+	-fx-border-style: solid solid hidden solid;
 }
 
-#rootPane {
-  -fx-alignment: center;
-  -fx-background-color: transparent;
-  -fx-border-color: derive(-fx-glass-color, -40%);
-  -fx-border-width: 1;
+.bottomPane {
+	-fx-background-color: rgba(0, 0, 0, 0.2);
 }
 
-#background {
-	-fx-background-color: linear-gradient(to bottom, derive(-fx-glass-color, 20%), -fx-glass-color);
+#content {
+	-fx-background-color: white;
+	-fx-border-style: hidden solid solid solid;
 }
 
-.button {
-	-fx-background-color: linear-gradient(to top, derive(-fx-back-color, 25%), derive(-fx-back-color, 35%));
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
-    -fx-background-insets: 0 0 0 0, 0, 0, 0;
-    -fx-background-radius: 0 0 0 0, 0, 0, 0;
-    -fx-border-width: 0 0 0 0, 0, 0, 0;
+#tableBox {
+	-fx-background-color: white;
+	-fx-border-width: 1px;
+	-fx-border-color: #dddddd;
 }
 
-.button:hover {
-	-fx-background-color: linear-gradient(to top, derive(-fx-back-color, 35%), derive(-fx-back-color, 45%));
+.table-view .label {
+	-fx-fill: #c6ab96;
+}
+
+.title {
+	-fx-font-size: 24pt;
+}
+
+
+#lblName{
+	-fx-font-size: 14pt;
 }
