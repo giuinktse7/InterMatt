@@ -32,6 +32,7 @@ public class ShoppingCartHandler {
 	private static IMatDataHandler db = IMatDataHandler.getInstance();
 
 	private ShoppingCartHandler() {
+
 	}
 
 	public BooleanProperty emptyProperty() {
@@ -45,7 +46,7 @@ public class ShoppingCartHandler {
 		});
 
 		totalCost.addListener(
-				(obs, oldValue, newValue) -> lblTotalCost.setText(String.format("Totalt: %.2f", newValue.doubleValue())));
+				(obs, oldValue, newValue) -> lblTotalCost.setText(String.format("Totalt: %.2f", newValue.doubleValue()) + ":-"));
 
 		cart.getItems().addListener(UPDATE_TOTAL_COST);
 	}

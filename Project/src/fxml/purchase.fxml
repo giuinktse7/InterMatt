@@ -17,9 +17,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox id="purchasePane" fx:id="purchasePane" alignment="TOP_CENTER" prefHeight="600.0" prefWidth="1215.0" stylesheets="@../styling/credentials.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PurchaseController">
+<HBox id="purchasePane" fx:id="purchasePane" alignment="CENTER" stylesheets="@../styling/credentials.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PurchaseController">
 	<children>
-		<VBox id="main_pane" fx:id="vbox_content_wrapper" alignment="TOP_CENTER">
+		<VBox id="main_pane" fx:id="vbox_content_wrapper" alignment="CENTER">
 			<children>
             <VBox prefHeight="179.0">
                <children>
@@ -80,7 +80,7 @@
                <children>
                   <HBox fx:id="pane_pay_bill_delivery" prefHeight="100.0" prefWidth="200.0" styleClass="pane-background">
                      <children>
-                        <Text fx:id="txt_pay_info" fill="#413e4a" strokeType="OUTSIDE" strokeWidth="0.0" text="BLABLALBLAKSDLKASJDL KJASLD KJALS DKJASL DKJA LSKDJ ALSKDJLSKDA J" wrappingWidth="958.13671875">
+                        <Text fx:id="txt_pay_info" fill="#413e4a" strokeType="OUTSIDE" strokeWidth="0.0" text="BLA BLA" wrappingWidth="600.0">
                            <font>
                               <Font size="22.0" />
                            </font>
@@ -158,12 +158,12 @@
                                     </ChoiceBox>
             							</children>
             						</HBox>
-            						<Label layoutX="263.0" layoutY="11.0" text="CVV" textFill="#413e4a" AnchorPane.topAnchor="0.0">
+            						<Label layoutX="281.0" text="CVV" textFill="#413e4a" AnchorPane.topAnchor="-2.0">
             							<font>
             								<Font size="22.0" />
             							</font>
             						</Label>
-            						<TextField fx:id="txt_card_cvv" alignment="CENTER" layoutX="263.0" layoutY="41.0" prefHeight="31.0" prefWidth="65.0" promptText="000">
+            						<TextField fx:id="txt_card_cvv" alignment="CENTER" layoutX="281.0" layoutY="41.0" prefHeight="31.0" prefWidth="65.0" promptText="000">
                                  <font>
                                     <Font size="18.0" />
                                  </font>

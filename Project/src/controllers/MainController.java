@@ -57,11 +57,13 @@ public class MainController implements Initializable {
 	@FXML private Pane shoppingCart;
 	@FXML private ModalPopup purchaseHistoryPopup;
 	@FXML private ModalPopup loadListPopup;
+	@FXML private ModalPopup saveListPopup;
 	@FXML private StoreController storePaneController;
 	@FXML private CredentialsController credentialsPaneController;
 	@FXML private PurchaseController purchasePaneController;
 	@FXML private PurchaseHistoryController purchaseHistoryPopupController;
 	@FXML private LoadListController loadListPopupController;
+	@FXML private SaveListController saveListPopupController;
 	@FXML private ShoppingCartController shoppingCartController;
 	@FXML private SplitPane splitPane;
 
@@ -127,6 +129,7 @@ public class MainController implements Initializable {
 		purchaseHistoryButton.setOnAction(event -> { purchaseHistoryPopupController.update(); purchaseHistoryPopup.show(); });
 		purchaseHistoryPopupController.setCloseAction(() -> purchaseHistoryPopup.hide());
 		shoppingCartController.getShoppingListButton().setOnAction(e -> loadListPopup.show());
+		shoppingCartController.getSaveListButton().setOnAction(e -> saveListPopup.show());
 
 
 		purchasePaneController.mainController = this;

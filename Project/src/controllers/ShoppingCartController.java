@@ -15,6 +15,8 @@ import util.ShoppingCartHandler;
 public class ShoppingCartController implements Initializable {
 
 	@FXML private Button gotoShoppingListButton;
+	@FXML private Button saveShoppingListButton;
+	
 
 	@FXML private Label lblTotalCost;
 	@FXML private ListView<ProductHBox> cart;
@@ -32,5 +34,9 @@ public class ShoppingCartController implements Initializable {
 
 	public Button getShoppingListButton() {
 		return gotoShoppingListButton;
+	}
+	
+	public Button getSaveListButton(){
+		return saveShoppingListButton;
 	}
 }
