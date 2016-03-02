@@ -34,7 +34,7 @@ public class StoreController implements Initializable {
 	@FXML private TabPane mainTabPane;
 	@FXML private ScrollPane scrollPane;
 	
-	private final String[] tabStyleClasses = {"start-tab-pane", "greens-tab-pane", "test2", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", };
+	private final String[] tabStyleClasses = {"start-tab-pane", "greens-tab-pane", "bakery-tab-pane", "meat-tab-pane", "dairy-tab-pane", "cabinet-tab-pane", "friday-cuddle-tab-pane", };
 
 	// Fixes the border for the main TabPane.
 	@FXML private Pane borderFixPane;
