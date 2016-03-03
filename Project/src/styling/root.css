@@ -24,14 +24,14 @@
 	-list-item-even-color: white;
 	-list-item-odd-color: #f4f4f4;
 	-header-color: #474747;
-	}
+}
 
 .tab-pane .tab-pane .tab:selected,
 .backdrop {
 	-fx-background-color: -itempane-color;
 }
 
-#pls {
+#red {
 	-fx-border-width: 1px;
 	-fx-border-color: red;
 }
@@ -44,8 +44,7 @@
 #shopping-cart-list .scroll-bar:horizontal .increment-arrow,
 #shopping-cart-list .scroll-bar:horizontal .decrement-arrow,
 #shopping-cart-list .scroll-bar:horizontal .increment-button,
-#shopping-cart-list .scroll-bar:horizontal .decrement-button
-{
+#shopping-cart-list .scroll-bar:horizontal .decrement-button {
     -fx-padding:0.0;
 }
 

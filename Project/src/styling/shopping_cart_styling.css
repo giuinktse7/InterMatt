@@ -1,8 +1,8 @@
 .button {
 	-fx-background-color: #b8d378, #b8d378;
-    -fx-background-insets: 0 0 0 0, 0, 0, 0;
+    -fx-background-insets: 0;
     -fx-background-radius: 3, 0, 0, 0;
-    -fx-border-width: 0 0 0 0, 0, 0, 0;
+    -fx-border-width: 0;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
 }
 .button .text {

@@ -1,13 +1,3 @@
-* {
-	-fx-glass-color: rgba(111, 194, 56, 0.9);
-	-fx-tab-bg-color: #36750f;
-	-fx-back-color: #6fc238;
-	-fx-start-color: #F8F8EC;
-	
-	-itempane-color: white;
-	-buy-button-color: 	#ff3030;
-}
-
 #modalTop,
 #content {
 	-fx-border-width: 1px;
@@ -40,7 +30,7 @@
 	-fx-border-color: #dddddd;
 }
 
-.table-view .label {
+.table-view .label .text {
 	-fx-fill: #c6ab96;
 }
 
@@ -49,6 +39,6 @@
 }
 
 
-#lblName{
+#lblName {
 	-fx-font-size: 14pt;
 }
