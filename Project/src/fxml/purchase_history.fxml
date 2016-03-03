@@ -32,34 +32,36 @@
 				</children>
 			</AnchorPane>
 			<AnchorPane id="content" fx:id="contentPane" maxHeight="-Infinity"
-				maxWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0">
+				maxWidth="-Infinity" prefHeight="500.0" prefWidth="700">
 				<children>
-					<ListView id="order-overview-box" fx:id="ordersList"
-						maxHeight="80" AnchorPane.leftAnchor="14" AnchorPane.rightAnchor="14"
-						AnchorPane.topAnchor="14" />
-					<ListView fx:id="productListView" prefWidth="450"
+					<VBox AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"
+						AnchorPane.topAnchor="0">
+					<ListView id="order-overview-box" fx:id="ordersList" maxHeight="110"/>
+					<Separator/>
+					</VBox>
+					<ListView id="product-list-view" fx:id="productListView" prefWidth="450"
 						AnchorPane.leftAnchor="14" AnchorPane.topAnchor="140" />
-						
-					<Label AnchorPane.rightAnchor="450"
-						AnchorPane.topAnchor="158" prefHeight="43.0" styleClass="header"
-						text="Datum" textAlignment="RIGHT" />
-					<Label fx:id="lblDate" AnchorPane.rightAnchor="28"
+
+					<Label AnchorPane.leftAnchor="470" AnchorPane.topAnchor="158"
+						prefHeight="43.0" styleClass="header" text="Datum" textAlignment="RIGHT" />
+					<Label fx:id="lblDate" AnchorPane.rightAnchor="35"
 						AnchorPane.topAnchor="158" prefHeight="43.0" styleClass="light-text"
 						text="28/02/16" textAlignment="RIGHT" />
 					<Separator AnchorPane.rightAnchor="28"
-						AnchorPane.topAnchor="195" prefWidth="496.0" prefHeight="3.0"/>
+						AnchorPane.topAnchor="195" AnchorPane.leftAnchor="470" prefHeight="3.0" />
+
+					<Label AnchorPane.leftAnchor="28" AnchorPane.bottomAnchor="16"
+						prefHeight="43.0" styleClass="header" text="Totalt" textAlignment="RIGHT" />
+					<Label fx:id="lblTotalPrice" AnchorPane.leftAnchor="370"
+						AnchorPane.bottomAnchor="16" prefHeight="43.0" styleClass="light-text"
+						text="28/02/16" textAlignment="RIGHT" />
+					<Separator AnchorPane.rightAnchor="540"
+						AnchorPane.bottomAnchor="14" AnchorPane.leftAnchor="28" prefHeight="3.0" />
 						
-					<Label layoutX="484.0" layoutY="224.0" styleClass="header"
-						text="Totalt pris" />
-					<Separator layoutX="485.0" layoutY="266.0" prefHeight="3.0"
-						prefWidth="496.0" />
-					<Label fx:id="lblTotalPrice" layoutX="762.0" layoutY="224.0"
-						prefHeight="43.0" prefWidth="218.0" styleClass="light-text" text="542:-"
-						textAlignment="RIGHT" />
-					<Label id="order-id" AnchorPane.bottomAnchor="28"
+					<Label id="order-id" fx:id="lblOrderID" AnchorPane.bottomAnchor="28"
 						AnchorPane.rightAnchor="14" textAlignment="RIGHT" prefHeight="43.0"
 						prefWidth="297.0" text="Order ID: 5QT27C39A" />
-						
+
 				</children>
 			</AnchorPane>
 		</VBox>

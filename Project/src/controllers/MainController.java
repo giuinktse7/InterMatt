@@ -194,7 +194,13 @@ public class MainController implements Initializable {
 		
 		items.forEach(item -> db.getShoppingCart().addItem(item));
 		
-		db.placeOrder();
+		// TODO Only for testing, should only be one and not false
+		db.placeOrder(false);
+		db.placeOrder(false);
+		db.placeOrder(false);
+		db.placeOrder(false);
+		db.placeOrder(false);
+		db.placeOrder(false);
 		viewDisplay.show(storePane);
 	}
 	

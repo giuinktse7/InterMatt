@@ -33,6 +33,7 @@ public class PurchaseHistoryController implements Initializable {
 	@FXML private ListView<Node> ordersList;
 	@FXML private Label lblTotalPrice;
 	@FXML private Label lblDate;
+	@FXML private Label lblOrderID;
 	
 	
 	private IMatDataHandler db = IMatDataHandler.getInstance();
@@ -66,22 +67,25 @@ public class PurchaseHistoryController implements Initializable {
 			ordersList.getItems().add(orderBox);
 			});
 		
-		//Add the first separator
+		//Show the first order if there is one
 		if (!ordersList.getItems().isEmpty()) {
-			((OrderOverviewBox)ordersList.getItems().get(0)).getChildren().add(0, separator);
-			
-			//Show the first order
 			OrderOverviewBox box = new OrderOverviewBox(((OrderOverviewBox) ordersList.getItems().get(0)).getOrder());
 			displayOrder(box);
 		}
 	}
 	
 	private void displayOrder(OrderOverviewBox orderBox) {
+		
 		List<Node> productBoxes = orderBox.getProductBoxes();
 		if (!productListView.getItems().equals(productBoxes))
 			productListView.getItems().setAll(productBoxes);
 		
 		lblDate.setText(orderBox.getDate());
-		lblTotalPrice.setText(String.format("%.2f", orderBox.getTotalPrice()).replace('.', ':'));
+		lblTotalPrice.setText(String.format("%.2f:-", orderBox.getTotalPrice()).replace('.', ':'));
+		lblOrderID.setText(String.format("Order ID: %d", orderBox.getOrder().getOrderNumber()));
+	}
+	
+	public ModalPopup getRoot() {
+		return this.bottomPane;
 	}
 }

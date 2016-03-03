@@ -28,7 +28,46 @@
 /* The wrapper list-view for all order overviews */
 #order-overview-box {
 	-fx-background-color: white;
+	-fx-border-style: hidden;
 }
+
+#order-overview-box .list-cell:even {
+	-fx-background-color: transparent;
+}
+
+#order-overview-box .list-cell:odd {
+	-fx-background-color: transparent;
+}
+
+#order-overview-box .list-cell:filled {
+	-fx-background-color: #AFE3BE;
+}
+
+#order-overview-box .list-cell:filled:hover {
+	-fx-background-color: derive(#AFE3BE, 20%);
+}
+
+/* The box that holds a single order overview */
+#order-overview-box .list-cell:unselected {
+	-fx-border-width: 0 1 0 1;
+	-fx-border-color: #AFE3BE;
+}
+
+#order-overview-box .list-cell:selected {
+	-fx-border-width: 0;
+	-fx-background-color: #2FA147;
+}
+
+#order-overview-box .list-cell:selected .text {
+	-fx-fill: white;
+}
+
+#order-overview-box .list-cell:selected:hover {
+	-fx-border-width: 0;
+	-fx-background-color: derive(#2FA147, 10%);
+}
+
+
 
 .item-in-history-box {
 	-fx-background-color: transparent;
@@ -80,7 +119,7 @@
 }
 
 .header .text {
-	-fx-font-size: 22pt;
+	-fx-font-size: 24pt;
 	-fx-fill: -header-color;
 	-fx-font-family: "Times new Roman";
 }
@@ -107,13 +146,17 @@
 	-fx-padding: 0;
 }
 
-.list-cell:even,
-.list-cell:odd {
+#product-list-view {
+	-fx-border-color: transparent derive(-header-color, 25%) transparent  transparent;
+}
+
+#product-list-view .list-cell:even,
+#product-list-view .list-cell:odd {
     -fx-background-color: white;
 }
 
 /* When the list-cell is selected and focused */
-.list-view:focused .list-cell:filled:focused:selected {
+#product-list-view:focused .list-cell:filled:focused:selected {
     -fx-background-color: transparent, transparent, transparent;
     -fx-background-insets: 0;
 }
@@ -131,3 +174,104 @@
     -fx-background-insets: 0;
     -fx-padding: 0;
 }
+
+/* SCROLL BARS */
+/** CSS **/
+#order-overview-box{
+	-fx-border-color:derive(gray,80%);
+}
+
+/* The main scrollbar CSS class of ListView */
+#order-overview-box .scroll-bar:horizontal ,
+#order-overview-box  .scroll-bar:vertical{
+    -fx-background-color:transparent;
+	-fx-background-radius: 2em;
+    -fx-border-radius: 2em;
+}
+
+/* The increment and decrement button CSS class of scrollbar */
+#order-overview-box .increment-button ,#order-overview-box .decrement-button {
+    -fx-background-color:transparent;
+	-fx-border-color: transparent;
+}
+
+/* The main scrollbar **track** CSS class  */
+#order-overview-box .scroll-bar:horizontal .track ,
+#order-overview-box .scroll-bar:vertical .track{
+     -fx-background-color: transparent;
+	 -fx-border-color:derive(gray,80%);
+	 -fx-background-radius: 0em;
+}
+
+/* The main scrollbar **thumb** CSS class which we drag every time (movable) */
+#order-overview-box .scroll-bar:horizontal .thumb,
+#order-overview-box .scroll-bar:vertical .thumb {
+    -fx-background-color: derive(-scroll-thumb-color, 30%);
+    -fx-background-insets: 2, 0, 0;
+    -fx-background-radius: 2em;
+}
+
+/* ------------------------------------------------------------------------------------- */
+/** EVENT CSS **/
+/* ------------------------------------------------------------------------------------- */
+
+/* The main scrollbar **track** CSS class on event of "hover" and "pressed" */
+#order-overview-box .scroll-bar:vertical {
+	-fx-background-color: transparent;
+	-fx-padding: 0;
+	-fx-background-insets: 0;
+}
+
+#order-overview-box .scroll-bar:horizontal {
+	-fx-background-radius: 2em;
+    -fx-border-radius: 2em, 2em;
+}
+
+#order-overview-box .scroll-bar:horizontal:hover .track ,
+#order-overview-box .scroll-bar:horizontal:pressed .track {
+	/*-fx-background-radius: 0em;
+    -fx-border-radius: 2em;*/
+}
+
+/* The main scrollbar **thumb** CSS class on event of "hover" and "pressed" */
+#order-overview-box .scroll-bar .thumb:hover {
+    -fx-background-color: derive(-scroll-thumb-color,15%);
+}
+
+#order-overview-box .scroll-bar .thumb:pressed {
+	-fx-background-color: -scroll-thumb-color;
+}
+
+
+/* The increment and decrement button CSS class of scrollbar */
+#order-overview-box .scroll-bar:horizontal .increment-button ,
+#order-overview-box .scroll-bar:horizontal .decrement-button {
+    -fx-background-color:transparent;
+	-fx-background-radius: 0em;
+	-fx-border-radius: 0em;
+	-fx-border-color: transparent;
+	-fx-padding: 0.75em 0 0.75em 0;
+}
+
+/* The increment and decrement button CSS class of scrollbar */
+
+#order-overview-box .scroll-bar:vertical .increment-button ,
+#order-overview-box .scroll-bar:vertical .decrement-button {
+
+    -fx-background-color:transparent;
+	-fx-background-radius: 0em;
+	-fx-padding:0 0 0 0;
+
+}
+
+#order-overview-box  .scroll-bar .increment-arrow,
+#order-overview-box  .scroll-bar .decrement-arrow {
+	-fx-shape: " ";	
+	-fx-padding: 0;
+}
+
+/* #order-overview-box .increment-button:hover ,#order-overview-box .decrement-button:hover {
+    -fx-background-color:derive(gray,100%);
+	-fx-border-color:derive(gray,80%);	
+	-fx-padding:10px;
+}*/

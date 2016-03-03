@@ -5,11 +5,9 @@ import java.util.Date;
 import java.util.List;
 
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.Separator;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import se.chalmers.ait.dat215.project.Order;
@@ -35,7 +33,6 @@ public class OrderOverviewBox extends HBox {
 	}
 	
 	private void initialize() {
-		//this.setPadding(new Insets(7, 0, 7, 0));
 		this.getStyleClass().add("order-box");
 		
 		// Setup the box that holds the date
@@ -61,14 +58,7 @@ public class OrderOverviewBox extends HBox {
 		// Add the box that holds the date
 		this.getChildren().add(dateBox);
 
-		// Setup the vertical separator
-		Separator separator = new Separator();
-		separator.setOrientation(Orientation.VERTICAL);
-
-		this.getChildren().add(separator);
-
 		// Setup margins
-		//HBox.setMargin(separator, new Insets(0, 28, 0, 28));
 		HBox.setMargin(dateBox, new Insets(0, 28, 0, 28));
 	}
 	

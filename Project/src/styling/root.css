@@ -24,6 +24,7 @@
 	-list-item-even-color: white;
 	-list-item-odd-color: #f4f4f4;
 	-header-color: #474747;
+	-scroll-thumb-color: #737373;
 }
 
 .tab-pane .tab-pane .tab:selected,
@@ -77,4 +78,3 @@
 .navigation-button:disabled {
 	-fx-opacity: 1;
 }
-
