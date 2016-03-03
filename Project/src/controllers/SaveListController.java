@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
 import util.ShoppingCartHandler;
 import control.ModalPopup;
 import control.ProductHBox;
@@ -32,22 +33,25 @@ public class SaveListController implements Initializable {
 			List<String> lines = new ArrayList<String>();
 			lines.add("#"+txtListName.getText());
 			for (ProductHBox item : sch.getItems()){
-				lines.add(item.getProduct().getName()+","+item.getQuantity());
+				lines.add(item.getProduct().getProductId()+","+item.getQuantity());
 			}
 
+
 			Path file = Paths.get("saved_shopping_lists.txt");
-			
 			try {
+				if (!Files.exists(file)){
+					file = Files.createFile(file);
+				}
 				List<String> existingLines = Files.readAllLines(file);
-				
+
 				lines.addAll(existingLines);
 				Files.write(file, lines, Charset.forName("UTF-8"));
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
 			bottomPane.close();
+			LoadListController.getInstnace().updateList();
 		});
 		btnCancel.setOnAction(e -> bottomPane.close());
 	}
-
 }
