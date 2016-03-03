@@ -78,13 +78,13 @@
 /*Working css for tab */
 .tab {
 	-fx-background-insets: 0 0.5em 0 0;
-	-fx-background-radius: 4 4 0 0;
+	-fx-background-radius: 0 0 0 0;
 	
 	-fx-border-color: rgba(0, 0, 0, 0.5);
 	-fx-border-style: hidden hidden solid hidden;
 	-fx-border-insets: 0 0.5em 0 0, 0 0 0 0.5em;
 	-fx-border-width: 1;
-	-fx-border-radius: 4 4 0 0;
+	-fx-border-radius: 0 0 0 0;
 	
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
@@ -96,7 +96,7 @@
 	-fx-border-style: solid solid hidden solid;
 	-fx-border-insets: 0 0.5em 0 0, 0 0 0 0.5em;
 	-fx-border-width: 1;
-	-fx-border-radius: 4 4 0 0;
+	-fx-border-radius: 0 0 0 0;
 }
 
 
@@ -117,37 +117,64 @@
 #startTab:selected { -fx-background-color: -fx-start-color; }
 
 
-#fruitTab { -fx-background-color: derive(-fx-fruit-color, -10%); }
+#fruitTab { -fx-background-color: derive(-fx-fruit-color, -10%);
+			-fx-font-weight: bold;
+			-fx-border-color: transparent;
+}
+#fruitTab .text{			-fx-fill: white;}
 .fruitTabContent { -fx-background-color: -fx-fruit-color; }
 #fruitTab:hover { -fx-background-color: linear-gradient(to top, derive(-fx-fruit-color, 35%), derive(-fx-fruit-color, 45%)); }
 #fruitTab:selected { -fx-background-color: -fx-fruit-color; }
 
 
-#breadTab { -fx-background-color: derive(-fx-bread-color, -10%); }
+#breadTab { -fx-background-color: derive(-fx-bread-color, -10%); 
+			-fx-font-weight: bold;
+			-fx-border-color: transparent;
+}
+#breadTab .text{			-fx-fill: white;}
+
 .breadTabContent { -fx-background-color: -fx-bread-color; }
 #breadTab:hover { -fx-background-color: linear-gradient(to top, derive(-fx-bread-color, 35%), derive(-fx-bread-color, 45%)); }
 #breadTab:selected { -fx-background-color: -fx-bread-color; }
 
 
-#meatTab { -fx-background-color: derive(-fx-meat-color, -10%); }
+#meatTab { -fx-background-color: derive(-fx-meat-color, -10%); 
+			-fx-font-weight: bold;
+			-fx-border-color: transparent;
+}
+#meatTab .text{			-fx-fill: white;}
 .meatTabContent { -fx-background-color: -fx-meat-color; }
 #meatTab:hover { -fx-background-color: linear-gradient(to top, derive(-fx-meat-color, 35%), derive(-fx-meat-color, 45%)); }
 #meatTab:selected { -fx-background-color: -fx-meat-color; }
 
 
-#dairyTab { -fx-background-color: derive(-fx-dairy-color, -10%); }
+#dairyTab { -fx-background-color: derive(-fx-dairy-color, -10%); 
+			-fx-font-weight: bold;
+			-fx-border-color: transparent;
+}
+#dairyTab .text{			-fx-fill: white;}
+
 .dairyTabContent { -fx-background-color: -fx-dairy-color; }
 #dairyTab:hover { -fx-background-color: linear-gradient(to top, derive(-fx-dairy-color, 35%), derive(-fx-dairy-color, 45%)); }
 #dairyTab:selected { -fx-background-color: -fx-dairy-color; }
 
 
-#cabinetTab { -fx-background-color: derive(-fx-cabinet-color, -10%); }
+#cabinetTab { -fx-background-color: derive(-fx-cabinet-color, -10%); 
+			-fx-font-weight: bold;
+			-fx-border-color: transparent;
+}
+#cabinetTab .text{			-fx-fill: white;}
+
 .cabinetTabContent { -fx-background-color: -fx-cabinet-color; }
 #cabinetTab:hover { -fx-background-color: linear-gradient(to top, derive(-fx-cabinet-color, 35%), derive(-fx-cabinet-color, 45%)); }
 #cabinetTab:selected { -fx-background-color: -fx-cabinet-color; }
 
 
-#fridaycuddlingTab { -fx-background-color: derive(-fx-fridaycuddling-color, -10%); }
+#fridaycuddlingTab { -fx-background-color: derive(-fx-fridaycuddling-color, -10%); 
+			-fx-font-weight: bold;
+			-fx-border-color: transparent;
+}
+#fridaycuddlingTab .text{			-fx-fill: white;}
 .fridaycuddlingTabContent { -fx-background-color: -fx-fridaycuddling-color; }
 #fridaycuddlingTab:hover { -fx-background-color: linear-gradient(to top, derive(-fx-fridaycuddling-color, 35%), derive(-fx-fridaycuddling-color, 45%)); }
 #fridaycuddlingTab:selected { -fx-background-color: -fx-fridaycuddling-color; }
