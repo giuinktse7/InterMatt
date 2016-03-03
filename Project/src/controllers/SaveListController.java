@@ -1,6 +1,5 @@
 package controllers;
 
-import java.io.PrintWriter;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
