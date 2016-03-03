@@ -35,8 +35,6 @@
 	-fx-border-color: red;
 }
 
-
-
 .split-pane > .split-pane-divider {  
     -fx-border-width: 2.0;  
     -fx-background-color: rgba(0.0,0.0,0.0,0.0);
@@ -52,12 +50,29 @@
 
 .nav-button {
 	-fx-background-color: transparent;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 1, 0.0 , 0 , 1 );
 
 }
+
 .base-style{
 	-fx-background-color: -fx-main-color;
 }
 
+.history-button {
+	-fx-background-color: #b8d378, #b8d378;
+    -fx-background-insets: 0 0 0 0, 0, 0, 0;
+    -fx-background-radius: 3, 0, 0, 0;
+    -fx-border-width: 0 0 0 0, 0, 0, 0;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
+}
+.history-button .text {
+	-fx-fill: white;
+	-fx-effect: dropshadow( one-pass-box , rgba(100, 100, 100, 0.5) , 0, 0.0 , 0 , 1 );
+	-fx-font-size: 20 pt;
+}
+.history-button: hover{
+	-fx-background-color: derive(-buy-button-color, -10%);
+}
 /* Navigation button */
 .navigation-button:disabled {
 	-fx-opacity: 1;

@@ -48,16 +48,8 @@
 						<AnchorPane prefHeight="601.0" prefWidth="142.0">
 							<children>
 									<Button maxWidth="-Infinity" HBox.hgrow="ALWAYS" fx:id="purchaseHistoryButton" mnemonicParsing="false"
-										prefHeight="36" text="Köphistorik" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0"
+										prefHeight="36" text="Köphistorik" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" styleClass="history-button"
 									AnchorPane.rightAnchor="0">
-										<graphic>
-											<ImageView fitWidth="32" pickOnBounds="true"
-												preserveRatio="true">
-												<image>
-													<Image url="@../resources/bill.png" />
-												</image>
-											</ImageView>
-										</graphic>
 									</Button>
 								<fx:include fx:id="shoppingCart" source="shopping_cart.fxml" />
 							</children>
