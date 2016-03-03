@@ -73,6 +73,10 @@
 .history-button:hover {
 	-fx-background-color: derive(f4f4f4, -10%);
 }
+.nav-button: hover {
+	-fx-imageview: derive(f4f4f4, -10%);
+}
+
 /* Navigation button */
 .navigation-button:disabled {
 	-fx-opacity: 1;
