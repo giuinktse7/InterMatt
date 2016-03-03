@@ -1,9 +1,8 @@
-#
-#
-#Test 3
-Cola burk,7.0
-Fanta flaska,4.0
-Fanta burk,7.0
-#test 2
-Glass,5.0
-Choklad,5.0
+#test
+34,1.0
+33,1.0
+36,1.0
+#test
+34,1.0
+33,1.0
+36,1.0

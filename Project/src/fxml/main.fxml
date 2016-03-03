@@ -49,19 +49,10 @@
 						</AnchorPane>
 						<AnchorPane prefHeight="601.0" prefWidth="142.0">
 							<children>
-								<Button fx:id="purchaseHistoryButton" maxWidth="-Infinity"
-									mnemonicParsing="false" prefHeight="36" text="Köphistorik"
-									AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"
-									AnchorPane.topAnchor="0" HBox.hgrow="ALWAYS">
-									<graphic>
-										<ImageView fitWidth="32" pickOnBounds="true"
-											preserveRatio="true">
-											<image>
-												<Image url="@../resources/bill.png" />
-											</image>
-										</ImageView>
-									</graphic>
-								</Button>
+									<Button maxWidth="-Infinity" HBox.hgrow="ALWAYS" fx:id="purchaseHistoryButton" mnemonicParsing="false"
+										prefHeight="36" text="Köphistorik" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" styleClass="history-button"
+									AnchorPane.rightAnchor="0">
+									</Button>
 								<fx:include fx:id="shoppingCart" source="shopping_cart.fxml" />
 							</children>
 						</AnchorPane>
