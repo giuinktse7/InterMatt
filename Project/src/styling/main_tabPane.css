@@ -151,3 +151,15 @@
 .fridaycuddlingTabContent { -fx-background-color: -fx-fridaycuddling-color; }
 #fridaycuddlingTab:hover { -fx-background-color: linear-gradient(to top, derive(-fx-fridaycuddling-color, 35%), derive(-fx-fridaycuddling-color, 45%)); }
 #fridaycuddlingTab:selected { -fx-background-color: -fx-fridaycuddling-color; }
+
+#invisibleTab,
+#invisbleTab:disabled {
+	-fx-background-color: transparent;
+	-fx-border-color: transparent;
+}
+
+#search-result-label {
+	-fx-font-size: 24pt;
+	-fx-fill: white;
+	-fx-font-weight: bold;
+}

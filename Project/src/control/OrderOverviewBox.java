@@ -19,10 +19,14 @@ import se.chalmers.ait.dat215.project.ShoppingItem;
 public class OrderOverviewBox extends HBox {
 
 	private Order order;
+	private double totalPrice;
 
 	public OrderOverviewBox(Order order) {
 		this.order = order;
 		initialize();
+		
+		for (ShoppingItem item : order.getItems())
+			totalPrice += item.getTotal();
 	}
 
 	/** Returns the order associated with this box. */
@@ -92,5 +96,18 @@ public class OrderOverviewBox extends HBox {
 			productBoxes.add(new ItemInHistoryBox(item));
 		
 		return productBoxes;
+	}
+	
+	public String getDate() {
+		int[] date = getUsableDate(order.getDate());
+		int day = date[0];
+		int month = monthToInt(order.getDate().toString().split(" ")[1]);
+		int year = date[2];
+		
+		return String.format("%d/%d/%d", day, month, year);
+	}
+	
+	public double getTotalPrice() {
+		return this.totalPrice;
 	}
 }

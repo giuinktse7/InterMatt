@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.text.Font?>
 <?import control.ModalPopup?>
 
@@ -32,11 +31,35 @@
 					</Label>
 				</children>
 			</AnchorPane>
-			<AnchorPane fx:id="contentPane" id="content" maxHeight="-Infinity"
+			<AnchorPane id="content" fx:id="contentPane" maxHeight="-Infinity"
 				maxWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0">
 				<children>
-					<ListView fx:id="ordersList" maxHeight="80" id="order-overview-box" AnchorPane.leftAnchor="14" AnchorPane.topAnchor="14" AnchorPane.rightAnchor="14"></ListView>
-					<ListView fx:id="productListView" prefWidth="450" AnchorPane.leftAnchor="14" AnchorPane.topAnchor="140"  />
+					<ListView id="order-overview-box" fx:id="ordersList"
+						maxHeight="80" AnchorPane.leftAnchor="14" AnchorPane.rightAnchor="14"
+						AnchorPane.topAnchor="14" />
+					<ListView fx:id="productListView" prefWidth="450"
+						AnchorPane.leftAnchor="14" AnchorPane.topAnchor="140" />
+						
+					<Label AnchorPane.rightAnchor="450"
+						AnchorPane.topAnchor="158" prefHeight="43.0" styleClass="header"
+						text="Datum" textAlignment="RIGHT" />
+					<Label fx:id="lblDate" AnchorPane.rightAnchor="28"
+						AnchorPane.topAnchor="158" prefHeight="43.0" styleClass="light-text"
+						text="28/02/16" textAlignment="RIGHT" />
+					<Separator AnchorPane.rightAnchor="28"
+						AnchorPane.topAnchor="195" prefWidth="496.0" prefHeight="3.0"/>
+						
+					<Label layoutX="484.0" layoutY="224.0" styleClass="header"
+						text="Totalt pris" />
+					<Separator layoutX="485.0" layoutY="266.0" prefHeight="3.0"
+						prefWidth="496.0" />
+					<Label fx:id="lblTotalPrice" layoutX="762.0" layoutY="224.0"
+						prefHeight="43.0" prefWidth="218.0" styleClass="light-text" text="542:-"
+						textAlignment="RIGHT" />
+					<Label id="order-id" AnchorPane.bottomAnchor="28"
+						AnchorPane.rightAnchor="14" textAlignment="RIGHT" prefHeight="43.0"
+						prefWidth="297.0" text="Order ID: 5QT27C39A" />
+						
 				</children>
 			</AnchorPane>
 		</VBox>

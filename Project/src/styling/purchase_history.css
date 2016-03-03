@@ -92,6 +92,22 @@
 	-fx-font-size: 24pt;
 }
 
+.header .text {
+	-fx-font-size: 22pt;
+	-fx-fill: -header-color;
+	-fx-font-family: "Times new Roman";
+}
+
+.light-text .text {
+	-fx-font-size: 22pt;
+	-fx-fill: derive(-header-color, 25%);
+}
+
+#order-id .text {
+	-fx-font-size: 16pt;
+	-fx-fill: #757575;
+}
+
 /* ListView styling */
 .list-view {
 	-fx-background-insets: 0;

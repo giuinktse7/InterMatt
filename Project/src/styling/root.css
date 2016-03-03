@@ -23,6 +23,7 @@
 	-list-item-selected-color: #c1c1c1;
 	-list-item-even-color: white;
 	-list-item-odd-color: #f4f4f4;
+	-header-color: #474747;
 	}
 
 .tab-pane .tab-pane .tab:selected,
