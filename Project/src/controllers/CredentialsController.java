@@ -5,6 +5,7 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
 
@@ -23,6 +24,8 @@ public class CredentialsController implements Initializable {
 	@FXML private TextField txtPostalcode;
 	@FXML private TextField txtCity;
 	@FXML private TextField txtEmail;
+
+	@FXML private CheckBox cb_save_credentials;
 
 
 	@Override
@@ -43,9 +46,9 @@ public class CredentialsController implements Initializable {
 			if (newValue.length() > 10){
 				txtSSN.setText(txtSSN.getText().substring(0,10));
 			}
-			if (newValue.length() == 10){
+//			if (newValue.length() == 10){
 				// select next button maybe..
-			}
+//			}
 		});
 
 		txtPostalcode.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -60,18 +63,17 @@ public class CredentialsController implements Initializable {
 				txtCity.requestFocus();
 			}
 		});
-
-
-
 	}
 
 	public void save_user_data(){
-		db.getCustomer().setLastName(txtLastname.getText());
-		db.getCustomer().setFirstName(txtFirstname.getText());
-		db.getCustomer().setPhoneNumber(txtSSN.getText());
-		db.getCustomer().setAddress(txtAdress.getText());
-		db.getCustomer().setPostCode(txtPostalcode.getText());
-		db.getCustomer().setPostAddress(txtCity.getText());
+		if (cb_save_credentials.isSelected()) {
+			db.getCustomer().setLastName(txtLastname.getText());
+			db.getCustomer().setFirstName(txtFirstname.getText());
+			db.getCustomer().setPhoneNumber(txtSSN.getText());
+			db.getCustomer().setAddress(txtAdress.getText());
+			db.getCustomer().setPostCode(txtPostalcode.getText());
+			db.getCustomer().setPostAddress(txtCity.getText());
+		}
 	}
 
 
