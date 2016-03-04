@@ -1,0 +1,105 @@
+
+/* DEFAULT COLORS: 
+ * -tab-bg-color: #36750f;
+ * -background-color: #6fc238;
+ */
+/* Configure colors here and use derivations elsewhere*/
+
+.tab .tab-label {
+	-fx-text-fill: #202b19;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 18 pt;
+}
+
+.tab:selected .tab-label {
+    -fx-border-width: 2px;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-color: rgba(255, 255, 255, 0.5);
+}
+
+#mainTabPane > .tab-header-background {
+	-fx-background-color: white;
+}
+
+.tab-header-background {
+	-fx-background-color: transparent;
+	-fx-border-width: 1px;
+	-fx-border-style: hidden hidden solid hidden;
+}
+
+/*Working css for tab */
+.tab {
+	-fx-background-insets: 0 0.5em 0 0;
+	
+	
+	-fx-border-color: rgba(0, 0, 0, 0.5);
+	-fx-border-style: hidden hidden solid hidden;
+	-fx-border-insets: 0 0.5em 0 0, 0 0 0 0.5em;
+	-fx-border-width: 1;
+	-fx-border-radius: 4 4 0 0;
+	
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+
+.tab:selected {
+	-fx-border-color: rgba(0, 0, 0, 0.5);
+	-fx-border-style: solid solid hidden solid;
+	-fx-border-insets: 0 0.5em 0 0, 0 0 0 0.5em;
+	-fx-border-width: 1;
+	-fx-border-radius: 4 4 0 0;
+}
+
+
+
+.tab:hover {
+	-fx-background-color: linear-gradient(to top, derive(-fx-tab-bg-color,90%), derive(-fx-tab-bg-color,110%));
+}
+
+.tab:selected:hover {
+	-fx-background-color: linear-gradient(to top, derive(-fx-back-color,60%), derive(-fx-back-color,75%));
+}
+
+
+/* TAB COLOURS */
+#startTab { -fx-background-color: derive(-fx-start-color, -10%); }
+.startTabContent { -fx-background-color: -fx-start-color; }
+#startTab:hover { -fx-background-color: linear-gradient(to top, derive(-fx-start-color, 35%), derive(-fx-start-color, 45%)); }
+#startTab:selected { -fx-background-color: -fx-start-color; }
+
+
+#fruitTab { -fx-background-color: derive(-fx-fruit-color, -10%); }
+.fruitTabContent { -fx-background-color: -fx-fruit-color; }
+#fruitTab:hover { -fx-background-color: linear-gradient(to top, derive(-fx-fruit-color, 35%), derive(-fx-fruit-color, 45%)); }
+#fruitTab:selected { -fx-background-color: -fx-fruit-color; }
+
+
+#breadTab { -fx-background-color: derive(-fx-bread-color, -10%); }
+.breadTabContent { -fx-background-color: -fx-bread-color; }
+#breadTab:hover { -fx-background-color: linear-gradient(to top, derive(-fx-bread-color, 35%), derive(-fx-bread-color, 45%)); }
+#breadTab:selected { -fx-background-color: -fx-bread-color; }
+
+
+#meatTab { -fx-background-color: derive(-fx-meat-color, -10%); }
+.meatTabContent { -fx-background-color: -fx-meat-color; }
+#meatTab:hover { -fx-background-color: linear-gradient(to top, derive(-fx-meat-color, 35%), derive(-fx-meat-color, 45%)); }
+#meatTab:selected { -fx-background-color: -fx-meat-color; }
+
+
+#dairyTab { -fx-background-color: derive(-fx-dairy-color, -10%); }
+.dairyTabContent { -fx-background-color: -fx-dairy-color; }
+#dairyTab:hover { -fx-background-color: linear-gradient(to top, derive(-fx-dairy-color, 35%), derive(-fx-dairy-color, 45%)); }
+#dairyTab:selected { -fx-background-color: -fx-dairy-color; }
+
+
+#cabinetTab { -fx-background-color: derive(-fx-cabinet-color, -10%); }
+.cabinetTabContent { -fx-background-color: -fx-cabinet-color; }
+#cabinetTab:hover { -fx-background-color: linear-gradient(to top, derive(-fx-cabinet-color, 35%), derive(-fx-cabinet-color, 45%)); }
+#cabinetTab:selected { -fx-background-color: -fx-cabinet-color; }
+
+
+#fridaycuddlingTab { -fx-background-color: derive(-fx-fridaycuddling-color, -10%); }
+.fridaycuddlingTabContent { -fx-background-color: -fx-fridaycuddling-color; }
+#fridaycuddlingTab:hover { -fx-background-color: linear-gradient(to top, derive(-fx-fridaycuddling-color, 35%), derive(-fx-fridaycuddling-color, 45%)); }
+#fridaycuddlingTab:selected { -fx-background-color: -fx-fridaycuddling-color; }

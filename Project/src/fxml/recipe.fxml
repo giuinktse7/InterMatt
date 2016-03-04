@@ -7,11 +7,12 @@
 <?import javafx.scene.text.Font?>
 <?import control.ModalPopup?>
 
-<ModalPopup fx:id="bottomPane" alignment="CENTER"
-            columnHalignment="CENTER" styleClass="bottomPane" stylesheets="@../styling/modal_popup.css"
+<ModalPopup fx:id="bottomPane" styleClass="bottomPane" stylesheets="@../styling/modal_popup.css"
             xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="controllers.RecipeController">
     <children>
+    	<!-- Content is centered according to this pane -->
+	<FlowPane id="red" fx:id="contentWrapperPane" alignment="CENTER">
         <VBox>
             <AnchorPane id="modalTop" maxHeight="-Infinity" minHeight="-Infinity"
                         prefHeight="45.0" prefWidth="200.0">
@@ -54,5 +55,6 @@
                 </children>
             </AnchorPane>
         </VBox>
+        </FlowPane>
     </children>
 </ModalPopup>

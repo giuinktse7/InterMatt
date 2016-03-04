@@ -47,11 +47,11 @@ public class ProductHBox extends HBox {
 		return this.quantityProperty;
 	}
 	
-	public void setQuantity(int value) {
+	public void setQuantity(double value) {
 		quantityProperty.set(value);
 	}
 	
-	public void addQuantity(int value) {
+	public void addQuantity(double value) {
 		quantityProperty.set(quantityProperty.get() + value);
 	}
 	

@@ -5,11 +5,9 @@ import java.util.Date;
 import java.util.List;
 
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.Separator;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import se.chalmers.ait.dat215.project.Order;
@@ -19,10 +17,14 @@ import se.chalmers.ait.dat215.project.ShoppingItem;
 public class OrderOverviewBox extends HBox {
 
 	private Order order;
+	private double totalPrice;
 
 	public OrderOverviewBox(Order order) {
 		this.order = order;
 		initialize();
+		
+		for (ShoppingItem item : order.getItems())
+			totalPrice += item.getTotal();
 	}
 
 	/** Returns the order associated with this box. */
@@ -31,7 +33,6 @@ public class OrderOverviewBox extends HBox {
 	}
 	
 	private void initialize() {
-		//this.setPadding(new Insets(7, 0, 7, 0));
 		this.getStyleClass().add("order-box");
 		
 		// Setup the box that holds the date
@@ -57,14 +58,7 @@ public class OrderOverviewBox extends HBox {
 		// Add the box that holds the date
 		this.getChildren().add(dateBox);
 
-		// Setup the vertical separator
-		Separator separator = new Separator();
-		separator.setOrientation(Orientation.VERTICAL);
-
-		this.getChildren().add(separator);
-
 		// Setup margins
-		//HBox.setMargin(separator, new Insets(0, 28, 0, 28));
 		HBox.setMargin(dateBox, new Insets(0, 28, 0, 28));
 	}
 	
@@ -92,5 +86,18 @@ public class OrderOverviewBox extends HBox {
 			productBoxes.add(new ItemInHistoryBox(item));
 		
 		return productBoxes;
+	}
+	
+	public String getDate() {
+		int[] date = getUsableDate(order.getDate());
+		int day = date[0];
+		int month = monthToInt(order.getDate().toString().split(" ")[1]);
+		int year = date[2];
+		
+		return String.format("%d/%d/%d", day, month, year);
+	}
+	
+	public double getTotalPrice() {
+		return this.totalPrice;
 	}
 }

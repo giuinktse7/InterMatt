@@ -37,13 +37,10 @@
 	-fx-background-color: #fdeef0;
 }
 
-
-
-
 .tab:selected .tab-label {
-    -fx-border-width: 2px;
+    /*-fx-border-width: 2px;
     -fx-border-style: hidden hidden solid hidden;
-    -fx-border-color: rgba(255, 255, 255, 0.5);
+    -fx-border-color: rgba(255, 255, 255, 0.5);*/
 }
 
 .bigTabs .tab-label{
@@ -151,3 +148,15 @@
 .fridaycuddlingTabContent { -fx-background-color: -fx-fridaycuddling-color; }
 #fridaycuddlingTab:hover { -fx-background-color: linear-gradient(to top, derive(-fx-fridaycuddling-color, 35%), derive(-fx-fridaycuddling-color, 45%)); }
 #fridaycuddlingTab:selected { -fx-background-color: -fx-fridaycuddling-color; }
+
+#invisibleTab,
+#invisbleTab:disabled {
+	-fx-background-color: transparent;
+	-fx-border-color: transparent;
+}
+
+#search-result-label {
+	-fx-font-size: 24pt;
+	-fx-fill: white;
+	-fx-font-weight: bold;
+}

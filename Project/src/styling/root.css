@@ -23,19 +23,19 @@
 	-list-item-selected-color: #c1c1c1;
 	-list-item-even-color: white;
 	-list-item-odd-color: #f4f4f4;
-	}
+	-header-color: #474747;
+	-scroll-thumb-color: #737373;
+}
 
 .tab-pane .tab-pane .tab:selected,
 .backdrop {
 	-fx-background-color: -itempane-color;
 }
 
-#pls {
+#red {
 	-fx-border-width: 1px;
 	-fx-border-color: red;
 }
-
-
 
 .split-pane > .split-pane-divider {  
     -fx-border-width: 2.0;  
@@ -45,21 +45,39 @@
 #shopping-cart-list .scroll-bar:horizontal .increment-arrow,
 #shopping-cart-list .scroll-bar:horizontal .decrement-arrow,
 #shopping-cart-list .scroll-bar:horizontal .increment-button,
-#shopping-cart-list .scroll-bar:horizontal .decrement-button
-{
+#shopping-cart-list .scroll-bar:horizontal .decrement-button {
     -fx-padding:0.0;
 }
 
 .nav-button {
 	-fx-background-color: transparent;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 1, 0.0 , 0 , 1 );
 
 }
+
 .base-style{
 	-fx-background-color: -fx-main-color;
+}
+
+.history-button {
+	-fx-background-color: #f4f4f4, #f4f4f4;
+    -fx-background-insets: 0 0 0 0, 0, 0, 0;
+    -fx-background-radius: 3, 0, 0, 0;
+    -fx-border-width: 0 0 0 0, 0, 0, 0;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
+}
+.history-button .text {
+	-fx-fill: black;
+	-fx-font-size: 20 pt;
+}
+.history-button:hover {
+	-fx-background-color: derive(f4f4f4, -10%);
+}
+.nav-button:hover {
+	-fx-imageview: derive(f4f4f4, -10%);
 }
 
 /* Navigation button */
 .navigation-button:disabled {
 	-fx-opacity: 1;
 }
-

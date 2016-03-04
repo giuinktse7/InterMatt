@@ -78,14 +78,21 @@ public class ShoppingCartHandler {
 	}
 
 	/** Adds the product to the shopping cart */
-	public void addProduct(Product product) {
+	public void addProduct(Product product, double quantity) {
 		ProductHBox productBox = getProductBoxFromCart(product);
 
 		if (productBox != null)
-			productBox.addQuantity(1);
+			productBox.addQuantity(quantity);
 		else {
-			cart.getItems().add(new ProductHBox(product));
+			ProductHBox box = new ProductHBox(product);
+			box.setQuantity(quantity);
+			cart.getItems().add(box);
 		}
+	}
+	
+	/** Adds the product to the shopping cart */
+	public void addProduct(Product product) {
+		addProduct(product, 1);
 	}
 
 	private ProductHBox getProductBoxFromCart(Product product) {

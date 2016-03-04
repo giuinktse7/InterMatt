@@ -108,6 +108,21 @@
 								</TabPane>
 							</content>
 						</Tab>
+						<Tab id="invisibleTab" fx:id="invisibleTab" closable="false"
+							text="">
+							<content>
+								<HBox alignment="CENTER_LEFT" minWidth="300.0" prefWidth="925.0"
+									styleClass="searchTabContent">
+									<children>
+										<Label id="search-result-label" fx:id="lblSearchResult">
+											<HBox.margin>
+												<Insets left="28.0" />
+											</HBox.margin>
+										</Label>
+									</children>
+								</HBox>
+							</content>
+						</Tab>
 					</tabs>
 					<opaqueInsets>
 						<Insets />
@@ -130,14 +145,14 @@
 					AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0"
 					AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" VBox.vgrow="ALWAYS">
 					<content>
-					<AnchorPane>
-					<StackPane id="pls" AnchorPane.leftAnchor="0"
-					AnchorPane.rightAnchor="0" >
-						<TilePane fx:id="content" styleClass="tile-pane">
-							<children>
-							</children>
-						</TilePane>
-						</StackPane>
+						<AnchorPane>
+							<StackPane AnchorPane.leftAnchor="0"
+								AnchorPane.rightAnchor="0">
+								<TilePane fx:id="content" styleClass="tile-pane">
+									<children>
+									</children>
+								</TilePane>
+							</StackPane>
 						</AnchorPane>
 					</content>
 				</ScrollPane>
