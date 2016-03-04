@@ -202,7 +202,6 @@ public class MainController implements Initializable {
 		List<ShoppingItem> items = ShoppingCartHandler.getInstance().getCartItems();
 		
 		items.forEach(item -> db.getShoppingCart().addItem(item));
-		
 		db.placeOrder();
 		//viewDisplay.show(storePane);
 	}
