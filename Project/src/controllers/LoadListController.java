@@ -21,9 +21,11 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ListChangeListener.Change;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
 public class LoadListController implements Initializable {
@@ -94,14 +96,18 @@ public class LoadListController implements Initializable {
 	}
 
 	public void appendListItem(Product product, float quantity){
-		HBox box = new HBox();
 		Label lblName = new Label(product.getName());
+		lblName.setAlignment(Pos.CENTER_LEFT);
 		Label lblQuantity = new Label(quantity+" "+product.getUnitSuffix());
+		lblQuantity.setAlignment(Pos.CENTER);
 		Label lblPrice = new Label(new DecimalFormat("#.##").format(product.getPrice() * quantity)+":-");
+		lblPrice.setAlignment(Pos.CENTER_RIGHT);
+		HBox box = new HBox(lblName, lblQuantity, lblPrice);
+		box.setAlignment(Pos.CENTER_LEFT);
 		lvItems.getItems().add(box);
-
-		box.getChildren().addAll(lblName, lblQuantity, lblPrice);
-		/* Set sizes(?)
+		lblName.minWidth(200);
+		
+		/*
 		lblName.minWidth((int)(lvItems.getWidth()*perc[0]));
 		lblName.maxWidth((int)(lvItems.getWidth()*perc[0]));
 		lblQuantity.minWidth((int)(lvItems.getWidth()*perc[1]));
@@ -109,5 +115,6 @@ public class LoadListController implements Initializable {
 		lblPrice.minWidth((int)(lvItems.getWidth()*perc[2]));
 		lblPrice.maxWidth((int)(lvItems.getWidth()*perc[2]));
 		*/
+		System.out.println(box.getWidth() + ", " + lvItems.getWidth());
 	}
 }
