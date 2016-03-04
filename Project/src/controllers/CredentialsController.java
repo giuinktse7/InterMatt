@@ -35,6 +35,19 @@ public class CredentialsController implements Initializable {
 		txtCity.setText(db.getCustomer().getPostAddress());
 
 
+		txtSSN.textProperty().addListener((observable, oldValue, newValue) -> {
+			if (!newValue.matches("\\d*")) {
+				txtSSN.setText(oldValue);
+				newValue = oldValue;
+			}
+			if (newValue.length() > 10){
+				txtSSN.setText(txtSSN.getText().substring(0,10));
+			}
+			if (newValue.length() == 10){
+				// select next button maybe..
+			}
+		});
+
 		txtPostalcode.textProperty().addListener((observable, oldValue, newValue) -> {
 			if (!newValue.matches("\\d*")) {
 				txtPostalcode.setText(oldValue);
@@ -48,18 +61,7 @@ public class CredentialsController implements Initializable {
 			}
 		});
 
-		txtSSN.textProperty().addListener((observable, oldValue, newValue) -> {
-			if (!newValue.matches("\\d*")) {
-				txtSSN.setText(oldValue);
-				newValue = oldValue;
-			}
-			if (newValue.length() > 10){
-				txtSSN.setText(txtSSN.getText().substring(0,10));
-			}
-			if (newValue.length() == 10){
-				// select next button maybe..
-			}
-		});
+
 
 	}
 
