@@ -126,4 +126,14 @@ public class ViewDisplay {
 	public ContentView getView(Pane pane) {
 		return views.get(pane);
 	}
+	
+	/** Gets a view. NOTE: Does not return the current view. Use getCurrentView().getValue() for that.  */
+	/*public ContentView getView(String ID) {
+		ContentView view;
+		//for (Map.Entry<Node, ContentView> entry : views.entrySet())
+			
+		//return views.get(pane);
+	}*/
+	
+	
 }

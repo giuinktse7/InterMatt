@@ -227,7 +227,6 @@ public class MainController implements Initializable {
 
 		db.placeOrder();
 		handler.clearCart();
-		viewDisplay.show(storePane);
 		db.shutDown();
 	}
 
@@ -262,6 +261,10 @@ public class MainController implements Initializable {
 			if (isCurrentView(pane))
 				button.enable(); 
 			};
+	}
+	
+	public void setViewDisplay(String ID) {
+		viewDisplay.show(viewDisplay.get);
 	}
 	
 	public static ArrowButton leftButton;
