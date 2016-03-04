@@ -264,7 +264,6 @@ public class MainController implements Initializable {
 	}
 	
 	public void setViewDisplay(String ID) {
-		viewDisplay.show(viewDisplay.get);
 	}
 	
 	public static ArrowButton leftButton;

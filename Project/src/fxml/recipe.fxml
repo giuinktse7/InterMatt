@@ -23,7 +23,7 @@
                                 <Font size="42.0" />
                             </font>
                         </Label>
-                  <HBox layoutX="14.0" layoutY="62.0" prefHeight="29.0" prefWidth="653.0">
+                  <HBox layoutX="14.0" layoutY="62.0" prefHeight="29.0" prefWidth="924.0">
                      <children>
                         <Label text="Du har handlat för ">
                            <font>
@@ -35,21 +35,21 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblPaymentType" text=" och betalning sker vid leverans">
+                        <Label fx:id="lblTimeOfDelivery" text=" och betalning sker vid leverans">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
                      </children>
                   </HBox>
-                  <HBox layoutX="14.0" layoutY="91.0" prefHeight="9.0" prefWidth="421.0">
+                  <HBox layoutX="14.0" layoutY="91.0" prefHeight="27.0" prefWidth="924.0">
                      <children>
                         <Label text="Dina varor levereras ">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblTimeOfDelivery" text="Fredag 21/4 ca15:00">
+                        <Label fx:id="lblPaymentType" text="Fredag 21/4 ca15:00">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
