@@ -120,7 +120,6 @@ public class MainController implements Initializable {
 		shoppingCartController.getSaveListButton().setOnAction(e -> saveListPopup.show());
 
 
-		purchasePaneController.mainController = this;
 
 		//Setup validations
 		setupStoreValidation();
