@@ -13,6 +13,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
 import sun.applet.Main;
+import util.InformationStorage;
 
 import java.net.URL;
 import java.util.Arrays;
@@ -56,10 +57,6 @@ public class PurchaseController implements Initializable {
 
 	// Credit card CVV fields
 	@FXML private TextField txt_card_cvv;
-
-
-
-
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -207,21 +204,23 @@ public class PurchaseController implements Initializable {
 		if (btn_pay_creditcard.isSelected()) {
 			pane_pay_creditcard.toFront();
 			pane_pay_creditcard.setVisible(true);
+			InformationStorage.setPaymentType(" och har betalat med kort.");
 		}
 
 		if (btn_pay_bill.isSelected()) {
 			pane_pay_bill_delivery.toFront();
 			pane_pay_bill_delivery.setVisible(true);
 			txt_pay_info.setText("Du betalar med pappersfaktura. Den skickas hem till dig och ska betalas inom 30 dagar. Detta är inte bra för miljön. Tänk på träden Hjördis. Illa.");
+			InformationStorage.setPaymentType(" och du får fakturan skickad till dig inom kort.");
 		}
 
 		if (btn_pay_delivery.isSelected()){
 			pane_pay_bill_delivery.toFront();
 			pane_pay_bill_delivery.setVisible(true);
 			txt_pay_info.setText("Du betalar vid dörren när varorna har anlänt. Du kan betala med antingen kort eller kontanter.");
+			InformationStorage.setPaymentType(" och betalningen sker vid leverans.");
 		}
 	}
-
 
 
 

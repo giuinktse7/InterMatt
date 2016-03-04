@@ -53,6 +53,7 @@ public class ContentView {
 	}
 	
 	public String getID() {
+		System.out.println("Getting " + content.getId());
 		return content.getId();
 	}
 	

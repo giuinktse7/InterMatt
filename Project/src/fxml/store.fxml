@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fillWidth="true" prefHeight="600.0" prefWidth="1215.0" styleClass="backdrop" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StoreController">
+<VBox id="storePane" fillWidth="true" prefHeight="600.0" prefWidth="1215.0" styleClass="backdrop" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StoreController">
 	<children>
 		<AnchorPane>
 			<children>

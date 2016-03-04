@@ -1,10 +1,15 @@
 package util;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import se.chalmers.ait.dat215.project.IMatDataHandler;
+import se.chalmers.ait.dat215.project.Order;
+import se.chalmers.ait.dat215.project.ShoppingItem;
 import controllers.MainController;
+import controllers.RecipeController;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
@@ -57,7 +62,8 @@ public class ViewDisplay {
 		}
 	}
 	
-	public void reset(){
+	private void reset(){
+	
 		//TERMINATE EVERYTHING ON MIKAELS DEMAND
 		/*
 		 * 	
@@ -68,6 +74,20 @@ public class ViewDisplay {
 		 */
 		System.out.println("sdasdsad");
 		MainController.get().finishPurchase();
+		List<Order> orders = IMatDataHandler.getInstance().getOrders();
+		
+		Collections.sort(orders, (o1, o2) -> {
+			return (int) (o2.getDate().getTime() - o1.getDate().getTime());
+		});
+		
+		float totalPrice = 0;
+		for (ShoppingItem item : orders.get(0).getItems()){
+			totalPrice += item.getTotal();
+		}
+		
+		RecipeController.getInstance().setPriceText(totalPrice);
+		RecipeController.getInstance().setDeliveryTimeText(InformationStorage.getDelivery());
+		RecipeController.getInstance().setPaymentText(InformationStorage.getPaymentType());
 		/** Rensa alla vyer */
 	}
 	
@@ -106,4 +126,14 @@ public class ViewDisplay {
 	public ContentView getView(Pane pane) {
 		return views.get(pane);
 	}
+	
+	/** Gets a view. NOTE: Does not return the current view. Use getCurrentView().getValue() for that.  */
+	/*public ContentView getView(String ID) {
+		ContentView view;
+		//for (Map.Entry<Node, ContentView> entry : views.entrySet())
+			
+		//return views.get(pane);
+	}*/
+	
+	
 }

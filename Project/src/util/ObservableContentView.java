@@ -26,8 +26,6 @@ public class ObservableContentView implements ObservableValue<ContentView> {
 	/** Do not use, no functionality */
 	@Override
 	public void addListener(InvalidationListener listener) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	/** Do not use, no functionality */
@@ -40,6 +38,7 @@ public class ObservableContentView implements ObservableValue<ContentView> {
 	@Override
 	public void addListener(ChangeListener<? super ContentView> listener) {
 		listeners.add(listener);
+		System.out.println("Injecting " + listener);
 	}
 
 	@Override
