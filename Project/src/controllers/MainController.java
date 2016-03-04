@@ -43,13 +43,16 @@ public class MainController implements Initializable {
 	@FXML private NavigationButton navButton4;
 	
 	private Pane dummyPane = new Pane();
+	@FXML private Pane recipePane;
 	@FXML private Pane purchasePane;
 	@FXML private Pane credentialsPane;
 	@FXML private Pane storePane;
 	@FXML private Pane shoppingCart;
+
 	@FXML private ModalPopup purchaseHistoryPopup;
 	@FXML private ModalPopup loadListPopup;
 	@FXML private ModalPopup saveListPopup;
+
 	@FXML private StoreController storePaneController;
 	@FXML private CredentialsController credentialsPaneController;
 	@FXML private PurchaseController purchasePaneController;
@@ -57,12 +60,10 @@ public class MainController implements Initializable {
 	@FXML private LoadListController loadListPopupController;
 	@FXML private SaveListController saveListPopupController;
 	@FXML private ShoppingCartController shoppingCartController;
+	@FXML private RecipeController recipeController;
+
 	@FXML private SplitPane splitPane;
 
-	// Recipe
-	@FXML private ModalPopup recipePopup;
-	@FXML private RecipeController recipeController;
-	
 	@FXML private StackPane wrapperStackPane;
 	@FXML private VBox mainContentWrapper;
 	
@@ -85,11 +86,13 @@ public class MainController implements Initializable {
 		ContentView storeView = new ContentView(storePane);
 		ContentView credentialsView = new ContentView(credentialsPane);
 		ContentView purchaseView = new ContentView(purchasePane);
+		ContentView recipeView = new ContentView(recipePane);
 		ContentView dummyView = new ContentView(dummyPane);
 		
 		viewDisplay.addView(storeView);
 		viewDisplay.addView(credentialsView);
 		viewDisplay.addView(purchaseView);
+		viewDisplay.addView(recipeView);
 		viewDisplay.addView(dummyView);
 		
 		//Set next & previous relationships
@@ -97,7 +100,9 @@ public class MainController implements Initializable {
 		credentialsView.setNext(purchaseView);
 		credentialsView.setPrevious(storeView);
 		purchaseView.setPrevious(credentialsView);
-		purchaseView.setNext(dummyView);
+		purchaseView.setNext(recipeView);
+		recipeView.setPrevious(purchaseView);
+		recipeView.setNext(dummyView);
 		
 		//Show the store
 		viewDisplay.show(storeView);
@@ -119,14 +124,13 @@ public class MainController implements Initializable {
 		shoppingCartController.getShoppingListButton().setOnAction(e -> loadListPopup.show());
 		shoppingCartController.getSaveListButton().setOnAction(e -> saveListPopup.show());
 
-
-		purchasePaneController.mainController = this;
-
 		//Setup validations
 		setupStoreValidation();
 		setupCredentialsViewValidation();
 		setupPurchaseViewValidation();
 		setupNavButton4Valiation();
+
+
 	}
 	
 	private final BooleanBinding CART_NONEMPTY = Bindings.createBooleanBinding(() -> !cartHandler.emptyProperty().get(), cartHandler.emptyProperty());
@@ -223,9 +227,6 @@ public class MainController implements Initializable {
 			};
 	}
 	
-	public void showRecipePopup(){
-		recipePopup.show();
-	}
-	
+
 	public static ArrowButton leftButton;
 }
