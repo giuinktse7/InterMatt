@@ -65,7 +65,6 @@ public class ContentView {
 	 */
 	public void setPrevious(ContentView view) {
 		this.previous = view;
-
 		ArrowButton leftArrow = MainController.get().getArrowButton(Direction.LEFT);
 		//If previous view is null, always have leftArrow disabled for this view.
 		if (view == null)
