@@ -29,11 +29,11 @@
 				<Font name="System Italic" size="16.0" />
 			</font>
 		</Label>
-		<Button fx:id="gotoShoppingListButton" alignment="CENTER" layoutX="-4.0" layoutY="234.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="66.0" prefWidth="170.0" text="Inköpslistor" textAlignment="RIGHT" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="180.0">
+		<Button fx:id="gotoShoppingListButton" alignment="CENTER" layoutX="-4.0" layoutY="234.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="66.0" prefWidth="170.0" styleClass="shopping-cart-button" text="Inköpslistor" textAlignment="RIGHT" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="180.0">
          <font>
             <Font name="Helvetica" size="19.0" />
          </font></Button>
-      <Button fx:id="saveShoppingListButton" alignment="CENTER" layoutX="186.0" layoutY="257.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="164.0" text="Spara lista" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="7.0">
+      <Button fx:id="saveShoppingListButton" alignment="CENTER" layoutX="186.0" layoutY="257.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="164.0" styleClass="shopping-cart-button" text="Spara lista" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="7.0">
          <font>
             <Font size="19.0" />
          </font></Button>
