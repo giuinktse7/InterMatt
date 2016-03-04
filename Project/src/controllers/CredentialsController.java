@@ -54,7 +54,7 @@ public class CredentialsController implements Initializable {
 				newValue = oldValue;
 			}
 			if (newValue.length() > 10){
-				txtPostalcode.setText(txtPostalcode.getText().substring(0,10));
+				txtSSN.setText(txtSSN.getText().substring(0,10));
 			}
 			if (newValue.length() == 10){
 				// select next button maybe..
