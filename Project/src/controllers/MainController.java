@@ -10,10 +10,11 @@ import control.ArrowButton;
 import control.ModalPopup;
 import control.NavigationButton;
 import interfaces.Action;
-import interfaces.MultiAction;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -35,6 +36,7 @@ public class MainController implements Initializable {
 	@FXML private ArrowButton nextButton;
 	@FXML private Button purchaseHistoryButton;
 	
+	//Used for the drag & drop functionality
 	private final int AVG = 1374;
 
 	private static MainController me;
@@ -44,16 +46,28 @@ public class MainController implements Initializable {
 	@FXML private NavigationButton btnToStore;
 	@FXML private NavigationButton btnToCredentials;
 	@FXML private NavigationButton btnToPurchase;
-	@FXML private NavigationButton navButton4;
+	@FXML private NavigationButton btnToReceipt;
 	
 	private Pane dummyPane = new Pane();
-	@FXML private Pane purchasePane;
-	@FXML private Pane credentialsPane;
-	@FXML private Pane storePane;
+	
+	//The close-to-root stuff
 	@FXML private Pane shoppingCart;
+	@FXML private SplitPane splitPane;
+	@FXML private StackPane wrapperStackPane;
+	@FXML private VBox mainContentWrapper;
+	
+	//The different views
+	@FXML private Pane storePane;
+	@FXML private Pane credentialsPane;
+	@FXML private Pane purchasePane;
+	@FXML private Pane receiptPane;
+	
+	//Popups
 	@FXML private ModalPopup purchaseHistoryPopup;
 	@FXML private ModalPopup loadListPopup;
 	@FXML private ModalPopup saveListPopup;
+	
+	//Controllers
 	@FXML private StoreController storePaneController;
 	@FXML private CredentialsController credentialsPaneController;
 	@FXML private PurchaseController purchasePaneController;
@@ -61,57 +75,59 @@ public class MainController implements Initializable {
 	@FXML private LoadListController loadListPopupController;
 	@FXML private SaveListController saveListPopupController;
 	@FXML private ShoppingCartController shoppingCartController;
-	@FXML private SplitPane splitPane;
-
-	// Recipe
-	@FXML private Pane recipePane;
-
-	@FXML private StackPane wrapperStackPane;
-	@FXML private VBox mainContentWrapper;
 	
 	ViewDisplay viewDisplay;
 	
 	private ShoppingCartHandler cartHandler = ShoppingCartHandler.getInstance();
 	
 	public void initialize(URL url, ResourceBundle bundle) {
-		leftButton = this.prevButton;
+		prevButton.disable();
+		nextButton.disable();
 		
-		nextButton.setDisable(true);
-		prevButton.setDisable(true);
 		
 		me = this;
-		configurePopupStackPane();
+		
+		//Give the popup-system required panes
+		ModalPopup.initialize(wrapperStackPane, mainContentWrapper);
+		
+		//Start viewDisplay-system
 		viewDisplay = new ViewDisplay(contentPane);
 		NavigationButton.setViewDisplay(viewDisplay);
 		
+		//Create the views,
 		ContentView storeView = new ContentView(storePane);
 		ContentView credentialsView = new ContentView(credentialsPane);
 		ContentView purchaseView = new ContentView(purchasePane);
-		ContentView recipeView = new ContentView(recipePane);
+		ContentView receiptView = new ContentView(receiptPane);
 		ContentView dummyView = new ContentView(dummyPane);
 		
+		//and add the views to the viewDisplay
 		viewDisplay.addView(storeView);
 		viewDisplay.addView(credentialsView);
 		viewDisplay.addView(purchaseView);
-		viewDisplay.addView(recipeView);
+		viewDisplay.addView(receiptView);
 		viewDisplay.addView(dummyView);
+		
+		//Show the store
+		viewDisplay.show(storeView);
+		
+		//Define necessary bindings
+		PURCHASE_VIEW_ACTIVE = activeViewBinding("purchasePane");
+		RECEIPT_VIEW_ACTIVE = activeViewBinding("purchasePane");
+		
+		//Setup bindings that determine how you can move between views
+		setCredentialBinds();
+		setPurchaseBinds();
+		setReceiptBinds();
 		
 		//Set next & previous relationships
 		storeView.setNext(credentialsView);
 		credentialsView.setNext(purchaseView);
 		credentialsView.setPrevious(storeView);
 		purchaseView.setPrevious(credentialsView);
-		purchaseView.setNext(recipeView);
-		recipeView.setNext(storeView);
-		recipeView.setPrevious(dummyView);
-
-		
-		//Show the store
-		viewDisplay.show(storeView);
-		
-		//Set ON_LAST
-		PURCHASE_VIEW_ACTIVE = activeViewBinding("purchasePane");
-		RECEIPT_VIEW_ACTIVE = activeViewBinding("purchasePane");
+		purchaseView.setNext(receiptView);
+		receiptView.setNext(storeView);
+		receiptView.setPrevious(null);
 		
 		//Set actions for the previous & next buttons
 		prevButton.setDirection(Direction.LEFT);
@@ -120,25 +136,17 @@ public class MainController implements Initializable {
 		nextButton.setOnAction(event -> viewDisplay.next());
 		
 		//Initialize the navigation buttons
-		btnToStore.initialize(storeView, event -> viewDisplay.show(storeView), btnToCredentials);
-		btnToCredentials.initialize(credentialsView, event -> viewDisplay.show(credentialsView), btnToPurchase);
-		btnToPurchase.initialize(purchaseView, event -> viewDisplay.show(purchaseView), navButton4);
-		navButton4.initialize(recipeView, event -> viewDisplay.show(recipeView), null);
+		btnToStore.initialize(storeView,show(storeView),btnToCredentials);
+		btnToCredentials.initialize(credentialsView, show(credentialsView), btnToPurchase);
+		btnToPurchase.initialize(purchaseView, show(purchaseView), btnToReceipt);
+		btnToReceipt.initialize(receiptView, show(receiptView), null);
 		
 		//Setup the different popup buttons
 		purchaseHistoryButton.setOnAction(event -> { purchaseHistoryPopupController.update(); purchaseHistoryPopup.show(); });
-		purchaseHistoryPopupController.setCloseAction(() -> purchaseHistoryPopup.hide());
 		shoppingCartController.getShoppingListButton().setOnAction(e -> loadListPopup.show());
 		shoppingCartController.getSaveListButton().setOnAction(e -> saveListPopup.show());
 
-
-
-		//Setup validations
-		setupStoreValidation();
-		setupCredentialsViewValidation();
-		setupPurchaseViewValidation();
-		setupNavButton4Valiation();
-
+		//Drag & drop:  resizing of window to 'highlight' the shopping cart.
 		purchaseHistoryPopup.setOnDragOver(e -> {
 			purchaseHistoryPopup.setMaxWidth(1000 + (nextButton.getScene().getWidth() - AVG) / 2);
 			purchaseHistoryPopup.setPrefWidth(1000 + (nextButton.getScene().getWidth() - AVG) / 2);
@@ -147,34 +155,26 @@ public class MainController implements Initializable {
 	}
 	
 	private final BooleanBinding CART_NONEMPTY = Bindings.createBooleanBinding(() -> !cartHandler.emptyProperty().get(), cartHandler.emptyProperty());
-	private final BooleanBinding CART_EMPTY = Bindings.createBooleanBinding(() -> cartHandler.emptyProperty().get(), cartHandler.emptyProperty());
 	private BooleanBinding PURCHASE_VIEW_ACTIVE;
 	private BooleanBinding RECEIPT_VIEW_ACTIVE;
 	
+	/** Creates a binding that is true when the active view is the view with "css-id" <code>ID</code> */
 	private BooleanBinding activeViewBinding(String ID) {
 		SimpleBooleanProperty isActiveView = new SimpleBooleanProperty(false);
 		viewDisplay.getCurrentView().addListener((obs, oldValue, newValue) ->  isActiveView.set(viewDisplay.getCurrentView().getValue().getID().equals("purchasePane")));
 		BooleanBinding binding = Bindings.createBooleanBinding(() -> isActiveView.get(), isActiveView);
-		binding.addListener((obs, o, n) -> System.out.println("We are on " + ID));
 		
 		return binding;
 	}
 	
-	private void setupStoreValidation() {
-		ContentView view = viewDisplay.getView(storePane);
-		view.getBindingGroup().setName("storeViewGroup");
-		
-		view.getBindingGroup().setOnTrueAction(disableButton(prevButton, storePane));
-	}
-	
-	private void setupCredentialsViewValidation() {
+	private void setCredentialBinds() {
 		ContentView view = viewDisplay.getView(credentialsPane);
 		
 		BindingGroup group = btnToCredentials.getBindingGroup();
 		group.addBinding(CART_NONEMPTY);
 		group.setOnFalseAction(() -> {
 			ContentView store = viewDisplay.getView(storePane);
-			if (!viewDisplay.getCurrentView().getValue().equals(store) && !viewDisplay.getCurrentView().getValue().getID().equals("recipePane"))
+			if (!viewDisplay.getCurrentView().getValue().equals(store) && !viewDisplay.getCurrentView().getValue().getID().equals("receiptPane"))
 				viewDisplay.show(store);
 			
 			btnToCredentials.setDisable(true);
@@ -182,40 +182,29 @@ public class MainController implements Initializable {
 		view.getBindingGroup().setName("credentialsViewGroup");
 		view.getBindingGroup().setAll(group.getBinds());
 		
-		//If we are on storePane and can't go to credentialsPane, disable nextButton
-		view.getBindingGroup().setOnTrueAction(new MultiAction(
-				enableButton(nextButton, storePane),
-				enableButton(prevButton, purchasePane),
-				enableButton(prevButton, credentialsPane)));
-		
-		view.getBindingGroup().setOnFalseAction(disableButton(nextButton, storePane));
+		hej
 	}
 	
-	private void setupPurchaseViewValidation() {
+	/** Event that shows the view <code>view</code> */
+	private EventHandler<ActionEvent> show(ContentView view) {
+		return e -> viewDisplay.show(view);
+	}
+	
+	private void setPurchaseBinds() {
 		ContentView view = viewDisplay.getView(purchasePane);
 		view.getBindingGroup().setName("purchaseViewGroup");
 		BindingGroup group = btnToPurchase.getBindingGroup();
 		group.addBindings(credentialsPaneController.getBindings());
 		
 		view.getBindingGroup().setAll(group.getBinds());
-		
-		//If we are on credentialsPane and can't go to purchasePane, disable nextButton
-		view.getBindingGroup().setOnTrueAction(enableButton(nextButton, credentialsPane));
-		view.getBindingGroup().setOnFalseAction(disableButton(nextButton, credentialsPane));
 	}
 	
-	private void setupNavButton4Valiation() {
-		ContentView view = viewDisplay.getView(recipePane);
-		BindingGroup group = navButton4.getBindingGroup();
+	private void setReceiptBinds() {
+		ContentView view = viewDisplay.getView(receiptPane);
+		BindingGroup group = btnToReceipt.getBindingGroup();
 		group.addBinding(PURCHASE_VIEW_ACTIVE.or(RECEIPT_VIEW_ACTIVE));
 		
 		view.getBindingGroup().setAll(group.getBinds());
-		
-		view.getBindingGroup().setOnTrueAction(disableButton(prevButton, recipePane));
-	}
-	
-	private void configurePopupStackPane() {
-		ModalPopup.initialize(wrapperStackPane, mainContentWrapper);
 	}
 	
 	public void finishPurchase() {
@@ -268,5 +257,10 @@ public class MainController implements Initializable {
 	//	viewDisplay.show(viewDisplay.get);
 	}
 	
-	public static ArrowButton leftButton;
+	public ArrowButton getArrowButton(Direction direction) {
+		if (direction == Direction.LEFT)
+			return prevButton;
+		else
+			return nextButton;
+	}
 }

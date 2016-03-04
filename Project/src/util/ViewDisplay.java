@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.sun.javafx.scene.traversal.Direction;
+
 import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.Order;
 import se.chalmers.ait.dat215.project.ShoppingItem;
@@ -21,7 +23,7 @@ public class ViewDisplay {
 	
 	private ContentView first;
 	private Map<Node, ContentView> views = new HashMap<Node, ContentView>();
-	private ObservableContentView currentView = new ObservableContentView(null);
+	private ObservableContentView currentView = new ObservableContentView(new ContentView(null));
 
 	public ViewDisplay(Pane area) {
 		this.area = area;
@@ -36,7 +38,13 @@ public class ViewDisplay {
 			return;
 		
 		area.getChildren().setAll(view.getContent());
+		
+		//Mark the old view as inactive
+		currentView.getValue().setActive(false);
+		
+		//Add new view and mark it as active
 		currentView.setValue(view);
+		view.setActive(true);
 		
 		//Update arrows
 		view.getBindingGroup().refreshAND();
@@ -48,9 +56,9 @@ public class ViewDisplay {
 			view.previous().getBindingGroup().refreshAND();
 		
 		if (view.equals(first))
-			MainController.leftButton.disable();
+			MainController.get().getArrowButton(Direction.LEFT).disable();
 		
-		if (view.getID().equals("recipePane"))
+		if (view.getID().equals("receiptPane"))
 			reset();
 
 		if (view.getID().equals("credentialsPane")){
@@ -90,10 +98,6 @@ public class ViewDisplay {
 		RecipeController.getInstance().setPaymentText(InformationStorage.getPaymentType());
 		/** Rensa alla vyer */
 	}
-	
-	public void show(Node node) {
-		show(views.get(node));
-	}
 
 	public void next() {
 		show(currentView.getValue().next());
@@ -127,13 +131,9 @@ public class ViewDisplay {
 		return views.get(pane);
 	}
 	
-	/** Gets a view. NOTE: Does not return the current view. Use getCurrentView().getValue() for that.  */
-	/*public ContentView getView(String ID) {
-		ContentView view;
-		//for (Map.Entry<Node, ContentView> entry : views.entrySet())
-			
-		//return views.get(pane);
-	}*/
+	public static void show(ViewDisplay viewDisplay, ContentView view) {
+		viewDisplay.show(view);
+	}
 	
 	
 }

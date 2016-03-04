@@ -42,9 +42,6 @@ public class PurchaseHistoryController implements Initializable {
 		ordersList.setOrientation(Orientation.HORIZONTAL);
 	}
 	
-	public void setCloseAction(Action c) {
-	}
-	
 	public void update() {
 		
 		List<Order> orders = db.getOrders();

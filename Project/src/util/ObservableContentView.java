@@ -38,7 +38,6 @@ public class ObservableContentView implements ObservableValue<ContentView> {
 	@Override
 	public void addListener(ChangeListener<? super ContentView> listener) {
 		listeners.add(listener);
-		System.out.println("Injecting " + listener);
 	}
 
 	@Override

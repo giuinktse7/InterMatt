@@ -16,6 +16,7 @@ public class ArrowButton extends Button {
 	public ArrowButton() {
 		getStyleClass().add("navigation-button");
 		disabledProperty().addListener((obs, oldValue, newValue) -> updateImage());
+		onActionProperty().addListener((obs, o, n) -> System.out.println("<<<<<CHANGED>>>>>"));
 	}
 	
 	public void setDirection(Direction Dir) {
@@ -44,7 +45,6 @@ public class ArrowButton extends Button {
 	
 	private void updateImage() {
 		ImageView graphic = isDisabled() ? images[DISABLED] : images[ENABLED];
-		
 		setGraphic(graphic);
 	}
 	

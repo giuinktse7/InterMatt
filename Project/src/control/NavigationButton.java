@@ -111,7 +111,7 @@ public class NavigationButton extends Button {
 		a.add("btnToStore");
 		a.add("btnToCredentials");
 		a.add("btnToPurchase");
-		a.add("navButton4");
+		a.add("btnToReceipt");
 		
 		return a.indexOf(getId()) + 1;
 	}
