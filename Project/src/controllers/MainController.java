@@ -60,9 +60,8 @@ public class MainController implements Initializable {
 	@FXML private SplitPane splitPane;
 
 	// Recipe
-	@FXML private ModalPopup recipePopup;
-	@FXML private RecipeController recipeController;
-	
+	@FXML private Pane recipePane;
+
 	@FXML private StackPane wrapperStackPane;
 	@FXML private VBox mainContentWrapper;
 	
@@ -85,6 +84,7 @@ public class MainController implements Initializable {
 		ContentView storeView = new ContentView(storePane);
 		ContentView credentialsView = new ContentView(credentialsPane);
 		ContentView purchaseView = new ContentView(purchasePane);
+		ContentView recipeView = new ContentView(recipePane);
 		ContentView dummyView = new ContentView(dummyPane);
 		
 		viewDisplay.addView(storeView);
@@ -97,7 +97,8 @@ public class MainController implements Initializable {
 		credentialsView.setNext(purchaseView);
 		credentialsView.setPrevious(storeView);
 		purchaseView.setPrevious(credentialsView);
-		purchaseView.setNext(dummyView);
+		purchaseView.setNext(recipeView);
+
 		
 		//Show the store
 		viewDisplay.show(storeView);
@@ -220,10 +221,6 @@ public class MainController implements Initializable {
 			if (isCurrentView(pane))
 				button.enable(); 
 			};
-	}
-	
-	public void showRecipePopup(){
-		recipePopup.show();
 	}
 	
 	public static ArrowButton leftButton;
