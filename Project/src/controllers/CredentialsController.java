@@ -5,6 +5,7 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
 
@@ -24,6 +25,8 @@ public class CredentialsController implements Initializable {
 	@FXML private TextField txtCity;
 	@FXML private TextField txtEmail;
 
+	@FXML private CheckBox cb_save_credentials;
+
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -34,6 +37,19 @@ public class CredentialsController implements Initializable {
 		txtPostalcode.setText(db.getCustomer().getPostCode());
 		txtCity.setText(db.getCustomer().getPostAddress());
 
+
+		txtSSN.textProperty().addListener((observable, oldValue, newValue) -> {
+			if (!newValue.matches("\\d*")) {
+				txtSSN.setText(oldValue);
+				newValue = oldValue;
+			}
+			if (newValue.length() > 10){
+				txtSSN.setText(txtSSN.getText().substring(0,10));
+			}
+//			if (newValue.length() == 10){
+				// select next button maybe..
+//			}
+		});
 
 		txtPostalcode.textProperty().addListener((observable, oldValue, newValue) -> {
 			if (!newValue.matches("\\d*")) {
@@ -47,29 +63,17 @@ public class CredentialsController implements Initializable {
 				txtCity.requestFocus();
 			}
 		});
-
-		txtSSN.textProperty().addListener((observable, oldValue, newValue) -> {
-			if (!newValue.matches("\\d*")) {
-				txtSSN.setText(oldValue);
-				newValue = oldValue;
-			}
-			if (newValue.length() > 10){
-				txtPostalcode.setText(txtPostalcode.getText().substring(0,10));
-			}
-			if (newValue.length() == 10){
-				// select next button maybe..
-			}
-		});
-
 	}
 
 	public void save_user_data(){
-		db.getCustomer().setLastName(txtLastname.getText());
-		db.getCustomer().setFirstName(txtFirstname.getText());
-		db.getCustomer().setPhoneNumber(txtSSN.getText());
-		db.getCustomer().setAddress(txtAdress.getText());
-		db.getCustomer().setPostCode(txtPostalcode.getText());
-		db.getCustomer().setPostAddress(txtCity.getText());
+		if (cb_save_credentials.isSelected()) {
+			db.getCustomer().setLastName(txtLastname.getText());
+			db.getCustomer().setFirstName(txtFirstname.getText());
+			db.getCustomer().setPhoneNumber(txtSSN.getText());
+			db.getCustomer().setAddress(txtAdress.getText());
+			db.getCustomer().setPostCode(txtPostalcode.getText());
+			db.getCustomer().setPostAddress(txtCity.getText());
+		}
 	}
 
 
