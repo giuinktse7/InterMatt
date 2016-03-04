@@ -47,6 +47,14 @@ public class ViewDisplay {
 		
 		if (view.getID().equals("recipePane"))
 			reset();
+
+		if (view.getID().equals("credentialsPane")){
+			MainController.get().restoreUserData();
+		}
+
+		if (view.getID().equals("purchasePane")){
+			MainController.get().saveUserData();
+		}
 	}
 	
 	public void reset(){

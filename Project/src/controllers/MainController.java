@@ -35,7 +35,7 @@ public class MainController implements Initializable {
 	@FXML private Button purchaseHistoryButton;
 	
 	private final int AVG = 1374;
-	
+
 	private static MainController me;
 	private static IMatDataHandler db = IMatDataHandler.getInstance();
 	
@@ -93,6 +93,7 @@ public class MainController implements Initializable {
 		viewDisplay.addView(storeView);
 		viewDisplay.addView(credentialsView);
 		viewDisplay.addView(purchaseView);
+		viewDisplay.addView(recipeView);
 		viewDisplay.addView(dummyView);
 		
 		//Set next & previous relationships
@@ -130,7 +131,7 @@ public class MainController implements Initializable {
 		setupCredentialsViewValidation();
 		setupPurchaseViewValidation();
 		setupNavButton4Valiation();
-		
+
 		purchaseHistoryPopup.setOnDragOver(e -> {
 			purchaseHistoryPopup.setMaxWidth(1000 + (nextButton.getScene().getWidth() - AVG) / 2);
 			purchaseHistoryPopup.setPrefWidth(1000 + (nextButton.getScene().getWidth() - AVG) / 2);
@@ -199,11 +200,24 @@ public class MainController implements Initializable {
 	}
 	
 	public void finishPurchase() {
-		List<ShoppingItem> items = ShoppingCartHandler.getInstance().getCartItems();
+		ShoppingCartHandler handler = ShoppingCartHandler.getInstance();
+		List<ShoppingItem> items = handler.getCartItems();
 		
 		items.forEach(item -> db.getShoppingCart().addItem(item));
+
+
 		db.placeOrder();
-		//viewDisplay.show(storePane);
+		handler.clearCart();
+		viewDisplay.show(storePane);
+		db.shutDown();
+	}
+
+	public void restoreUserData(){
+		credentialsPaneController.restore_user_data();
+	}
+
+	public void saveUserData(){
+		credentialsPaneController.save_user_data();
 	}
 	
 	public static MainController get() {

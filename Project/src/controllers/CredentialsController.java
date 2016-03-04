@@ -30,14 +30,6 @@ public class CredentialsController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		txtLastname.setText(db.getCustomer().getLastName());
-		txtFirstname.setText(db.getCustomer().getFirstName());
-		txtSSN.setText(db.getCustomer().getPhoneNumber());
-		txtAdress.setText(db.getCustomer().getAddress());
-		txtPostalcode.setText(db.getCustomer().getPostCode());
-		txtCity.setText(db.getCustomer().getPostAddress());
-
-
 		txtSSN.textProperty().addListener((observable, oldValue, newValue) -> {
 			if (!newValue.matches("\\d*")) {
 				txtSSN.setText(oldValue);
@@ -47,7 +39,7 @@ public class CredentialsController implements Initializable {
 				txtSSN.setText(txtSSN.getText().substring(0,10));
 			}
 //			if (newValue.length() == 10){
-				// select next button maybe..
+			// select next button maybe..
 //			}
 		});
 
@@ -73,20 +65,31 @@ public class CredentialsController implements Initializable {
 			db.getCustomer().setAddress(txtAdress.getText());
 			db.getCustomer().setPostCode(txtPostalcode.getText());
 			db.getCustomer().setPostAddress(txtCity.getText());
+			db.getCustomer().setEmail(txtEmail.getText());
+			System.out.println("Saving user data");
 		}
 	}
 
-
+	public void restore_user_data(){
+		System.out.println("Restoring user data for: " + db.getCustomer().getFirstName());
+		txtLastname.setText(db.getCustomer().getLastName());
+		txtFirstname.setText(db.getCustomer().getFirstName());
+		txtSSN.setText(db.getCustomer().getPhoneNumber());
+		txtAdress.setText(db.getCustomer().getAddress());
+		txtPostalcode.setText(db.getCustomer().getPostCode());
+		txtCity.setText(db.getCustomer().getPostAddress());
+		txtEmail.setText(db.getCustomer().getEmail());
+	}
 
 	private BooleanBinding emptyTextFieldBinding(TextField textField ) {
 		BooleanBinding binding = createBinding(textField, NON_EMPTY );
-		binding.addListener((obs, oldValue, newValue) -> { 
+		binding.addListener((obs, oldValue, newValue) -> {
 			if (!newValue) {
 				textField.getStyleClass().add("bad-input");
 			} else {
 				textField.getStyleClass().remove("bad-input");
 			}
-			
+
 		});
 		return binding;
 	}
@@ -99,7 +102,6 @@ public class CredentialsController implements Initializable {
 			}else{
 				textField.getStyleClass().remove("bad-input");
 			}
-
 		});
 		return binding;
 	}
@@ -131,7 +133,7 @@ public class CredentialsController implements Initializable {
 	}
 
 
-	
+
 	public BooleanBinding[] getBindings() {
 		return new BooleanBinding[] { emptyTextFieldBinding(txtLastname), emptyTextFieldBinding(txtFirstname),
 				ssnFieldBinding(txtSSN), emptyTextFieldBinding(txtAdress), postalFieldBinding(txtPostalcode),
