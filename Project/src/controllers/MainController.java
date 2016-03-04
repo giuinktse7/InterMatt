@@ -90,6 +90,7 @@ public class MainController implements Initializable {
 		viewDisplay.addView(storeView);
 		viewDisplay.addView(credentialsView);
 		viewDisplay.addView(purchaseView);
+		viewDisplay.addView(recipeView);
 		viewDisplay.addView(dummyView);
 		
 		//Set next & previous relationships
@@ -119,8 +120,6 @@ public class MainController implements Initializable {
 		purchaseHistoryPopupController.setCloseAction(() -> purchaseHistoryPopup.hide());
 		shoppingCartController.getShoppingListButton().setOnAction(e -> loadListPopup.show());
 		shoppingCartController.getSaveListButton().setOnAction(e -> saveListPopup.show());
-
-
 
 		//Setup validations
 		setupStoreValidation();
@@ -196,6 +195,15 @@ public class MainController implements Initializable {
 		
 		db.placeOrder();
 		viewDisplay.show(storePane);
+		db.shutDown();
+	}
+
+	public void restoreUserData(){
+		credentialsPaneController.restore_user_data();
+	}
+
+	public void saveUserData(){
+		credentialsPaneController.save_user_data();
 	}
 	
 	public static MainController get() {
