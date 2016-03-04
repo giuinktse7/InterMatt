@@ -22,8 +22,6 @@
 			maxHeight="-Infinity" source="load_list.fxml" />
 		<fx:include fx:id="saveListPopup" maxWidth="-Infinity"
 			maxHeight="-Infinity" source="save_list.fxml" />
-		<fx:include fx:id="recipePopup" maxWidth="-Infinity"
-			maxHeight="-Infinity" source="recipe.fxml" />
 		<VBox fx:id="mainContentWrapper">
 			<children>
 				<SplitPane fx:id="splitPane" dividerPositions="0.75"
@@ -41,6 +39,8 @@
 												<fx:include fx:id="purchasePane" source="purchase.fxml" />
 												<fx:include fx:id="credentialsPane" source="credentials.fxml" />
 												<fx:include fx:id="storePane" source="store.fxml" />
+												<fx:include fx:id="recipePane" source="recipe.fxml" />
+
 											</children>
 										</StackPane>
 									</children>
