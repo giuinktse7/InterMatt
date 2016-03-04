@@ -60,7 +60,6 @@ public class ViewDisplay {
 		 */
 		System.out.println("sdasdsad");
 		MainController.get().finishPurchase();
-		ShoppingCartHandler.getInstance().clearCart();
 		/** Rensa alla vyer */
 	}
 	
