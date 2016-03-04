@@ -263,8 +263,9 @@ public class MainController implements Initializable {
 			};
 	}
 	
+	// TODO Fix when home, use by the button in the last view
 	public void setViewDisplay(String ID) {
-		viewDisplay.show(viewDisplay.get);
+	//	viewDisplay.show(viewDisplay.get);
 	}
 	
 	public static ArrowButton leftButton;
