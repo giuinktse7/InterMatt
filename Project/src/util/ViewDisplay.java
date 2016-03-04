@@ -107,7 +107,7 @@ public class ViewDisplay {
 		show(currentView.getValue().previous());
 	}
 
-	public ObservableValue<ContentView> getCurrentView() {
+	public ObservableContentView getCurrentView() {
 		return this.currentView;
 	}
 	

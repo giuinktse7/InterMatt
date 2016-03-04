@@ -65,84 +65,134 @@
 						</AnchorPane>
 					</items>
 				</SplitPane>
-				<AnchorPane prefHeight="103.0" prefWidth="1057.0"
-					styleClass="base-style">
+
+				<AnchorPane stylesheets="@../styling/navigation_bar.css"
+					prefHeight="103.0" prefWidth="1057.0" styleClass="base-style"
+					xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
 					<children>
-						<HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0"
-							AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-							AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+						<HBox alignment="TOP_CENTER" layoutX="140.0" prefHeight="135.0"
+							prefWidth="917.0" AnchorPane.bottomAnchor="0.0"
+							AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="140.0"
+							AnchorPane.topAnchor="0.0">
 							<children>
-								<NavigationButton fx:id="btnToStore" minHeight="60.0"
-									minWidth="60.0" mnemonicParsing="false" prefHeight="60.0"
-									prefWidth="60.0" styleClass="nav-button">
-									<graphic>
-										<ImageView fitHeight="80.0" fitWidth="80.0"
-											pickOnBounds="true" preserveRatio="true">
-											<image>
-												<Image url="@../resources/previous1.png" />
-											</image>
-										</ImageView>
-									</graphic>
-									<HBox.margin>
-										<Insets right="50.0" />
-									</HBox.margin>
-								</NavigationButton>
-								<NavigationButton fx:id="btnToCredentials"
-									disable="true" minHeight="64.0" minWidth="64.0"
-									mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0"
-									styleClass="nav-button">
-									<graphic>
-										<ImageView fitHeight="80.0" fitWidth="80.0"
-											pickOnBounds="true" preserveRatio="true">
-											<image>
-												<Image url="@../resources/thisPage2.png" />
-											</image>
-										</ImageView>
-									</graphic>
-									<HBox.margin>
-										<Insets right="50.0" />
-									</HBox.margin>
-								</NavigationButton>
-								<NavigationButton fx:id="btnToPurchase"
-									disable="true" minHeight="60.0" minWidth="60.0"
-									mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0"
-									styleClass="nav-button">
-									<graphic>
-										<ImageView disable="true" fitHeight="80.0" fitWidth="80.0"
-											pickOnBounds="true" preserveRatio="true">
-											<image>
-												<Image url="@../resources/disabled3.png" />
-											</image>
-										</ImageView>
-									</graphic>
-									<HBox.margin>
-										<Insets right="50.0" />
-									</HBox.margin>
-								</NavigationButton>
-								<NavigationButton fx:id="btnToReceipt" disable="true"
-									minHeight="60.0" minWidth="60.0" mnemonicParsing="false"
-									prefHeight="60.0" prefWidth="60.0" styleClass="nav-button">
-									<graphic>
-										<ImageView fitHeight="80.0" fitWidth="80.0"
-											pickOnBounds="true" preserveRatio="true">
-											<image>
-												<Image url="@../resources/disabled4.png" />
-											</image>
-										</ImageView>
-									</graphic>
-									<HBox.margin>
-										<Insets right="50.0" />
-									</HBox.margin>
-								</NavigationButton>
+								<VBox alignment="CENTER">
+									<children>
+										<NavigationButton fx:id="btnToStore"
+											minHeight="60.0" minWidth="60.0" mnemonicParsing="false"
+											prefHeight="60.0" prefWidth="60.0" styleClass="nav-button">
+											<graphic>
+												<ImageView fitHeight="80.0" fitWidth="80.0"
+													pickOnBounds="true" preserveRatio="true">
+													<image>
+														<Image url="@../resources/previous1.png" />
+													</image>
+												</ImageView>
+											</graphic>
+										</NavigationButton>
+										<Label fx:id="storeLabel" styleClass="navigation-info"
+											text="1. Välj varor">
+											<VBox.margin>
+												<Insets top="7.0" />
+											</VBox.margin>
+										</Label>
+									</children>
+								</VBox>
+								<ImageView fitHeight="57"
+									pickOnBounds="true" preserveRatio="true">
+									<image>
+										<Image url="@../resources/styleArrow.png" />
+									</image>
+								</ImageView>
+								<VBox alignment="CENTER">
+									<children>
+										<NavigationButton fx:id="btnToCredentials"
+											disable="true" minHeight="64.0" minWidth="64.0"
+											mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0"
+											styleClass="nav-button">
+											<graphic>
+												<ImageView fitHeight="80.0" fitWidth="80.0"
+													pickOnBounds="true" preserveRatio="true">
+													<image>
+														<Image url="@../resources/thisPage2.png" />
+													</image>
+												</ImageView>
+											</graphic>
+										</NavigationButton>
+										<Label fx:id="credentialsLabel" styleClass="navigation-info"
+											text="2. Uppgifter">
+											<VBox.margin>
+												<Insets top="7.0" />
+											</VBox.margin>
+										</Label>
+									</children>
+								</VBox>
+								<ImageView fitHeight="57"
+									pickOnBounds="true" preserveRatio="true">
+									<image>
+										<Image url="@../resources/styleArrow.png" />
+									</image>
+								</ImageView>
+								<VBox alignment="CENTER">
+									<children>
+										<NavigationButton fx:id="btnToPurchase"
+											disable="true" minHeight="60.0" minWidth="60.0"
+											mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0"
+											styleClass="nav-button">
+											<graphic>
+												<ImageView disable="true" fitHeight="80.0"
+													fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+													<image>
+														<Image url="@../resources/disabled3.png" />
+													</image>
+												</ImageView>
+											</graphic>
+										</NavigationButton>
+										<Label fx:id="purchaseLabel" styleClass="navigation-info"
+											text="3. Betala">
+											<VBox.margin>
+												<Insets top="7.0" />
+											</VBox.margin>
+										</Label>
+									</children>
+								</VBox>
+								<ImageView fitHeight="57" pickOnBounds="true"
+									preserveRatio="true">
+									<image>
+										<Image url="@../resources/styleArrow.png" />
+									</image>
+								</ImageView>
+								<VBox alignment="CENTER">
+									<children>
+										<NavigationButton fx:id="btnToReceipt"
+											disable="true" minHeight="60.0" minWidth="60.0"
+											mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0"
+											styleClass="nav-button">
+											<graphic>
+												<ImageView fitHeight="80.0" fitWidth="80.0"
+													pickOnBounds="true" preserveRatio="true">
+													<image>
+														<Image url="@../resources/disabled4.png" />
+													</image>
+												</ImageView>
+											</graphic>
+										</NavigationButton>
+										<Label fx:id="receiptLabel" styleClass="navigation-info"
+											text="4. Klar!">
+											<VBox.margin>
+												<Insets top="7.0" />
+											</VBox.margin>
+										</Label>
+									</children>
+								</VBox>
 							</children>
 						</HBox>
 						<ArrowButton fx:id="prevButton" minWidth="-Infinity"
-							mnemonicParsing="false" prefHeight="121.0" prefWidth="215.0"
-							styleClass="nav-button" AnchorPane.bottomAnchor="7.0"
-							AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="7.0">
+							mnemonicParsing="false" prefHeight="80.0" prefWidth="130.0"
+							styleClass="nav-button" AnchorPane.leftAnchor="7.0"
+							AnchorPane.topAnchor="7.0">
 							<graphic>
-								<ImageView fitWidth="90.0" pickOnBounds="true"
-									preserveRatio="true">
+								<ImageView fitHeight="80.0" fitWidth="90.0"
+									pickOnBounds="true" preserveRatio="true">
 									<image>
 										<Image url="@../resources/pilVänster.png" />
 									</image>
@@ -150,13 +200,12 @@
 							</graphic>
 						</ArrowButton>
 						<ArrowButton fx:id="nextButton" layoutX="1148.0"
-							minWidth="-Infinity" mnemonicParsing="false" prefHeight="121.0"
-							prefWidth="215.0" styleClass="nav-button"
-							AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="7.0"
+							minWidth="-Infinity" mnemonicParsing="false" prefHeight="80.0"
+							prefWidth="130.0" styleClass="nav-button" AnchorPane.rightAnchor="7.0"
 							AnchorPane.topAnchor="7.0">
 							<graphic>
-								<ImageView fitWidth="90.0" pickOnBounds="true"
-									preserveRatio="true">
+								<ImageView fitHeight="80.0" fitWidth="90.0"
+									pickOnBounds="true" preserveRatio="true">
 									<image>
 										<Image url="@../resources/pilHöger.png" />
 									</image>
@@ -165,6 +214,7 @@
 						</ArrowButton>
 					</children>
 				</AnchorPane>
+
 			</children>
 		</VBox>
 	</children>

@@ -44,10 +44,19 @@ public class ObservableContentView implements ObservableValue<ContentView> {
 	public ContentView getValue() {
 		return this.contentView;
 	}
+	
+	public ContentView getView() {
+		return this.contentView;
+	}
 
 	@Override
 	public void removeListener(ChangeListener<? super ContentView> listener) {
 		listeners.remove(listener);
+	}
+	
+	/** Returns the "css-ID" of the wrapped ContentView */
+	public String getID() {
+		return contentView.getID();
 	}
 
 }

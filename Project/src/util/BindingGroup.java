@@ -63,12 +63,12 @@ public class BindingGroup implements ObservableValue<Boolean> {
 	
 	
 	public void update() {
-		if (!state.get()) {
+	/*	if (!state.get()) {
 			onFalseAction.call();
 			return;
 		}
 		
-		onTrueAction.call();
+		onTrueAction.call();*/
 	}
 	
 	public void executeTrueAction() {

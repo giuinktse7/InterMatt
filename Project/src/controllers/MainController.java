@@ -19,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -35,6 +36,12 @@ public class MainController implements Initializable {
 	@FXML private ArrowButton prevButton;
 	@FXML private ArrowButton nextButton;
 	@FXML private Button purchaseHistoryButton;
+	
+	//Labels for describing the different steps
+	@FXML private Label storeLabel;
+	@FXML private Label credentialsLabel;
+	@FXML private Label purchaseLabel;
+	@FXML private Label receiptLabel;
 	
 	//Used for the drag & drop functionality
 	private final int AVG = 1374;
@@ -136,10 +143,10 @@ public class MainController implements Initializable {
 		nextButton.setOnAction(event -> viewDisplay.next());
 		
 		//Initialize the navigation buttons
-		btnToStore.initialize(storeView,show(storeView),btnToCredentials);
-		btnToCredentials.initialize(credentialsView, show(credentialsView), btnToPurchase);
-		btnToPurchase.initialize(purchaseView, show(purchaseView), btnToReceipt);
-		btnToReceipt.initialize(receiptView, show(receiptView), null);
+		btnToStore.initialize(storeView,show(storeView),btnToCredentials, storeLabel);
+		btnToCredentials.initialize(credentialsView, show(credentialsView), btnToPurchase, credentialsLabel);
+		btnToPurchase.initialize(purchaseView, show(purchaseView), btnToReceipt, purchaseLabel);
+		btnToReceipt.initialize(receiptView, show(receiptView), null, receiptLabel);
 		
 		//Setup the different popup buttons
 		purchaseHistoryButton.setOnAction(event -> { purchaseHistoryPopupController.update(); purchaseHistoryPopup.show(); });
@@ -172,17 +179,18 @@ public class MainController implements Initializable {
 		
 		BindingGroup group = btnToCredentials.getBindingGroup();
 		group.addBinding(CART_NONEMPTY);
-		group.setOnFalseAction(() -> {
-			ContentView store = viewDisplay.getView(storePane);
-			if (!viewDisplay.getCurrentView().getValue().equals(store) && !viewDisplay.getCurrentView().getValue().getID().equals("receiptPane"))
-				viewDisplay.show(store);
+		group.getState().addListener((obs, o, n) -> {
+			ContentView storeView = viewDisplay.getView(storePane);
+			ContentView receiptView = viewDisplay.getView(storePane);
+			ContentView currentView = viewDisplay.getCurrentView().getValue();
 			
-			btnToCredentials.setDisable(true);
-		});
-		view.getBindingGroup().setName("credentialsViewGroup");
-		view.getBindingGroup().setAll(group.getBinds());
+			if (!currentView.equals(storeView) && !currentView.equals(receiptView))
+				viewDisplay.show(storeView);
 		
-		hej
+		btnToCredentials.setDisable(true);
+		});
+		
+		view.getBindingGroup().setAll(group.getBinds());
 	}
 	
 	/** Event that shows the view <code>view</code> */
