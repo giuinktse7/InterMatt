@@ -3,6 +3,7 @@ package util;
 import java.util.HashMap;
 import java.util.Map;
 
+import se.chalmers.ait.dat215.project.IMatDataHandler;
 import controllers.MainController;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
@@ -43,6 +44,23 @@ public class ViewDisplay {
 		
 		if (view.equals(first))
 			MainController.leftButton.disable();
+		
+		if (view.getID().equals("recipePane"))
+			reset();
+	}
+	
+	public void reset(){
+		//TERMINATE EVERYTHING ON MIKAELS DEMAND
+		/*
+		 * 	
+		 * 		    \O/
+		 *  	     |
+		 *  __,-o_ 	/ \  _o-.__
+		 * 	  
+		 */
+		System.out.println("sdasdsad");
+		MainController.get().finishPurchase();
+		/** Rensa alla vyer */
 	}
 	
 	public void show(Node node) {

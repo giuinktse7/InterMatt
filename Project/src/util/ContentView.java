@@ -14,6 +14,7 @@ public class ContentView {
 	private ContentView previous;
 	private ContentView next;
 	
+	
 	public ContentView(Node content, ContentView previous, ContentView next, BooleanBinding requirement) {
 		this.content = content;
 		this.previous = previous;
