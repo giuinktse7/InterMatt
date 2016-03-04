@@ -8,14 +8,14 @@
 	-fx-glass-color: rgba(111.0, 194.0, 56.0, 0.9);
 	-fx-tab-bg-color: #36750f;
 	-fx-back-color: #6fc238;
-	-fx-start-color: #fafafa;
-	-fx-fruit-color: #9bc53d;
-	-fx-bread-color: #f0b67f;
-	-fx-meat-color: #e55934;
-	-fx-dairy-color: #5bc0eb;
-	-fx-cabinet-color: #fde74c;
-	-fx-fridaycuddling-color: #f45b69;
-	-fx-main-color: #fafafa;
+	-fx-start-color: #F3F3F3;
+	-fx-fruit-color: #90cf7d;
+	-fx-bread-color: #FDB827;
+	-fx-meat-color: #f8a762;
+	-fx-dairy-color: #e97577;
+	-fx-cabinet-color: #b577b6;
+	-fx-fridaycuddling-color: #4cbae6;
+	-fx-main-color: #F3F3F3;
 	
 	-itempane-color: white;
 	-buy-button-color: 	#b9d677;
