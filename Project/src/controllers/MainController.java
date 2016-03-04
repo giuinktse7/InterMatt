@@ -204,10 +204,10 @@ public class MainController implements Initializable {
 		List<ShoppingItem> items = handler.getCartItems();
 		
 		items.forEach(item -> db.getShoppingCart().addItem(item));
-		
-		handler.clearCart();
+
 
 		db.placeOrder();
+		handler.clearCart();
 		viewDisplay.show(storePane);
 		db.shutDown();
 	}
