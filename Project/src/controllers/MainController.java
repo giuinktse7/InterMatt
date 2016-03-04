@@ -199,12 +199,14 @@ public class MainController implements Initializable {
 	}
 	
 	public void finishPurchase() {
-		List<ShoppingItem> items = ShoppingCartHandler.getInstance().getCartItems();
+		ShoppingCartHandler handler = ShoppingCartHandler.getInstance();
+		List<ShoppingItem> items = handler.getCartItems();
 		
 		items.forEach(item -> db.getShoppingCart().addItem(item));
 		
+		handler.clearCart();
+		
 		db.placeOrder();
-		//viewDisplay.show(storePane);
 	}
 	
 	public static MainController get() {
