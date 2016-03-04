@@ -25,9 +25,7 @@ public class RecipeController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		pane_title.setText("Tack för ditt köp " + user_first + "!");
 		btnExit.setOnMouseClicked(e -> System.exit(0));
-	//	btnBackToStore.setOnMouseClicked(e -> System.);
-		
-		
+		//btnBackToStore.setOnMouseClicked(e -> );	
 	}
 	
 	
