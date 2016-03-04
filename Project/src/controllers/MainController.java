@@ -15,6 +15,7 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.Pane;
@@ -32,6 +33,8 @@ public class MainController implements Initializable {
 	@FXML private ArrowButton prevButton;
 	@FXML private ArrowButton nextButton;
 	@FXML private Button purchaseHistoryButton;
+	
+	private final int AVG = 1374;
 	
 	private static MainController me;
 	private static IMatDataHandler db = IMatDataHandler.getInstance();
@@ -127,6 +130,12 @@ public class MainController implements Initializable {
 		setupCredentialsViewValidation();
 		setupPurchaseViewValidation();
 		setupNavButton4Valiation();
+		
+		purchaseHistoryPopup.setOnDragOver(e -> {
+			purchaseHistoryPopup.setMaxWidth(1000 + (nextButton.getScene().getWidth() - AVG) / 2);
+			purchaseHistoryPopup.setPrefWidth(1000 + (nextButton.getScene().getWidth() - AVG) / 2);
+			purchaseHistoryPopup.getContent().setAlignment(Pos.CENTER_RIGHT);
+	});
 	}
 	
 	private final BooleanBinding CART_NONEMPTY = Bindings.createBooleanBinding(() -> !cartHandler.emptyProperty().get(), cartHandler.emptyProperty());
@@ -195,7 +204,7 @@ public class MainController implements Initializable {
 		items.forEach(item -> db.getShoppingCart().addItem(item));
 		
 		db.placeOrder();
-		viewDisplay.show(storePane);
+		//viewDisplay.show(storePane);
 	}
 	
 	public static MainController get() {
