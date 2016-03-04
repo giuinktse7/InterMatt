@@ -6,35 +6,35 @@
 /* Configure colors here and use derivations elsewhere*/
 
 .tab .tab-label {
-	-fx-text-fill: #202b19;
+	-fx-text-fill: #000000;
     -fx-font-family: "Helvetica";
 }
 
 /* Styling f�r subkategorier */
 .greens-tab-pane .tab {
-	-fx-background-color: #d7e7b1;
+	-fx-background-color: derive(-fx-fruit-color, +50%);
 }
 .meat-tab-pane .tab {
-	-fx-background-color: #f7cdc2;
+	-fx-background-color: derive(-fx-meat-color, +50%);
 }
 .cabinet-tab-pane .tab {
-	-fx-background-color: #fef7c9;
+	-fx-background-color: derive(-fx-cabinet-color, +50%);
 }
 .friday-cuddle-tab-pane .tab {
-	-fx-background-color: #fbcdd2;
+	-fx-background-color: derive(-fx-fridaycuddling-color, +50%);
 }
 
 .greens-tab-pane .tab:hover {
-	-fx-background-color: #f5f9eb;
+	-fx-background-color: derive(-fx-fruit-color, +75%);
 }
 .meat-tab-pane .tab:hover {
-	-fx-background-color: #fceeea;
+	-fx-background-color: derive(-fx-meat-color, +75%);
 }
 .cabinet-tab-pane .tab:hover {
-	-fx-background-color: #fefced;
+	-fx-background-color: derive(-fx-cabinet-color, +75%);
 }
 .friday-cuddle-tab-pane .tab:hover {
-	-fx-background-color: #fdeef0;
+	-fx-background-color: derive(-fx-fridaycuddling-color, +75%);
 }
 
 .tab:selected .tab-label {
