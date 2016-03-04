@@ -12,7 +12,7 @@
 <?import control.ArrowButton?>
 <?import control.NavigationButton?>
 
-<StackPane fx:id="wrapperStackPane" stylesheets="@../styling/root.css"
+<StackPane fx:id="wrapperStackPane" alignment="CENTER_LEFT" stylesheets="@../styling/root.css"
 	xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"
 	fx:controller="controllers.MainController">
 	<children>

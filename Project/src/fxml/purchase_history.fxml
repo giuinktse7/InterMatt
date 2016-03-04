@@ -7,21 +7,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import control.ModalPopup?>
 
-<ModalPopup fx:id="bottomPane" alignment="CENTER"
-	columnHalignment="CENTER" styleClass="bottomPane" stylesheets="@../styling/purchase_history.css"
-	xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="controllers.PurchaseHistoryController">
+<ModalPopup fx:id="bottomPane" styleClass="bottomPane" stylesheets="@../styling/purchase_history.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PurchaseHistoryController">
 	<children>
+	<!-- Content is centered according to this pane:: HAS TO BE HERE! -->
+	<FlowPane alignment="CENTER">
 		<VBox>
-			<AnchorPane id="modalTop" maxHeight="-Infinity" minHeight="-Infinity"
-				prefHeight="45.0">
+			<AnchorPane id="modalTop" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="45.0">
 				<children>
-					<Label layoutX="119.0" layoutY="90.0" text="Tidigare beställningar"
-						AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-						AnchorPane.topAnchor="0.0">
+					<Label layoutX="119.0" layoutY="90.0" text="Tidigare beställningar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
 						<font>
 							<Font size="24.0" />
 						</font>
@@ -31,39 +28,25 @@
 					</Label>
 				</children>
 			</AnchorPane>
-			<AnchorPane id="content" fx:id="contentPane" maxHeight="-Infinity"
-				maxWidth="-Infinity" prefHeight="500.0" prefWidth="700">
+			<AnchorPane id="content" fx:id="contentPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600" prefWidth="626">
 				<children>
-					<VBox AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"
-						AnchorPane.topAnchor="0">
-					<ListView id="order-overview-box" fx:id="ordersList" maxHeight="110"/>
-					<Separator/>
+                  <Rectangle arcHeight="2.0" arcWidth="2.0" fill="#30a147" height="71.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" AnchorPane.leftAnchor="221.0" AnchorPane.rightAnchor="205.0" AnchorPane.topAnchor="110.0" />
+					<VBox AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+					<ListView id="order-overview-box" fx:id="ordersList" maxHeight="110" />
+					<Separator />
 					</VBox>
-					<ListView id="product-list-view" fx:id="productListView" prefWidth="450"
-						AnchorPane.leftAnchor="14" AnchorPane.topAnchor="140" />
+					<ListView id="product-list-view" fx:id="productListView" layoutX="20.0" layoutY="182.0" prefHeight="364.0" prefWidth="604.0" AnchorPane.leftAnchor="19.0" AnchorPane.topAnchor="181.0" />
+					<Label fx:id="lblDate" layoutX="262.0" layoutY="118.0" prefHeight="43.0" styleClass="light-text" text="28/02/16" textAlignment="RIGHT" AnchorPane.rightAnchor="247.0" AnchorPane.topAnchor="118.0" />
 
-					<Label AnchorPane.leftAnchor="470" AnchorPane.topAnchor="158"
-						prefHeight="43.0" styleClass="header" text="Datum" textAlignment="RIGHT" />
-					<Label fx:id="lblDate" AnchorPane.rightAnchor="35"
-						AnchorPane.topAnchor="158" prefHeight="43.0" styleClass="light-text"
-						text="28/02/16" textAlignment="RIGHT" />
-					<Separator AnchorPane.rightAnchor="28"
-						AnchorPane.topAnchor="195" AnchorPane.leftAnchor="470" prefHeight="3.0" />
-
-					<Label AnchorPane.leftAnchor="28" AnchorPane.bottomAnchor="16"
-						prefHeight="43.0" styleClass="header" text="Totalt" textAlignment="RIGHT" />
-					<Label fx:id="lblTotalPrice" AnchorPane.leftAnchor="370"
-						AnchorPane.bottomAnchor="16" prefHeight="43.0" styleClass="light-text"
-						text="28/02/16" textAlignment="RIGHT" />
-					<Separator AnchorPane.rightAnchor="540"
-						AnchorPane.bottomAnchor="14" AnchorPane.leftAnchor="28" prefHeight="3.0" />
+					<Label layoutX="34.0" layoutY="542.0" prefHeight="43.0" styleClass="header" text="Totalt" textAlignment="RIGHT" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="34.0" />
+					<Label fx:id="lblTotalPrice" alignment="CENTER_RIGHT" layoutX="430.0" layoutY="538.0" prefHeight="43.0" prefWidth="168.0" styleClass="price-label" text="28/02/16" textAlignment="RIGHT" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="429.0" AnchorPane.rightAnchor="29.0" />
+					<Separator layoutX="31.0" prefHeight="3.0" prefWidth="582.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="28.0" />
 						
-					<Label id="order-id" fx:id="lblOrderID" AnchorPane.bottomAnchor="28"
-						AnchorPane.rightAnchor="14" textAlignment="RIGHT" prefHeight="43.0"
-						prefWidth="297.0" text="Order ID: 5QT27C39A" />
+					<Label id="order-id" fx:id="lblOrderID" alignment="CENTER_RIGHT" layoutX="404.0" layoutY="121.0" prefHeight="43.0" prefWidth="188.0" text="Order ID: 122" textAlignment="RIGHT" AnchorPane.bottomAnchor="438.0" AnchorPane.rightAnchor="16.0" />
 
 				</children>
 			</AnchorPane>
 		</VBox>
+		</FlowPane>
 	</children>
 </ModalPopup>

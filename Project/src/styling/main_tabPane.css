@@ -37,13 +37,10 @@
 	-fx-background-color: #fdeef0;
 }
 
-
-
-
 .tab:selected .tab-label {
-    -fx-border-width: 2px;
+    /*-fx-border-width: 2px;
     -fx-border-style: hidden hidden solid hidden;
-    -fx-border-color: rgba(255, 255, 255, 0.5);
+    -fx-border-color: rgba(255, 255, 255, 0.5);*/
 }
 
 .bigTabs .tab-label{

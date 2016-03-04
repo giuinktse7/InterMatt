@@ -6,6 +6,9 @@ import javafx.beans.value.ChangeListener;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.scene.ImageCursor;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
@@ -17,6 +20,8 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Screen;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.Product;
 import se.chalmers.ait.dat215.project.ShoppingItem;
@@ -57,14 +62,15 @@ public class ItemInHistoryBox extends AnchorPane {
 		Product product = item.getProduct();
 
 		// Load image
-		ImageView picture = new ImageView(preserveRatio(product, PICTURE_WIDTH));
+		Image image = preserveRatio(product, PICTURE_WIDTH);
+		ImageView picture = new ImageView(image);
 		AnchorPane.setLeftAnchor(picture, 14d);
 
 		getStyleClass().add("item-in-history-box");
 
 		// Setup name label
 		Label lblName = new Label(product.getName());
-		AnchorPane.setLeftAnchor(lblName, 66d);
+		AnchorPane.setLeftAnchor(lblName, 80d);
 		lblName.setPrefWidth(190);
 		lblName.setAlignment(Pos.CENTER_LEFT);
 		lblName.getStyleClass().add("item-name");
@@ -74,9 +80,10 @@ public class ItemInHistoryBox extends AnchorPane {
 
 		// Setup quantity label
 		// Remove trailing zeros
-		String amount = formatZeros(item.getAmount());
+		DecimalFormat format = new DecimalFormat("0.#");
+		String amount = format.format(item.getAmount()).replace('.', ',');
 		Label lblQuantity = new Label(String.format("%s %s", amount, product.getUnitSuffix()));
-		AnchorPane.setLeftAnchor(lblQuantity, 257d);
+		AnchorPane.setLeftAnchor(lblQuantity, 280d);
 		lblQuantity.setPrefWidth(60);
 		lblQuantity.setAlignment(Pos.CENTER_LEFT);
 		lblQuantity.getStyleClass().add("item-quantity");
@@ -109,6 +116,7 @@ public class ItemInHistoryBox extends AnchorPane {
 
 		getChildren().addAll(picture, lblName, lblQuantity, lblPrice, separator);
 		
+		
 		setOnDragDetected((event) -> {
 			Dragboard db = this.startDragAndDrop(TransferMode.ANY);
 			
@@ -120,6 +128,12 @@ public class ItemInHistoryBox extends AnchorPane {
 		});
 		
 		setOnDragDone(event -> {
+			double sceneWidth = Screen.getPrimary().getVisualBounds().getWidth();
+			ModalPopup root = (ModalPopup)((Node)event.getSource()).getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent();
+			root.getContent().setAlignment(Pos.CENTER);
+			
+			root.setMaxWidth(sceneWidth);
+			root.setPrefWidth(sceneWidth);
 			event.consume();
 		});
 		
@@ -140,17 +154,7 @@ public class ItemInHistoryBox extends AnchorPane {
 	}
 	
 	private String formatZeros(double value) {
-		String text = new DecimalFormat("0.####").format(value);
-		//Get rid of trailing zeros.
-		if (text.contains(".")) {
-			int i = text.length() - 1;
-			while (text.charAt(i) == 0) {
-				--i;
-			}
-			
-			text = text.substring(0, i).replace('.',' ').trim();
-		}
-		
+		String text = String.format("%.2f", value).replace('.', ',');
 		return text;
 	}
 }

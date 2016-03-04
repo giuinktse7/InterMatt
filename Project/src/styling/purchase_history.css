@@ -40,7 +40,7 @@
 }
 
 #order-overview-box .list-cell:filled {
-	-fx-background-color: #AFE3BE;
+	-fx-background-color: #c5dacb;
 }
 
 #order-overview-box .list-cell:filled:hover {
@@ -126,7 +126,12 @@
 
 .light-text .text {
 	-fx-font-size: 22pt;
-	-fx-fill: derive(-header-color, 25%);
+	-fx-fill: white;
+}
+
+.price-label .text {
+	-fx-font-size: 22pt;
+	-fx-fill: derive(gray, 20%);
 }
 
 #order-id .text {
@@ -147,7 +152,7 @@
 }
 
 #product-list-view {
-	-fx-border-color: transparent derive(-header-color, 25%) transparent  transparent;
+	-fx-border-style: hidden;
 }
 
 #product-list-view .list-cell:even,

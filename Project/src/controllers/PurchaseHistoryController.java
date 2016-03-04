@@ -43,7 +43,6 @@ public class PurchaseHistoryController implements Initializable {
 	}
 	
 	public void setCloseAction(Action c) {
-		//closeButton.setOnAction(e -> bottomPane.close());
 	}
 	
 	public void update() {
@@ -71,6 +70,7 @@ public class PurchaseHistoryController implements Initializable {
 		if (!ordersList.getItems().isEmpty()) {
 			OrderOverviewBox box = new OrderOverviewBox(((OrderOverviewBox) ordersList.getItems().get(0)).getOrder());
 			displayOrder(box);
+			ordersList.getSelectionModel().select(0);
 		}
 	}
 	
@@ -81,7 +81,7 @@ public class PurchaseHistoryController implements Initializable {
 			productListView.getItems().setAll(productBoxes);
 		
 		lblDate.setText(orderBox.getDate());
-		lblTotalPrice.setText(String.format("%.2f:-", orderBox.getTotalPrice()).replace('.', ':'));
+		lblTotalPrice.setText(String.format("%.2f:-", orderBox.getTotalPrice()).replace('.', ','));
 		lblOrderID.setText(String.format("Order ID: %d", orderBox.getOrder().getOrderNumber()));
 	}
 	

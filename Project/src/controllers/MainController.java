@@ -13,8 +13,10 @@ import interfaces.Action;
 import interfaces.MultiAction;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
+import javafx.beans.property.DoubleProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.Pane;
@@ -32,6 +34,8 @@ public class MainController implements Initializable {
 	@FXML private ArrowButton prevButton;
 	@FXML private ArrowButton nextButton;
 	@FXML private Button purchaseHistoryButton;
+	
+	private final int AVG = 1374;
 	
 	private static MainController me;
 	private static IMatDataHandler db = IMatDataHandler.getInstance();
@@ -73,7 +77,6 @@ public class MainController implements Initializable {
 	public void initialize(URL url, ResourceBundle bundle) {
 		leftButton = this.prevButton;
 		nextButton.setDirection(Direction.RIGHT);
-		
 		nextButton.setDisable(true);
 		prevButton.setDisable(true);
 		
@@ -127,6 +130,12 @@ public class MainController implements Initializable {
 		setupCredentialsViewValidation();
 		setupPurchaseViewValidation();
 		setupNavButton4Valiation();
+		
+		purchaseHistoryPopup.setOnDragOver(e -> {
+				purchaseHistoryPopup.setMaxWidth(1000 + (nextButton.getScene().getWidth() - AVG) / 2);
+				purchaseHistoryPopup.setPrefWidth(1000 + (nextButton.getScene().getWidth() - AVG) / 2);
+				purchaseHistoryPopup.getContent().setAlignment(Pos.CENTER_RIGHT);
+		});
 	}
 	
 	private final BooleanBinding CART_NONEMPTY = Bindings.createBooleanBinding(() -> !cartHandler.emptyProperty().get(), cartHandler.emptyProperty());
@@ -194,13 +203,7 @@ public class MainController implements Initializable {
 		
 		items.forEach(item -> db.getShoppingCart().addItem(item));
 		
-		// TODO Only for testing, should only be one and not false
-		db.placeOrder(false);
-		db.placeOrder(false);
-		db.placeOrder(false);
-		db.placeOrder(false);
-		db.placeOrder(false);
-		db.placeOrder(false);
+		db.placeOrder();
 		viewDisplay.show(storePane);
 	}
 	
