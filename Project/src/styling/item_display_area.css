@@ -30,8 +30,7 @@
 }
 
 .button .text {
-	-fx-fill: white;
-	-fx-effect: dropshadow( one-pass-box , rgba(100, 100, 100, 0.5) , 0, 0.0 , 0 , 1 );
+	-fx-fill: black;
 	-fx-font-size: 18 pt;
 }
 

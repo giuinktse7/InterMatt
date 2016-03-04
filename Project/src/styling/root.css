@@ -18,11 +18,11 @@
 	-fx-main-color: #F3F3F3;
 	
 	-itempane-color: white;
-	-buy-button-color: 	#b9d677;
-	-main-text-color: #8C8C8C;
+	-buy-button-color: 	#F3F3F3;
+	-main-text-color: #000000;
 	-list-item-selected-color: #c1c1c1;
 	-list-item-even-color: white;
-	-list-item-odd-color: #f4f4f4;
+	-list-item-odd-color: #F3F3F3;
 	-header-color: #474747;
 	-scroll-thumb-color: #737373;
 }
@@ -60,7 +60,7 @@
 }
 
 .history-button {
-	-fx-background-color: #f4f4f4, #f4f4f4;
+	-fx-background-color: #F3F3F3, #F3F3F3;
     -fx-background-insets: 0 0 0 0, 0, 0, 0;
     -fx-background-radius: 3, 0, 0, 0;
     -fx-border-width: 0 0 0 0, 0, 0, 0;
@@ -71,10 +71,10 @@
 	-fx-font-size: 20 pt;
 }
 .history-button:hover {
-	-fx-background-color: derive(f4f4f4, -10%);
+	-fx-background-color: derive(F3F3F3, -10%);
 }
 .nav-button:hover {
-	-fx-imageview: derive(f4f4f4, -10%);
+	-fx-imageview: derive(F3F3F3, -10%);
 }
 
 /* Navigation button */
