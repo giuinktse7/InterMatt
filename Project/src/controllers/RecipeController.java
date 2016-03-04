@@ -35,7 +35,7 @@ public class RecipeController implements Initializable {
 		return instance;
 	}
 	public void setPriceText(float price){
-		lblPrice.setText(new DecimalFormat("#.##").format(price));
+		lblPrice.setText(new DecimalFormat("#.##").format(price)+":-");
 	}
 	
 	public void setDeliveryTimeText(String deliveryTime){
