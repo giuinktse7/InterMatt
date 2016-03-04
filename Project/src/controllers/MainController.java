@@ -13,6 +13,7 @@ import interfaces.Action;
 import interfaces.MultiAction;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -74,7 +75,6 @@ public class MainController implements Initializable {
 	
 	public void initialize(URL url, ResourceBundle bundle) {
 		leftButton = this.prevButton;
-		nextButton.setDirection(Direction.RIGHT);
 		
 		nextButton.setDisable(true);
 		prevButton.setDisable(true);
@@ -93,6 +93,7 @@ public class MainController implements Initializable {
 		viewDisplay.addView(storeView);
 		viewDisplay.addView(credentialsView);
 		viewDisplay.addView(purchaseView);
+		viewDisplay.addView(recipeView);
 		viewDisplay.addView(dummyView);
 		
 		//Set next & previous relationships
@@ -101,21 +102,28 @@ public class MainController implements Initializable {
 		credentialsView.setPrevious(storeView);
 		purchaseView.setPrevious(credentialsView);
 		purchaseView.setNext(recipeView);
+		recipeView.setNext(storeView);
+		recipeView.setPrevious(dummyView);
 
 		
 		//Show the store
 		viewDisplay.show(storeView);
 		
+		//Set ON_LAST
+		PURCHASE_VIEW_ACTIVE = activeViewBinding("purchasePane");
+		RECEIPT_VIEW_ACTIVE = activeViewBinding("purchasePane");
+		
 		//Set actions for the previous & next buttons
 		prevButton.setDirection(Direction.LEFT);
+		nextButton.setDirection(Direction.RIGHT);
 		prevButton.setOnAction(event -> viewDisplay.previous());
-		nextButton.setOnAction(event -> { viewDisplay.next(); });
+		nextButton.setOnAction(event -> viewDisplay.next());
 		
 		//Initialize the navigation buttons
 		btnToStore.initialize(storeView, event -> viewDisplay.show(storeView), btnToCredentials);
 		btnToCredentials.initialize(credentialsView, event -> viewDisplay.show(credentialsView), btnToPurchase);
 		btnToPurchase.initialize(purchaseView, event -> viewDisplay.show(purchaseView), navButton4);
-		navButton4.initialize(new ContentView(null), event -> { }, null);
+		navButton4.initialize(recipeView, event -> viewDisplay.show(recipeView), null);
 		
 		//Setup the different popup buttons
 		purchaseHistoryButton.setOnAction(event -> { purchaseHistoryPopupController.update(); purchaseHistoryPopup.show(); });
@@ -140,6 +148,17 @@ public class MainController implements Initializable {
 	
 	private final BooleanBinding CART_NONEMPTY = Bindings.createBooleanBinding(() -> !cartHandler.emptyProperty().get(), cartHandler.emptyProperty());
 	private final BooleanBinding CART_EMPTY = Bindings.createBooleanBinding(() -> cartHandler.emptyProperty().get(), cartHandler.emptyProperty());
+	private BooleanBinding PURCHASE_VIEW_ACTIVE;
+	private BooleanBinding RECEIPT_VIEW_ACTIVE;
+	
+	private BooleanBinding activeViewBinding(String ID) {
+		SimpleBooleanProperty isActiveView = new SimpleBooleanProperty(false);
+		viewDisplay.getCurrentView().addListener((obs, oldValue, newValue) ->  isActiveView.set(viewDisplay.getCurrentView().getValue().getID().equals("purchasePane")));
+		BooleanBinding binding = Bindings.createBooleanBinding(() -> isActiveView.get(), isActiveView);
+		binding.addListener((obs, o, n) -> System.out.println("We are on " + ID));
+		
+		return binding;
+	}
 	
 	private void setupStoreValidation() {
 		ContentView view = viewDisplay.getView(storePane);
@@ -155,13 +174,13 @@ public class MainController implements Initializable {
 		group.addBinding(CART_NONEMPTY);
 		group.setOnFalseAction(() -> {
 			ContentView store = viewDisplay.getView(storePane);
-			if (!viewDisplay.getCurrentView().equals(store))
+			if (!viewDisplay.getCurrentView().getValue().equals(store) && !viewDisplay.getCurrentView().getValue().getID().equals("recipePane"))
 				viewDisplay.show(store);
 			
 			btnToCredentials.setDisable(true);
 		});
 		view.getBindingGroup().setName("credentialsViewGroup");
-		view.getBindingGroup().addBinding(CART_NONEMPTY);
+		view.getBindingGroup().setAll(group.getBinds());
 		
 		//If we are on storePane and can't go to credentialsPane, disable nextButton
 		view.getBindingGroup().setOnTrueAction(new MultiAction(
@@ -185,13 +204,14 @@ public class MainController implements Initializable {
 		view.getBindingGroup().setOnFalseAction(disableButton(nextButton, credentialsPane));
 	}
 	
-	// TODO : Just makes it impossible to reach as of now.
 	private void setupNavButton4Valiation() {
-		ContentView view = viewDisplay.getView(dummyPane);
+		ContentView view = viewDisplay.getView(recipePane);
 		BindingGroup group = navButton4.getBindingGroup();
-		group.addBinding(CART_NONEMPTY.and(CART_EMPTY));
+		group.addBinding(PURCHASE_VIEW_ACTIVE.or(RECEIPT_VIEW_ACTIVE));
 		
-		view.getBindingGroup().setOnFalseAction(disableButton(nextButton, purchasePane));
+		view.getBindingGroup().setAll(group.getBinds());
+		
+		view.getBindingGroup().setOnTrueAction(disableButton(prevButton, recipePane));
 	}
 	
 	private void configurePopupStackPane() {
