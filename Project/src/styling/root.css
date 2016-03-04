@@ -52,7 +52,6 @@
 .nav-button {
 	-fx-background-color: transparent;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 1, 0.0 , 0 , 1 );
-
 }
 
 .base-style{
@@ -80,4 +79,5 @@
 /* Navigation button */
 .navigation-button:disabled {
 	-fx-opacity: 1;
+	-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0) , 0, 0.0 , 0 , 0);
 }

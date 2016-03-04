@@ -128,7 +128,7 @@ public class SubCategory {
 
 		AnchorPane infoBox = new AnchorPane(priceBox);
 
-		Button button = new Button("Köp");
+		Button button = new Button("KÃ¶p");
 		button.setOnAction(e -> cart.addProduct(product));
 		VBox display = new VBox(title, image, infoBox);
 		button.setPrefSize(PICTURE_WIDTH, 40);
