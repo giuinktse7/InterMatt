@@ -57,7 +57,6 @@ public class PurchaseController implements Initializable {
 	// Credit card CVV fields
 	@FXML private TextField txt_card_cvv;
 
-	public MainController mainController;
 
 
 
@@ -223,11 +222,6 @@ public class PurchaseController implements Initializable {
 		}
 	}
 
-
-	// Show a recipe and finish payment
-	public void finish_payment(){
-		mainController.showRecipePopup();
-	}
 
 
 
