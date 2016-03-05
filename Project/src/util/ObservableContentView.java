@@ -45,7 +45,7 @@ public class ObservableContentView implements ObservableValue<ContentView> {
 		return this.contentView;
 	}
 	
-	public ContentView getView() {
+	public ContentView get() {
 		return this.contentView;
 	}
 

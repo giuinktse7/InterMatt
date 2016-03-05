@@ -70,7 +70,7 @@ public class ItemInHistoryBox extends AnchorPane {
 
 		// Setup name label
 		Label lblName = new Label(product.getName());
-		AnchorPane.setLeftAnchor(lblName, 80d);
+		AnchorPane.setLeftAnchor(lblName, 94d);
 		lblName.setPrefWidth(190);
 		lblName.setAlignment(Pos.CENTER_LEFT);
 		lblName.getStyleClass().add("item-name");

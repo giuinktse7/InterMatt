@@ -13,17 +13,17 @@ public class ContentView {
 	private Node content;
 
 	private BooleanProperty activeProperty = new SimpleBooleanProperty();
-	BindingGroup requirements = new BindingGroup();
+	BindingGroup bindings = new BindingGroup();
 
 	private ContentView previous;
 	private ContentView next;
 
 	public ContentView(Node content, ContentView previous, ContentView next, BooleanBinding requirement) {
 		this.content = content;
-		this.previous = previous;
-		this.next = next;
+		setPrevious(previous);
+		setNext(next);
 		if (requirement != null)
-			requirements.addBinding(requirement);
+			bindings.addBinding(requirement);
 	}
 
 	public ContentView(Node content, ContentView previous, ContentView next) {
@@ -38,19 +38,11 @@ public class ContentView {
 		this(content, null, null, requirement);
 	}
 
-	public void addRequirement(BooleanBinding requirement) {
-		requirements.addBinding(requirement);
-	}
-
-	public void addRequirements(BooleanBinding... bindings) {
-		for (BooleanBinding binding : bindings)
-			requirements.addBinding(binding);
-	}
-
 	public void setNext(ContentView view) {
 		this.next = view;
 
 		// Handles enabling/disabling of the 'next' arrow-button
+		if (view != null)
 		next.getBindingGroup().getState().addListener((obs, o, n) -> {
 			if (activeProperty.get()) {
 				MainController.get().getArrowButton(Direction.RIGHT).setDisable(!n.booleanValue());
@@ -76,6 +68,7 @@ public class ContentView {
 			// Handles enabling/disabling of the 'previous' arrow-button
 			previous.getBindingGroup().getState().addListener((obs, o, n) -> {
 				if (activeProperty.get()) {
+					System.out.println("heyy");
 					leftArrow.setDisable(!n.booleanValue());
 				}
 			});
@@ -99,7 +92,7 @@ public class ContentView {
 	}
 
 	public boolean isLocked() {
-		return !requirements.allMet();
+		return !bindings.allMet();
 	}
 
 	public BooleanProperty activeProperty() {
@@ -108,6 +101,10 @@ public class ContentView {
 
 	public void setActive(boolean value) {
 		activeProperty.set(value);
+		
+		//If we have just been set to active and there's a previous view set, enable 'previous button'
+		if (activeProperty.get() && previous != null)
+			MainController.get().getArrowButton(Direction.LEFT).enable();
 	}
 
 	public boolean isDisabled() {
@@ -115,6 +112,6 @@ public class ContentView {
 	}
 
 	public BindingGroup getBindingGroup() {
-		return this.requirements;
+		return this.bindings;
 	}
 }

@@ -40,26 +40,11 @@ public class ViewDisplay {
 		area.getChildren().setAll(view.getContent());
 		
 		//Mark the old view as inactive
-		currentView.getValue().setActive(false);
+		currentView.get().setActive(false);
 		
 		//Add new view and mark it as active
 		currentView.setValue(view);
 		view.setActive(true);
-		
-		//Update arrows
-		view.getBindingGroup().refreshAND();
-		
-		if (view.next() != null)
-			view.next().getBindingGroup().refreshAND();
-		
-		if (view.previous() != null)
-			view.previous().getBindingGroup().refreshAND();
-		
-		if (view.equals(first))
-			MainController.get().getArrowButton(Direction.LEFT).disable();
-		
-		if (view.getID().equals("receiptPane"))
-			reset();
 
 		if (view.getID().equals("credentialsPane")){
 			MainController.get().restoreUserData();
@@ -68,35 +53,6 @@ public class ViewDisplay {
 		if (view.getID().equals("purchasePane")){
 			MainController.get().saveUserData();
 		}
-	}
-	
-	private void reset(){
-	
-		//TERMINATE EVERYTHING ON MIKAELS DEMAND
-		/*
-		 * 	
-		 * 		    \O/
-		 *  	     |
-		 *  __,-o_ 	/ \  _o-.__
-		 * 	  
-		 */
-		System.out.println("sdasdsad");
-		MainController.get().finishPurchase();
-		List<Order> orders = IMatDataHandler.getInstance().getOrders();
-		
-		Collections.sort(orders, (o1, o2) -> {
-			return (int) (o2.getDate().getTime() - o1.getDate().getTime());
-		});
-		
-		float totalPrice = 0;
-		for (ShoppingItem item : orders.get(0).getItems()){
-			totalPrice += item.getTotal();
-		}
-		
-		RecipeController.getInstance().setPriceText(totalPrice);
-		RecipeController.getInstance().setDeliveryTimeText(InformationStorage.getDelivery());
-		RecipeController.getInstance().setPaymentText(InformationStorage.getPaymentType());
-		/** Rensa alla vyer */
 	}
 
 	public void next() {

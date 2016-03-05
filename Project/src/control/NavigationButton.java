@@ -36,16 +36,6 @@ public class NavigationButton extends Button {
 	public NavigationButton() {
 		getStyleClass().add("navigation-button");
 		bindings = new BindingGroup();
-		bindings.setOnFalseAction(() -> setDisable(true));
-		bindings.setOnTrueAction(() -> setDisable(false));
-	}
-
-	public void setOnTrueAction(Action action) {
-		bindings.setOnTrueAction(action);
-	}
-	
-	public void setOnFalseAction(Action action) {
-		bindings.setOnFalseAction(action);
 	}
 	
 	public BindingGroup getBindingGroup() {
@@ -69,10 +59,10 @@ public class NavigationButton extends Button {
 		disabledProperty().addListener((obs, oldValue, disabled) -> {
 			//If we were just disabled, disable the following button, too.
 			if (disabled)
-				this.nextButton.setDisable(true);
+				this.nextButton.disable();
 			//If we were just enabled, update our binds
 			else
-				this.nextButton.getBindingGroup().update();
+				enable();
 		});
 		
 		disabledProperty().addListener((obs, oldValue, newValue) -> {
@@ -81,6 +71,8 @@ public class NavigationButton extends Button {
 		viewDisplay.getCurrentView().addListener((obs, oldValue, newValue) ->  updateImage(this.view.equals(newValue)));
 		
 		updateImage(this.view.equals(viewDisplay.getCurrentView().getValue()));
+		
+		bindings.getState().addListener((obs, o, n) -> {setDisable(!n); System.out.println("well"); });
 	}
 	
 	private void updateImage(boolean onSelectedPage) {
@@ -120,5 +112,13 @@ public class NavigationButton extends Button {
 		a.add("btnToReceipt");
 		
 		return a.indexOf(getId()) + 1;
+	}
+	
+	public void enable() {
+		this.setDisable(false);
+	}
+	
+	public void disable() {
+		this.setDisable(true);
 	}
 }
