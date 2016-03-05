@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox id="storePane" fillWidth="true" prefHeight="600.0" prefWidth="1215.0" styleClass="backdrop" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StoreController">
+<VBox id="storePane" fillWidth="true" prefHeight="600.0" prefWidth="1000.0" styleClass="backdrop" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StoreController">
 	<children>
 		<AnchorPane>
 			<children>
-				<TabPane id="mainTabPane" fx:id="mainTabPane" minWidth="650.0" styleClass="bigTabs" stylesheets="@../styling/main_tabPane.css" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="45" tabMaxWidth="200.0" tabMinHeight="40.0" tabMinWidth="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+				<TabPane id="mainTabPane" fx:id="mainTabPane" minWidth="650.0" styleClass="bigTabs" stylesheets="@../styling/main_tabPane.css" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="45" tabMaxWidth="200.0" tabMinHeight="40.0" tabMinWidth="0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 					<tabs>
 						<Tab id="startTab" fx:id="startTab" closable="false" text="Start">
 							<content>
@@ -109,28 +110,31 @@
 						<Insets />
 					</opaqueInsets>
 				</TabPane>
-				<TextField fx:id="txtSearch" layoutX="945.0" layoutY="8.0" prefHeight="37.0" promptText="Sök" AnchorPane.leftAnchor="890.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="7.0">
+				<TextField fx:id="txtSearch" layoutX="945.0" layoutY="8.0" prefHeight="37.0" promptText="Sök" visible="false" AnchorPane.leftAnchor="890.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="7.0">
 					<font>
 						<Font size="18.0" />
 					</font>
 				</TextField>
 			</children>
+         <VBox.margin>
+            <Insets top="14.0" />
+         </VBox.margin>
 		</AnchorPane>
 		<AnchorPane id="item-display-anchor" stylesheets="@../styling/item_display_area.css" VBox.vgrow="ALWAYS">
 			<children>
 				<ScrollPane fx:id="scrollPane" fitToWidth="true" maxHeight="-Infinity" styleClass="scroll-pane" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" VBox.vgrow="ALWAYS">
 					<content>
 						<AnchorPane>
-   <children>
-   							<StackPane AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
-      <children>
-      								<TilePane fx:id="content" styleClass="tile-pane">
-      									<children>
+							<children>
+								<StackPane AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+									<children>
+										<TilePane fx:id="content" styleClass="tile-pane">
+											<children>
+											</children>
+										</TilePane>
 									</children>
-      								</TilePane>
-      </children>
-   							</StackPane>
-   </children>
+								</StackPane>
+							</children>
 						</AnchorPane>
 					</content>
 				</ScrollPane>

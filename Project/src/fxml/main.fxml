@@ -39,6 +39,74 @@
 								<VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
 									AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 									<children>
+										<HBox>
+											<children>
+												<Button styleClass="top-header-button" mnemonicParsing="false">
+													<graphic>
+														<ImageView fitHeight="36.0" fitWidth="36.0"
+															pickOnBounds="true" preserveRatio="true">
+															<image>
+																<Image url="@../resources/home.png" />
+															</image>
+														</ImageView>
+													</graphic>
+													<HBox.margin>
+														<Insets left="14.0" />
+													</HBox.margin>
+												</Button>
+												<Button styleClass="top-header-button" mnemonicParsing="false">
+													<graphic>
+														<ImageView fitHeight="36.0" fitWidth="48.0"
+															pickOnBounds="true" preserveRatio="true">
+															<image>
+																<Image url="@../resources/blackheart.png" />
+															</image>
+														</ImageView>
+													</graphic>
+													<HBox.margin>
+														<Insets left="14.0" />
+													</HBox.margin>
+												</Button>
+												<Button styleClass="top-header-button" mnemonicParsing="false">
+													<graphic>
+														<ImageView fitHeight="36.0" fitWidth="48.0"
+															pickOnBounds="true" preserveRatio="true">
+															<image>
+																<Image url="@../resources/delivery.png" />
+															</image>
+														</ImageView>
+													</graphic>
+													<HBox.margin>
+														<Insets left="14.0" />
+													</HBox.margin>
+												</Button>
+												<Button styleClass="top-header-button" mnemonicParsing="false">
+													<graphic>
+														<ImageView fitHeight="36.0" fitWidth="48.0"
+															pickOnBounds="true" preserveRatio="true">
+															<image>
+																<Image url="@../resources/listIconTest.png" />
+															</image>
+														</ImageView>
+													</graphic>
+													<HBox.margin>
+														<Insets left="14.0" />
+													</HBox.margin>
+												</Button>
+												<HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+													<children>
+														<TextField id="search-field" prefHeight="45" prefWidth="410.0"
+															promptText="Sök" />
+													</children>
+													<HBox.margin>
+														<Insets right="28.0" />
+													</HBox.margin>
+												</HBox>
+											</children>
+											<VBox.margin>
+												<Insets top="14.0" />
+											</VBox.margin>
+										</HBox>
 										<StackPane fx:id="contentPane" alignment="TOP_LEFT"
 											VBox.vgrow="ALWAYS">
 											<children>
@@ -97,8 +165,8 @@
 										</Label>
 									</children>
 								</VBox>
-								<ImageView fitHeight="57"
-									pickOnBounds="true" preserveRatio="true">
+								<ImageView fitHeight="57" pickOnBounds="true"
+									preserveRatio="true">
 									<image>
 										<Image url="@../resources/styleArrow.png" />
 									</image>
@@ -126,8 +194,8 @@
 										</Label>
 									</children>
 								</VBox>
-								<ImageView fitHeight="57"
-									pickOnBounds="true" preserveRatio="true">
+								<ImageView fitHeight="57" pickOnBounds="true"
+									preserveRatio="true">
 									<image>
 										<Image url="@../resources/styleArrow.png" />
 									</image>

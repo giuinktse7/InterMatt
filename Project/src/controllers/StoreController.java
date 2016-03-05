@@ -8,18 +8,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
-
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.ScrollPane.ScrollBarPolicy;
-import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
@@ -57,7 +51,7 @@ public class StoreController implements Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle bundle) {
 		initializeSubCategories();
-
+		
 		invisibleTab.setDisable(true);
 
 		int ITEM_WIDTH = 252;
@@ -75,7 +69,7 @@ public class StoreController implements Initializable {
 			if (nodes != null) {
 				populateStore(nodes);
 				mainTabPane.getSelectionModel().select(invisibleTab);
-				lblSearchResult.setText(String.format("%d varor matchar sökningen: \"%s\"", nodes.size(), newValue.trim()));
+				lblSearchResult.setText(String.format("%d varor matchar sï¿½kningen: \"%s\"", nodes.size(), newValue.trim()));
 			}
 		});
 	}
@@ -104,7 +98,7 @@ public class StoreController implements Initializable {
 
 	private void initializeSubCategories() {
 		Map<Integer, Set<SubCategory>> categories = categorize();
-
+		
 		TabPane[] superCategories = getTabPanes();
 		for (int i : categories.keySet()) {
 			TabPane tabPane = superCategories[i];
