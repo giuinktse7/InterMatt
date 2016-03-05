@@ -1,0 +1,11 @@
+.navigation-info .text {
+	-fx-font-size: 24 pt;
+	-fx-fill: #474747;
+	-fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.2) , 0, 0.0 , 1 , 1 );
+}
+
+.navigation-info:disabled .text {
+	-fx-font-size: 24 pt;
+	-fx-fill: red;
+	-fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.2) , 0, 0.0 , 1 , 1 );
+}

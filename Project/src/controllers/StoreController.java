@@ -16,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.control.SplitPane;
@@ -29,34 +30,52 @@ import util.SubCategory;
 
 public class StoreController implements Initializable {
 
-	@FXML private Button gotoShoppingListButton;
-	@FXML private Tab startTab;
-	@FXML private TabPane mainTabPane;
-	@FXML private ScrollPane scrollPane;
-	
-	private final String[] tabStyleClasses = {"start-tab-pane", "greens-tab-pane", "bakery-tab-pane", "meat-tab-pane", "dairy-tab-pane", "cabinet-tab-pane", "friday-cuddle-tab-pane", };
+	@FXML
+	private Button gotoShoppingListButton;
+	@FXML
+	private Tab startTab;
+	@FXML
+	private TabPane mainTabPane;
+	@FXML
+	private ScrollPane scrollPane;
+	@FXML
+	private Tab invisibleTab;
+
+	private final String[] tabStyleClasses = { "start-tab-pane", "greens-tab-pane", "bakery-tab-pane", "meat-tab-pane",
+			"dairy-tab-pane", "cabinet-tab-pane", "friday-cuddle-tab-pane", };
 
 	// Fixes the border for the main TabPane.
-	@FXML private Pane borderFixPane;
-	@FXML private TilePane content;
-	@FXML private TextField txtSearch;
+	@FXML
+	private Pane borderFixPane;
+	@FXML
+	private TilePane content;
+	@FXML
+	private TextField txtSearch;
+	@FXML
+	private Label lblSearchResult;
 
 	@Override
 	public void initialize(URL url, ResourceBundle bundle) {
 		initializeSubCategories();
+
+		invisibleTab.setDisable(true);
+
 		int ITEM_WIDTH = 252;
-		//IntegerProperty ITEM_WIDTH = scrollPane.widthProperty().divide(252);
+		// IntegerProperty ITEM_WIDTH = scrollPane.widthProperty().divide(252);
 		content.widthProperty().addListener((obs, o, n) -> {
-			if (n.doubleValue() % ITEM_WIDTH != 0) 
-				content.maxWidthProperty().set(n.doubleValue() - n.doubleValue() % ITEM_WIDTH); 
-			System.out.println(n.doubleValue()); 
-			});
-		txtSearch.textProperty().addListener(new ChangeListener<String>() {
-			@Override
-			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				/** Changes selected tab to "start" */
-				mainTabPane.getSelectionModel().select(0);
-				search(newValue);
+			if (n.doubleValue() % ITEM_WIDTH != 0)
+				content.maxWidthProperty().set(n.doubleValue() - n.doubleValue() % ITEM_WIDTH);
+			System.out.println(n.doubleValue());
+		});
+
+		txtSearch.textProperty().addListener((obs, oldValue, newValue) -> {
+			/** Changes selected tab to "start" */
+			mainTabPane.getSelectionModel().select(0);
+			List<Node> nodes = searchForItems(newValue);
+			if (nodes != null) {
+				populateStore(nodes);
+				mainTabPane.getSelectionModel().select(invisibleTab);
+				lblSearchResult.setText(String.format("%d varor matchar sökningen: \"%s\"", nodes.size(), newValue.trim()));
 			}
 		});
 	}
@@ -75,10 +94,12 @@ public class StoreController implements Initializable {
 		content.getChildren().addAll(productViews);
 	}
 
-	private void search(String searchString) {
+	private List<Node> searchForItems(String searchString) {
+		searchString = searchString.trim();
 		if (searchString.equals(""))
-			return;
-		populateStore(SubCategory.find(searchString));
+			return null;
+
+		return SubCategory.find(searchString);
 	}
 
 	private void initializeSubCategories() {

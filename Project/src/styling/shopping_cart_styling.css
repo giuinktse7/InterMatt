@@ -1,5 +1,18 @@
-.button {
-	-fx-background-color: transparent, transparent;
+
+.shopping-cart-button {
+	-fx-background-color: #f4f4f4, #f4f4f4;
+    -fx-background-insets: 0 0 0 0, 0, 0, 0;
+    -fx-background-radius: 3, 0, 0, 0;
+    -fx-border-width: 0;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
+}
+.shopping-cart-button .text {
+	-fx-fill: black;
+	-fx-font-size: 20 pt;
+}
+.shopping-cart-button:hover {
+	-fx-background-color: derive(f4f4f4, -10%);
+	
 }
 
 #total-price-label .text {

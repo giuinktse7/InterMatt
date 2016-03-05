@@ -19,81 +19,84 @@
 
 <HBox id="purchasePane" fx:id="purchasePane" alignment="CENTER" stylesheets="@../styling/credentials.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PurchaseController">
 	<children>
-		<VBox id="main_pane" fx:id="vbox_content_wrapper" alignment="CENTER">
+		<VBox id="main_pane" fx:id="vbox_content_wrapper" alignment="TOP_CENTER" prefWidth="1000.0">
 			<children>
-            <VBox prefHeight="179.0">
+            <AnchorPane prefHeight="98.0">
                <children>
 						<Label id="pane_title" text="Hur vill du betala dina varor?" textFill="#413e4a">
 							<font>
 								<Font size="42.0" />
 							</font>
 						</Label>
-                  <Group>
-                     <children>
-                        <ToggleButton fx:id="btn_pay_delivery" graphicTextGap="7.0" mnemonicParsing="false" onAction="#payment_mode_changed" selected="true" text="Betala vid leverans" textFill="#413e4a">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                           <graphic>
-                              <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../resources/delivery.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <toggleGroup>
-                              <ToggleGroup fx:id="group_payments" />
-                           </toggleGroup>
-                        </ToggleButton>
-                        <ToggleButton fx:id="btn_pay_creditcard" alignment="CENTER_RIGHT" graphicTextGap="7.0" layoutX="603.0" mnemonicParsing="false" onAction="#payment_mode_changed" text="Betala med kort" textFill="#413e4a" toggleGroup="$group_payments">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                           <graphic>
-                              <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../resources/creditcard.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </ToggleButton>
-                        <ToggleButton fx:id="btn_pay_bill" graphicTextGap="7.0" layoutX="300.0" mnemonicParsing="false" onAction="#payment_mode_changed" text="Betala med faktura" textFill="#413e4a" toggleGroup="$group_payments">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                           <graphic>
-                              <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../resources/bill.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </ToggleButton>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="42.0" />
-                     </VBox.margin>
-                  </Group>
                </children>
-            </VBox>
-            <StackPane fx:id="stack_pay" prefHeight="150.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets top="14.0" />
+               </VBox.margin>
+            </AnchorPane>
+            <Group>
                <children>
-                  <HBox fx:id="pane_pay_bill_delivery" prefHeight="100.0" prefWidth="200.0" styleClass="pane-background">
+                  <ToggleButton fx:id="btn_pay_delivery" graphicTextGap="7.0" mnemonicParsing="false" onAction="#payment_mode_changed" selected="true" text="Betala vid leverans" textFill="#413e4a">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/delivery.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="group_payments" />
+                     </toggleGroup>
+                  </ToggleButton>
+                  <ToggleButton fx:id="btn_pay_creditcard" alignment="CENTER_RIGHT" graphicTextGap="7.0" layoutX="603.0" mnemonicParsing="false" onAction="#payment_mode_changed" text="Betala med kort" textFill="#413e4a" toggleGroup="$group_payments">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/creditcard.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </ToggleButton>
+                  <ToggleButton fx:id="btn_pay_bill" graphicTextGap="7.0" layoutX="300.0" mnemonicParsing="false" onAction="#payment_mode_changed" text="Betala med faktura" textFill="#413e4a" toggleGroup="$group_payments">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/bill.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </ToggleButton>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Group>
+            <StackPane fx:id="stack_pay">
+               <children>
+                  <HBox fx:id="pane_pay_bill_delivery" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="pane-background">
                      <children>
-                        <Text fx:id="txt_pay_info" fill="#413e4a" strokeType="OUTSIDE" strokeWidth="0.0" text="BLA BLA" wrappingWidth="600.0">
+                        <Text fx:id="txt_pay_info" fill="#413e4a" strokeType="OUTSIDE" strokeWidth="0.0" text="BLA BLA" wrappingWidth="800.0">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </Text>
                      </children>
                   </HBox>
-                  <HBox id="hbox_credit_info" fx:id="pane_pay_creditcard" prefHeight="100.0" prefWidth="200.0" styleClass="pane-background">
+                  <HBox id="hbox_credit_info" fx:id="pane_pay_creditcard" alignment="CENTER" prefHeight="100.0" styleClass="pane-background">
                      <children>
             				<AnchorPane>
             					<children>
             						<Label text="Kreditkortsnummer" textFill="#413e4a" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             							<font>
-            								<Font size="22.0" />
+            								<Font size="21.0" />
             							</font>
             						</Label>
             						<HBox layoutY="28.0" spacing="7.0">
@@ -141,7 +144,7 @@
             					<children>
             						<Label text="Utgångsdatum" textFill="#413e4a" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             							<font>
-            								<Font size="22.0" />
+            								<Font size="21.0" />
             							</font>
             						</Label>
             						<HBox layoutY="28.0" spacing="7.0">
@@ -160,7 +163,7 @@
             						</HBox>
             						<Label layoutX="281.0" text="CVV" textFill="#413e4a" AnchorPane.topAnchor="-2.0">
             							<font>
-            								<Font size="22.0" />
+            								<Font size="21.0" />
             							</font>
             						</Label>
             						<TextField fx:id="txt_card_cvv" alignment="CENTER" layoutX="281.0" layoutY="41.0" prefHeight="31.0" prefWidth="65.0" promptText="000">
@@ -177,17 +180,9 @@
                   </HBox>
                </children>
                <VBox.margin>
-                  <Insets top="21.0" />
+                  <Insets top="56.0" />
                </VBox.margin>
             </StackPane>
-            <Button fx:id="btn_finish_payment" mnemonicParsing="false" onAction="#finish_payment" text="Slutför köp">
-               <font>
-                  <Font size="32.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="28.0" />
-               </VBox.margin>
-            </Button>
 			</children>
 			<HBox.margin>
 				<Insets bottom="56.0" left="56.0" right="56.0" top="56.0" />

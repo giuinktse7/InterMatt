@@ -3,19 +3,20 @@ package control;
 import interfaces.Action;
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Screen;
 import javafx.util.Duration;
 
-public class ModalPopup extends FlowPane {
+public class ModalPopup extends AnchorPane {
 	
-	private Node content;
+	private FlowPane content;
 	private static Node mainProgramContent;
 	private static StackPane container;
 	private Animation appearAnimation, disappearAnimation;
@@ -23,10 +24,12 @@ public class ModalPopup extends FlowPane {
 	//TODO Temporary. Replace with a better solution.
 	private Action exitAction = null;
 	
-	public ModalPopup(Node content) {
+	public ModalPopup(FlowPane content) {
 		if (content != null) {
 			this.getChildren().add(content);
 			this.content = content;
+			 Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
+			 System.out.println(visualBounds.getWidth());
 		}
 		
 		setDefaultFade();
@@ -64,7 +67,11 @@ public class ModalPopup extends FlowPane {
 		container.getChildren().add(0, this);
 		}
 		
-		this.content = getChildren().get(0);
+		this.content = (FlowPane) getChildren().get(0);
+		AnchorPane.setLeftAnchor(content, 0d);
+		AnchorPane.setRightAnchor(content, 0d);
+		AnchorPane.setTopAnchor(content, 0d);
+		AnchorPane.setBottomAnchor(content, 0d);
 		
 		prefWidth(container.getPrefWidth());
 		prefHeight(container.getPrefHeight());
@@ -72,7 +79,7 @@ public class ModalPopup extends FlowPane {
 		appearAnimation.play();
 		
 		this.setOnMousePressed(e -> {
-			if (!content.hoverProperty().get())
+			if (!content.getChildren().get(0).hoverProperty().get())
 				close();
 			});
 	}
@@ -111,5 +118,13 @@ public class ModalPopup extends FlowPane {
 	//TODO TEMP: REMOVE FOR SOMETHING BETTER
 	public void setOnExit(Action action) {
 		this.exitAction = action;
+	}
+	
+	public void cutRight(double amount) {
+		this.setMaxHeight(this.getHeight() - amount);
+	}
+	
+	public FlowPane getContent() {
+		return this.content;
 	}
 }

@@ -1,9 +1,17 @@
 package util;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import com.sun.javafx.scene.traversal.Direction;
+
+import se.chalmers.ait.dat215.project.IMatDataHandler;
+import se.chalmers.ait.dat215.project.Order;
+import se.chalmers.ait.dat215.project.ShoppingItem;
 import controllers.MainController;
+import controllers.RecipeController;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
@@ -15,7 +23,7 @@ public class ViewDisplay {
 	
 	private ContentView first;
 	private Map<Node, ContentView> views = new HashMap<Node, ContentView>();
-	private ObservableContentView currentView = new ObservableContentView(null);
+	private ObservableContentView currentView = new ObservableContentView(new ContentView(null));
 
 	public ViewDisplay(Pane area) {
 		this.area = area;
@@ -30,23 +38,21 @@ public class ViewDisplay {
 			return;
 		
 		area.getChildren().setAll(view.getContent());
+		
+		//Mark the old view as inactive
+		currentView.get().setActive(false);
+		
+		//Add new view and mark it as active
 		currentView.setValue(view);
-		
-		//Update arrows
-		view.getBindingGroup().refreshAND();
-		
-		if (view.next() != null)
-			view.next().getBindingGroup().refreshAND();
-		
-		if (view.previous() != null)
-			view.previous().getBindingGroup().refreshAND();
-		
-		if (view.equals(first))
-			MainController.leftButton.disable();
-	}
-	
-	public void show(Node node) {
-		show(views.get(node));
+		view.setActive(true);
+
+		if (view.getID().equals("credentialsPane")){
+			MainController.get().restoreUserData();
+		}
+
+		if (view.getID().equals("purchasePane")){
+			MainController.get().saveUserData();
+		}
 	}
 
 	public void next() {
@@ -57,7 +63,7 @@ public class ViewDisplay {
 		show(currentView.getValue().previous());
 	}
 
-	public ObservableValue<ContentView> getCurrentView() {
+	public ObservableContentView getCurrentView() {
 		return this.currentView;
 	}
 	
@@ -80,4 +86,10 @@ public class ViewDisplay {
 	public ContentView getView(Pane pane) {
 		return views.get(pane);
 	}
+	
+	public static void show(ViewDisplay viewDisplay, ContentView view) {
+		viewDisplay.show(view);
+	}
+	
+	
 }

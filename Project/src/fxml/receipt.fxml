@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox id="receiptPane" alignment="CENTER" prefHeight="420.0" prefWidth="1112.0" stylesheets="@../styling/credentials.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RecipeController">
+    <children>
+        <VBox id="main_pane" alignment="TOP_CENTER" prefHeight="530.0" prefWidth="1000.0">
+            <children>
+                <AnchorPane prefHeight="271.0" prefWidth="956.0">
+                    <children>
+                        <Label fx:id="pane_title" text="Tack för ditt köp du." textFill="#413e4a">
+                            <font>
+                                <Font size="42.0" />
+                            </font>
+                        </Label>
+                  <HBox layoutX="14.0" layoutY="62.0" prefHeight="29.0" prefWidth="924.0">
+                     <children>
+                        <Label text="Du har handlat för ">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblPrice" text="0:-">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblTimeOfDelivery" text=" och betalning sker vid leverans">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="14.0" layoutY="91.0" prefHeight="27.0" prefWidth="924.0">
+                     <children>
+                        <Label text="Dina varor levereras ">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblPaymentType" text="Fredag 21/4 ca15:00">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                    </children>
+                    <VBox.margin>
+                        <Insets top="14.0" />
+                    </VBox.margin>
+                </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="btnBackToStore" layoutX="-36.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="186.0" text="Handla på nytt" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnExit" layoutX="729.0" layoutY="102.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="186.0" text="Avsluta" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            </children>
+            <HBox.margin>
+                <Insets bottom="56.0" left="56.0" right="56.0" top="56.0" />
+            </HBox.margin>
+            <padding>
+                <Insets bottom="21.0" left="21.0" right="21.0" top="21.0" />
+            </padding>
+        </VBox>
+    </children>
+</HBox>

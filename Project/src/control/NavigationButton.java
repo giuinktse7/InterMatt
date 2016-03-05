@@ -6,6 +6,7 @@ import interfaces.Action;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import util.BindingGroup;
@@ -14,7 +15,9 @@ import util.ViewDisplay;
 
 public class NavigationButton extends Button {
 	
-	ContentView view;
+	private ContentView view;
+	
+	private Label description;
 	
 	private static final int SELECTED = 0;
 	private static final int UNSELECTED = 1;
@@ -33,16 +36,6 @@ public class NavigationButton extends Button {
 	public NavigationButton() {
 		getStyleClass().add("navigation-button");
 		bindings = new BindingGroup();
-		bindings.setOnFalseAction(() -> setDisable(true));
-		bindings.setOnTrueAction(() -> setDisable(false));
-	}
-
-	public void setOnTrueAction(Action action) {
-		bindings.setOnTrueAction(action);
-	}
-	
-	public void setOnFalseAction(Action action) {
-		bindings.setOnFalseAction(action);
 	}
 	
 	public BindingGroup getBindingGroup() {
@@ -52,7 +45,7 @@ public class NavigationButton extends Button {
 	/**
 	 * Associates a view with this <code>NavigationButton</code>, and assigns it an action.
 	 */
-	public void initialize(ContentView view, EventHandler<ActionEvent> e, NavigationButton nextButton) {
+	public void initialize(ContentView view, EventHandler<ActionEvent> e, NavigationButton nextButton, Label descriptionLabel) {
 		
 		//Since the last actual NavigationButton won't have a nextButton, create a dummy-button.
 		if (nextButton == null)
@@ -62,11 +55,14 @@ public class NavigationButton extends Button {
 		this.view = view;
 		this.setOnAction(e);
 		
+		
 		disabledProperty().addListener((obs, oldValue, disabled) -> {
+			//If we were just disabled, disable the following button, too.
 			if (disabled)
-				this.nextButton.setDisable(true);
+				this.nextButton.disable();
+			//If we were just enabled, update our binds
 			else
-				this.nextButton.getBindingGroup().update();
+				enable();
 		});
 		
 		disabledProperty().addListener((obs, oldValue, newValue) -> {
@@ -75,6 +71,8 @@ public class NavigationButton extends Button {
 		viewDisplay.getCurrentView().addListener((obs, oldValue, newValue) ->  updateImage(this.view.equals(newValue)));
 		
 		updateImage(this.view.equals(viewDisplay.getCurrentView().getValue()));
+		
+		bindings.getState().addListener((obs, o, n) -> {setDisable(!n); System.out.println("well"); });
 	}
 	
 	private void updateImage(boolean onSelectedPage) {
@@ -111,8 +109,16 @@ public class NavigationButton extends Button {
 		a.add("btnToStore");
 		a.add("btnToCredentials");
 		a.add("btnToPurchase");
-		a.add("navButton4");
+		a.add("btnToReceipt");
 		
 		return a.indexOf(getId()) + 1;
+	}
+	
+	public void enable() {
+		this.setDisable(false);
+	}
+	
+	public void disable() {
+		this.setDisable(true);
 	}
 }

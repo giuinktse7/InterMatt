@@ -16,6 +16,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.HBox;
@@ -30,16 +31,15 @@ public class PurchaseHistoryController implements Initializable {
 	@FXML private Pane contentPane;
 	@FXML private ListView<Node> productListView;
 	@FXML private ListView<Node> ordersList;
+	@FXML private Label lblTotalPrice;
+	@FXML private Label lblDate;
+	@FXML private Label lblOrderID;
 	
 	
 	private IMatDataHandler db = IMatDataHandler.getInstance();
 	
 	public void initialize(URL location, ResourceBundle resources) {
 		ordersList.setOrientation(Orientation.HORIZONTAL);
-	}
-	
-	public void setCloseAction(Action c) {
-		//closeButton.setOnAction(e -> bottomPane.close());
 	}
 	
 	public void update() {
@@ -59,22 +59,30 @@ public class PurchaseHistoryController implements Initializable {
 		
 		orders.forEach(order -> {
 			OrderOverviewBox orderBox = new OrderOverviewBox(order);
-			orderBox.setOnMouseClicked(e -> {
-				List<Node> productBoxes = orderBox.getProductBoxes();
-				if (!productListView.getItems().equals(productBoxes))
-					productListView.getItems().setAll(productBoxes);
-		
-			});
+			orderBox.setOnMouseClicked(e -> displayOrder(orderBox));
 			ordersList.getItems().add(orderBox);
 			});
 		
-		//Add the first separator
+		//Show the first order if there is one
 		if (!ordersList.getItems().isEmpty()) {
-			((OrderOverviewBox)ordersList.getItems().get(0)).getChildren().add(0, separator);
-			
-			//Show the first order
 			OrderOverviewBox box = new OrderOverviewBox(((OrderOverviewBox) ordersList.getItems().get(0)).getOrder());
-			productListView.getItems().setAll(box.getProductBoxes());
+			displayOrder(box);
+			ordersList.getSelectionModel().select(0);
 		}
+	}
+	
+	private void displayOrder(OrderOverviewBox orderBox) {
+		
+		List<Node> productBoxes = orderBox.getProductBoxes();
+		if (!productListView.getItems().equals(productBoxes))
+			productListView.getItems().setAll(productBoxes);
+		
+		lblDate.setText(orderBox.getDate());
+		lblTotalPrice.setText(String.format("%.2f:-", orderBox.getTotalPrice()).replace('.', ','));
+		lblOrderID.setText(String.format("Order ID: %d", orderBox.getOrder().getOrderNumber()));
+	}
+	
+	public ModalPopup getRoot() {
+		return this.bottomPane;
 	}
 }
