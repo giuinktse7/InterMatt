@@ -2,12 +2,15 @@ package controllers;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;
@@ -42,8 +45,10 @@ public class StoreController implements Initializable {
 	private ScrollPane scrollPane;
 	@FXML
 	private Tab invisibleTab;
+	
+	IMatDataHandler db = IMatDataHandler.getInstance();
 
-	private final String[] tabStyleClasses = { "greens-tab-pane", "meat-tab-pane", "dairy-tab-pane",
+	private final String[] tabStyleClasses = { "greens-tab-pane", "meat-tab-pane", "dairy-tab-pane", "drinks-tab-pane",
 			"cabinet-tab-pane", "friday-cuddle-tab-pane", };
 
 	// content.getUserData() holds the previous value of prefColumns.
@@ -53,11 +58,16 @@ public class StoreController implements Initializable {
 	private TextField txtSearch;
 	@FXML
 	private Label lblSearchResult;
+	
+	private SubCategory frequentlyBought = new SubCategory("frequently bought");
 
 	@Override
 	public void initialize(URL url, ResourceBundle bundle) {
 		initializeSubCategories();
 
+		//Takes care of most frequently bought
+		loadFrequentlyBought();
+		
 		ScrollPane.positionInArea(content, 0, 0, 800, 800, 0, new Insets(50, 0, 0, 0), HPos.CENTER, VPos.TOP, true);
 		invisibleTab.setDisable(true);
 		
@@ -86,6 +96,39 @@ public class StoreController implements Initializable {
 	public Button getShoppingListButton() {
 		return gotoShoppingListButton;
 	}
+	
+	private void loadFrequentlyBought() {
+		List<Order> orders = db.getOrders();
+		List<ShoppingItem> items = new ArrayList<ShoppingItem>();
+		double[] amounts = new double[500];
+		
+		orders.forEach(order -> {
+			order.getItems().forEach(item -> {
+				amounts[item.getProduct().getProductId()] += item.getAmount();
+			});
+		});
+		
+		for (int i = 0; i < amounts.length; ++i)
+			if (amounts[i] > 0)
+				items.add(new ShoppingItem(db.getProduct(i), amounts[i]));
+		
+		//Sort by amount
+		Collections.sort(items, (o1, o2) -> {
+			ShoppingItem item1 = (ShoppingItem) o1;
+			ShoppingItem item2 = (ShoppingItem) o2;
+			
+			return (int) (item2.getAmount() - item1.getAmount());
+		});
+		
+		for (ShoppingItem item : items) {
+			System.out.printf("%s : %.2f\n", item.getProduct().getName(), item.getAmount());
+		}
+		
+		int stopAt = Math.min(12, items.size());
+		
+		for (int i = 0; i < stopAt; ++i)
+			frequentlyBought.addProduct(items.get(i).getProduct());
+	}
 
 	private void refreshContentMargin() {
 		int stopAt = Math.max((int) content.getUserData(), content.getPrefColumns());
@@ -95,19 +138,19 @@ public class StoreController implements Initializable {
 				insets = new Insets(21, 0, 0, 0);
 			else
 				insets = new Insets(0, 0, 0, 0);
-
-			TilePane.setMargin(content.getChildren().get(i), insets);
+			
+			if (content.getChildren().size() > i && content.getChildren().get(i) != null)
+				TilePane.setMargin(content.getChildren().get(i), insets);
 		}
 	}
 
 	public ChangeListener<String> getSearchAction() {
 		return (obs, oldValue, newValue) -> {
-			/** Changes selected tab to "start" */
-			mainTabPane.getSelectionModel().select(0);
+			/** Changes selected tab to "search" */
+			mainTabPane.getSelectionModel().select(invisibleTab);
 			List<Node> nodes = searchForItems(newValue);
 			if (nodes != null) {
 				populateStore(nodes);
-				mainTabPane.getSelectionModel().select(invisibleTab);
 				lblSearchResult
 						.setText(String.format("%d varor matchar sökningen: \"%s\"", nodes.size(), newValue.trim()));
 			}
@@ -156,6 +199,11 @@ public class StoreController implements Initializable {
 			});
 			
 		}
+		
+		Tab searchTab = mainTabPane.getTabs().get(0);
+		searchTab.setOnSelectionChanged(e -> {
+			populateStore(frequentlyBought);
+		});
 	}
 
 	private TabPane[] getTabPanes() {
@@ -209,6 +257,7 @@ public class StoreController implements Initializable {
 		Set<SubCategory> dairy = new HashSet<SubCategory>();
 		Set<SubCategory> protein = new HashSet<SubCategory>();
 		Set<SubCategory> fridayCuddle = new HashSet<SubCategory>();
+		Set<SubCategory> drinks = new HashSet<SubCategory>();
 
 		greens.add(berries);
 		greens.add(fruits);
@@ -220,18 +269,19 @@ public class StoreController implements Initializable {
 		protein.add(meat);
 		protein.add(fish);
 		dairy.add(dairies);
+		drinks.add(coldDrinks);
+		drinks.add(hotDrinks);
 		cabinet.add(breads);
 		cabinet.add(powderStuff);
 		cabinet.add(pasta);
-		fridayCuddle.add(coldDrinks);
-		fridayCuddle.add(hotDrinks);
 		fridayCuddle.add(sweets);
 
 		superCategories.put(0, greens);
 		superCategories.put(1, protein);
 		superCategories.put(2, dairy);
-		superCategories.put(3, cabinet);
-		superCategories.put(4, fridayCuddle);
+		superCategories.put(3, drinks);
+		superCategories.put(4, cabinet);
+		superCategories.put(5, fridayCuddle);
 
 		return superCategories;
 	}

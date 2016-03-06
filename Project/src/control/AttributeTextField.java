@@ -9,7 +9,7 @@ public class AttributeTextField extends TextField {
 
 	private static final String unitsWithDouble = "'kg', 'hg', 'g', 'l'";
 	private double maxValue;
-	private double minValue = 1;
+	private double minValue = 0;
 	private boolean allowDoubles;
 
 	public AttributeTextField(Product product, double maxValue) {
@@ -20,11 +20,6 @@ public class AttributeTextField extends TextField {
 		
 		//Maybe not use? Might not be necessary..
 		addEventFilter(KeyEvent.KEY_TYPED, numeric_Validation(5));
-		
-		textProperty().addListener((obs, oldValue, newValue) -> {
-			if (newValue.isEmpty())
-				setText(Integer.toString(1));
-		});
 	}
 
 	private boolean isAllowedValue(String value) {

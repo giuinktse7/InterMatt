@@ -1,7 +1,8 @@
 package control;
 
-import java.math.RoundingMode;
 import java.text.NumberFormat;
+
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Text;
 
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
@@ -18,7 +19,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.util.converter.NumberStringConverter;
@@ -26,20 +26,20 @@ import se.chalmers.ait.dat215.project.Product;
 import util.ShoppingCartHandler;
 
 
-public class ProductHBox extends HBox {
+public class CartItem extends HBox {
 	private static ShoppingCartHandler cartHandler = ShoppingCartHandler.getInstance();
 	
 	private Product product;
 	private DoubleProperty quantityProperty = new SimpleDoubleProperty(1);
 	
-	public ProductHBox(Product product, Node... nodes) {
+	public CartItem(Product product, Node... nodes) {
 		super(nodes);
 		this.product = product;
 		
 		initialize();
 	}
 	
-	public ProductHBox(Product product) {
+	public CartItem(Product product) {
 		this.product = product;
 		initialize();
 	}
@@ -83,6 +83,7 @@ public class ProductHBox extends HBox {
 	private void initialize() {
 		this.setFocusTraversable(false);
 		Label name = new Label(product.getName());
+		name.getStyleClass().add("name-label");
 		name.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
 		
 		AttributeTextField txtAmount = new AttributeTextField(product, cartHandler.MAX_QUANTITY);
@@ -90,9 +91,42 @@ public class ProductHBox extends HBox {
 		txtAmount.setPrefWidth(65);
 		txtAmount.setMinHeight(35);
 		
+		txtAmount.focusedProperty().addListener((obs, o, n) -> {
+			String text = txtAmount.getText();
+			
+			//Set to 1 if value is 0 or not a double
+			if (!n && (text.isEmpty() || text.equals("0") || !isDouble(text)))
+				text = "1";
+			
+			//Remove dot if it is the last character
+			if (!n && text.charAt(text.length() - 1) == '.')
+				text = text.substring(0, text.length() - 1);
+			
+			//Remove beginning zeros
+			int i = 0;
+			while(text.length() > i + 1 && text.charAt(i) == '0')
+				++i;
+			
+			text = text.substring(i, text.length());
+			if (!text.isEmpty() && text.charAt(0) == '.')
+				text = "0" + text;
+			
+			if (text.isEmpty())
+				text = "1";
+			
+			//Remove dot if it is the last character
+			if (!n && text.charAt(text.length() - 1) == '.')
+				text = text.substring(0, text.length() - 1);
+			
+			if (text.equals("0"))
+				text = "1";
+			
+			txtAmount.setText(text);
+		});
+		
 		
 		Button decAmountBtn = new Button();
-		decAmountBtn.setOnAction(e -> { quantityProperty().set(this.quantityProperty().get() - 1); name.requestFocus(); });
+		decAmountBtn.setOnAction(e -> { quantityProperty().set(Math.max(1, this.quantityProperty().get() - 1)); name.requestFocus(); });
 		HBox.setMargin(decAmountBtn, new Insets(0, 3, 0, 0));
 		decAmountBtn.setStyle("-fx-background-color: transparent;");
 		decAmountBtn.setPrefSize(24, 24);
@@ -140,7 +174,7 @@ public class ProductHBox extends HBox {
 		this.setAlignment(Pos.CENTER_LEFT);
 
 		txtAmount.textProperty().addListener((obs, oldValue, newValue) -> {
-			decAmountBtn.setDisable(newValue.equals("1"));
+			decAmountBtn.setDisable(!isDouble(newValue) || Double.parseDouble(newValue) <= 1 );
 			
 			if (isDouble(newValue) && !oldValue.equals("")) {
 				double oldQuantity = Double.parseDouble(oldValue);
@@ -174,7 +208,7 @@ public class ProductHBox extends HBox {
 		if (this == obj) return true;
 		if (!obj.getClass().equals(this.getClass())) return false;
 			
-		ProductHBox that = (ProductHBox) obj;
+		CartItem that = (CartItem) obj;
 			
 		return this.product.getProductId() == (that.product.getProductId());
 	}
@@ -182,7 +216,7 @@ public class ProductHBox extends HBox {
 	private static boolean isDouble(String value) {
 		try {
 			Double.parseDouble(value);
-			return true;
+			return value.charAt(0) != '.';
 		} catch (NumberFormatException nfe) {
 			return false;
 		}

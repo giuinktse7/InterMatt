@@ -39,6 +39,13 @@
 	-fx-fill: derive(-fx-cabinet-color, -60%);
 }
 
+.drinks-tab-pane .tab {
+	-fx-background-color: transparent, derive(-fx-drinks-color, 50%);
+}
+.drinks-tab-pane .tab .text {
+	-fx-fill: derive(-fx-drinks-color, -60%);
+}
+
 .dairy-tab-pane .tab .text {
 	-fx-fill: derive(-fx-dairy-color, -60%);
 }
@@ -133,15 +140,15 @@
 
 #fruitTab .text{ -fx-fill: white;}
 
-#breadTab { 
-	-fx-background-color: -bg-color, derive(-fx-bread-color, -25%); 
+#drinksTab { 
+	-fx-background-color: -bg-color, derive(-fx-drinks-color, -25%); 
 	-fx-font-weight: bold;
 	-fx-border-color: transparent;
 }
-.breadTabContent { -fx-background-color: -fx-bread-color; }
-#breadTab:hover { -fx-background-color: -bg-color, linear-gradient(to top, derive(-fx-bread-color, 35%), derive(-fx-bread-color, 45%)); }
-#breadTab:selected { -fx-background-color: -bg-color, -fx-bread-color; }
-#breadTab .text{
+.drinksTabContent { -fx-background-color: -fx-drinks-color; }
+#drinksTab:hover { -fx-background-color: -bg-color, linear-gradient(to top, derive(-fx-drinks-color, 35%), derive(-fx-drinks-color, 45%)); }
+#drinksTab:selected { -fx-background-color: -bg-color, -fx-drinks-color; }
+#drinksTab .text{
 	-fx-fill: white;
 }
 
@@ -203,9 +210,10 @@
 	-fx-border-color: transparent;
 }
 
-/* SEARCH STUFF */
-#search-result-label {
+/* SEARCH STUFF & OTHER */
+#search-result-label:disabled,
+.startTabContent .label .text {
 	-fx-font-size: 24pt;
-	-fx-fill: white;
+	-fx-fill: #ADADAD;
 	-fx-font-weight: bold;
 }
