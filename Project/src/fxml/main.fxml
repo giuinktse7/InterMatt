@@ -28,20 +28,24 @@
 		<fx:include fx:id="saveListPopup" maxWidth="-Infinity"
 			maxHeight="-Infinity" source="save_list.fxml" />
 
-		<VBox fx:id="mainContentWrapper">
+		<VBox fx:id="mainContentWrapper" fillWidth="true">
 			<children>
-				<SplitPane fx:id="splitPane" dividerPositions="0.75"
-					prefHeight="700.0" prefWidth="1200" styleClass="backdrop"
-					VBox.vgrow="ALWAYS">
-					<items>
-						<AnchorPane minWidth="900">
+				<HBox prefHeight="700.0" prefWidth="-Infinity"
+					styleClass="backdrop" VBox.vgrow="ALWAYS">
+					<children>
+						<AnchorPane HBox.hgrow="ALWAYS" AnchorPane.topAnchor="0"
+							AnchorPane.leftAnchor="0" AnchorPane.bottomAnchor="0">
+							<HBox.margin>
+								<Insets right="28.0" />
+							</HBox.margin>
 							<children>
 								<VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
 									AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 									<children>
 										<HBox>
 											<children>
-												<Button styleClass="top-header-button" mnemonicParsing="false">
+												<Button styleClass="top-header-button"
+													mnemonicParsing="false">
 													<graphic>
 														<ImageView fitHeight="36.0" fitWidth="36.0"
 															pickOnBounds="true" preserveRatio="true">
@@ -54,7 +58,8 @@
 														<Insets left="14.0" />
 													</HBox.margin>
 												</Button>
-												<Button styleClass="top-header-button" mnemonicParsing="false">
+												<Button styleClass="top-header-button"
+													mnemonicParsing="false">
 													<graphic>
 														<ImageView fitHeight="36.0" fitWidth="48.0"
 															pickOnBounds="true" preserveRatio="true">
@@ -67,7 +72,8 @@
 														<Insets left="14.0" />
 													</HBox.margin>
 												</Button>
-												<Button styleClass="top-header-button" mnemonicParsing="false">
+												<Button styleClass="top-header-button"
+													mnemonicParsing="false">
 													<graphic>
 														<ImageView fitHeight="36.0" fitWidth="48.0"
 															pickOnBounds="true" preserveRatio="true">
@@ -80,7 +86,8 @@
 														<Insets left="14.0" />
 													</HBox.margin>
 												</Button>
-												<Button styleClass="top-header-button" mnemonicParsing="false">
+												<Button styleClass="top-header-button"
+													mnemonicParsing="false">
 													<graphic>
 														<ImageView fitHeight="36.0" fitWidth="48.0"
 															pickOnBounds="true" preserveRatio="true">
@@ -95,8 +102,8 @@
 												</Button>
 												<HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
 													<children>
-														<TextField id="search-field" fx:id="searchTextField" prefHeight="45" prefWidth="410.0"
-															promptText="Sök" />
+														<TextField id="search-field" fx:id="searchTextField"
+															prefHeight="45" prefWidth="410.0" promptText="Sök" />
 													</children>
 												</HBox>
 											</children>
@@ -118,7 +125,7 @@
 								</VBox>
 							</children>
 						</AnchorPane>
-						<AnchorPane prefHeight="601.0" prefWidth="140">
+						<AnchorPane>
 							<children>
 								<Button fx:id="purchaseHistoryButton" maxWidth="-Infinity"
 									mnemonicParsing="false" prefHeight="36" styleClass="history-button"
@@ -128,8 +135,8 @@
 								<fx:include fx:id="shoppingCart" source="shopping_cart.fxml" />
 							</children>
 						</AnchorPane>
-					</items>
-				</SplitPane>
+					</children>
+				</HBox>
 
 				<AnchorPane stylesheets="@../styling/navigation_bar.css"
 					prefHeight="103.0" prefWidth="1057.0" styleClass="base-style"

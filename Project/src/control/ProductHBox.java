@@ -18,6 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.util.converter.NumberStringConverter;
@@ -88,21 +89,22 @@ public class ProductHBox extends HBox {
 		
 		txtAmount.setPrefWidth(65);
 		txtAmount.setMinHeight(35);
-
+		
+		
 		Button decAmountBtn = new Button();
 		decAmountBtn.setOnAction(e -> { quantityProperty().set(this.quantityProperty().get() - 1); name.requestFocus(); });
 		HBox.setMargin(decAmountBtn, new Insets(0, 3, 0, 0));
 		decAmountBtn.setStyle("-fx-background-color: transparent;");
-		decAmountBtn.setPrefSize(15, 15);
-		Image decAmountBtnImage = new Image("resources/minus.png", 15, 15, true, true);
+		decAmountBtn.setPrefSize(24, 24);
+		Image decAmountBtnImage = new Image("resources/minus.png", 24, 24, true, true);
 		decAmountBtn.setGraphic(new ImageView(decAmountBtnImage));
 
 		Button incAmountBtn = new Button();
 		HBox.setMargin(incAmountBtn, new Insets(0, 0, 0, 3));
 		incAmountBtn.setOnAction(e -> this.quantityProperty().set(this.quantityProperty().get() + 1));
 		incAmountBtn.setStyle("-fx-background-color: transparent;");
-		incAmountBtn.setPrefSize(15, 15);
-		Image incAmountBtnImage = new Image("resources/plus.png", 15, 15, true, true);
+		incAmountBtn.setPrefSize(24, 24);
+		Image incAmountBtnImage = new Image("resources/plus.png", 24, 24, true, true);
 		incAmountBtn.setGraphic(new ImageView(incAmountBtnImage));
 		
 		Label unitLabel = new Label(product.getUnitSuffix());
@@ -152,10 +154,10 @@ public class ProductHBox extends HBox {
 		txtAmount.setText("1");
 		
 		//Bind the quantity textField and the quantity of the associated shoppingItem
-		NumberFormat format = NumberFormat.getIntegerInstance();
-		format.setParseIntegerOnly(true);
-		format.setRoundingMode(RoundingMode.DOWN);
+		NumberFormat format = NumberFormat.getNumberInstance();
+		format.setParseIntegerOnly(false);
 		Bindings.bindBidirectional(txtAmount.textProperty(), quantityProperty(), new NumberStringConverter(format));
+		
 		removeProductButton.setOnAction(event -> {
 			cartHandler.getItems().remove(this);
 		});

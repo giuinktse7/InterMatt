@@ -15,6 +15,11 @@
 	
 }
 
+.attribute-text-field .text {
+	-fx-fill: #5E5E5E;
+	-fx-font-size: 18pt;
+}
+
 #total-price-label .text {
 	-fx-font-size: 20pt;
 }

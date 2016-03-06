@@ -43,8 +43,8 @@ public class StoreController implements Initializable {
 	@FXML
 	private Tab invisibleTab;
 
-	private final String[] tabStyleClasses = { "greens-tab-pane", "bakery-tab-pane", "meat-tab-pane",
-			"dairy-tab-pane", "cabinet-tab-pane", "friday-cuddle-tab-pane", };
+	private final String[] tabStyleClasses = { "greens-tab-pane", "meat-tab-pane", "dairy-tab-pane",
+			"cabinet-tab-pane", "friday-cuddle-tab-pane", };
 
 	// content.getUserData() holds the previous value of prefColumns.
 	@FXML
@@ -60,7 +60,7 @@ public class StoreController implements Initializable {
 
 		ScrollPane.positionInArea(content, 0, 0, 800, 800, 0, new Insets(50, 0, 0, 0), HPos.CENTER, VPos.TOP, true);
 		invisibleTab.setDisable(true);
-
+		
 		content.setUserData(content.getPrefColumns());
 
 		int ITEM_WIDTH = 255;
@@ -138,6 +138,7 @@ public class StoreController implements Initializable {
 		for (int i : categories.keySet()) {
 			TabPane tabPane = superCategories[i];
 			tabPane.getStyleClass().add(tabStyleClasses[i]);
+			
 			for (SubCategory subCategory : categories.get(i)) {
 				Tab tab = new Tab(subCategory.getName());
 				tab.getStyleClass().add("sub-tab");
@@ -148,25 +149,27 @@ public class StoreController implements Initializable {
 				});
 				tabPane.getTabs().add(tab);
 			}
-			mainTabPane.getTabs().get(i).setOnSelectionChanged(e -> {
+			
+			//i + 1 to avoid the 'Start' tab
+			mainTabPane.getTabs().get(i + 1).setOnSelectionChanged(e -> {
 				populateStore((SubCategory) categories.get(i).toArray()[0]);
 			});
-			;
+			
 		}
 	}
 
 	private TabPane[] getTabPanes() {
 		List<TabPane> tabPanes = new ArrayList<TabPane>();
 
-		//Loop through main tab-pane to find subt-tabs
+		// Loop through main tab-pane to find subt-tabs
 		for (Tab tab : mainTabPane.getTabs()) {
-			//Is there a subTabPane here?
+			// Is there a subTabPane here?
 			Node tabContent = tab.getContent();
-			//The sub-tabPanes are wrapped in a FlowPane
+			// The sub-tabPanes are wrapped in a FlowPane
 			if (tabContent.getClass().equals(FlowPane.class)) {
-					Node firstChild = ((FlowPane)tabContent).getChildren().get(0);
-			if (firstChild.getClass().equals(TabPane.class))
-				tabPanes.add((TabPane) firstChild);
+				Node firstChild = ((FlowPane) tabContent).getChildren().get(0);
+				if (firstChild.getClass().equals(TabPane.class))
+					tabPanes.add((TabPane) firstChild);
 			}
 		}
 
@@ -203,7 +206,6 @@ public class StoreController implements Initializable {
 		Map<Integer, Set<SubCategory>> superCategories = new HashMap<Integer, Set<SubCategory>>();
 		Set<SubCategory> greens = new HashSet<SubCategory>();
 		Set<SubCategory> cabinet = new HashSet<SubCategory>();
-		Set<SubCategory> bread = new HashSet<SubCategory>();
 		Set<SubCategory> dairy = new HashSet<SubCategory>();
 		Set<SubCategory> protein = new HashSet<SubCategory>();
 		Set<SubCategory> fridayCuddle = new HashSet<SubCategory>();
@@ -218,7 +220,7 @@ public class StoreController implements Initializable {
 		protein.add(meat);
 		protein.add(fish);
 		dairy.add(dairies);
-		bread.add(breads);
+		cabinet.add(breads);
 		cabinet.add(powderStuff);
 		cabinet.add(pasta);
 		fridayCuddle.add(coldDrinks);
@@ -226,11 +228,10 @@ public class StoreController implements Initializable {
 		fridayCuddle.add(sweets);
 
 		superCategories.put(0, greens);
-		superCategories.put(1, bread);
-		superCategories.put(2, protein);
-		superCategories.put(3, dairy);
-		superCategories.put(4, cabinet);
-		superCategories.put(5, fridayCuddle);
+		superCategories.put(1, protein);
+		superCategories.put(2, dairy);
+		superCategories.put(3, cabinet);
+		superCategories.put(4, fridayCuddle);
 
 		return superCategories;
 	}

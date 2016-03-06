@@ -20,7 +20,6 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -64,7 +63,6 @@ public class MainController implements Initializable {
 	
 	//The close-to-root stuff
 	@FXML private Pane shoppingCart;
-	@FXML private SplitPane splitPane;
 	@FXML private StackPane wrapperStackPane;
 	@FXML private VBox mainContentWrapper;
 	

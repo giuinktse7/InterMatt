@@ -18,23 +18,23 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox id="storePane" fillWidth="true" prefHeight="600.0" prefWidth="1000.0"
+<VBox id="storePane" fillWidth="true" prefHeight="600.0" minWidth="820"
 	styleClass="backdrop" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"
 	fx:controller="controllers.StoreController">
 	<children>
 		<AnchorPane>
 			<children>
-				<TabPane id="mainTabPane" fx:id="mainTabPane" minWidth="650.0"
+				<TabPane id="mainTabPane" fx:id="mainTabPane"
 					styleClass="bigTabs" stylesheets="@../styling/main_tabPane.css"
 					tabClosingPolicy="UNAVAILABLE" tabMaxHeight="65" tabMaxWidth="200.0"
-					 tabMinHeight="65" tabMinWidth="0"
+					tabMinHeight="65" tabMinWidth="0"
 					AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
 					AnchorPane.topAnchor="0.0">
 					<tabs>
 						<Tab id="startTab" fx:id="startTab" closable="false" text="Start">
 							<content>
-								<AnchorPane maxHeight="40.0" minHeight="40.0"
-									minWidth="300.0" prefHeight="40.0" prefWidth="925.0"
+								<AnchorPane maxHeight="70" minHeight="70"
+									 prefHeight="70" prefWidth="925.0"
 									styleClass="startTabContent">
 									<children>
 									</children>
@@ -49,19 +49,6 @@
 										tabMinHeight="45" tabMinWidth="60.0">
 										<styleClass>
 
-											<String fx:value="smallTabs" />
-										</styleClass>
-									</TabPane>
-								</FlowPane>
-							</content>
-						</Tab>
-						<Tab id="breadTab" closable="false" text="Bröd &amp; Bakverk">
-							<content>
-								<FlowPane prefHeight="70" alignment="BOTTOM_LEFT"
-									styleClass="breadTabContent">
-									<TabPane tabClosingPolicy="UNAVAILABLE" tabMaxHeight="45"
-										tabMinHeight="45" tabMinWidth="60.0">
-										<styleClass>
 											<String fx:value="smallTabs" />
 										</styleClass>
 									</TabPane>
