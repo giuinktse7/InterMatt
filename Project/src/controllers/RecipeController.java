@@ -10,6 +10,7 @@ import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 
 import se.chalmers.ait.dat215.project.IMatDataHandler;
+import util.InformationStorage;
 import util.ShoppingCartHandler;
 
 public class RecipeController implements Initializable {
@@ -21,12 +22,10 @@ public class RecipeController implements Initializable {
 	@FXML private Label lblPaymentType;
 	@FXML private Button btnBackToStore;
 	@FXML private Button btnExit;
-	public String user_first = "du";
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		instance = this;
-		pane_title.setText("Tack för ditt köp " + user_first + "!");
 		btnExit.setOnMouseClicked(e -> System.exit(0));
 		//btnBackToStore.setOnMouseClicked(e -> );	
 	}
@@ -34,6 +33,11 @@ public class RecipeController implements Initializable {
 	public static RecipeController getInstance(){
 		return instance;
 	}
+
+	public  void setTitleText(String name){
+		pane_title.setText("Tack för ditt köp " + name + "!");
+	}
+
 	public void setPriceText(float price){
 		lblPrice.setText(new DecimalFormat("#.##").format(price)+":-");
 	}

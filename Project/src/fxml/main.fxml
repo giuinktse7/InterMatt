@@ -118,7 +118,6 @@
 												<fx:include fx:id="credentialsPane" source="credentials.fxml" />
 												<fx:include fx:id="storePane" source="store.fxml" />
 												<fx:include fx:id="receiptPane" source="receipt.fxml" />
-
 											</children>
 										</StackPane>
 									</children>

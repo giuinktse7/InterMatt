@@ -33,7 +33,7 @@
                   <Insets top="14.0" />
                </VBox.margin>
             </AnchorPane>
-            <Group>
+            <Group fx:id="toggleGroup">
                <children>
                   <ToggleButton fx:id="btn_pay_delivery" graphicTextGap="7.0" mnemonicParsing="false" onAction="#payment_mode_changed" selected="true" text="Betala vid leverans" textFill="#413e4a">
                      <font>

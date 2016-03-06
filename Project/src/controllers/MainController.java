@@ -95,7 +95,6 @@ public class MainController implements Initializable {
 		nextButton.disable();
 		
 		searchTextField.textProperty().addListener(storePaneController.getSearchAction());
-		
 		me = this;
 		
 		//Give the popup-system required panes
@@ -234,7 +233,8 @@ public class MainController implements Initializable {
 			for (ShoppingItem item : orders.get(0).getItems()){
 				totalPrice += item.getTotal();
 			}
-			
+
+			RecipeController.getInstance().setTitleText(InformationStorage.getFirstName());
 			RecipeController.getInstance().setPriceText(totalPrice);
 			RecipeController.getInstance().setDeliveryTimeText(InformationStorage.getDelivery());
 			RecipeController.getInstance().setPaymentText(InformationStorage.getPaymentType());
@@ -248,11 +248,11 @@ public class MainController implements Initializable {
 		
 		view.getBindingGroup().setAll(group.getBinds());
 	}
-	
+
 	private void setReceiptBinds() {
 		ContentView view = viewDisplay.getView(receiptPane);
 		BindingGroup group = btnToReceipt.getBindingGroup();
-		group.addBinding(PURCHASE_VIEW_ACTIVE);
+		group.addBinding(purchasePaneController.getBindings().and(PURCHASE_VIEW_ACTIVE));
 		
 		view.getBindingGroup().setAll(group.getBinds());
 	}

@@ -23,35 +23,35 @@
                                 <Font size="42.0" />
                             </font>
                         </Label>
-                  <HBox layoutX="14.0" layoutY="62.0" prefHeight="29.0" prefWidth="924.0">
+                  <HBox layoutX="14.0" layoutY="62.0" prefHeight="29.0" AnchorPane.topAnchor="100.0">
                      <children>
-                        <Label text="Du har handlat för ">
+                        <Label text="Du har handlat för " textFill="#413e4a">
                            <font>
-                              <Font size="18.0" />
+                              <Font size="21.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblPrice" text="0:-">
+                        <Label fx:id="lblPrice" text="0:-" textFill="#413e4a">
                            <font>
-                              <Font name="System Bold" size="18.0" />
+                              <Font name="System Bold" size="21.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblTimeOfDelivery" text=" och betalning sker vid leverans">
+                        <Label fx:id="lblTimeOfDelivery" text=" och betalning sker vid leverans" textFill="#413e4a">
                            <font>
-                              <Font size="18.0" />
+                              <Font size="21.0" />
                            </font>
                         </Label>
                      </children>
                   </HBox>
-                  <HBox layoutX="14.0" layoutY="91.0" prefHeight="27.0" prefWidth="924.0">
+                  <HBox layoutX="14.0" layoutY="91.0" prefHeight="27.0" AnchorPane.topAnchor="135.0">
                      <children>
-                        <Label text="Dina varor levereras ">
+                        <Label text="Dina varor levereras " textFill="#413e4a">
                            <font>
-                              <Font size="18.0" />
+                              <Font size="21.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblPaymentType" text="Fredag 21/4 ca15:00">
+                        <Label fx:id="lblPaymentType" text="Fredag 21/4 runt klockan 15:00" textFill="#413e4a">
                            <font>
-                              <Font name="System Bold" size="18.0" />
+                              <Font name="System Bold" size="21.0" />
                            </font>
                         </Label>
                      </children>
@@ -61,16 +61,16 @@
                         <Insets top="14.0" />
                     </VBox.margin>
                 </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <AnchorPane>
                <children>
                   <Button fx:id="btnBackToStore" layoutX="-36.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="186.0" text="Handla på nytt" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0">
                      <font>
-                        <Font size="18.0" />
+                        <Font size="23.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnExit" layoutX="729.0" layoutY="102.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="186.0" text="Avsluta" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
+                  <Button fx:id="btnExit" layoutX="729.0" layoutY="102.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="186.0" text="Avsluta" textFill="#413e4a" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
                      <font>
-                        <Font size="18.0" />
+                        <Font size="23.0" />
                      </font>
                   </Button>
                </children>
