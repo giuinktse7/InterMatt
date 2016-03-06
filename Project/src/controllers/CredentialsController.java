@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
+import util.InformationStorage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -37,6 +38,12 @@ public class CredentialsController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		// We need to store the firstname even if user choses to not save data. Used in receipt.
+		// Not really pretty way to store the name but...
+		txtFirstname.textProperty().addListener((observable, oldValue, newValue ) -> {
+			InformationStorage.setFirtsName(newValue);
+				});
+
 		txtSSN.textProperty().addListener((observable, oldValue, newValue) -> {
 			if (!newValue.matches("\\d*")) {
 				txtSSN.setText(oldValue);

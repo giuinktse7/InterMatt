@@ -232,7 +232,8 @@ public class MainController implements Initializable {
 			for (ShoppingItem item : orders.get(0).getItems()){
 				totalPrice += item.getTotal();
 			}
-			
+
+			RecipeController.getInstance().setTitleText(InformationStorage.getFirstName());
 			RecipeController.getInstance().setPriceText(totalPrice);
 			RecipeController.getInstance().setDeliveryTimeText(InformationStorage.getDelivery());
 			RecipeController.getInstance().setPaymentText(InformationStorage.getPaymentType());
