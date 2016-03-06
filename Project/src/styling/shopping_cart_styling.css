@@ -17,7 +17,7 @@
 
 .attribute-text-field {
 	-fx-text-fill: #5E5E5E;
-	-fx-font-size: 50pt;
+	-fx-font-size: 14pt;
 }
 
 #total-price-label .text {
@@ -26,6 +26,12 @@
 
 #cart-title-label .text {
 	-fx-font-size: 24pt;
+}
+
+.name-label .text {
+	-fx-font-size: 14pt;
+	-fx-font-family: "Verdana";
+	
 }
 
 .list-view {

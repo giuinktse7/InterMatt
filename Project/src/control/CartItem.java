@@ -84,7 +84,6 @@ public class CartItem extends HBox {
 		this.setFocusTraversable(false);
 		Label name = new Label(product.getName());
 		name.getStyleClass().add("name-label");
-		name.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
 		
 		AttributeTextField txtAmount = new AttributeTextField(product, cartHandler.MAX_QUANTITY);
 		
