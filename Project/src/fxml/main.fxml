@@ -27,6 +27,10 @@
 			maxHeight="-Infinity" source="load_list.fxml" />
 		<fx:include fx:id="saveListPopup" maxWidth="-Infinity"
 			maxHeight="-Infinity" source="save_list.fxml" />
+		<fx:include fx:id="contactPopup" maxWidth="-Infinity"
+			maxHeight="-Infinity" source="contact.fxml" />
+		<fx:include fx:id="helpPopup" maxWidth="-Infinity"
+			maxHeight="-Infinity" source="help.fxml" />
 
 		<VBox fx:id="mainContentWrapper" fillWidth="true">
 			<children>
@@ -44,13 +48,13 @@
 									<children>
 										<HBox>
 											<children>
-												<Button styleClass="top-header-button"
+												<Button fx:id="historyButton" styleClass="top-header-button"
 													mnemonicParsing="false">
 													<graphic>
-														<ImageView fitHeight="36.0" fitWidth="36.0"
+														<ImageView fitHeight="36.0" fitWidth="48.0"
 															pickOnBounds="true" preserveRatio="true">
 															<image>
-																<Image url="@../resources/home.png" />
+																<Image url="@../resources/history_icon.png" />
 															</image>
 														</ImageView>
 													</graphic>
@@ -58,13 +62,13 @@
 														<Insets left="14.0" />
 													</HBox.margin>
 												</Button>
-												<Button styleClass="top-header-button"
+												<Button fx:id="helpButton" styleClass="top-header-button"
 													mnemonicParsing="false">
 													<graphic>
 														<ImageView fitHeight="36.0" fitWidth="48.0"
 															pickOnBounds="true" preserveRatio="true">
 															<image>
-																<Image url="@../resources/blackheart.png" />
+																<Image url="@../resources/help.png" />
 															</image>
 														</ImageView>
 													</graphic>
@@ -72,27 +76,13 @@
 														<Insets left="14.0" />
 													</HBox.margin>
 												</Button>
-												<Button styleClass="top-header-button"
+												<Button fx:id="contactButton" styleClass="top-header-button"
 													mnemonicParsing="false">
 													<graphic>
 														<ImageView fitHeight="36.0" fitWidth="48.0"
 															pickOnBounds="true" preserveRatio="true">
 															<image>
-																<Image url="@../resources/delivery.png" />
-															</image>
-														</ImageView>
-													</graphic>
-													<HBox.margin>
-														<Insets left="14.0" />
-													</HBox.margin>
-												</Button>
-												<Button styleClass="top-header-button"
-													mnemonicParsing="false">
-													<graphic>
-														<ImageView fitHeight="36.0" fitWidth="48.0"
-															pickOnBounds="true" preserveRatio="true">
-															<image>
-																<Image url="@../resources/listIconTest.png" />
+																<Image url="@../resources/phone.png" />
 															</image>
 														</ImageView>
 													</graphic>

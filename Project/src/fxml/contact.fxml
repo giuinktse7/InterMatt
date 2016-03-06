@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.text.Font?>
+<?import control.ModalPopup?>
+
+<ModalPopup fx:id="bottomPane" stylesheets="@../styling/modal_popup.css" styleClass="bottomPane" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+	<children>
+		<!-- Content is centered according to this pane:: HAS TO BE HERE! -->
+		<FlowPane alignment="CENTER">
+   <children>
+   			<VBox>
+   				<children>
+   					<AnchorPane id="modalTop" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="45.0">
+   						<children>
+   							<Label layoutX="119.0" layoutY="90.0" text="Kontakt" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+   								<font>
+   									<Font size="24.0" />
+   								</font>
+   								<padding>
+   									<Insets left="14.0" />
+   								</padding>
+   							</Label>
+   						</children>
+   					</AnchorPane>
+   					<AnchorPane id="content" maxHeight="-Infinity" prefHeight="298.0" prefWidth="511.0">
+                     <children>
+                        <Label styleClass="bold" layoutX="69.0" layoutY="14.0" text="031-031031">
+                           <font>
+                              <Font size="18.0"/>
+                           </font>
+                        </Label>
+                        <Label layoutX="25.0" layoutY="41.0" text="Kundservice öppettider:" />
+                        <Label layoutX="25.0" layoutY="58.0" text="Må-Lö: 09:00 - 17:30, Sö: Stängt">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label styleClass="bold" layoutX="316.0" layoutY="14.0" text="Kontakt@Intermat.se">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label styleClass="bold" layoutX="69.0" layoutY="123.0" text="Hörsalsvägen 7">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Separator layoutX="25.0" layoutY="99.0" prefHeight="3.0" prefWidth="461.0" />
+                        <Label layoutX="25.0" layoutY="149.0" text="412 58 Göteborg">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Separator layoutX="25.0" layoutY="192.0" prefHeight="3.0" prefWidth="244.0" />
+                        <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="25.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                        	<image>
+								<Image url="@../resources/phone.png" />
+							</image>
+						</ImageView>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="278.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                        	<image>
+								<Image url="@../resources/mail.png" />
+							</image>
+						</ImageView>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="25.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true">
+                        	<image>
+								<Image url="@../resources/location.png" />
+							</image>
+						</ImageView>
+                     </children>
+   					</AnchorPane>
+   				</children>
+   			</VBox>
+   </children>
+		</FlowPane>
+	</children>
+</ModalPopup>

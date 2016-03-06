@@ -21,6 +21,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -38,6 +39,11 @@ public class MainController implements Initializable {
 	@FXML private ArrowButton prevButton;
 	@FXML private ArrowButton nextButton;
 	@FXML private Button purchaseHistoryButton;
+	
+	//TEST
+	@FXML private Button contactButton;
+	@FXML private Button historyButton;
+	@FXML private Button helpButton;
 	
 	//Labels for describing the different steps
 	@FXML private Label storeLabel;
@@ -76,6 +82,8 @@ public class MainController implements Initializable {
 	@FXML private ModalPopup purchaseHistoryPopup;
 	@FXML private ModalPopup loadListPopup;
 	@FXML private ModalPopup saveListPopup;
+	@FXML private ModalPopup contactPopup;
+	@FXML private ModalPopup helpPopup;
 	
 	//Controllers
 	@FXML private StoreController storePaneController;
@@ -161,6 +169,11 @@ public class MainController implements Initializable {
 		purchaseHistoryButton.setOnAction(event -> { purchaseHistoryPopupController.update(); purchaseHistoryPopup.show(); });
 		shoppingCartController.getShoppingListButton().setOnAction(e -> loadListPopup.show());
 		shoppingCartController.getSaveListButton().setOnAction(e -> saveListPopup.show());
+		
+		//TODO TEST
+		contactButton.setOnAction(e -> contactPopup.show());
+		historyButton.setOnAction(e -> purchaseHistoryPopup.show());
+		helpButton.setOnAction(e -> helpPopup.show());
 
 		//Drag & drop:  resizing of window to 'highlight' the shopping cart.
 		purchaseHistoryPopup.setOnDragOver(e -> {
