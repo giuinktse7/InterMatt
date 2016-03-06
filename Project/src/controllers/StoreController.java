@@ -8,8 +8,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
+
+import javafx.beans.value.ChangeListener;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ListChangeListener.Change;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
+import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,6 +24,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import se.chalmers.ait.dat215.project.*;
@@ -35,12 +43,10 @@ public class StoreController implements Initializable {
 	@FXML
 	private Tab invisibleTab;
 
-	private final String[] tabStyleClasses = { "start-tab-pane", "greens-tab-pane", "bakery-tab-pane", "meat-tab-pane",
+	private final String[] tabStyleClasses = { "greens-tab-pane", "bakery-tab-pane", "meat-tab-pane",
 			"dairy-tab-pane", "cabinet-tab-pane", "friday-cuddle-tab-pane", };
 
-	// Fixes the border for the main TabPane.
-	@FXML
-	private Pane borderFixPane;
+	// content.getUserData() holds the previous value of prefColumns.
 	@FXML
 	private TilePane content;
 	@FXML
@@ -51,31 +57,61 @@ public class StoreController implements Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle bundle) {
 		initializeSubCategories();
-		
+
+		ScrollPane.positionInArea(content, 0, 0, 800, 800, 0, new Insets(50, 0, 0, 0), HPos.CENTER, VPos.TOP, true);
 		invisibleTab.setDisable(true);
 
-		int ITEM_WIDTH = 252;
-		// IntegerProperty ITEM_WIDTH = scrollPane.widthProperty().divide(252);
-		content.widthProperty().addListener((obs, o, n) -> {
-			if (n.doubleValue() % ITEM_WIDTH != 0)
-				content.maxWidthProperty().set(n.doubleValue() - n.doubleValue() % ITEM_WIDTH);
-			System.out.println(n.doubleValue());
+		content.setUserData(content.getPrefColumns());
+
+		int ITEM_WIDTH = 255;
+
+		content.prefColumnsProperty().addListener((obs, o, n) -> {
+			content.setUserData(o.intValue());
+			refreshContentMargin();
 		});
 
-		txtSearch.textProperty().addListener((obs, oldValue, newValue) -> {
+		content.getChildren().addListener(new ListChangeListener<Node>() {
+			@Override
+			public void onChanged(javafx.collections.ListChangeListener.Change<? extends Node> c) {
+				if (!c.getList().isEmpty())
+					refreshContentMargin();
+			}
+		});
+		scrollPane.widthProperty().addListener((obs, o, n) -> {
+			content.setPrefColumns((int) (n.doubleValue() / ITEM_WIDTH));
+			content.maxWidthProperty().set(ITEM_WIDTH * content.getPrefColumns());
+		});
+	}
+
+	public Button getShoppingListButton() {
+		return gotoShoppingListButton;
+	}
+
+	private void refreshContentMargin() {
+		int stopAt = Math.max((int) content.getUserData(), content.getPrefColumns());
+		for (int i = 0; i < stopAt; ++i) {
+			Insets insets;
+			if (i < content.getPrefColumns())
+				insets = new Insets(21, 0, 0, 0);
+			else
+				insets = new Insets(0, 0, 0, 0);
+
+			TilePane.setMargin(content.getChildren().get(i), insets);
+		}
+	}
+
+	public ChangeListener<String> getSearchAction() {
+		return (obs, oldValue, newValue) -> {
 			/** Changes selected tab to "start" */
 			mainTabPane.getSelectionModel().select(0);
 			List<Node> nodes = searchForItems(newValue);
 			if (nodes != null) {
 				populateStore(nodes);
 				mainTabPane.getSelectionModel().select(invisibleTab);
-				lblSearchResult.setText(String.format("%d varor matchar s�kningen: \"%s\"", nodes.size(), newValue.trim()));
+				lblSearchResult
+						.setText(String.format("%d varor matchar sökningen: \"%s\"", nodes.size(), newValue.trim()));
 			}
-		});
-	}
-
-	public Button getShoppingListButton() {
-		return gotoShoppingListButton;
+		};
 	}
 
 	private void populateStore(SubCategory subCategory) {
@@ -84,7 +120,6 @@ public class StoreController implements Initializable {
 
 	private void populateStore(List<Node> productViews) {
 		content.getChildren().clear();
-
 		content.getChildren().addAll(productViews);
 	}
 
@@ -98,13 +133,14 @@ public class StoreController implements Initializable {
 
 	private void initializeSubCategories() {
 		Map<Integer, Set<SubCategory>> categories = categorize();
-		
+
 		TabPane[] superCategories = getTabPanes();
 		for (int i : categories.keySet()) {
 			TabPane tabPane = superCategories[i];
 			tabPane.getStyleClass().add(tabStyleClasses[i]);
 			for (SubCategory subCategory : categories.get(i)) {
 				Tab tab = new Tab(subCategory.getName());
+				tab.getStyleClass().add("sub-tab");
 
 				tab.setOnSelectionChanged(e -> {
 					if (tab.isSelected())
@@ -122,25 +158,22 @@ public class StoreController implements Initializable {
 	private TabPane[] getTabPanes() {
 		List<TabPane> tabPanes = new ArrayList<TabPane>();
 
+		//Loop through main tab-pane to find subt-tabs
 		for (Tab tab : mainTabPane.getTabs()) {
-
-			if (tab.getContent().getClass().equals(TabPane.class))
-				tabPanes.add((TabPane) tab.getContent());
-			else {
-				Pane content = (Pane) tab.getContent();
-
-				for (Node n : content.getChildren())
-					if (n.getClass().equals(TabPane.class)) {
-						tabPanes.add((TabPane) n);
-						break;
-					}
+			//Is there a subTabPane here?
+			Node tabContent = tab.getContent();
+			//The sub-tabPanes are wrapped in a FlowPane
+			if (tabContent.getClass().equals(FlowPane.class)) {
+					Node firstChild = ((FlowPane)tabContent).getChildren().get(0);
+			if (firstChild.getClass().equals(TabPane.class))
+				tabPanes.add((TabPane) firstChild);
 			}
 		}
 
 		return tabPanes.toArray(new TabPane[0]);
 	}
 
-	// Frukt & Gr�nt
+	// Frukt & Grönt
 	private final SubCategory berries = new SubCategory("Bär", ProductCategory.BERRY);
 	private final SubCategory fruits = new SubCategory("Frukter", ProductCategory.CITRUS_FRUIT,
 			ProductCategory.EXOTIC_FRUIT, ProductCategory.FRUIT, ProductCategory.MELONS);
@@ -156,7 +189,7 @@ public class StoreController implements Initializable {
 	private final SubCategory fish = new SubCategory("Fisk", ProductCategory.FISH);
 	// Mejeri
 	private final SubCategory dairies = new SubCategory("Mejeri", ProductCategory.DAIRIES);
-	// Br�d & bakverk
+	// Bröd & bakverk
 	private final SubCategory breads = new SubCategory("Bröd", ProductCategory.BREAD);
 	// Skafferi
 	private final SubCategory powderStuff = new SubCategory("Torrvaror", ProductCategory.FLOUR_SUGAR_SALT);
@@ -192,12 +225,12 @@ public class StoreController implements Initializable {
 		fridayCuddle.add(hotDrinks);
 		fridayCuddle.add(sweets);
 
-		superCategories.put(1, greens);
-		superCategories.put(2, bread);
-		superCategories.put(3, protein);
-		superCategories.put(4, dairy);
-		superCategories.put(5, cabinet);
-		superCategories.put(6, fridayCuddle);
+		superCategories.put(0, greens);
+		superCategories.put(1, bread);
+		superCategories.put(2, protein);
+		superCategories.put(3, dairy);
+		superCategories.put(4, cabinet);
+		superCategories.put(5, fridayCuddle);
 
 		return superCategories;
 	}

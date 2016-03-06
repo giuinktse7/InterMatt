@@ -11,90 +11,120 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox id="storePane" fillWidth="true" prefHeight="600.0" prefWidth="1000.0" styleClass="backdrop" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StoreController">
+<VBox id="storePane" fillWidth="true" prefHeight="600.0" prefWidth="1000.0"
+	styleClass="backdrop" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="controllers.StoreController">
 	<children>
 		<AnchorPane>
 			<children>
-				<TabPane id="mainTabPane" fx:id="mainTabPane" minWidth="650.0" styleClass="bigTabs" stylesheets="@../styling/main_tabPane.css" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="45" tabMaxWidth="200.0" tabMinHeight="40.0" tabMinWidth="0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+				<TabPane id="mainTabPane" fx:id="mainTabPane" minWidth="650.0"
+					styleClass="bigTabs" stylesheets="@../styling/main_tabPane.css"
+					tabClosingPolicy="UNAVAILABLE" tabMaxHeight="65" tabMaxWidth="200.0"
+					 tabMinHeight="65" tabMinWidth="0"
+					AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+					AnchorPane.topAnchor="0.0">
 					<tabs>
 						<Tab id="startTab" fx:id="startTab" closable="false" text="Start">
 							<content>
-								<AnchorPane maxHeight="40.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="925.0" styleClass="startTabContent">
+								<AnchorPane maxHeight="40.0" minHeight="40.0"
+									minWidth="300.0" prefHeight="40.0" prefWidth="925.0"
+									styleClass="startTabContent">
 									<children>
-										<TabPane fx:id="skipTabPane" layoutX="0" prefHeight="40.0" prefWidth="131.0" styleClass="smallTabs" tabClosingPolicy="UNAVAILABLE" tabMinWidth="60.0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0.0" />
 									</children>
 								</AnchorPane>
 							</content>
 						</Tab>
 						<Tab id="fruitTab" closable="false" text="Frukt &amp; Grönt">
 							<content>
-								<TabPane tabClosingPolicy="UNAVAILABLE" tabMaxHeight="35" tabMinHeight="35.0" tabMinWidth="60.0">
-									<styleClass>
-										<String fx:value="fruitTabContent" />
-										<String fx:value="smallTabs" />
-									</styleClass>
-								</TabPane>
+								<FlowPane prefHeight="70" alignment="BOTTOM_LEFT"
+									styleClass="fruitTabContent">
+									<TabPane tabClosingPolicy="UNAVAILABLE" tabMaxHeight="45"
+										tabMinHeight="45" tabMinWidth="60.0">
+										<styleClass>
+
+											<String fx:value="smallTabs" />
+										</styleClass>
+									</TabPane>
+								</FlowPane>
 							</content>
 						</Tab>
 						<Tab id="breadTab" closable="false" text="Bröd &amp; Bakverk">
 							<content>
-								<TabPane tabClosingPolicy="UNAVAILABLE" tabMaxHeight="35" tabMinHeight="35.0" tabMinWidth="60.0">
-									<styleClass>
-										<String fx:value="breadTabContent" />
-										<String fx:value="smallTabs" />
-									</styleClass>
-								</TabPane>
+								<FlowPane prefHeight="70" alignment="BOTTOM_LEFT"
+									styleClass="breadTabContent">
+									<TabPane tabClosingPolicy="UNAVAILABLE" tabMaxHeight="45"
+										tabMinHeight="45" tabMinWidth="60.0">
+										<styleClass>
+											<String fx:value="smallTabs" />
+										</styleClass>
+									</TabPane>
+								</FlowPane>
 							</content>
 						</Tab>
 						<Tab id="meatTab" closable="false" text="Kött &amp; Fisk">
 							<content>
-								<TabPane tabClosingPolicy="UNAVAILABLE" tabMaxHeight="35" tabMinHeight="35.0" tabMinWidth="60.0">
-									<styleClass>
-										<String fx:value="meatTabContent" />
-										<String fx:value="smallTabs" />
-									</styleClass>
-								</TabPane>
+								<FlowPane prefHeight="70" alignment="BOTTOM_LEFT"
+									styleClass="meatTabContent">
+									<TabPane tabClosingPolicy="UNAVAILABLE" tabMaxHeight="45"
+										tabMinHeight="45" tabMinWidth="60.0">
+										<styleClass>
+											<String fx:value="smallTabs" />
+										</styleClass>
+									</TabPane>
+								</FlowPane>
 							</content>
 						</Tab>
 						<Tab id="dairyTab" closable="false" text="Mejeri">
 							<content>
-								<TabPane tabClosingPolicy="UNAVAILABLE" tabMaxHeight="35" tabMinHeight="35.0" tabMinWidth="60.0">
-									<styleClass>
-										<String fx:value="dairyTabContent" />
-										<String fx:value="smallTabs" />
-									</styleClass>
-								</TabPane>
+								<FlowPane prefHeight="70" alignment="BOTTOM_LEFT"
+									styleClass="dairyTabContent">
+									<TabPane tabClosingPolicy="UNAVAILABLE" tabMaxHeight="45"
+										tabMinHeight="45" tabMinWidth="60.0">
+										<styleClass>
+											<String fx:value="smallTabs" />
+										</styleClass>
+									</TabPane>
+								</FlowPane>
 							</content>
 						</Tab>
 						<Tab id="cabinetTab" closable="false" text="Skafferi">
 							<content>
-								<TabPane tabClosingPolicy="UNAVAILABLE" tabMaxHeight="35" tabMinHeight="35.0" tabMinWidth="60.0">
-									<styleClass>
-										<String fx:value="cabinetTabContent" />
-										<String fx:value="smallTabs" />
-									</styleClass>
-								</TabPane>
+								<FlowPane prefHeight="70" alignment="BOTTOM_LEFT"
+									styleClass="cabinetTabContent">
+									<TabPane tabClosingPolicy="UNAVAILABLE" tabMaxHeight="45"
+										tabMinHeight="45" tabMinWidth="60.0">
+										<styleClass>
+											<String fx:value="smallTabs" />
+										</styleClass>
+									</TabPane>
+								</FlowPane>
 							</content>
 						</Tab>
 						<Tab id="fridaycuddlingTab" closable="false" text="Fredagsmys">
 							<content>
-								<TabPane tabClosingPolicy="UNAVAILABLE" tabMaxHeight="35" tabMinHeight="35.0" tabMinWidth="60.0">
-									<styleClass>
-										<String fx:value="fridaycuddlingTabContent" />
-										<String fx:value="smallTabs" />
-									</styleClass>
-								</TabPane>
+								<FlowPane prefHeight="70" alignment="BOTTOM_LEFT"
+									styleClass="fridaycuddlingTabContent">
+									<TabPane tabClosingPolicy="UNAVAILABLE" tabMaxHeight="45"
+										tabMinHeight="45" tabMinWidth="60.0">
+										<styleClass>
+											<String fx:value="smallTabs" />
+										</styleClass>
+									</TabPane>
+								</FlowPane>
 							</content>
 						</Tab>
-						<Tab id="invisibleTab" fx:id="invisibleTab" closable="false" text="">
+						<Tab id="invisibleTab" fx:id="invisibleTab" closable="false"
+							text="">
 							<content>
-								<HBox alignment="CENTER_LEFT" minWidth="300.0" prefWidth="925.0" styleClass="searchTabContent">
+								<HBox alignment="CENTER_LEFT" minWidth="300.0" prefWidth="925.0"
+									styleClass="searchTabContent">
 									<children>
 										<Label id="search-result-label" fx:id="lblSearchResult">
 											<HBox.margin>
@@ -110,23 +140,20 @@
 						<Insets />
 					</opaqueInsets>
 				</TabPane>
-				<TextField fx:id="txtSearch" layoutX="945.0" layoutY="8.0" prefHeight="37.0" promptText="Sök" visible="false" AnchorPane.leftAnchor="890.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="7.0">
-					<font>
-						<Font size="18.0" />
-					</font>
-				</TextField>
 			</children>
-         <VBox.margin>
-            <Insets top="14.0" />
-         </VBox.margin>
 		</AnchorPane>
-		<AnchorPane id="item-display-anchor" stylesheets="@../styling/item_display_area.css" VBox.vgrow="ALWAYS">
+		<AnchorPane id="item-display-anchor" stylesheets="@../styling/item_display_area.css"
+			VBox.vgrow="ALWAYS">
 			<children>
-				<ScrollPane fx:id="scrollPane" fitToWidth="true" maxHeight="-Infinity" styleClass="scroll-pane" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" VBox.vgrow="ALWAYS">
+				<ScrollPane fx:id="scrollPane" fitToWidth="true"
+					maxHeight="-Infinity" styleClass="scroll-pane"
+					AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0"
+					AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
 					<content>
 						<AnchorPane>
 							<children>
-								<StackPane AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+								<StackPane AnchorPane.leftAnchor="0"
+									AnchorPane.rightAnchor="0">
 									<children>
 										<TilePane fx:id="content" styleClass="tile-pane">
 											<children>
@@ -139,9 +166,6 @@
 					</content>
 				</ScrollPane>
 			</children>
-			<VBox.margin>
-				<Insets top="7.0" />
-			</VBox.margin>
 		</AnchorPane>
 	</children>
 </VBox>

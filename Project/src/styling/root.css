@@ -19,7 +19,8 @@
 	-bg-color: white;
 	
 	-itempane-color: white;
-	-buy-button-color: 	#989898;
+	
+	-buy-button-color: #4C4C4C;
 	-main-text-color: #000000;
 	-list-item-selected-color: #c1c1c1;
 	-list-item-even-color: white;
@@ -28,7 +29,6 @@
 	-scroll-thumb-color: #737373;
 }
 
-.tab-pane .tab-pane .tab:selected,
 .backdrop {
 	-fx-background-color: -itempane-color;
 }
@@ -36,6 +36,18 @@
 #red {
 	-fx-border-width: 1px;
 	-fx-border-color: red;
+}
+
+.button:hover,
+.navigation-button:hover,
+.arrow-button:hover,
+.order-box,
+.tab {
+	-fx-cursor: hand;
+}
+
+.tab:disabled {
+	-fx-cursor: normal;
 }
 
 .split-pane > .split-pane-divider {  

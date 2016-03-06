@@ -17,67 +17,81 @@
     -fx-font-family: "Helvetica";
 }
 
-/* Styling f�r subkategorier */
+/* Styling för subkategorier */
 .greens-tab-pane .tab {
-	-fx-background-color: derive(-fx-fruit-color, 50%);
+	-fx-background-color: transparent, derive(-fx-fruit-color, 50%);
 }
+.greens-tab-pane .tab .text {
+	-fx-fill: derive(-fx-fruit-color, -50%);
+}
+
 .meat-tab-pane .tab {
-	-fx-background-color: derive(-fx-meat-color, 50%);
+	-fx-background-color: transparent, derive(-fx-meat-color, 50%);
 }
+.meat-tab-pane .tab .text {
+	-fx-fill: derive(-fx-meat-color, -60%);
+}
+
 .cabinet-tab-pane .tab {
-	-fx-background-color: derive(-fx-cabinet-color, 50%);
+	-fx-background-color: transparent, derive(-fx-cabinet-color, 50%);
 }
+.cabinet-tab-pane .tab .text {
+	-fx-fill: derive(-fx-cabinet-color, -60%);
+}
+
+.dairy-tab-pane .tab .text {
+	-fx-fill: derive(-fx-dairy-color, -60%);
+}
+
 .friday-cuddle-tab-pane .tab {
-	-fx-background-color: derive(-fx-fridaycuddling-color, 50%);
+	-fx-background-color: transparent, derive(-fx-fridaycuddling-color, 50%);
+}
+.friday-cuddle-tab-pane .tab .text {
+	-fx-fill: derive(-fx-fridaycuddling-color, -60%);
 }
 
 .greens-tab-pane .tab:hover {
-	-fx-background-color: derive(-fx-fruit-color, 75%);
+	-fx-background-color: transparent, derive(-fx-fruit-color, 75%);
 }
 .meat-tab-pane .tab:hover {
-	-fx-background-color: derive(-fx-meat-color, 75%);
+	-fx-background-color: transparent,  derive(-fx-meat-color, 75%);
 }
 .cabinet-tab-pane .tab:hover {
-	-fx-background-color: derive(-fx-cabinet-color, 75%);
+	-fx-background-color: transparent, derive(-fx-cabinet-color, 75%);
 }
 .friday-cuddle-tab-pane .tab:hover {
-	-fx-background-color: derive(-fx-fridaycuddling-color, 75%);
+	-fx-background-color: transparent, derive(-fx-fridaycuddling-color, 75%);
 }
 
 .bigTabs .tab-label{
-    -fx-font-size: 20 pt;
-}
-
-.bigTabs .tab{
-    -fx-padding:3px 14px 3px 14px;
-}
-
-.smallTabs .tab{
-    -fx-padding:4px 7px 4px 7px;
+    -fx-font-size: 22 pt;
 }
 
 
 .smallTabs .tab-label{
     -fx-font-size: 18 pt;
+    -fx-font-weight: bold;
 }
 
-
+.smallTabs .tab:selected {
+	-fx-background-color: transparent, white;
+}
 
 #mainTabPane > .tab-header-background {
 	-fx-background-color: transparent;
 }
 
-/*Working css for tab */
+/* TABS */
 .tab {
-	-fx-background-insets: 0 0 0 0, 0 0.5em 0.4em 0;
+	-fx-background-insets: 0, 0.4em 0.25em 0.4em 0.25em;
 	-fx-background-radius: 0;
-	-fx-background-color: white, red;
+	-fx-background-color: white, blue;
+	-fx-padding: 0 1em 0 1em, 0;
 	
-	-fx-border-color: rgba(0, 0, 0, 0.5);
-	-fx-border-style: hidden hidden solid hidden;
-	-fx-border-insets: 0 0.5em 0 0, 0 0 0 0.5em;
-	-fx-border-width: 1;
-	-fx-border-radius: 0 0 0 0;
+	-fx-border-style: hidden;
+	-fx-border-insets: 0;
+	-fx-border-width: 0;
+	-fx-border-radius: 0;
 	
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
@@ -85,14 +99,20 @@
 
 
 .tab:selected {
-	-fx-opacity: 1;
-	-fx-background-insets: 0, 0 0.5em 0 0;
+	-fx-background-insets: 0, 0.4em 0.25em 0 0.25em;
+	-fx-padding: 0 1em 0 1em, 0;
 	
-	-fx-border-color: rgba(0, 0, 0, 0.5);
-	-fx-border-style: solid solid hidden solid;
-	-fx-border-insets: 0 0.5em 0 0, 0 0 0 0.5em;
-	-fx-border-width: 1;
-	-fx-border-radius: 0 0 0 0;
+	-fx-border-style: hidden;
+	-fx-border-insets: 0;
+	-fx-border-width: 0;
+}
+
+.smallTabs .tab {
+	-fx-background-insets: 0, 0 0.25em 0 0.25em;
+}
+
+.smallTabs .tab:selected {
+	-fx-background-insets: 0, 0 0.25em 0 0.25em;
 }
 
 
@@ -102,9 +122,10 @@
 #startTab:hover { -fx-background-color: -bg-color, linear-gradient(to top, derive(-fx-start-color, 35%), derive(-fx-start-color, 45%)); }
 #startTab:selected { -fx-background-color: -bg-color, -fx-start-color; }
 
-#fruitTab { -fx-background-color: white, derive(-fx-fruit-color, -25%);
-			-fx-font-weight: bold;
-			-fx-border-color: transparent;
+#fruitTab {
+	-fx-background-color: white, derive(-fx-fruit-color, -25%);
+	-fx-font-weight: bold;
+	-fx-border-color: transparent;
 }
 .fruitTabContent { -fx-background-color: -fx-fruit-color; }
 #fruitTab:hover { -fx-background-color: -bg-color, linear-gradient(to top, derive(-fx-fruit-color, 35%), derive(-fx-fruit-color, 45%)); }
@@ -112,59 +133,69 @@
 
 #fruitTab .text{ -fx-fill: white;}
 
-#breadTab { -fx-background-color: -bg-color, derive(-fx-bread-color, -25%); 
-			-fx-font-weight: bold;
-			-fx-border-color: transparent;
+#breadTab { 
+	-fx-background-color: -bg-color, derive(-fx-bread-color, -25%); 
+	-fx-font-weight: bold;
+	-fx-border-color: transparent;
 }
 .breadTabContent { -fx-background-color: -fx-bread-color; }
 #breadTab:hover { -fx-background-color: -bg-color, linear-gradient(to top, derive(-fx-bread-color, 35%), derive(-fx-bread-color, 45%)); }
 #breadTab:selected { -fx-background-color: -bg-color, -fx-bread-color; }
-
-#breadTab .text{			-fx-fill: white;}
-
-
-#meatTab { -fx-background-color: -bg-color, derive(-fx-meat-color, -25%);
-			-fx-font-weight: bold;
-			-fx-border-color: transparent;
+#breadTab .text{
+	-fx-fill: white;
 }
-.meatTabContent { -fx-background-color: -fx-meat-color; }
+
+
+#meatTab { 
+	-fx-background-color: -bg-color, derive(-fx-meat-color, -25%);
+	-fx-font-weight: bold;
+	-fx-border-color: transparent;
+}
 #meatTab:hover { -fx-background-color: white, linear-gradient(to top, derive(-fx-meat-color, 35%), derive(-fx-meat-color, 45%)); }
 #meatTab:selected { -fx-background-color: white, -fx-meat-color; }
-
-#meatTab .text{			-fx-fill: white;}
-
-
-#dairyTab { -fx-background-color: -bg-color, derive(-fx-dairy-color, -25%);
-			-fx-font-weight: bold;
-			-fx-border-color: transparent;
+#meatTab .text{	
+	-fx-fill: white;
 }
-.dairyTabContent { -fx-background-color: -fx-dairy-color; }
+.meatTabContent { -fx-background-color: -fx-meat-color; }
+
+
+#dairyTab { 
+	-fx-background-color: -bg-color, derive(-fx-dairy-color, -25%);
+	-fx-font-weight: bold;
+	-fx-border-color: transparent;
+}
 #dairyTab:hover { -fx-background-color: -bg-color, linear-gradient(to top, derive(-fx-dairy-color, 35%), derive(-fx-dairy-color, 45%)); }
-#dairyTab:selected { -fx-background-color: -bg-color, -fx-dairy-color; }
+#dairyTab:selected { -fx-background-color: transparent, -fx-dairy-color; }
+#dairyTab .text{ -fx-fill: white; }
+.dairyTabContent { -fx-background-color: -fx-dairy-color; }
 
-#dairyTab .text{			-fx-fill: white;}
 
-
-#cabinetTab { -fx-background-color: -bg-color, derive(-fx-cabinet-color, -25%);
-			-fx-font-weight: bold;
-			-fx-border-color: transparent;
+#cabinetTab { 
+	-fx-background-color: -bg-color, derive(-fx-cabinet-color, -25%);
+	-fx-font-weight: bold;
+	-fx-border-color: transparent;
 }
 .cabinetTabContent { -fx-background-color: -fx-cabinet-color; }
 #cabinetTab:hover { -fx-background-color: -bg-color, linear-gradient(to top, derive(-fx-cabinet-color, 35%), derive(-fx-cabinet-color, 45%)); }
 #cabinetTab:selected { -fx-background-color: -bg-color, -fx-cabinet-color; }
 
-#cabinetTab .text{			-fx-fill: white;}
+#cabinetTab .text{	
+	-fx-fill: white;
+}
 
 
-#fridaycuddlingTab { -fx-background-color: -bg-color, derive(-fx-fridaycuddling-color, -25%);
-			-fx-font-weight: bold;
-			-fx-border-color: transparent;
+#fridaycuddlingTab { 
+	-fx-background-color: -bg-color, derive(-fx-fridaycuddling-color, -25%);
+	-fx-font-weight: bold;
+	-fx-border-color: transparent;
 }
 .fridaycuddlingTabContent { -fx-background-color: -fx-fridaycuddling-color; }
 #fridaycuddlingTab:hover { -fx-background-color: -bg-color, linear-gradient(to top, derive(-fx-fridaycuddling-color, 35%), derive(-fx-fridaycuddling-color, 45%)); }
 #fridaycuddlingTab:selected { -fx-background-color: -bg-color, -fx-fridaycuddling-color; }
 
-#fridaycuddlingTab .text{			-fx-fill: white;}
+#fridaycuddlingTab .text{	
+	-fx-fill: white;
+}
 
 #invisibleTab,
 #invisbleTab:disabled {
@@ -172,6 +203,7 @@
 	-fx-border-color: transparent;
 }
 
+/* SEARCH STUFF */
 #search-result-label {
 	-fx-font-size: 24pt;
 	-fx-fill: white;

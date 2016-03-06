@@ -31,10 +31,10 @@
 		<VBox fx:id="mainContentWrapper">
 			<children>
 				<SplitPane fx:id="splitPane" dividerPositions="0.75"
-					prefHeight="700.0" prefWidth="1000.0" styleClass="backdrop"
+					prefHeight="700.0" prefWidth="1200" styleClass="backdrop"
 					VBox.vgrow="ALWAYS">
 					<items>
-						<AnchorPane minWidth="1000.0">
+						<AnchorPane minWidth="900">
 							<children>
 								<VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
 									AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -95,12 +95,9 @@
 												</Button>
 												<HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
 													<children>
-														<TextField id="search-field" prefHeight="45" prefWidth="410.0"
+														<TextField id="search-field" fx:id="searchTextField" prefHeight="45" prefWidth="410.0"
 															promptText="Sök" />
 													</children>
-													<HBox.margin>
-														<Insets right="28.0" />
-													</HBox.margin>
 												</HBox>
 											</children>
 											<VBox.margin>
@@ -121,7 +118,7 @@
 								</VBox>
 							</children>
 						</AnchorPane>
-						<AnchorPane prefHeight="601.0" prefWidth="142.0">
+						<AnchorPane prefHeight="601.0" prefWidth="140">
 							<children>
 								<Button fx:id="purchaseHistoryButton" maxWidth="-Infinity"
 									mnemonicParsing="false" prefHeight="36" styleClass="history-button"

@@ -21,6 +21,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -44,6 +45,8 @@ public class MainController implements Initializable {
 	@FXML private Label credentialsLabel;
 	@FXML private Label purchaseLabel;
 	@FXML private Label receiptLabel;
+	
+	@FXML private TextField searchTextField;
 	
 	//Used for the drag & drop functionality
 	private final int AVG = 1374;
@@ -93,6 +96,7 @@ public class MainController implements Initializable {
 		prevButton.disable();
 		nextButton.disable();
 		
+		searchTextField.textProperty().addListener(storePaneController.getSearchAction());
 		
 		me = this;
 		
