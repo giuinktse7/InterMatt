@@ -1,6 +1,6 @@
 package controllers;
 
-import interfaces.VerifyDateField;
+//import interfaces.VerifyDateField;
 import interfaces.VerifyTextField;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
@@ -196,15 +196,15 @@ public class PurchaseController implements Initializable {
 				ccFieldBinding(txt_cardnr_2)).and(
 				ccFieldBinding(txt_cardnr_3)).and(
 				ccFieldBinding(txt_cardnr_4)).and(
-				cvvFieldBinding(txt_card_cvv)).and(
-				dateFieldBinding(cb_card_year)).and(
-				dateFieldBinding(cb_card_month)
+				cvvFieldBinding(txt_card_cvv)
+				//.and(dateFieldBinding(cb_card_year)
+				//.and(dateFieldBinding(cb_card_month)
 		);
 	}
 
 	private final VerifyTextField GOOD_CC = (txtField) -> (txtField.getText().length() == 4);
 	private final VerifyTextField GOOD_CVV = (txtField) -> (txtField.getText().length() == 3);
-	private final VerifyDateField GOOD_DATE = (choice) -> (choice.getSelectionModel().getSelectedIndex() > 0);
+	//private final VerifyDateField GOOD_DATE = (choice) -> (choice.getSelectionModel().getSelectedIndex() > 0);
 
 	private BooleanBinding ccFieldBinding(TextField textField) {
 		BooleanBinding binding = createBinding(textField, GOOD_CC);
@@ -230,7 +230,8 @@ public class PurchaseController implements Initializable {
 		return binding;
 	}
 
-	private BooleanBinding dateFieldBinding(ChoiceBox choiceBox) {
+	// MISSING FILES
+	/*private BooleanBinding dateFieldBinding(ChoiceBox choiceBox) {
 		BooleanBinding binding = createChoiceBinding(choiceBox, GOOD_DATE);
 		binding.addListener((obs, oldValue, newValue) -> {
 			if (!newValue) {
@@ -240,15 +241,16 @@ public class PurchaseController implements Initializable {
 			}
 		});
 		return binding;
-	}
+	}*/
 
 	private BooleanBinding createBinding(TextField textField, VerifyTextField verifyTextField) {
 		return Bindings.createBooleanBinding(() -> verifyTextField.verify(textField), textField.textProperty());
 	}
 
-	private BooleanBinding createChoiceBinding(ChoiceBox choiceBox, VerifyDateField verifyDateField) {
+	//MISSING FILES
+	/*private BooleanBinding createChoiceBinding(ChoiceBox choiceBox, VerifyDateField verifyDateField) {
 		return Bindings.createBooleanBinding(() -> verifyDateField.verify(choiceBox), choiceBox.selectionModelProperty());
-	}
+	}*/
 
 
 	public boolean verifyInput(){

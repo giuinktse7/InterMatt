@@ -3,7 +3,7 @@ package util;
 import java.util.ArrayList;
 import java.util.List;
 
-import control.ProductHBox;
+import control.CartItem;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -23,7 +23,7 @@ public class ShoppingCartHandler {
 	private Label lblTotalCost;
 	private DoubleProperty totalCost = new SimpleDoubleProperty(0);
 
-	private ListView<ProductHBox> cart;
+	private ListView<CartItem> cart;
 	private BooleanProperty emptyProperty = new SimpleBooleanProperty(true);
 
 	public static ShoppingCartHandler instance = new ShoppingCartHandler();
@@ -37,9 +37,9 @@ public class ShoppingCartHandler {
 		return this.emptyProperty;
 	}
 
-	public void setCart(ListView<ProductHBox> cart) {
+	public void setCart(ListView<CartItem> cart) {
 		this.cart = cart;
-		cart.getItems().addListener((Change<? extends ProductHBox> c) -> {
+		cart.getItems().addListener((Change<? extends CartItem> c) -> {
 			emptyProperty.set(cart.getItems().size() == 0);
 		});
 
@@ -49,18 +49,18 @@ public class ShoppingCartHandler {
 		cart.getItems().addListener(UPDATE_TOTAL_COST);
 	}
 	
-	public ObservableList<ProductHBox> getItems() {
+	public ObservableList<CartItem> getItems() {
 		return this.cart.getItems();
 	}
 
-	private ListChangeListener<ProductHBox> UPDATE_TOTAL_COST = c -> {
+	private ListChangeListener<CartItem> UPDATE_TOTAL_COST = c -> {
 		while (c.next()) {
-			for (ProductHBox box : c.getAddedSubList()) {
+			for (CartItem box : c.getAddedSubList()) {
 				addToTotal(box.getQuantity() * box.getProduct().getPrice());
 			}
 			
 			if (c.wasRemoved())
-				for (ProductHBox box : c.getRemoved())
+				for (CartItem box : c.getRemoved())
 					addToTotal( - box.getQuantity() * box.getProduct().getPrice());
 		}
 	};
@@ -79,12 +79,12 @@ public class ShoppingCartHandler {
 
 	/** Adds the product to the shopping cart */
 	public void addProduct(Product product, double quantity) {
-		ProductHBox productBox = getProductBoxFromCart(product);
+		CartItem productBox = getProductBoxFromCart(product);
 
 		if (productBox != null)
 			productBox.addQuantity(quantity);
 		else {
-			ProductHBox box = new ProductHBox(product);
+			CartItem box = new CartItem(product);
 			box.setQuantity(quantity);
 			cart.getItems().add(box);
 		}
@@ -95,11 +95,11 @@ public class ShoppingCartHandler {
 		addProduct(product, 1);
 	}
 
-	private ProductHBox getProductBoxFromCart(Product product) {
-		ObservableList<ProductHBox> productsInCart = cart.getItems();
+	private CartItem getProductBoxFromCart(Product product) {
+		ObservableList<CartItem> productsInCart = cart.getItems();
 
 		for (Node node : productsInCart) {
-			ProductHBox box = (ProductHBox) node;
+			CartItem box = (CartItem) node;
 			if (box.getProduct().equals(product))
 				return box;
 		}

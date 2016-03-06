@@ -20,7 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.SplitPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -45,6 +45,8 @@ public class MainController implements Initializable {
 	@FXML private Label purchaseLabel;
 	@FXML private Label receiptLabel;
 	
+	@FXML private TextField searchTextField;
+	
 	//Used for the drag & drop functionality
 	private final int AVG = 1374;
 
@@ -61,7 +63,6 @@ public class MainController implements Initializable {
 	
 	//The close-to-root stuff
 	@FXML private Pane shoppingCart;
-	@FXML private SplitPane splitPane;
 	@FXML private StackPane wrapperStackPane;
 	@FXML private VBox mainContentWrapper;
 	
@@ -92,8 +93,8 @@ public class MainController implements Initializable {
 	public void initialize(URL url, ResourceBundle bundle) {
 		prevButton.disable();
 		nextButton.disable();
-
-
+		
+		searchTextField.textProperty().addListener(storePaneController.getSearchAction());
 		me = this;
 		
 		//Give the popup-system required panes

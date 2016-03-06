@@ -14,9 +14,8 @@ public class ArrowButton extends Button {
 	private ImageView[] images = new ImageView[2];
 	
 	public ArrowButton() {
-		getStyleClass().add("navigation-button");
+		getStyleClass().add("arrow-button");
 		disabledProperty().addListener((obs, oldValue, newValue) -> updateImage());
-		onActionProperty().addListener((obs, o, n) -> System.out.println("<<<<<CHANGED>>>>>"));
 	}
 	
 	public void setDirection(Direction Dir) {

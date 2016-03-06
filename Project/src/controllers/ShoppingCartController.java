@@ -3,7 +3,7 @@ package controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import control.ProductHBox;
+import control.CartItem;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -22,7 +22,7 @@ public class ShoppingCartController implements Initializable {
 	
 
 	@FXML private Label lblTotalCost;
-	@FXML private ListView<ProductHBox> cart;
+	@FXML private ListView<CartItem> cart;
 	
 	private IMatDataHandler db = IMatDataHandler.getInstance();
 	

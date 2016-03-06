@@ -15,11 +15,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="311.0" prefWidth="222.0" styleClass="backdrop" stylesheets="@../styling/shopping_cart_styling.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="49.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ShoppingCartController">
+<AnchorPane prefHeight="311.0" minWidth="400" styleClass="backdrop" stylesheets="@../styling/shopping_cart_styling.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="49.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ShoppingCartController">
 	<children>
 		<Label id="cart-title-label" alignment="CENTER" text="Varukorg" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
 		</Label>
-		<ListView id="shopping-cart-list" fx:id="cart" prefWidth="318.0" AnchorPane.bottomAnchor="150" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60" VBox.vgrow="ALWAYS">
+		<ListView id="shopping-cart-list" fx:id="cart" AnchorPane.bottomAnchor="150" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60" VBox.vgrow="ALWAYS">
 			<VBox.margin>
 				<Insets bottom="14.0" left="14.0" right="14.0" top="6.0" />
 			</VBox.margin>
@@ -29,11 +29,11 @@
 				<Font name="System Italic" size="16.0" />
 			</font>
 		</Label>
-		<Button fx:id="gotoShoppingListButton" alignment="CENTER" layoutX="-4.0" layoutY="234.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="66.0" prefWidth="170.0" styleClass="shopping-cart-button" text="Inköpslistor" textAlignment="RIGHT" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="180.0">
+		<Button fx:id="gotoShoppingListButton" alignment="CENTER" mnemonicParsing="false" prefHeight="66.0" styleClass="shopping-cart-button" text="Inköpslistor" textAlignment="RIGHT" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="7.0">
          <font>
             <Font name="Helvetica" size="19.0" />
          </font></Button>
-      <Button fx:id="saveShoppingListButton" alignment="CENTER" layoutX="186.0" layoutY="257.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="164.0" styleClass="shopping-cart-button" text="Spara lista" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="7.0">
+      <Button fx:id="saveShoppingListButton" alignment="CENTER" mnemonicParsing="false" prefHeight="66.0" styleClass="shopping-cart-button" text="Spara lista" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="7.0">
          <font>
             <Font size="19.0" />
          </font></Button>

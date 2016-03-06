@@ -1,7 +1,5 @@
 package control;
 
-import java.text.DecimalFormat;
-
 import javafx.event.EventHandler;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
@@ -11,21 +9,17 @@ public class AttributeTextField extends TextField {
 
 	private static final String unitsWithDouble = "'kg', 'hg', 'g', 'l'";
 	private double maxValue;
-	private double minValue = 1;
+	private double minValue = 0;
 	private boolean allowDoubles;
 
 	public AttributeTextField(Product product, double maxValue) {
+		this.getStyleClass().add("attribute-text-field");
 		allowDoubles = unitsWithDouble.contains("'" + product.getUnitSuffix() + "'");
 		this.maxValue = maxValue;
 		setMinWidth(25);
 		
 		//Maybe not use? Might not be necessary..
 		addEventFilter(KeyEvent.KEY_TYPED, numeric_Validation(5));
-		
-		textProperty().addListener((obs, oldValue, newValue) -> {
-			if (newValue.isEmpty())
-				setText(Integer.toString(1));
-		});
 	}
 
 	private boolean isAllowedValue(String value) {

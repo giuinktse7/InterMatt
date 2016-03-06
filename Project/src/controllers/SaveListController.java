@@ -11,7 +11,7 @@ import java.util.ResourceBundle;
 
 import util.ShoppingCartHandler;
 import control.ModalPopup;
-import control.ProductHBox;
+import control.CartItem;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -31,7 +31,7 @@ public class SaveListController implements Initializable {
 		btnSave.setOnAction(e -> {
 			List<String> lines = new ArrayList<String>();
 			lines.add("#"+txtListName.getText());
-			for (ProductHBox item : sch.getItems()){
+			for (CartItem item : sch.getItems()){
 				lines.add(item.getProduct().getProductId()+","+item.getQuantity());
 			}
 

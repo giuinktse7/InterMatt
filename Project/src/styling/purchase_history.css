@@ -180,11 +180,12 @@
     -fx-padding: 0;
 }
 
-/* SCROLL BARS */
-/** CSS **/
 #order-overview-box{
 	-fx-border-color:derive(gray,80%);
 }
+
+/* SCROLL BARS */
+/** CSS **/
 
 /* The main scrollbar CSS class of ListView */
 #order-overview-box .scroll-bar:horizontal ,
@@ -274,9 +275,3 @@
 	-fx-shape: " ";	
 	-fx-padding: 0;
 }
-
-/* #order-overview-box .increment-button:hover ,#order-overview-box .decrement-button:hover {
-    -fx-background-color:derive(gray,100%);
-	-fx-border-color:derive(gray,80%);	
-	-fx-padding:10px;
-}*/

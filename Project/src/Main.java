@@ -13,13 +13,12 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
 		
 		SubCategory.initializeProductViews();
-		
        primaryStage.setTitle("Intermätt");
        StackPane myPane = (StackPane) FXMLLoader.load(getClass().getResource("fxml/main.fxml"));
        Scene scene = new Scene(myPane);
        primaryStage.setScene(scene);
        primaryStage.show();
-       primaryStage.setMinWidth(1366);
+       primaryStage.setMinWidth(1400);
        primaryStage.setMinHeight(768);
     }
 

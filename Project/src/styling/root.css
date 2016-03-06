@@ -10,15 +10,17 @@
 	-fx-back-color: #6fc238;
 	-fx-start-color: #f3f3f3;
 	-fx-fruit-color: #90cf7d;
-	-fx-bread-color: #FDB827;
+	-fx-drinks-color: #FDB827;
 	-fx-meat-color: #f8a762;
 	-fx-dairy-color: #e97577;
 	-fx-cabinet-color: #b577b6;
 	-fx-fridaycuddling-color: #4cbae6;
 	-fx-main-color: #f3f3f3;
+	-bg-color: white;
 	
 	-itempane-color: white;
-	-buy-button-color: 	#F3F3F3;
+	
+	-buy-button-color: #4C4C4C;
 	-main-text-color: #000000;
 	-list-item-selected-color: #c1c1c1;
 	-list-item-even-color: white;
@@ -27,7 +29,6 @@
 	-scroll-thumb-color: #737373;
 }
 
-.tab-pane .tab-pane .tab:selected,
 .backdrop {
 	-fx-background-color: -itempane-color;
 }
@@ -35,6 +36,18 @@
 #red {
 	-fx-border-width: 1px;
 	-fx-border-color: red;
+}
+
+.button:hover,
+.navigation-button:hover,
+.arrow-button:hover,
+.order-box,
+.tab {
+	-fx-cursor: hand;
+}
+
+.tab:disabled {
+	-fx-cursor: normal;
 }
 
 .split-pane > .split-pane-divider {  
@@ -80,4 +93,19 @@
 .navigation-button:disabled {
 	-fx-opacity: 1;
 	-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0) , 0, 0.0 , 0 , 0);
+}
+
+/* Search */
+#search-field {
+	-fx-background-image:url("../resources/search.png");
+	-fx-background-size: 42, 28;
+  	-fx-background-repeat: no-repeat;
+  	-fx-background-position: right center;
+  	-fx-font-size: 20;
+}
+
+.top-header-button {
+	-fx-background-color: transparent;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
 }
