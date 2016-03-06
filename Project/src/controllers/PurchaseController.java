@@ -1,5 +1,9 @@
 package controllers;
 
+import interfaces.VerifyDateField;
+import interfaces.VerifyTextField;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -28,9 +32,7 @@ import java.util.ResourceBundle;
 import control.ModalPopup;
 
 public class PurchaseController implements Initializable {
-	@FXML private RadioButton rbPayByCard;
 
-	
 	
 	// Payment toggle buttons
 	@FXML private ToggleButton btn_pay_creditcard;
@@ -49,8 +51,7 @@ public class PurchaseController implements Initializable {
 	@FXML private TextField txt_cardnr_2;
 	@FXML private TextField txt_cardnr_3;
 	@FXML private TextField txt_cardnr_4;
-	
-	@FXML private Button btn_finish_payment;
+
 
 	// Credit card expiration year and month
 	@FXML private ChoiceBox<String> cb_card_month;
@@ -189,25 +190,89 @@ public class PurchaseController implements Initializable {
 				});
 	}
 
-	public final boolean verifyInput(){
-		if(rbPayByCard.selectedProperty().getValue()){
+
+	public BooleanBinding getBindings() {
+		return  ccFieldBinding(txt_cardnr_1).and(
+				ccFieldBinding(txt_cardnr_2)).and(
+				ccFieldBinding(txt_cardnr_3)).and(
+				ccFieldBinding(txt_cardnr_4)).and(
+				cvvFieldBinding(txt_card_cvv)).and(
+				dateFieldBinding(cb_card_year)).and(
+				dateFieldBinding(cb_card_month)
+		);
+	}
+
+	private final VerifyTextField GOOD_CC = (txtField) -> (txtField.getText().length() == 4);
+	private final VerifyTextField GOOD_CVV = (txtField) -> (txtField.getText().length() == 3);
+	private final VerifyDateField GOOD_DATE = (choice) -> (choice.getSelectionModel().getSelectedIndex() > 0);
+
+	private BooleanBinding ccFieldBinding(TextField textField) {
+		BooleanBinding binding = createBinding(textField, GOOD_CC);
+		binding.addListener((obs, oldValue, newValue) -> {
+			if (!newValue) {
+				textField.getStyleClass().add("bad-input");
+			} else {
+				textField.getStyleClass().remove("bad-input");
+			}
+		});
+		return binding;
+	}
+
+	private BooleanBinding cvvFieldBinding(TextField textField) {
+		BooleanBinding binding = createBinding(textField, GOOD_CVV);
+		binding.addListener((obs, oldValue, newValue) -> {
+			if (!newValue) {
+				textField.getStyleClass().add("bad-input");
+			} else {
+				textField.getStyleClass().remove("bad-input");
+			}
+		});
+		return binding;
+	}
+
+	private BooleanBinding dateFieldBinding(ChoiceBox choiceBox) {
+		BooleanBinding binding = createChoiceBinding(choiceBox, GOOD_DATE);
+		binding.addListener((obs, oldValue, newValue) -> {
+			if (!newValue) {
+				choiceBox.getStyleClass().add("bad-input");
+			} else {
+				choiceBox.getStyleClass().remove("bad-input");
+			}
+		});
+		return binding;
+	}
+
+	private BooleanBinding createBinding(TextField textField, VerifyTextField verifyTextField) {
+		return Bindings.createBooleanBinding(() -> verifyTextField.verify(textField), textField.textProperty());
+	}
+
+	private BooleanBinding createChoiceBinding(ChoiceBox choiceBox, VerifyDateField verifyDateField) {
+		return Bindings.createBooleanBinding(() -> verifyDateField.verify(choiceBox), choiceBox.selectionModelProperty());
+	}
+
+
+	public boolean verifyInput(){
+		if (btn_pay_creditcard.isSelected()){
 			if (txt_cardnr_1.getText().length() != 4) return false;
 			if (txt_cardnr_2.getText().length() != 4) return false;
 			if (txt_cardnr_3.getText().length() != 4) return false;
 			if (txt_cardnr_4.getText().length() != 4) return false;
-			 
-			if (cb_card_year.getSelectionModel().getSelectedIndex() == 0 || 
+
+			if (cb_card_year.getSelectionModel().getSelectedIndex() == 0 ||
 					cb_card_month.getSelectionModel().getSelectedIndex() == 0) return false;
-			
+
 			int year = Integer.parseInt(cb_card_year.getSelectionModel().getSelectedItem().toString());
 			int month = cb_card_month.getSelectionModel().getSelectedIndex();
 			Calendar c = new GregorianCalendar(year, month, -1);
 			Calendar today = Calendar.getInstance();
 			if (!c.getTime().after(today.getTime())) return false;
 			if (txt_card_cvv.getText().length() != 3) return false;
+			return true;
+		}else{
+			return true;
 		}
-		return true;
 	}
+
 
 
 	public void payment_mode_changed(){
