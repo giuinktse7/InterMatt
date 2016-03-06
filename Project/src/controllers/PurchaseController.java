@@ -1,7 +1,10 @@
 package controllers;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
@@ -62,6 +65,18 @@ public class PurchaseController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		setupInputConstraints();
 		payment_mode_changed();
+
+		ToggleGroup toggleGroup = new ToggleGroup();
+		btn_pay_delivery.setToggleGroup(toggleGroup);
+		btn_pay_creditcard.setToggleGroup(toggleGroup);
+		btn_pay_bill.setToggleGroup(toggleGroup);
+
+		toggleGroup.selectedToggleProperty().addListener((ov, toggle, new_toggle) -> {
+            if (new_toggle == null) {
+                toggle.setSelected(true);
+
+            }
+        });
 	}
 	
 	private void setupInputConstraints() {
