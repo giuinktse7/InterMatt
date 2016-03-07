@@ -2,6 +2,7 @@ package controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -36,10 +37,11 @@ import javafx.scene.layout.HBox;
 
 public class LoadListController implements Initializable {
 	private static LoadListController instance;
-	
+
 	@FXML private ModalPopup bottomPane;
 	@FXML private Button btnLoad;
 	@FXML private Button btnCancel;
+	@FXML private Button removeButton;
 	@FXML private Label lblListName;
 	@FXML private ListView<HBox> lvLists;
 	@FXML private ListView<HBox> lvItems;
@@ -52,38 +54,85 @@ public class LoadListController implements Initializable {
 		btnLoad.setOnAction(e -> loadToChart());
 		btnCancel.setOnAction(e -> bottomPane.close());
 		lvLists.getSelectionModel().selectedItemProperty().addListener((obs, o, n) -> generateProductList((ShoppingListHBox)n));
+		removeButton.setOnAction(e -> {clearListFromFile(lblListName.getText());});
 		instance = this;
 		updateList();
 	}
-	
-	public static LoadListController getInstnace(){
+
+	public static LoadListController getInstance(){
 		return instance;
 	}
-	
-	public void loadToChart(){
-		ShoppingListHBox list = (ShoppingListHBox)lvLists.getSelectionModel().getSelectedItem();
-		for (Object o : list.getLines().keySet()){
-				float quantity = (float)list.getLines().get(o);
-				Product product = db.getProduct((int)o);
-				sch.addProduct(product, quantity);
-		}
-		
-		bottomPane.close();
-	}
 
-	public void updateList(){
-		/** clears list by creating a new one*/
-		lists = new ArrayList<ShoppingListHBox>();
-		Path file = Paths.get("saved_shopping_lists.txt");
-		/** fallback if file does not exist*/
-		if (!Files.exists(file))
-			return;
+	public List<String> getLines(){
 		List<String> linesInFile = new ArrayList<String>();
+		Path file = Paths.get("saved_shopping_lists.txt");
 		try {
 			linesInFile = Files.readAllLines(file);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+		return linesInFile;
+	}
+
+	public void loadToChart(){
+		ShoppingListHBox list = (ShoppingListHBox)lvLists.getSelectionModel().getSelectedItem();
+		for (Object o : list.getLines().keySet()){
+			float quantity = (float)list.getLines().get(o);
+			Product product = db.getProduct((int)o);
+			sch.addProduct(product, quantity);
+		}
+
+		bottomPane.close();
+	}
+	
+	public boolean isNameTaken(String name){
+		List<String> linesInFile = getLines();
+		for (String line : linesInFile){
+			if (line.equals("#"+name)){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void clearListFromFile(String name){
+		List<String> linesInFile = getLines();
+		boolean remove = false;
+		int index = 0;
+		for (String line : linesInFile){
+			if (line.equals("#"+name)){
+				remove = true;
+			} else if (line.charAt(0) == '#'){
+				remove = false;
+			}
+			if (remove){
+				linesInFile.set(index, "");
+			}
+			index++;
+		}
+		
+		
+		while (linesInFile.indexOf("") != -1){
+			linesInFile.remove("");
+		}
+		
+		try {
+			Files.write(Paths.get("saved_shopping_lists.txt"), linesInFile, Charset.forName("UTF-8"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		updateList();
+	}
+
+	public void updateList(){
+		removeButton.setDisable(true);
+		lblListName.setText("");
+
+		lvItems.getItems().clear();
+		lvLists.getItems().clear();
+		/** clears list by creating a new one*/
+		lists = new ArrayList<ShoppingListHBox>();
+		List<String> linesInFile = getLines();
 		int index = 0;
 		for (String line : linesInFile){
 			if (line.charAt(0)=='#'){
@@ -104,6 +153,11 @@ public class LoadListController implements Initializable {
 	}
 
 	public void generateProductList(ShoppingListHBox list){
+		if (list == null){
+			/**Kan få null när man nyss raderat en lista. Oklart varför*/
+			return;
+		}
+		removeButton.setDisable(false);
 		lblListName.setText(list.getName());
 		lvItems.getItems().clear();
 		for (Object o : list.getLines().keySet()){
@@ -114,7 +168,7 @@ public class LoadListController implements Initializable {
 	}
 
 	public void appendListItem(Product product, float quantity){ 
-		
+
 		AnchorPane ap = new AnchorPane();
 
 		Label lblName = new Label(product.getName());
@@ -137,7 +191,7 @@ public class LoadListController implements Initializable {
 
 		ap.getChildren().addAll(lblName, lblQuantity, lblPrice);
 		HBox box = new HBox(ap);
-		
+
 		lvItems.getItems().add(box);
 	}
 }

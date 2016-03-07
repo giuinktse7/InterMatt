@@ -9,6 +9,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import control.ModalPopup?>
 
 <ModalPopup fx:id="bottomPane" styleClass="bottomPane"
@@ -67,7 +69,8 @@
 												<VBox alignment="TOP_CENTER" prefHeight="284.0"
 													prefWidth="192.0" HBox.hgrow="ALWAYS">
 													<children>
-														<Label fx:id="lblListName" id="listName" text="List_Name">
+													<AnchorPane prefWidth="200.0">
+														<Label fx:id="lblListName" id="listName" text="">
 															<font>
 																<Font size="20.0" />
 															</font>
@@ -75,6 +78,17 @@
 																<Insets bottom="7.0" />
 															</VBox.margin>
 														</Label>
+														<Button fx:id="removeButton" styleClass="top-header-button" mnemonicParsing="false" AnchorPane.rightAnchor="16">
+															<graphic>
+																<ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+																	<image>
+																		<Image url="@../resources/remove_red.png" />
+																	</image>
+																</ImageView>
+															</graphic>
+														</Button>
+													</AnchorPane>
+														
 														<ListView fx:id="lvItems" prefHeight="200.0"
 															prefWidth="200.0" VBox.vgrow="ALWAYS">
 															<VBox.margin>

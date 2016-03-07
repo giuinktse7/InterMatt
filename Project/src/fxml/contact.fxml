@@ -36,7 +36,7 @@
    							</Label>
    						</children>
    					</AnchorPane>
-   					<AnchorPane id="content" maxHeight="-Infinity" prefHeight="298.0" prefWidth="511.0">
+   					<AnchorPane id="content" maxHeight="-Infinity" prefHeight="298.0" prefWidth="520.0">
                      <children>
                         <Label styleClass="bold" layoutX="69.0" layoutY="14.0" text="031-031031">
                            <font>
@@ -44,7 +44,7 @@
                            </font>
                         </Label>
                         <Label layoutX="25.0" layoutY="41.0" text="Kundservice öppettider:" />
-                        <Label layoutX="25.0" layoutY="58.0" text="Må-Lö: 09:00 - 17:30, Sö: Stängt">
+                        <Label layoutX="25.0" layoutY="58.0" text="Må-Lö: 09:00 - 17:30">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -59,7 +59,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Separator layoutX="25.0" layoutY="99.0" prefHeight="3.0" prefWidth="461.0" />
+                        <Separator layoutX="25.0" layoutY="99.0" prefHeight="3.0" prefWidth="470.0" />
                         <Label layoutX="25.0" layoutY="149.0" text="412 58 Göteborg">
                            <font>
                               <Font size="18.0" />
