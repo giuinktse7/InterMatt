@@ -36,8 +36,7 @@
 }
 
 .button:hover {
-	-fx-background-color: derive(-buy-button-color, -10%);
-	
+	-fx-background-color: derive(-buy-button-color, 40%)	
 }
 
 .item-display {
