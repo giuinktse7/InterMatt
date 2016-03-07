@@ -16,9 +16,10 @@
 	-fx-font-size: 14pt;
 }
 
-#listName {
-	-fx-font-weight: bold;
+.load_list_titles{
+    -fx-font-weight: bold;
 }
+
 
 #modalTop {
 	-fx-background-color: #eaeaea;

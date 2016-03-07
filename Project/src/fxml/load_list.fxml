@@ -47,15 +47,15 @@
 									<children>
 										<HBox prefHeight="260.0" VBox.vgrow="ALWAYS">
 											<children>
-												<VBox alignment="TOP_CENTER" prefHeight="277.0"
+												<VBox alignment="TOP_LEFT" prefHeight="277.0"
 													prefWidth="240.0">
 													<children>
-														<Label text="Välj lista">
+														<Label text="Välj lista" styleClass="load_list_titles">
 															<font>
 																<Font size="20.0" />
 															</font>
 															<VBox.margin>
-																<Insets bottom="7.0" />
+																<Insets bottom="7.0" left="14.0" />
 															</VBox.margin>
 														</Label>
 														<ListView fx:id="lvLists" id="lvLists"
@@ -70,7 +70,7 @@
 													prefWidth="192.0" HBox.hgrow="ALWAYS">
 													<children>
 													<AnchorPane prefWidth="200.0" prefHeight="34.0">
-														<Label fx:id="lblListName" id="listName" text="">
+														<Label fx:id="lblListName" id="listName" text="" styleClass="load_list_titles">
 															<font>
 																<Font size="20.0" />
 															</font>
