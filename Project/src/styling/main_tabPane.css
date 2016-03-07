@@ -124,7 +124,10 @@
 
 
 /* TAB COLOURS */
-#startTab { -fx-background-color: white, -fx-start-color }
+#startTab {
+    -fx-background-color: white, -fx-start-color;
+    -fx-font-weight: bold;
+}
 .startTabContent { -fx-background-color: -fx-start-color; }
 #startTab:hover { -fx-background-color: -bg-color, linear-gradient(to top, derive(-fx-start-color, 35%), derive(-fx-start-color, 45%)); }
 #startTab:selected { -fx-background-color: -bg-color, -fx-start-color; }
