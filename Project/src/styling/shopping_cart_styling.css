@@ -21,16 +21,17 @@
 }
 
 #total-price-label .text {
-	-fx-font-size: 20pt;
+	-fx-font-size: 18pt;
 }
 
 #cart-title-label .text {
-	-fx-font-size: 24pt;
+	-fx-font-size: 18pt;
+	-fx-color: #413e4a;
 }
 
 .name-label .text {
 	-fx-font-size: 14pt;
-	-fx-font-family: "Verdana";
+	-fx-font-family: "Helvetica";
 	
 }
 
