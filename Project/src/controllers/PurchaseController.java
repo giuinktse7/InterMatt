@@ -66,7 +66,7 @@ public class PurchaseController implements Initializable {
 	
 	// Credit card CVV fields
 	@FXML private TextField txt_card_cvv;
-
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		setupInputConstraints();
@@ -85,6 +85,11 @@ public class PurchaseController implements Initializable {
         });
 		
 		setDeliveryDates();
+		
+		/** Most simple way to save this stuff */
+		cb_delivery_date.selectionModelProperty().addListener(e -> InformationStorage.setDelivery(getDeliveryString()));
+		cb_delivery_time.selectionModelProperty().addListener(e -> InformationStorage.setDelivery(getDeliveryString()));
+		InformationStorage.setDelivery(getDeliveryString());
 	}
 	
 	public void setDeliveryDates(){
