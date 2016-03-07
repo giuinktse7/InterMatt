@@ -32,6 +32,12 @@ public class SaveListController implements Initializable {
 	private LoadListController llc = LoadListController.getInstance();
 	@Override
 	public void initialize(URL url, ResourceBundle bundle) {
+		txtListName.textProperty().addListener((observable, oldValue, newValue) -> {
+			if (newValue.length() > 12){
+				txtListName.setText(oldValue);
+			}
+        });
+		
 		btnSave.setOnAction(e -> {
 			if (txtListName.getText().equals("") ||  sch.getItems().isEmpty())
 				return;

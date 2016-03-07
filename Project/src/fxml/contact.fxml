@@ -15,8 +15,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.text.Font?>
-<?import control.ModalPopup?>
 
+<?import control.ModalPopup?>
 <ModalPopup fx:id="bottomPane" stylesheets="@../styling/modal_popup.css" styleClass="bottomPane" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
 	<children>
 		<!-- Content is centered according to this pane:: HAS TO BE HERE! -->
@@ -36,47 +36,49 @@
    							</Label>
    						</children>
    					</AnchorPane>
-   					<AnchorPane id="content" maxHeight="-Infinity" prefHeight="298.0" prefWidth="520.0">
+   					<AnchorPane id="content" maxHeight="-Infinity" prefHeight="268.0" prefWidth="662.0">
                      <children>
-                        <Label styleClass="bold" layoutX="69.0" layoutY="14.0" text="031-031031">
+                        <Label layoutX="82.0" layoutY="21.0" styleClass="bold" text="031-031031">
                            <font>
-                              <Font size="18.0"/>
+                              <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label layoutX="25.0" layoutY="41.0" text="Kundservice öppettider:" />
-                        <Label layoutX="25.0" layoutY="58.0" text="Må-Lö: 09:00 - 17:30">
+                        <Label layoutX="39.0" layoutY="56.0" text="Kundservice öppettider:">
+                           <font>
+                              <Font size="18.0" />
+                           </font></Label>
+                        <Label layoutX="38.0" layoutY="83.0" text="Måndag - Lördag: 09:00 - 17:30">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label styleClass="bold" layoutX="316.0" layoutY="14.0" text="Kontakt@Intermat.se">
+                        <Label layoutX="377.0" layoutY="21.0" styleClass="bold" text="kontakt@intermatt.se">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="87.0" layoutY="171.0" styleClass="bold" text="Hörsalsvägen 7">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Separator layoutX="38.0" layoutY="140.0" prefHeight="0.0" prefWidth="584.0" />
+                        <Label layoutX="43.0" layoutY="210.0" text="412 58 Göteborg">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label styleClass="bold" layoutX="69.0" layoutY="123.0" text="Hörsalsvägen 7">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Separator layoutX="25.0" layoutY="99.0" prefHeight="3.0" prefWidth="470.0" />
-                        <Label layoutX="25.0" layoutY="149.0" text="412 58 Göteborg">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Separator layoutX="25.0" layoutY="192.0" prefHeight="3.0" prefWidth="244.0" />
-                        <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="25.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="39.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                         	<image>
 								<Image url="@../resources/phone.png" />
 							</image>
 						</ImageView>
-                        <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="278.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="334.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
                         	<image>
 								<Image url="@../resources/mail.png" />
 							</image>
 						</ImageView>
-                        <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="25.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="43.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
                         	<image>
 								<Image url="@../resources/location.png" />
 							</image>
