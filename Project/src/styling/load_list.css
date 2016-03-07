@@ -1,3 +1,5 @@
+@import url("buttons.css");
+
 .label {
 	-fx-font-size: 18pt;
 }
@@ -45,7 +47,8 @@
 .title {
 	-fx-font-size: 24pt;
 }
-.button {
+
+/*.button {
 	-fx-background-color: #f4f4f4, #f4f4f4;
     -fx-background-insets: 0 0 0 0, 0, 0, 0;
     -fx-background-radius: 3, 0, 0, 0;
@@ -53,7 +56,7 @@
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
 }
 .button .text {
-	/*-fx-fill: black;*/
+	-fx-fill: black;
 	-fx-color: #413e4a;
 	-fx-font-size: 21 pt;
 }
@@ -61,6 +64,7 @@
 	-fx-background-color: derive(f4f4f4, -10%);
 }
 
+*/
 #lblName{
 	-fx-font-size: 14pt;
 }
