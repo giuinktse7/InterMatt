@@ -24,8 +24,10 @@ import sun.applet.Main;
 import util.InformationStorage;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -59,10 +61,12 @@ public class PurchaseController implements Initializable {
 	private List<String> months = Arrays.asList("-- Månad --", "Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September", "Oktober", "November", "December");
 	@FXML private ChoiceBox<String> cb_card_year;
 	private List<String> years = Arrays.asList("-- År --", "2016", "2017", "2018");
-
+	@FXML private ChoiceBox<String> cb_delivery_date;
+	@FXML private ChoiceBox<String> cb_delivery_time;
+	
 	// Credit card CVV fields
 	@FXML private TextField txt_card_cvv;
-
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		setupInputConstraints();
@@ -79,6 +83,61 @@ public class PurchaseController implements Initializable {
 
             }
         });
+		
+		setDeliveryDates();
+		
+		/** Most simple way to save this stuff */
+		cb_delivery_date.selectionModelProperty().addListener(e -> InformationStorage.setDelivery(getDeliveryString()));
+		cb_delivery_time.selectionModelProperty().addListener(e -> InformationStorage.setDelivery(getDeliveryString()));
+		InformationStorage.setDelivery(getDeliveryString());
+	}
+	
+	public void setDeliveryDates(){
+		List<String> dates = new ArrayList<String>();
+		Calendar c = Calendar.getInstance();
+		c.add(Calendar.DATE, 2);
+		for (int delta = 0; delta < 7; delta++){
+			c.add(Calendar.DATE, 1);
+			if (c.getTime().getDay() == 0) c.add(Calendar.DATE, 1);
+			
+			String dayOfWeek;
+			switch (c.getTime().getDay()){
+			default:
+				dayOfWeek = "Söndag";
+				break;
+			case 1:
+				dayOfWeek = "Måndag";
+				break;
+			case 2:
+				dayOfWeek = "Tisdag";
+				break;
+			case 3:
+				dayOfWeek = "Onsdag";
+				break;
+			case 4:
+				dayOfWeek = "Torsdag";
+				break;
+			case 5:
+				dayOfWeek = "Fredag";
+				break;
+			case 6:
+				dayOfWeek = "Lördag";
+				break;
+ 			}
+			
+			String str = dayOfWeek + " " + c.getTime().getDate()+"/"+(c.getTime().getMonth() + 1);
+			dates.add(str);
+			System.out.println(str);
+		}
+		cb_delivery_date.getItems().addAll(dates);
+		cb_delivery_date.setValue(dates.get(0));
+		List<String> times = Arrays.asList("Morgon (09:00 - 10:30)", "Förmiddag (10:30 - 12:00)", "Eftermiddag (13:00 - 15:00)");
+		cb_delivery_time.getItems().addAll(times);
+		cb_delivery_time.setValue(times.get(0));
+	}
+	
+	public String getDeliveryString(){
+		return cb_delivery_date.getSelectionModel().getSelectedItem() + " " + cb_delivery_time.getSelectionModel().getSelectedItem(); 
 	}
 	
 	private void setupInputConstraints() {

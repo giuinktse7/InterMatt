@@ -17,23 +17,40 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox id="purchasePane" minWidth="920" fx:id="purchasePane" alignment="CENTER" stylesheets="@../styling/credentials.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PurchaseController">
+<HBox id="purchasePane" fx:id="purchasePane" alignment="CENTER" minWidth="920" stylesheets="@../styling/credentials.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PurchaseController">
 	<children>
 		<VBox id="main_pane" fx:id="vbox_content_wrapper" alignment="TOP_CENTER">
 			<children>
-            <AnchorPane prefHeight="98.0">
+            <AnchorPane prefHeight="257.0">
                <children>
-						<Label id="pane_title" text="Hur vill du betala dina varor?" textFill="#413e4a">
+						<Label id="pane_title" text="Leverans och betalning" textFill="#413e4a">
 							<font>
 								<Font size="42.0" />
 							</font>
 						</Label>
+                  <Separator layoutY="190.0" prefHeight="0.0" prefWidth="851.0" />
+                  <AnchorPane layoutY="76.0" prefHeight="78.0" prefWidth="435.0">
+                     <children>
+                        <Label layoutY="-1.0" text="Önskad leveranstid" textFill="#413e4a">
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox fx:id="cb_delivery_date" layoutY="39.0" prefHeight="38.0" prefWidth="170.0" />
+                        <ChoiceBox fx:id="cb_delivery_time" layoutX="177.0" layoutY="39.0" prefHeight="39.0" prefWidth="263.0" />
+                     </children>
+                  </AnchorPane>
+                  <Label layoutY="215.0" text="Betalningssätt" textFill="#413e4a">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
                </children>
                <VBox.margin>
                   <Insets top="14.0" />
                </VBox.margin>
             </AnchorPane>
-            <Group fx:id="toggleGroup">
+            <Group fx:id="toggleGroup" layoutY="85.0">
                <children>
                   <ToggleButton fx:id="btn_pay_delivery" graphicTextGap="7.0" mnemonicParsing="false" onAction="#payment_mode_changed" selected="true" text="Betala vid leverans" textFill="#413e4a">
                      <font>
@@ -180,7 +197,7 @@
                   </HBox>
                </children>
                <VBox.margin>
-                  <Insets top="56.0" />
+                  <Insets top="30.0" />
                </VBox.margin>
             </StackPane>
 			</children>

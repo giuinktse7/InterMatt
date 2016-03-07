@@ -126,6 +126,7 @@ public class LoadListController implements Initializable {
 
 	public void updateList(){
 		removeButton.setDisable(true);
+		btnLoad.setDisable(true);
 		lblListName.setText("");
 
 		lvItems.getItems().clear();
@@ -158,6 +159,7 @@ public class LoadListController implements Initializable {
 			return;
 		}
 		removeButton.setDisable(false);
+		btnLoad.setDisable(false);
 		lblListName.setText(list.getName());
 		lvItems.getItems().clear();
 		for (Object o : list.getLines().keySet()){
