@@ -133,7 +133,7 @@
 #startTab:selected { -fx-background-color: -bg-color, -fx-start-color; }
 
 #fruitTab {
-	-fx-background-color: white, derive(-fx-fruit-color, -25%);
+	-fx-background-color: white, -fx-fruit-color;
 	-fx-font-weight: bold;
 	-fx-border-color: transparent;
 }
@@ -144,7 +144,7 @@
 #fruitTab .text{ -fx-fill: white;}
 
 #drinksTab { 
-	-fx-background-color: -bg-color, derive(-fx-drinks-color, -25%); 
+	-fx-background-color: -bg-color, -fx-drinks-color; 
 	-fx-font-weight: bold;
 	-fx-border-color: transparent;
 }
@@ -157,7 +157,7 @@
 
 
 #meatTab { 
-	-fx-background-color: -bg-color, derive(-fx-meat-color, -25%);
+	-fx-background-color: -bg-color, -fx-meat-color;
 	-fx-font-weight: bold;
 	-fx-border-color: transparent;
 }
@@ -170,7 +170,7 @@
 
 
 #dairyTab { 
-	-fx-background-color: -bg-color, derive(-fx-dairy-color, -25%);
+	-fx-background-color: -bg-color, -fx-dairy-color;
 	-fx-font-weight: bold;
 	-fx-border-color: transparent;
 }
@@ -181,7 +181,7 @@
 
 
 #cabinetTab { 
-	-fx-background-color: -bg-color, derive(-fx-cabinet-color, -25%);
+	-fx-background-color: -bg-color, -fx-cabinet-color;
 	-fx-font-weight: bold;
 	-fx-border-color: transparent;
 }
@@ -195,7 +195,7 @@
 
 
 #fridaycuddlingTab { 
-	-fx-background-color: -bg-color, derive(-fx-fridaycuddling-color, -25%);
+	-fx-background-color: -bg-color, -fx-fridaycuddling-color;
 	-fx-font-weight: bold;
 	-fx-border-color: transparent;
 }
