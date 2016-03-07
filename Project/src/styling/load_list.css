@@ -1,3 +1,5 @@
+@import url("buttons.css");
+
 .label {
 	-fx-font-size: 18pt;
 }
@@ -14,9 +16,10 @@
 	-fx-font-size: 14pt;
 }
 
-#listName {
-	-fx-font-weight: bold;
+.load_list_titles{
+    -fx-font-weight: bold;
 }
+
 
 #modalTop {
 	-fx-background-color: #eaeaea;
@@ -45,7 +48,8 @@
 .title {
 	-fx-font-size: 24pt;
 }
-.button {
+
+/*.button {
 	-fx-background-color: #f4f4f4, #f4f4f4;
     -fx-background-insets: 0 0 0 0, 0, 0, 0;
     -fx-background-radius: 3, 0, 0, 0;
@@ -54,10 +58,14 @@
 }
 .button .text {
 	-fx-fill: black;
-	-fx-font-size: 14 pt;
+	-fx-color: #413e4a;
+	-fx-font-size: 21 pt;
+}
+.button:hover {
+	-fx-background-color: derive(f4f4f4, -10%);
 }
 
-
+*/
 #lblName{
 	-fx-font-size: 14pt;
 }

@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-
-<HBox id="receiptPane" alignment="CENTER" prefHeight="420.0" minWidth="920" stylesheets="@../styling/credentials.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RecipeController">
+<?import java.net.URL?>
+<HBox id="receiptPane" alignment="CENTER" minWidth="920" prefHeight="420.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RecipeController">
     <children>
         <VBox id="main_pane" alignment="TOP_CENTER" prefHeight="530.0" prefWidth="920">
             <children>
@@ -84,4 +77,8 @@
             </padding>
         </VBox>
     </children>
+   <stylesheets>
+      <URL value="@../styling/credentials.css" />
+      <URL value="@../styling/buttons.css" />
+   </stylesheets>
 </HBox>

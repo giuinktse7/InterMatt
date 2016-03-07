@@ -131,6 +131,10 @@ public class CartItem extends HBox {
 		decAmountBtn.setPrefSize(24, 24);
 		Image decAmountBtnImage = new Image("resources/minus.png", 24, 24, true, true);
 		decAmountBtn.setGraphic(new ImageView(decAmountBtnImage));
+		
+		Image decAmountBtnDisabled = new Image("resources/minus_disabled.png", 24, 24, true, true);
+		decAmountBtn.setGraphic(new ImageView(decAmountBtnImage));
+		decAmountBtn.hoverProperty().addListener((obs, o, n) -> decAmountBtn.setGraphic(new ImageView(n ? decAmountBtnDisabled : decAmountBtnImage)));
 
 		Button incAmountBtn = new Button();
 		HBox.setMargin(incAmountBtn, new Insets(0, 0, 0, 3));
@@ -139,6 +143,10 @@ public class CartItem extends HBox {
 		incAmountBtn.setPrefSize(24, 24);
 		Image incAmountBtnImage = new Image("resources/plus.png", 24, 24, true, true);
 		incAmountBtn.setGraphic(new ImageView(incAmountBtnImage));
+		
+		Image incAmountBtnDisabled = new Image("resources/plus_disabled.png", 24, 24, true, true);
+		incAmountBtn.setGraphic(new ImageView(incAmountBtnImage));
+		incAmountBtn.hoverProperty().addListener((obs, o, n) -> incAmountBtn.setGraphic(new ImageView(n ? incAmountBtnDisabled : incAmountBtnImage)));
 		
 		Label unitLabel = new Label(product.getUnitSuffix());
 		unitLabel.setFont(new Font(14));
@@ -157,8 +165,8 @@ public class CartItem extends HBox {
 		Button removeProductButton = new Button();
 		removeProductButton.setStyle("-fx-background-color: transparent;");
 		removeProductButton.setPrefSize(15, 15);
-		Image removeProductImage = new Image("resources/remove.png", 15, 15, true, true);
-		Image removeProductImageRed = new Image("resources/remove_red.png", 15, 15, true, true);
+		Image removeProductImage = new Image("resources/remove.png", 24, 24, true, true);
+		Image removeProductImageRed = new Image("resources/remove_disabled.png", 24, 24, true, true);
 		removeProductButton.setGraphic(new ImageView(removeProductImage));
 		removeProductButton.hoverProperty().addListener((obs, o, n) -> removeProductButton.setGraphic(new ImageView(n ? removeProductImageRed : removeProductImage)));
 

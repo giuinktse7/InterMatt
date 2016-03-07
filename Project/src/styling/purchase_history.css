@@ -16,7 +16,7 @@
 }
 
 #order-overview-box .label {
-	-fx-font-family: "Crimson Text";
+	-fx-font-family: "Helvetica";
 }
 
 .label-order-overview-day-month .text {
@@ -96,7 +96,7 @@
 }
 
 .item-in-history-box > .item-price .text {
-	-fx-font-family: "Corpse";
+	-fx-font-family: "Helvetica";
 	-fx-font-size: 20 pt;
 	-fx-fill: #1A1A1A;
 }
@@ -118,7 +118,7 @@
 .header .text {
 	-fx-font-size: 24pt;
 	-fx-fill: -header-color;
-	-fx-font-family: "Times new Roman";
+	-fx-font-family: "Helvetica";
 }
 
 .light-text .text {
