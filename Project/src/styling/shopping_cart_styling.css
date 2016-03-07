@@ -8,11 +8,11 @@
 }
 .shopping-cart-button .text {
 	-fx-fill: black;
-	-fx-font-size: 20 pt;
+	-fx-color: #413e4a;
+	-fx-font-size: 21 pt;
 }
 .shopping-cart-button:hover {
 	-fx-background-color: derive(f4f4f4, -10%);
-	
 }
 
 .attribute-text-field {

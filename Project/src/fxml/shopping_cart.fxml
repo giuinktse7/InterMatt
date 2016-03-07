@@ -31,11 +31,11 @@
 				<Font name="System Italic" size="16.0" />
 			</font>
 		</Label>
-		<Button fx:id="gotoShoppingListButton" alignment="CENTER" mnemonicParsing="false" prefHeight="66.0" styleClass="shopping-cart-button" text="Inköpslistor" textAlignment="RIGHT" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="7.0">
+		<Button fx:id="gotoShoppingListButton" alignment="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="140.0" styleClass="shopping-cart-button" text="Inköpslistor" textAlignment="RIGHT" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="7.0">
          <font>
             <Font name="Helvetica" size="19.0" />
          </font></Button>
-      <Button fx:id="saveShoppingListButton" alignment="CENTER" mnemonicParsing="false" prefHeight="66.0" styleClass="shopping-cart-button" text="Spara lista" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="7.0">
+      <Button fx:id="saveShoppingListButton" alignment="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="140.0" styleClass="shopping-cart-button" text="Spara lista" AnchorPane.bottomAnchor="18.0" AnchorPane.rightAnchor="7.0">
          <font>
             <Font size="19.0" />
          </font></Button>
