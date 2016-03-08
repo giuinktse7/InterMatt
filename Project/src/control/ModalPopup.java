@@ -33,7 +33,6 @@ public class ModalPopup extends AnchorPane {
 			this.getChildren().add(content);
 			this.content = content;
 			 Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
-			 System.out.println(visualBounds.getWidth());
 		}
 		
 		setDefaultFade();
