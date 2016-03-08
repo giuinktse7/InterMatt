@@ -116,11 +116,11 @@
 						</AnchorPane>
 						<AnchorPane>
 							<children>
-								<Button fx:id="purchaseHistoryButton" maxWidth="-Infinity"
-									mnemonicParsing="false" prefHeight="36" styleClass="history-button"
-									text="Köphistorik" AnchorPane.leftAnchor="0"
-									AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" HBox.hgrow="ALWAYS">
-								</Button>
+								<!--<Button fx:id="purchaseHistoryButton" maxWidth="-Infinity"-->
+									<!--mnemonicParsing="false" prefHeight="36" styleClass="history-button"-->
+									<!--text="Köphistorik" AnchorPane.leftAnchor="0"-->
+									<!--AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" HBox.hgrow="ALWAYS">-->
+								<!--</Button>-->
 								<fx:include fx:id="shoppingCart" source="shopping_cart.fxml" />
 							</children>
 						</AnchorPane>

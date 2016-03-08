@@ -38,7 +38,7 @@ public class MainController implements Initializable {
 	@FXML private StackPane contentPane;
 	@FXML private ArrowButton prevButton;
 	@FXML private ArrowButton nextButton;
-	@FXML private Button purchaseHistoryButton;
+//	@FXML private Button purchaseHistoryButton;
 	
 	//TEST
 	@FXML private Button contactButton;
@@ -166,7 +166,7 @@ public class MainController implements Initializable {
 		btnToReceipt.initialize(receiptView, sendOrder(), null, receiptLabel);
 		
 		//Setup the different popup buttons
-		purchaseHistoryButton.setOnAction(event -> { purchaseHistoryPopupController.update(); purchaseHistoryPopup.show(); });
+//		purchaseHistoryButton.setOnAction(event -> { purchaseHistoryPopupController.update(); purchaseHistoryPopup.show(); });
 		shoppingCartController.getShoppingListButton().setOnAction(e -> loadListPopup.show());
 		shoppingCartController.getSaveListButton().setOnAction(e -> saveListPopup.show());
 		
