@@ -152,7 +152,7 @@ public class PurchaseController implements Initializable {
 
 	private final TextFieldValidator GOOD_CC = (txtField) -> (txtField.getText().length() == 4);
 	private final TextFieldValidator GOOD_CVV = (txtField) -> (txtField.getText().length() == 3);
-	private final VerifyDateField GOOD_DATE = (choice) -> { System.out.println(choice.getSelectionModel().getSelectedIndex() > 0); return choice.getSelectionModel().getSelectedIndex() > 0;  };
+	private final VerifyDateField GOOD_DATE = (choice) -> choice.getSelectionModel().getSelectedIndex() > 0));
 
 	private BooleanBinding ccFieldBinding(TextField textField) {
 		BooleanBinding binding = createBinding(textField, GOOD_CC);

@@ -72,7 +72,7 @@ public class NavigationButton extends Button {
 		
 		updateImage(this.view.equals(viewDisplay.getCurrentView().getValue()));
 		
-		bindings.getState().addListener((obs, o, n) -> {setDisable(!n); System.out.println("well"); });
+		bindings.getState().addListener((obs, o, n) -> setDisable(!n) );
 	}
 	
 	private void updateImage(boolean onSelectedPage) {
