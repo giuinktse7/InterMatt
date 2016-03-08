@@ -265,7 +265,7 @@ public class MainController implements Initializable {
 	private void setReceiptBinds() {
 		ContentView view = viewDisplay.getView(receiptPane);
 		BindingGroup group = btnToReceipt.getBindingGroup();
-		group.addBinding(purchasePaneController.getBindings().and(PURCHASE_VIEW_ACTIVE));
+//		group.addBinding(purchasePaneController.getBindings().and(PURCHASE_VIEW_ACTIVE));
 		
 		view.getBindingGroup().setAll(group.getBinds());
 	}
