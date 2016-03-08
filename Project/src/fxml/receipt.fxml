@@ -5,11 +5,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <?import java.net.URL?>
-<HBox id="receiptPane" alignment="CENTER" minWidth="920" prefHeight="420.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RecipeController">
+<HBox id="receiptPane" alignment="CENTER" minWidth="920" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RecipeController">
     <children>
-        <VBox id="main_pane" alignment="TOP_CENTER" prefHeight="530.0" prefWidth="920">
+        <VBox id="main_pane" alignment="TOP_CENTER" prefHeight="800.0" prefWidth="1200.0">
             <children>
-                <AnchorPane>
+                <AnchorPane prefHeight="800.0">
                     <children>
                         <Label fx:id="pane_title" text="Tack för ditt köp du." textFill="#413e4a">
                             <font>
@@ -67,6 +67,9 @@
                      </font>
                   </Button>
                </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </AnchorPane>
             </children>
             <HBox.margin>
