@@ -15,7 +15,10 @@ import javafx.scene.input.TransferMode;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
 import util.ShoppingCartHandler;
 
+
+
 public class ShoppingCartController implements Initializable {
+	private static ShoppingCartController me;
 
 	@FXML private Button gotoShoppingListButton;
 	@FXML private Button saveShoppingListButton;
@@ -25,9 +28,14 @@ public class ShoppingCartController implements Initializable {
 	@FXML private ListView<CartItem> cart;
 	
 	private IMatDataHandler db = IMatDataHandler.getInstance();
+
+	public static ShoppingCartController getMe(){
+		return me;
+	}
 	
 	@Override
 	public void initialize(URL url, ResourceBundle bundle) {
+		me = this;
 		cart.getProperties().put("selectOnFocusGain", false);
 		// introduced between 8u20 and 8u40b7
 		// with this, testfailures back to normal

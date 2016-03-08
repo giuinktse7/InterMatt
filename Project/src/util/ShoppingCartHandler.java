@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import control.CartItem;
+import controllers.ShoppingCartController;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -46,6 +47,8 @@ public class ShoppingCartHandler {
 		totalCost.addListener(
 				(obs, oldValue, newValue) -> lblTotalCost.setText(String.format("Totalt: %.2f", newValue.doubleValue()) + ":-"));
 
+			update_save_list_button();
+
 		cart.getItems().addListener(UPDATE_TOTAL_COST);
 	}
 	
@@ -54,6 +57,7 @@ public class ShoppingCartHandler {
 	}
 
 	private ListChangeListener<CartItem> UPDATE_TOTAL_COST = c -> {
+		update_save_list_button();
 		while (c.next()) {
 			for (CartItem box : c.getAddedSubList()) {
 				addToTotal(box.getQuantity() * box.getProduct().getPrice());
@@ -64,6 +68,10 @@ public class ShoppingCartHandler {
 					addToTotal( - box.getQuantity() * box.getProduct().getPrice());
 		}
 	};
+
+	private void update_save_list_button(){
+			ShoppingCartController.getMe().getSaveListButton().setDisable (isEmpty());
+	}
 
 	public void passLabel(Label lblTotalCost) {
 		this.lblTotalCost = lblTotalCost;
