@@ -20,8 +20,6 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -50,8 +48,6 @@ public class MainController implements Initializable {
 	@FXML private Label credentialsLabel;
 	@FXML private Label purchaseLabel;
 	@FXML private Label receiptLabel;
-	
-	@FXML private TextField searchTextField;
 	
 	//Used for the drag & drop functionality
 	private final int AVG = 1374;
@@ -102,7 +98,6 @@ public class MainController implements Initializable {
 		prevButton.disable();
 		nextButton.disable();
 		
-		searchTextField.textProperty().addListener(storePaneController.getSearchAction());
 		me = this;
 		
 		//Give the popup-system required panes
@@ -165,14 +160,11 @@ public class MainController implements Initializable {
 		btnToPurchase.initialize(purchaseView, show(purchaseView), btnToReceipt, purchaseLabel);
 		btnToReceipt.initialize(receiptView, sendOrder(), null, receiptLabel);
 		
-		//Setup the different popup buttons
-//		purchaseHistoryButton.setOnAction(event -> { purchaseHistoryPopupController.update(); purchaseHistoryPopup.show(); });
 		shoppingCartController.getShoppingListButton().setOnAction(e -> loadListPopup.show());
 		shoppingCartController.getSaveListButton().setOnAction(e -> saveListPopup.show());
 		
-		//TODO TEST
 		contactButton.setOnAction(e -> contactPopup.show());
-		historyButton.setOnAction(e -> purchaseHistoryPopup.show());
+		historyButton.setOnAction(e -> { purchaseHistoryPopupController.update(); purchaseHistoryPopup.show();});
 		helpButton.setOnAction(e -> helpPopup.show());
 
 		//Drag & drop:  resizing of window to 'highlight' the shopping cart.
@@ -220,6 +212,41 @@ public class MainController implements Initializable {
 		return e -> viewDisplay.show(view);
 	}
 	
+	private void setPurchaseBinds() {
+		ContentView view = viewDisplay.getView(purchasePane);
+		BindingGroup group = btnToPurchase.getBindingGroup();
+		group.addBindings(credentialsPaneController.getBindings().and(not(RECEIPT_VIEW_ACTIVE)));
+		
+		view.getBindingGroup().setAll(group.getBinds());
+	}
+
+	private void setReceiptBinds() {
+		ContentView view = viewDisplay.getView(receiptPane);
+		BindingGroup group = btnToReceipt.getBindingGroup();
+		group.addBinding(purchasePaneController.getBindings().and(PURCHASE_VIEW_ACTIVE));
+		
+		view.getBindingGroup().setAll(group.getBinds());
+	}
+
+	public void restoreUserData(){
+		credentialsPaneController.restore_user_data();
+	}
+
+	public void saveUserData(){
+		credentialsPaneController.save_user_data();
+	}
+	
+	public static MainController get() {
+		return me;
+	}
+	
+	public ArrowButton getArrowButton(Direction direction) {
+		if (direction == Direction.LEFT)
+			return prevButton;
+		else
+			return nextButton;
+	}
+	
 	/** Is called when a purchase has completed. */
 	private EventHandler<ActionEvent> sendOrder() {
 		return e -> {
@@ -252,41 +279,6 @@ public class MainController implements Initializable {
 			RecipeController.getInstance().setDeliveryTimeText(InformationStorage.getDelivery());
 			RecipeController.getInstance().setPaymentText(InformationStorage.getPaymentType());
 		};
-	}
-	
-	private void setPurchaseBinds() {
-		ContentView view = viewDisplay.getView(purchasePane);
-		BindingGroup group = btnToPurchase.getBindingGroup();
-		group.addBindings(credentialsPaneController.getBindings().and(not(RECEIPT_VIEW_ACTIVE)));
-		
-		view.getBindingGroup().setAll(group.getBinds());
-	}
-
-	private void setReceiptBinds() {
-		ContentView view = viewDisplay.getView(receiptPane);
-		BindingGroup group = btnToReceipt.getBindingGroup();
-//		group.addBinding(purchasePaneController.getBindings().and(PURCHASE_VIEW_ACTIVE));
-		
-		view.getBindingGroup().setAll(group.getBinds());
-	}
-
-	public void restoreUserData(){
-		credentialsPaneController.restore_user_data();
-	}
-
-	public void saveUserData(){
-		credentialsPaneController.save_user_data();
-	}
-	
-	public static MainController get() {
-		return me;
-	}
-	
-	public ArrowButton getArrowButton(Direction direction) {
-		if (direction == Direction.LEFT)
-			return prevButton;
-		else
-			return nextButton;
 	}
 	
 	public BooleanBinding not(BooleanBinding binding) {

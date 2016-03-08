@@ -34,8 +34,8 @@
 
 		<VBox fx:id="mainContentWrapper" fillWidth="true">
 			<children>
-				<HBox prefHeight="700.0" prefWidth="-Infinity"
-					styleClass="backdrop" VBox.vgrow="ALWAYS">
+				<HBox prefHeight="700.0" prefWidth="-Infinity" styleClass="backdrop"
+					VBox.vgrow="ALWAYS">
 					<children>
 						<AnchorPane HBox.hgrow="ALWAYS" AnchorPane.topAnchor="0"
 							AnchorPane.leftAnchor="0" AnchorPane.bottomAnchor="0">
@@ -46,65 +46,10 @@
 								<VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
 									AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 									<children>
-										<HBox>
-											<children>
-												<Button fx:id="historyButton" styleClass="top-header-button"
-													mnemonicParsing="false">
-													<graphic>
-														<ImageView fitHeight="36.0" fitWidth="48.0"
-															pickOnBounds="true" preserveRatio="true">
-															<image>
-																<Image url="@../resources/history_icon.png" />
-															</image>
-														</ImageView>
-													</graphic>
-													<HBox.margin>
-														<Insets left="14.0" />
-													</HBox.margin>
-												</Button>
-												<Button fx:id="helpButton" styleClass="top-header-button"
-													mnemonicParsing="false">
-													<graphic>
-														<ImageView fitHeight="36.0" fitWidth="48.0"
-															pickOnBounds="true" preserveRatio="true">
-															<image>
-																<Image url="@../resources/help.png" />
-															</image>
-														</ImageView>
-													</graphic>
-													<HBox.margin>
-														<Insets left="14.0" />
-													</HBox.margin>
-												</Button>
-												<Button fx:id="contactButton" styleClass="top-header-button"
-													mnemonicParsing="false">
-													<graphic>
-														<ImageView fitHeight="36.0" fitWidth="48.0"
-															pickOnBounds="true" preserveRatio="true">
-															<image>
-																<Image url="@../resources/phone.png" />
-															</image>
-														</ImageView>
-													</graphic>
-													<HBox.margin>
-														<Insets left="14.0" />
-													</HBox.margin>
-												</Button>
-												<HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
-													<children>
-														<TextField id="search-field" fx:id="searchTextField"
-															prefHeight="45" prefWidth="410.0" promptText="Sök" />
-													</children>
-												</HBox>
-											</children>
-											<VBox.margin>
-												<Insets top="14.0" />
-											</VBox.margin>
-										</HBox>
 										<StackPane fx:id="contentPane" alignment="TOP_LEFT"
 											VBox.vgrow="ALWAYS">
 											<children>
-												<fx:include fx:id="purchasePane" source="purchase.fxml" />
+												<fx:include id="purchasePane" fx:id="purchasePane" source="purchase.fxml" />
 												<fx:include fx:id="credentialsPane" source="credentials.fxml" />
 												<fx:include fx:id="storePane" source="store.fxml" />
 												<fx:include fx:id="receiptPane" source="receipt.fxml" />
@@ -116,11 +61,55 @@
 						</AnchorPane>
 						<AnchorPane>
 							<children>
-								<!--<Button fx:id="purchaseHistoryButton" maxWidth="-Infinity"-->
-									<!--mnemonicParsing="false" prefHeight="36" styleClass="history-button"-->
-									<!--text="Köphistorik" AnchorPane.leftAnchor="0"-->
-									<!--AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" HBox.hgrow="ALWAYS">-->
-								<!--</Button>-->
+								<HBox AnchorPane.rightAnchor="21" AnchorPane.topAnchor="18">
+									<children>
+										<Button fx:id="historyButton" styleClass="top-header-button"
+											mnemonicParsing="false">
+											<graphic>
+												<ImageView fitHeight="36.0" fitWidth="48.0"
+													pickOnBounds="true" preserveRatio="true">
+													<image>
+														<Image url="@../resources/history_icon.png" />
+													</image>
+												</ImageView>
+											</graphic>
+											<HBox.margin>
+												<Insets left="14.0" />
+											</HBox.margin>
+										</Button>
+										<Button fx:id="helpButton" styleClass="top-header-button"
+											mnemonicParsing="false">
+											<graphic>
+												<ImageView fitHeight="36.0" fitWidth="48.0"
+													pickOnBounds="true" preserveRatio="true">
+													<image>
+														<Image url="@../resources/help.png" />
+													</image>
+												</ImageView>
+											</graphic>
+											<HBox.margin>
+												<Insets left="14.0" />
+											</HBox.margin>
+										</Button>
+										<Button fx:id="contactButton" styleClass="top-header-button"
+											mnemonicParsing="false">
+											<graphic>
+												<ImageView fitHeight="36.0" fitWidth="48.0"
+													pickOnBounds="true" preserveRatio="true">
+													<image>
+														<Image url="@../resources/phone.png" />
+													</image>
+												</ImageView>
+											</graphic>
+											<HBox.margin>
+												<Insets left="14.0" />
+											</HBox.margin>
+										</Button>
+									</children>
+									<VBox.margin>
+										<Insets top="14.0" />
+									</VBox.margin>
+								</HBox>
 								<fx:include fx:id="shoppingCart" source="shopping_cart.fxml" />
 							</children>
 						</AnchorPane>

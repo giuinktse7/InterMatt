@@ -1,16 +1,15 @@
 package controllers;
 
-//import interfaces.VerifyDateField;
+import interfaces.PaymentMethod;
 import interfaces.VerifyDateField;
-import interfaces.VerifyTextField;
+import interfaces.TextFieldValidator;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Group;
-import javafx.scene.Scene;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
@@ -22,6 +21,7 @@ import javafx.stage.Stage;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
 import sun.applet.Main;
 import util.InformationStorage;
+import util.PaymentProperty;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ import java.util.ResourceBundle;
 import control.ModalPopup;
 
 public class PurchaseController implements Initializable {
-
+	
 	
 	// Payment toggle buttons
 	@FXML private ToggleButton btn_pay_creditcard;
@@ -54,6 +54,8 @@ public class PurchaseController implements Initializable {
 	@FXML private TextField txt_cardnr_2;
 	@FXML private TextField txt_cardnr_3;
 	@FXML private TextField txt_cardnr_4;
+	
+	PaymentProperty paymentProperty = new PaymentProperty(PaymentMethod.DELIVERY);
 
 
 	// Credit card expiration year and month
@@ -71,7 +73,7 @@ public class PurchaseController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		setupInputConstraints();
 		payment_mode_changed();
-
+		
 		ToggleGroup toggleGroup = new ToggleGroup();
 		btn_pay_delivery.setToggleGroup(toggleGroup);
 		btn_pay_creditcard.setToggleGroup(toggleGroup);
@@ -92,43 +94,29 @@ public class PurchaseController implements Initializable {
 		InformationStorage.setDelivery(getDeliveryString());
 	}
 	
+	private final BooleanBinding BILL_SELECTED = selectedPaymentBinding(PaymentMethod.BILL);
+	private final BooleanBinding CREDITCARD_SELECTED = selectedPaymentBinding(PaymentMethod.CREDITCARD);
+	private final BooleanBinding DELIVERY_SELECTED = selectedPaymentBinding(PaymentMethod.DELIVERY);
+	
 	public void setDeliveryDates(){
 		List<String> dates = new ArrayList<String>();
 		Calendar c = Calendar.getInstance();
 		c.add(Calendar.DATE, 2);
-		for (int delta = 0; delta < 7; delta++){
+		
+		for (int i = 0; i < 7; i++){
 			c.add(Calendar.DATE, 1);
-			if (c.getTime().getDay() == 0) c.add(Calendar.DATE, 1);
+			if (c.getTime().getDay() == 0)
+				c.add(Calendar.DATE, 1);
 			
-			String dayOfWeek;
-			switch (c.getTime().getDay()){
-			default:
-				dayOfWeek = "Söndag";
-				break;
-			case 1:
-				dayOfWeek = "Måndag";
-				break;
-			case 2:
-				dayOfWeek = "Tisdag";
-				break;
-			case 3:
-				dayOfWeek = "Onsdag";
-				break;
-			case 4:
-				dayOfWeek = "Torsdag";
-				break;
-			case 5:
-				dayOfWeek = "Fredag";
-				break;
-			case 6:
-				dayOfWeek = "Lördag";
-				break;
- 			}
+			
+			String days[] = {"Söndag", "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag"};
+			String dayOfWeek = days[i];
 			
 			String str = dayOfWeek + " " + c.getTime().getDate()+"/"+(c.getTime().getMonth() + 1);
 			dates.add(str);
 			System.out.println(str);
 		}
+		
 		cb_delivery_date.getItems().addAll(dates);
 		cb_delivery_date.setValue(dates.get(0));
 		List<String> times = Arrays.asList("Morgon (09:00 - 10:30)", "Förmiddag (10:30 - 12:00)", "Eftermiddag (13:00 - 15:00)");
@@ -138,6 +126,116 @@ public class PurchaseController implements Initializable {
 	
 	public String getDeliveryString(){
 		return cb_delivery_date.getSelectionModel().getSelectedItem() + " " + cb_delivery_time.getSelectionModel().getSelectedItem(); 
+	}
+
+
+	public BooleanBinding getBindings() {
+		//If paying by credit card, ensure these things to proceed
+		BooleanBinding creditCardRequirements = CREDITCARD_SELECTED.and(ccFieldBinding(txt_cardnr_1)).and(
+				ccFieldBinding(txt_cardnr_2)).and(
+				ccFieldBinding(txt_cardnr_3)).and(
+				ccFieldBinding(txt_cardnr_4)).and(
+				cvvFieldBinding(txt_card_cvv)).and(
+				//dateFieldBinding(cb_card_year)).and(
+				//dateFieldBinding(cb_card_month));
+				choiceBoxBinding(cb_card_month));
+		
+		//If paying by bill, ensure these things to proceed
+		BooleanBinding billRequirements = BILL_SELECTED;
+		
+		//If paying at delivery, ensure these things to proceed
+		BooleanBinding deliveryRequirements = DELIVERY_SELECTED;
+		
+		return creditCardRequirements.or(billRequirements).or(deliveryRequirements);
+		
+	}
+
+	private final TextFieldValidator GOOD_CC = (txtField) -> (txtField.getText().length() == 4);
+	private final TextFieldValidator GOOD_CVV = (txtField) -> (txtField.getText().length() == 3);
+	private final VerifyDateField GOOD_DATE = (choice) -> { System.out.println(choice.getSelectionModel().getSelectedIndex() > 0); return choice.getSelectionModel().getSelectedIndex() > 0;  };
+
+	private BooleanBinding ccFieldBinding(TextField textField) {
+		BooleanBinding binding = createBinding(textField, GOOD_CC);
+		binding.addListener((obs, oldValue, newValue) -> {
+			if (!newValue) {
+				textField.getStyleClass().add("bad-input");
+			} else {
+				textField.getStyleClass().remove("bad-input");
+			}
+		});
+		return binding;
+	}
+
+	private BooleanBinding cvvFieldBinding(TextField textField) {
+		BooleanBinding binding = createBinding(textField, GOOD_CVV);
+		binding.addListener((obs, oldValue, newValue) -> {
+			if (!newValue) {
+				textField.getStyleClass().add("bad-input");
+			} else {
+				textField.getStyleClass().remove("bad-input");
+			}
+		});
+		return binding;
+	}
+	
+	private BooleanBinding choiceBoxBinding(ChoiceBox<String> choiceBox) {
+		BooleanBinding binding = Bindings.createBooleanBinding(() -> choiceBox.getSelectionModel().selectedIndexProperty().get() > 0, choiceBox.getSelectionModel().selectedIndexProperty());
+		binding.addListener((obs, oldValue, newValue) -> {
+			if (!newValue) {
+				choiceBox.getStyleClass().add("bad-input");
+			} else {
+				choiceBox.getStyleClass().remove("bad-input");
+			}
+		});
+		return binding;
+	}
+
+	private BooleanBinding createBinding(TextField textField, TextFieldValidator verifyTextField) {
+		return Bindings.createBooleanBinding(() -> verifyTextField.verify(textField), textField.textProperty());
+	}
+
+	private BooleanBinding createChoiceBinding(ChoiceBox choiceBox, VerifyDateField verifyDateField) {
+		return Bindings.createBooleanBinding(() -> verifyDateField.verify(choiceBox), choiceBox.selectionModelProperty());
+	}
+
+
+
+
+	public void payment_mode_changed(){
+		pane_pay_creditcard.setVisible(false);
+		pane_pay_bill_delivery.setVisible(false);
+
+
+
+		if (btn_pay_creditcard.isSelected()) {
+			pane_pay_creditcard.toFront();
+			pane_pay_creditcard.setVisible(true);
+			InformationStorage.setPaymentType(" och har betalat med kort.");
+			paymentProperty.setValue(PaymentMethod.CREDITCARD);
+		}
+
+		if (btn_pay_bill.isSelected()) {
+			pane_pay_bill_delivery.toFront();
+			pane_pay_bill_delivery.setVisible(true);
+			txt_pay_info.setText("Du betalar med pappersfaktura. Den skickas hem till dig och ska betalas inom 30 dagar. Detta är inte bra för miljön. Tänk på träden Hjördis. Illa.");
+			InformationStorage.setPaymentType(" och du får fakturan skickad till dig inom kort.");
+			paymentProperty.setValue(PaymentMethod.BILL);
+		}
+
+		if (btn_pay_delivery.isSelected()){
+			pane_pay_bill_delivery.toFront();
+			pane_pay_bill_delivery.setVisible(true);
+			txt_pay_info.setText("Du betalar vid dörren när varorna har anlänt. Du kan betala med antingen kort eller kontanter.");
+			InformationStorage.setPaymentType(" och betalningen sker vid leverans.");
+			paymentProperty.setValue(PaymentMethod.DELIVERY);
+		}
+	}
+	
+	/** Creates a binding that holds whether or not PaymentMethod <code>paymentMethod</code> is selected. */
+	private BooleanBinding selectedPaymentBinding(PaymentMethod paymentMethod) {
+		BooleanProperty property = new SimpleBooleanProperty(true);
+		paymentProperty.addListener((obs, o, n) -> property.setValue(n.equals(paymentMethod)));
+		return Bindings.createBooleanBinding(() -> property.get(), property);
 	}
 	
 	private void setupInputConstraints() {
@@ -249,118 +347,4 @@ public class PurchaseController implements Initializable {
 					}
 				});
 	}
-
-
-	public BooleanBinding getBindings() {
-		return  ccFieldBinding(txt_cardnr_1).and(
-				ccFieldBinding(txt_cardnr_2)).and(
-				ccFieldBinding(txt_cardnr_3)).and(
-				ccFieldBinding(txt_cardnr_4)).and(
-				cvvFieldBinding(txt_card_cvv)).and(
-				dateFieldBinding(cb_card_year)).and(
-				dateFieldBinding(cb_card_month));
-	}
-
-	private final VerifyTextField GOOD_CC = (txtField) -> (txtField.getText().length() == 4);
-	private final VerifyTextField GOOD_CVV = (txtField) -> (txtField.getText().length() == 3);
-	private final VerifyDateField GOOD_DATE = (choice) -> (choice.getSelectionModel().getSelectedIndex() > 0);
-
-	private BooleanBinding ccFieldBinding(TextField textField) {
-		BooleanBinding binding = createBinding(textField, GOOD_CC);
-		binding.addListener((obs, oldValue, newValue) -> {
-			if (!newValue) {
-				textField.getStyleClass().add("bad-input");
-			} else {
-				textField.getStyleClass().remove("bad-input");
-			}
-		});
-		return binding;
-	}
-
-	private BooleanBinding cvvFieldBinding(TextField textField) {
-		BooleanBinding binding = createBinding(textField, GOOD_CVV);
-		binding.addListener((obs, oldValue, newValue) -> {
-			if (!newValue) {
-				textField.getStyleClass().add("bad-input");
-			} else {
-				textField.getStyleClass().remove("bad-input");
-			}
-		});
-		return binding;
-	}
-
-	private BooleanBinding dateFieldBinding(ChoiceBox choiceBox) {
-		BooleanBinding binding = createChoiceBinding(choiceBox, GOOD_DATE);
-		binding.addListener((obs, oldValue, newValue) -> {
-			if (!newValue) {
-				choiceBox.getStyleClass().add("bad-input");
-			} else {
-				choiceBox.getStyleClass().remove("bad-input");
-			}
-		});
-		return binding;
-	}
-
-	private BooleanBinding createBinding(TextField textField, VerifyTextField verifyTextField) {
-		return Bindings.createBooleanBinding(() -> verifyTextField.verify(textField), textField.textProperty());
-	}
-
-	private BooleanBinding createChoiceBinding(ChoiceBox choiceBox, VerifyDateField verifyDateField) {
-		return Bindings.createBooleanBinding(() -> verifyDateField.verify(choiceBox), choiceBox.selectionModelProperty());
-	}
-
-
-	public boolean verifyInput(){
-		if (btn_pay_creditcard.isSelected()){
-			if (txt_cardnr_1.getText().length() != 4) return false;
-			if (txt_cardnr_2.getText().length() != 4) return false;
-			if (txt_cardnr_3.getText().length() != 4) return false;
-			if (txt_cardnr_4.getText().length() != 4) return false;
-
-			if (cb_card_year.getSelectionModel().getSelectedIndex() == 0 ||
-					cb_card_month.getSelectionModel().getSelectedIndex() == 0) return false;
-
-			int year = Integer.parseInt(cb_card_year.getSelectionModel().getSelectedItem().toString());
-			int month = cb_card_month.getSelectionModel().getSelectedIndex();
-			Calendar c = new GregorianCalendar(year, month, -1);
-			Calendar today = Calendar.getInstance();
-			if (!c.getTime().after(today.getTime())) return false;
-			if (txt_card_cvv.getText().length() != 3) return false;
-			return true;
-		}else{
-			return true;
-		}
-	}
-
-
-
-	public void payment_mode_changed(){
-		pane_pay_creditcard.setVisible(false);
-		pane_pay_bill_delivery.setVisible(false);
-
-
-
-		if (btn_pay_creditcard.isSelected()) {
-			pane_pay_creditcard.toFront();
-			pane_pay_creditcard.setVisible(true);
-			InformationStorage.setPaymentType(" och har betalat med kort.");
-		}
-
-		if (btn_pay_bill.isSelected()) {
-			pane_pay_bill_delivery.toFront();
-			pane_pay_bill_delivery.setVisible(true);
-			txt_pay_info.setText("Du betalar med pappersfaktura. Den skickas hem till dig och ska betalas inom 30 dagar. Detta är inte bra för miljön. Tänk på träden Hjördis. Illa.");
-			InformationStorage.setPaymentType(" och du får fakturan skickad till dig inom kort.");
-		}
-
-		if (btn_pay_delivery.isSelected()){
-			pane_pay_bill_delivery.toFront();
-			pane_pay_bill_delivery.setVisible(true);
-			txt_pay_info.setText("Du betalar vid dörren när varorna har anlänt. Du kan betala med antingen kort eller kontanter.");
-			InformationStorage.setPaymentType(" och betalningen sker vid leverans.");
-		}
-	}
-
-
-
 }

@@ -3,9 +3,13 @@ package control;
 import interfaces.Action;
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
+import javafx.collections.ObservableList;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
@@ -72,6 +76,19 @@ public class ModalPopup extends AnchorPane {
 		AnchorPane.setRightAnchor(content, 0d);
 		AnchorPane.setTopAnchor(content, 0d);
 		AnchorPane.setBottomAnchor(content, 0d);
+		
+		//Setup the exit button
+		AnchorPane topPane = ((AnchorPane) ((Pane) content.getChildren().get(0)).getChildren().get(0));
+		Button exitButton = new Button();
+		exitButton.setStyle("-fx-background-color: transparent;");
+		
+		Image exitImage = new Image("resources/remove.png", 36, 36, true, true);
+		exitButton.setGraphic(new ImageView(exitImage));
+		
+		AnchorPane.setRightAnchor(exitButton, 7d);
+		AnchorPane.setTopAnchor(exitButton, 0d);
+		topPane.getChildren().add(exitButton);
+		exitButton.setOnAction(event -> this.close());
 		
 		prefWidth(container.getPrefWidth());
 		prefHeight(container.getPrefHeight());

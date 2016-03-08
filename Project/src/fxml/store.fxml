@@ -26,9 +26,9 @@
 			<children>
 				<TabPane id="mainTabPane" fx:id="mainTabPane" styleClass="bigTabs"
 					stylesheets="@../styling/main_tabPane.css" tabClosingPolicy="UNAVAILABLE"
-					tabMaxHeight="65" tabMaxWidth="200.0" tabMinHeight="65"
+					tabMaxHeight="65" tabMaxWidth="400" tabMinHeight="65"
 					tabMinWidth="0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-					AnchorPane.topAnchor="0.0">
+					AnchorPane.topAnchor="0">
 					<tabs>
 						<Tab id="startTab" fx:id="startTab" closable="false" text="Start">
 							<content>
@@ -123,8 +123,11 @@
 								</FlowPane>
 							</content>
 						</Tab>
-						<Tab id="invisibleTab" fx:id="invisibleTab" closable="false"
-							text="">
+						<Tab id="invisibleTab" fx:id="invisibleTab" closable="false">
+							<graphic>
+								<TextField id="search-field" fx:id="searchTextField"
+									prefHeight="45" promptText="Sök" />
+							</graphic>
 							<content>
 								<HBox alignment="CENTER_LEFT" minWidth="300.0" prefWidth="925.0"
 									styleClass="searchTabContent">

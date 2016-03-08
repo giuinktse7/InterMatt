@@ -6,16 +6,21 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <?import java.net.URL?>
-<ModalPopup fx:id="bottomPane" styleClass="bottomPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SaveListController">
+<ModalPopup fx:id="bottomPane" styleClass="bottomPane"
+	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="controllers.SaveListController">
 	<children>
 		<!-- Content is centered according to this pane:: HAS TO BE HERE! -->
 		<FlowPane alignment="CENTER">
 			<children>
 				<VBox>
 					<children>
-						<AnchorPane id="modalTop" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="45.0">
+						<AnchorPane id="modalTop" maxHeight="-Infinity"
+							minHeight="-Infinity" prefHeight="45.0">
 							<children>
-								<Label layoutX="119.0" layoutY="90.0" text="Ny köplista" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+								<Label layoutX="119.0" layoutY="90.0" text="Ny köplista"
+									AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+									AnchorPane.topAnchor="0.0">
 									<font>
 										<Font size="24.0" />
 									</font>
@@ -25,20 +30,32 @@
 								</Label>
 							</children>
 						</AnchorPane>
-						<AnchorPane id="content" fx:id="contentPane" maxHeight="-Infinity" prefHeight="160.0" prefWidth="400.0">
+						<AnchorPane id="content" fx:id="contentPane" maxHeight="-Infinity"
+							prefHeight="160.0" prefWidth="400.0">
 							<children>
-								<Label fx:id="lblName" layoutX="14.0" text="Namnge köplistan" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="14.0">
+								<Label fx:id="lblName" layoutX="14.0" text="Namnge köplistan"
+									AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="14.0">
 									<font>
 										<Font size="14.0" />
 									</font>
 								</Label>
-								<TextField fx:id="txtListName" layoutX="24.0" layoutY="27.0" prefHeight="36.0" prefWidth="372.0" promptText="ex, &quot;Getlistan&quot;, &quot;Tyskt rejvparty&quot;, etc..." AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
+								<TextField fx:id="txtListName" layoutX="24.0" layoutY="27.0"
+									prefHeight="36.0" prefWidth="372.0"
+									promptText="ex, &quot;Getlistan&quot;, &quot;Tyskt rejvparty&quot;, etc..."
+									AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="14.0"
+									AnchorPane.rightAnchor="14.0">
 									<font>
 										<Font size="16.0" />
 									</font>
 								</TextField>
-								<Button fx:id="btnCancel" layoutX="24.0" layoutY="75.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Avbryt" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" />
-								<Button fx:id="btnSave" layoutX="298.0" layoutY="75.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Spara" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+								<Button fx:id="btnCancel" layoutX="24.0" layoutY="75.0"
+									mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0"
+									text="Avbryt" AnchorPane.bottomAnchor="14.0"
+									AnchorPane.leftAnchor="14.0" />
+								<Button fx:id="btnSave" layoutX="298.0" layoutY="75.0"
+									mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0"
+									text="Spara" AnchorPane.bottomAnchor="14.0"
+									AnchorPane.rightAnchor="14.0" />
 							</children>
 						</AnchorPane>
 					</children>

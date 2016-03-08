@@ -46,6 +46,10 @@ public class StoreController implements Initializable {
 	@FXML
 	private Tab invisibleTab;
 	
+	@FXML private TextField searchTextField;
+	
+	private List<TabPane> subTabPanes = new ArrayList<TabPane>();
+	
 	IMatDataHandler db = IMatDataHandler.getInstance();
 
 	private final String[] tabStyleClasses = { "greens-tab-pane", "meat-tab-pane", "dairy-tab-pane", "drinks-tab-pane",
@@ -64,12 +68,15 @@ public class StoreController implements Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle bundle) {
 		initializeSubCategories();
+		
+		//Setup search
+		searchTextField.textProperty().addListener(getSearchAction());
 
 		//Takes care of most frequently bought
 		loadFrequentlyBought();
 		
 		ScrollPane.positionInArea(content, 0, 0, 800, 800, 0, new Insets(50, 0, 0, 0), HPos.CENTER, VPos.TOP, true);
-		invisibleTab.setDisable(true);
+		
 		
 		content.setUserData(content.getPrefColumns());
 
@@ -120,10 +127,6 @@ public class StoreController implements Initializable {
 			return (int) (item2.getAmount() - item1.getAmount());
 		});
 		
-		for (ShoppingItem item : items) {
-			System.out.printf("%s : %.2f\n", item.getProduct().getName(), item.getAmount());
-		}
-		
 		int stopAt = Math.min(12, items.size());
 		
 		for (int i = 0; i < stopAt; ++i)
@@ -148,7 +151,9 @@ public class StoreController implements Initializable {
 		return (obs, oldValue, newValue) -> {
 			/** Changes selected tab to "search" */
 			mainTabPane.getSelectionModel().select(invisibleTab);
+			
 			List<Node> nodes = searchForItems(newValue);
+			
 			if (nodes != null) {
 				populateStore(nodes);
 				lblSearchResult
@@ -181,6 +186,7 @@ public class StoreController implements Initializable {
 		for (int i : categories.keySet()) {
 			TabPane tabPane = superCategories[i];
 			tabPane.getStyleClass().add(tabStyleClasses[i]);
+			subTabPanes.add(tabPane);
 			
 			for (SubCategory subCategory : categories.get(i)) {
 				Tab tab = new Tab(subCategory.getName());
@@ -258,7 +264,8 @@ public class StoreController implements Initializable {
 		Set<SubCategory> protein = new HashSet<SubCategory>();
 		Set<SubCategory> fridayCuddle = new HashSet<SubCategory>();
 		Set<SubCategory> drinks = new HashSet<SubCategory>();
-
+		SubCategory g;
+		
 		greens.add(berries);
 		greens.add(fruits);
 		greens.add(vegitables);
@@ -284,5 +291,10 @@ public class StoreController implements Initializable {
 		superCategories.put(5, fridayCuddle);
 
 		return superCategories;
+	}
+	
+	// TODO Switch to a certain product, can probably use super-categories along with the subTabPanes variable to accomplish this
+	public void switchTo(Product p) {
+		
 	}
 }

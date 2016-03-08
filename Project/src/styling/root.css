@@ -38,12 +38,36 @@
 	-fx-border-color: red;
 }
 
+.bad-input,
+.bad-input:selected {
+    -fx-border-width: 1px;
+    -fx-border-color: #ec5446;
+    -fx-border-radius: 0 3 3 0;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.good-input,
+.good-input:selected {
+    -fx-border-width: 1px;
+    -fx-border-radius: 0 3 3 0;
+	-fx-border-color: #90cf7d;
+	
+	-fx-faint-focus-color: transparent;
+	-fx-focus-color: transparent;
+}
+
 .button:hover,
 .navigation-button:hover,
 .arrow-button:hover,
 .order-box,
 .tab {
 	-fx-cursor: hand;
+}
+
+.tab .flow-pane {
+	-fx-border-width: 1px;
+	-fx-border-color: red;
 }
 
 .tab:disabled {
@@ -108,4 +132,29 @@
 	-fx-background-color: transparent;
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
+}
+
+.smart-text-field {
+	-fx-border-radius: 0 3 3 0;
+	-fx-background-radius: 0 3 3 0;
+}
+
+.smart-text-field {
+	-fx-font-size: 18 pt;
+}
+
+.smart-text-field:prompt {
+	-fx-font-size: 18 pt;
+}
+
+/* The error label for SmartTextField */
+.error-label .text {
+	-fx-font-size: 16 pt;
+	-fx-fill: #be1809;
+}
+
+/* The asterix on SmartTextField */
+.asterix-label .text {
+	-fx-font-size: 18pt;
+	-fx-fill: derive(#e55933, 85%);
 }

@@ -110,6 +110,14 @@ public class SubCategory {
 		return this.name;
 	}
 	
+	public boolean contains(Product product) {
+		for (Product p : products)
+			if (p.getProductId() == product.getProductId())
+				return true;
+		
+		return false;
+	}
+	
 	private static Node getProductDisplay(Product product) {
 		ShoppingCartHandler cart = ShoppingCartHandler.getInstance();
 		
