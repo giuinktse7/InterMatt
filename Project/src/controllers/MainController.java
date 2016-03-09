@@ -112,11 +112,11 @@ public class MainController implements Initializable {
 		viewDisplay.addView(dummyView);
 		
 		//Define necessary bindings
-		PURCHASE_VIEW_ACTIVE = activeViewBinding("purchasePane");
-		RECEIPT_VIEW_ACTIVE = activeViewBinding("receiptPane");
+		PURCHASE_VIEW_ACTIVE = activeViewBinding(purchaseView);
+		RECEIPT_VIEW_ACTIVE = activeViewBinding(receiptView);
 		
 		//Setup bindings that determine how you can move between views
-		setStoreBinds();
+		//setStoreBinds();
 		setCredentialBinds();
 		setPurchaseBinds();
 		setReceiptBinds();
@@ -165,8 +165,6 @@ public class MainController implements Initializable {
 		
 		//Show the store
 		viewDisplay.show(storeView);
-		
-		viewDisplay.getCurrentView().get().setActive(true);
 	}
 	
 	private final BooleanBinding CART_NONEMPTY = Bindings.createBooleanBinding(() -> !cartHandler.emptyProperty().get(), cartHandler.emptyProperty());
@@ -174,9 +172,9 @@ public class MainController implements Initializable {
 	private BooleanBinding RECEIPT_VIEW_ACTIVE;
 	
 	/** Creates a binding that is true when the active view is the view with "css-id" <code>ID</code> */
-	private BooleanBinding activeViewBinding(String ID) {
+	private BooleanBinding activeViewBinding(ContentView view) {
 		SimpleBooleanProperty isActiveView = new SimpleBooleanProperty(false);
-		viewDisplay.getCurrentView().addListener((obs, oldValue, newValue) ->  isActiveView.set(viewDisplay.getCurrentView().getID().equals(ID)));
+		viewDisplay.getCurrentView().addListener((obs, oldValue, newValue) ->  isActiveView.set(viewDisplay.getCurrentView().get().equals(view)));
 		BooleanBinding binding = Bindings.createBooleanBinding(() -> isActiveView.get(), isActiveView);
 		
 		return binding;
@@ -225,7 +223,7 @@ public class MainController implements Initializable {
 	private void setReceiptBinds() {
 		ContentView view = viewDisplay.getView(receiptPane);
 		BindingGroup group = btnToReceipt.getBindingGroup();
-		group.addBinding(purchasePaneController.getBindings().and(PURCHASE_VIEW_ACTIVE.or(RECEIPT_VIEW_ACTIVE)));
+		group.addBinding(purchasePaneController.getBindings().and(PURCHASE_VIEW_ACTIVE));
 		
 		view.getBindingGroup().setAll(group.getBinds());
 	}
