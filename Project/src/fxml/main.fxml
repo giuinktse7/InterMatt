@@ -72,7 +72,7 @@
 												<ImageView fitHeight="65.0" fitWidth="65" styleClass="topImage"
 													pickOnBounds="true" preserveRatio="true">
 													<image>
-														<Image url="@../resources/cuteGoat.png" />
+														<Image url="@../resources/history.png" />
 													</image>
 												</ImageView>
 											</graphic>
@@ -89,7 +89,7 @@
 												<ImageView fitHeight="65.0" fitWidth="65" styleClass="topImage"
 													pickOnBounds="true" preserveRatio="true">
 													<image>
-														<Image url="@../resources/cuteGoat.png" />
+														<Image url="@../resources/help.png" />
 													</image>
 												</ImageView>
 											</graphic>
@@ -106,7 +106,7 @@
 												<ImageView fitHeight="65.0" fitWidth="65" styleClass="topImage"
 													pickOnBounds="true" preserveRatio="true">
 													<image>
-														<Image url="@../resources/cuteGoat.png" />
+														<Image url="@../resources/contact.png" />
 													</image>
 												</ImageView>
 											</graphic>
@@ -129,6 +129,8 @@
 					prefHeight="103.0" prefWidth="1057.0" styleClass="base-style"
 					xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
 					<children>
+
+
 						<HBox alignment="TOP_CENTER" layoutX="140.0" prefHeight="135.0"
 							prefWidth="917.0" AnchorPane.bottomAnchor="0.0"
 							AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="140.0"
@@ -140,7 +142,7 @@
 											minHeight="60.0" minWidth="60.0" mnemonicParsing="false"
 											prefHeight="60.0" prefWidth="60.0" styleClass="nav-button">
 											<graphic>
-												<ImageView fitHeight="80.0" fitWidth="80.0"
+												<ImageView fitHeight="80.0" fitWidth="80.0" styleClass="round-nav-button"
 													pickOnBounds="true" preserveRatio="true">
 													<image>
 														<Image url="@../resources/previous1.png" />
@@ -156,10 +158,10 @@
 										</Label>
 									</children>
 								</VBox>
-								<ImageView fx:id="fromStoreArrow" fitHeight="57" pickOnBounds="true"
+								<ImageView fx:id="fromStoreArrow" visible="false" fitWidth="230" pickOnBounds="true" styleClass="line-between-nav-button"
 									preserveRatio="true">
 									<image>
-										<Image url="@../resources/styleArrow.png" />
+										<Image url="@../resources/line.png" />
 									</image>
 								</ImageView>
 								<VBox alignment="CENTER">
@@ -169,7 +171,7 @@
 											mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0"
 											styleClass="nav-button">
 											<graphic>
-												<ImageView fitHeight="80.0" fitWidth="80.0"
+												<ImageView fitHeight="80.0" fitWidth="80.0" styleClass="round-nav-button"
 													pickOnBounds="true" preserveRatio="true">
 													<image>
 														<Image url="@../resources/thisPage2.png" />
@@ -185,10 +187,10 @@
 										</Label>
 									</children>
 								</VBox>
-								<ImageView fx:id="fromCredentialsArrow" fitHeight="57" pickOnBounds="true"
+								<ImageView fx:id="fromCredentialsArrow" visible="false" fitWidth="230" pickOnBounds="true" styleClass="line-between-nav-button"
 									preserveRatio="true">
 									<image>
-										<Image url="@../resources/styleArrow.png" />
+										<Image url="@../resources/line.png" />
 									</image>
 								</ImageView>
 								<VBox alignment="CENTER">
@@ -198,7 +200,7 @@
 											mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0"
 											styleClass="nav-button">
 											<graphic>
-												<ImageView disable="true" fitHeight="80.0"
+												<ImageView disable="true" fitHeight="80.0" styleClass="round-nav-button"
 													fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
 													<image>
 														<Image url="@../resources/disabled3.png" />
@@ -214,10 +216,10 @@
 										</Label>
 									</children>
 								</VBox>
-								<ImageView fx:id="fromPurchaseArrow" fitHeight="57" pickOnBounds="true"
+								<ImageView fx:id="fromPurchaseArrow" visible="false" fitWidth="230" pickOnBounds="true" styleClass="line-between-nav-button"
 									preserveRatio="true">
 									<image>
-										<Image url="@../resources/styleArrow.png" />
+										<Image url="@../resources/line.png" />
 									</image>
 								</ImageView>
 								<VBox alignment="CENTER">
@@ -227,7 +229,7 @@
 											mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0"
 											styleClass="nav-button">
 											<graphic>
-												<ImageView fitHeight="80.0" fitWidth="80.0"
+												<ImageView fitHeight="80.0" fitWidth="80.0" styleClass="round-nav-button"
 													pickOnBounds="true" preserveRatio="true">
 													<image>
 														<Image url="@../resources/disabled4.png" />
@@ -245,6 +247,7 @@
 								</VBox>
 							</children>
 						</HBox>
+						<Separator prefWidth="500" prefHeight="2" id="line-crossing-buttons" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
 						<ArrowButton fx:id="prevButton" minWidth="-Infinity"
 							mnemonicParsing="false" prefHeight="80.0" prefWidth="130.0"
 							styleClass="nav-button" AnchorPane.leftAnchor="7.0"

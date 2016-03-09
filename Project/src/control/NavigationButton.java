@@ -56,9 +56,9 @@ public class NavigationButton extends Button {
 			Image image;
 			
 			if (isDisabled)
-				image = new Image("resources/styleArrow_disabled.png", 192, 57, true, true);
+				image = new Image("resources/line.png", 192, 57, true, true);
 			else
-				image = new Image("resources/styleArrow.png", 192, 57, true, true);
+				image = new Image("resources/line.png", 192, 57, true, true);
 			
 			styleArrow.setImage(image);
 		});

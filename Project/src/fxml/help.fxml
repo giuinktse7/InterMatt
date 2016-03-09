@@ -14,10 +14,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.ListView?>
-<?import control.ModalPopup?>
 
-<ModalPopup fx:id="bottomPane" stylesheets="@../styling/modal_popup.css" styleClass="bottomPane" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
-	<children>
+<?import control.ModalPopup?>
+<ModalPopup fx:id="bottomPane" stylesheets="@../styling/help.css" styleClass="bottomPane" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"> 
+
+<children>
 		<!-- Content is centered according to this pane:: HAS TO BE HERE! -->
 		<FlowPane alignment="CENTER">
    <children>
@@ -35,9 +36,96 @@
    							</Label>
    						</children>
    					</AnchorPane>
-   					<AnchorPane id="content" maxHeight="-Infinity" prefHeight="298.0" prefWidth="511.0">
+   					<AnchorPane id="content" maxHeight="-Infinity" prefHeight="399.0" prefWidth="714.0">
                      <children>
-                        <Label layoutX="29.0" layoutY="14.0" text="...överblick och beskrivning av programmet...." />
+                        <ScrollPane id="scrollP" layoutX="3.0" prefHeight="480.0" prefWidth="708.0">
+                          <content>
+                            <AnchorPane id="wrapper" minHeight="0.0" minWidth="0.0" prefHeight="1162.0" prefWidth="683.0">
+                                 <children>
+                                    <Label layoutX="8.0" layoutY="1.0" text="Handla din mat smidigare än någonsin förr!">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextArea editable="false" layoutX="8.0" layoutY="40.0" prefHeight="107.0" prefWidth="648.0" text="Nedan kommer vi att steg för steg gå igenom de olika vyerna du kommer bekanta dig med under köpets gång. För dig som handlar dagligen kommer vi också lista några specialfunktioner som kan underlätta för dig vid dina framtida köp - dessa hittar du under rubriken &quot;specialfunktioner&quot; längre ner på denna sida." wrapText="true">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextArea>
+                                    <Label layoutX="8.0" layoutY="148.0" text="Att handla hos Intermätt">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextArea editable="false" layoutX="39.0" layoutY="219.0" prefHeight="163.0" prefWidth="617.0" text="När du först startar programmet befinner du dig i köpvyn. Den är upplaggd på samma sätt som din lokala mataffär, fast mycket smidigare. Längst upp på sidan hittar du de olika avdelningarna i affären. När du navigerar dig mellan de olika avdelningarna så ser du att nya kategorier för varje specifik avdelning uppenbarar sig - detta för att du lättare skall kunna hitta det du söker. Väl inne i den kategori lämplig kan du fritt välja bland sortimentets många varor. Om du redan vet vilka varor du skall ha kan du också använda sökfältet som du hittar bredvid Intermätts avdelningar." wrapText="true">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextArea>
+                                    <TextArea editable="false" layoutX="39.0" layoutY="413.0" prefHeight="130.0" prefWidth="617.0" text="När du hittat en vara som önskas köpa, så trycker du på knappen &quot;Köp&quot;. Varan läggs nu till i varukorgen som du hittar till höger. Här kan du sedan välja att lägga till fler av samma vara, minska antalet, eller helt ta bort varan från varukorgen. För att du alltid ska kunna vara säker på vad du köper så kommer varukorgen följa med dig igenom alla kommande steg av din köpprocess." wrapText="true">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextArea>
+                                    <Label layoutX="39.0" layoutY="378.0" prefHeight="35.0" prefWidth="135.0" text="2: Varukorgen">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="39.0" layoutY="182.0" prefHeight="35.0" prefWidth="135.0" text="1: Affären">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="39.0" layoutY="536.0" prefHeight="35.0" prefWidth="238.0" text="3: Dina uppgifter">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextArea editable="false" layoutX="39.0" layoutY="571.0" prefHeight="109.0" prefWidth="617.0" text="När du är nöjd med dina varor klickar du på pilen nere i högra hörnet av programmet. Då visas en ny vy där du får ange dina personliga uppgifter, så att vi vet vart vi skall skicka varorna. Du kan här välja att spara dina uppgifter så att du slipper fylla i dem igen under dina framtida köp. Givetvis behandlar vi dina uppgifter enligt sekretesslagen." wrapText="true">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextArea>
+                                    <TextArea editable="false" layoutX="39.0" layoutY="711.0" prefHeight="119.0" prefWidth="617.0" text="När du fyllt i dina uppgifter och åter klickat på pilen i det högra hörnet kommer du till leverans och betalningsvyn. Här anger du datum och tid för leverans, samt det sätt du vill betala på. När du är klar genomför du köpet genom att en sista gång trycka på pilen till höger. Nu visas kvittensen och din order är bekräftad!" wrapText="true">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextArea>
+                                    <Label layoutX="39.0" layoutY="676.0" prefHeight="35.0" prefWidth="238.0" text="4: Leverans och betalning">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="39.0" layoutY="872.0" prefHeight="35.0" prefWidth="135.0" text="Historik">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextArea editable="false" layoutX="39.0" layoutY="907.0" prefHeight="87.0" prefWidth="617.0" text="Om du handlat förr hos intermatt kan du alltid se dina tidigare köp under &quot;klocka&quot;-ikonen uppe i högra hörnet. Här har du möjligheten att direkt lägga till dina tidigare köpta varor genom att hålla musen över en vara, klicka på den, och dra till varukorgen. Smidigare kan det inte bli!" wrapText="true">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextArea>
+                                    <Label layoutX="8.0" layoutY="838.0" text="Specialfunktioner">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextArea editable="false" layoutX="39.0" layoutY="1036.0" prefHeight="126.0" prefWidth="617.0" text="Om du ofta köper liknande uppsättning varor har du möjligheten att spara din nuvarande varukorg genom att klicka på knappen &quot;Spara lista&quot; som du hittar under varukorgen. När du givit din lista ett namn sparas den under &quot;inköpslistor&quot; som du kommer åt via knappen med samma namn, den hittas på samma plats som förra knappen." wrapText="true">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextArea>
+                                    <Label layoutX="39.0" layoutY="1001.0" prefHeight="35.0" prefWidth="135.0" text="Köplistor">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </ScrollPane>
                      </children>
    					</AnchorPane>
    				</children>
