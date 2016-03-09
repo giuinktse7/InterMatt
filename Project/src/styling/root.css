@@ -174,11 +174,15 @@
 
 .topButtons{
     -fx-background-color:transparent;
-    -fx-marging:0;
+    -fx-margin:0;
     -fx-padding:0;
 }
 
 .topImage{
-    -fx-marging:0;
+    -fx-margin:0;
+    -fx-padding:0;
+}
+.line-between-nav-button{
+    -fx-margin:0;
     -fx-padding:0;
 }

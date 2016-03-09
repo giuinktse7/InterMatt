@@ -156,10 +156,10 @@
 										</Label>
 									</children>
 								</VBox>
-								<ImageView fx:id="fromStoreArrow" fitHeight="57" pickOnBounds="true"
+								<ImageView fx:id="fromStoreArrow" fitWidth="230" pickOnBounds="true" styleClass="line-between-nav-button"
 									preserveRatio="true">
 									<image>
-										<Image url="@../resources/styleArrow.png" />
+										<Image url="@../resources/line.png" />
 									</image>
 								</ImageView>
 								<VBox alignment="CENTER">
@@ -185,10 +185,10 @@
 										</Label>
 									</children>
 								</VBox>
-								<ImageView fx:id="fromCredentialsArrow" fitHeight="57" pickOnBounds="true"
+								<ImageView fx:id="fromCredentialsArrow" fitWidth="230" pickOnBounds="true" styleClass="line-between-nav-button"
 									preserveRatio="true">
 									<image>
-										<Image url="@../resources/styleArrow.png" />
+										<Image url="@../resources/line.png" />
 									</image>
 								</ImageView>
 								<VBox alignment="CENTER">
@@ -214,10 +214,10 @@
 										</Label>
 									</children>
 								</VBox>
-								<ImageView fx:id="fromPurchaseArrow" fitHeight="57" pickOnBounds="true"
+								<ImageView fx:id="fromPurchaseArrow" fitWidth="230" pickOnBounds="true" styleClass="line-between-nav-button"
 									preserveRatio="true">
 									<image>
-										<Image url="@../resources/styleArrow.png" />
+										<Image url="@../resources/line.png" />
 									</image>
 								</ImageView>
 								<VBox alignment="CENTER">
