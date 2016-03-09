@@ -20,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -36,18 +37,11 @@ public class MainController implements Initializable {
 	@FXML private StackPane contentPane;
 	@FXML private ArrowButton prevButton;
 	@FXML private ArrowButton nextButton;
-//	@FXML private Button purchaseHistoryButton;
 	
-	//TEST
-	@FXML private Button contactButton;
-	@FXML private Button historyButton;
-	@FXML private Button helpButton;
+	@FXML private Button contactButton, historyButton, helpButton;
 	
 	//Labels for describing the different steps
-	@FXML private Label storeLabel;
-	@FXML private Label credentialsLabel;
-	@FXML private Label purchaseLabel;
-	@FXML private Label receiptLabel;
+	@FXML private Label storeLabel, credentialsLabel, purchaseLabel, receiptLabel;
 	
 	//Used for the drag & drop functionality
 	private final int AVG = 1374;
@@ -56,10 +50,7 @@ public class MainController implements Initializable {
 	private static IMatDataHandler db = IMatDataHandler.getInstance();
 	
 	//Navigation buttons
-	@FXML private NavigationButton btnToStore;
-	@FXML private NavigationButton btnToCredentials;
-	@FXML private NavigationButton btnToPurchase;
-	@FXML private NavigationButton btnToReceipt;
+	@FXML private NavigationButton btnToStore, btnToCredentials, btnToPurchase, btnToReceipt;
 	
 	private Pane dummyPane = new Pane();
 	
@@ -69,17 +60,11 @@ public class MainController implements Initializable {
 	@FXML private VBox mainContentWrapper;
 	
 	//The different views
-	@FXML private Pane storePane;
-	@FXML private Pane credentialsPane;
-	@FXML private Pane purchasePane;
-	@FXML private Pane receiptPane;
+	@FXML private Pane storePane, credentialsPane, purchasePane, receiptPane;
 	
 	//Popups
-	@FXML private ModalPopup purchaseHistoryPopup;
-	@FXML private ModalPopup loadListPopup;
-	@FXML private ModalPopup saveListPopup;
-	@FXML private ModalPopup contactPopup;
-	@FXML private ModalPopup helpPopup;
+	@FXML private ModalPopup purchaseHistoryPopup, loadListPopup, saveListPopup, contactPopup, helpPopup;
+
 	
 	//Controllers
 	@FXML private StoreController storePaneController;
@@ -90,6 +75,8 @@ public class MainController implements Initializable {
 	@FXML private SaveListController saveListPopupController;
 	@FXML private ShoppingCartController shoppingCartController;
 	
+	@FXML private ImageView fromStoreArrow, fromCredentialsArrow, fromPurchaseArrow;
+	
 	ViewDisplay viewDisplay;
 	
 	private ShoppingCartHandler cartHandler = ShoppingCartHandler.getInstance();
@@ -99,6 +86,9 @@ public class MainController implements Initializable {
 		nextButton.disable();
 		
 		me = this;
+		
+		//Necessary to disable the last arrow
+		btnToReceipt.setUserData("lastButton");
 		
 		//Give the popup-system required panes
 		ModalPopup.initialize(wrapperStackPane, mainContentWrapper);
@@ -121,14 +111,12 @@ public class MainController implements Initializable {
 		viewDisplay.addView(receiptView);
 		viewDisplay.addView(dummyView);
 		
-		//Show the store
-		viewDisplay.show(storeView);
-		
 		//Define necessary bindings
 		PURCHASE_VIEW_ACTIVE = activeViewBinding("purchasePane");
 		RECEIPT_VIEW_ACTIVE = activeViewBinding("receiptPane");
 		
 		//Setup bindings that determine how you can move between views
+		setStoreBinds();
 		setCredentialBinds();
 		setPurchaseBinds();
 		setReceiptBinds();
@@ -155,10 +143,10 @@ public class MainController implements Initializable {
 		});
 		
 		//Initialize the navigation buttons
-		btnToStore.initialize(storeView,show(storeView),btnToCredentials, storeLabel);
-		btnToCredentials.initialize(credentialsView, show(credentialsView), btnToPurchase, credentialsLabel);
-		btnToPurchase.initialize(purchaseView, show(purchaseView), btnToReceipt, purchaseLabel);
-		btnToReceipt.initialize(receiptView, sendOrder(), null, receiptLabel);
+		btnToStore.initialize(storeView, show(storeView), btnToCredentials, storeLabel, null);
+		btnToCredentials.initialize(credentialsView, show(credentialsView), btnToPurchase, credentialsLabel, fromStoreArrow);
+		btnToPurchase.initialize(purchaseView, show(purchaseView), btnToReceipt, purchaseLabel, fromCredentialsArrow);
+		btnToReceipt.initialize(receiptView, sendOrder(), null, receiptLabel, fromPurchaseArrow);
 		
 		shoppingCartController.getShoppingListButton().setOnAction(e -> loadListPopup.show());
 		shoppingCartController.getSaveListButton().setOnAction(e -> saveListPopup.show());
@@ -173,6 +161,12 @@ public class MainController implements Initializable {
 			purchaseHistoryPopup.setPrefWidth(1000 + (nextButton.getScene().getWidth() - AVG) / 2);
 			purchaseHistoryPopup.getContent().setAlignment(Pos.CENTER_RIGHT);
 		});
+		
+		
+		//Show the store
+		viewDisplay.show(storeView);
+		
+		viewDisplay.getCurrentView().get().setActive(true);
 	}
 	
 	private final BooleanBinding CART_NONEMPTY = Bindings.createBooleanBinding(() -> !cartHandler.emptyProperty().get(), cartHandler.emptyProperty());
@@ -186,6 +180,14 @@ public class MainController implements Initializable {
 		BooleanBinding binding = Bindings.createBooleanBinding(() -> isActiveView.get(), isActiveView);
 		
 		return binding;
+	}
+	
+	private void setStoreBinds() {
+		ContentView view = viewDisplay.getView(storePane);
+		
+		BindingGroup group = btnToStore.getBindingGroup();
+		
+		view.getBindingGroup().setAll(group.getBinds());
 	}
 	
 	private void setCredentialBinds() {
@@ -215,7 +217,7 @@ public class MainController implements Initializable {
 	private void setPurchaseBinds() {
 		ContentView view = viewDisplay.getView(purchasePane);
 		BindingGroup group = btnToPurchase.getBindingGroup();
-		group.addBindings(credentialsPaneController.getBindings().and(not(RECEIPT_VIEW_ACTIVE)));
+		group.addBindings(credentialsPaneController.getBindings().and(CART_NONEMPTY).and(not(RECEIPT_VIEW_ACTIVE)));
 		
 		view.getBindingGroup().setAll(group.getBinds());
 	}
@@ -223,7 +225,7 @@ public class MainController implements Initializable {
 	private void setReceiptBinds() {
 		ContentView view = viewDisplay.getView(receiptPane);
 		BindingGroup group = btnToReceipt.getBindingGroup();
-		group.addBinding(purchasePaneController.getBindings().and(PURCHASE_VIEW_ACTIVE));
+		group.addBinding(purchasePaneController.getBindings().and(PURCHASE_VIEW_ACTIVE.or(RECEIPT_VIEW_ACTIVE)));
 		
 		view.getBindingGroup().setAll(group.getBinds());
 	}

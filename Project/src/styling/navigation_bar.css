@@ -1,6 +1,6 @@
 .navigation-info .text {
 	-fx-font-size: 24 pt;
-	-fx-fill: #474747;
+	-fx-fill: derive(#474747, 65%);
 	-fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.2) , 0, 0.0 , 1 , 1 );
 }
 
@@ -8,4 +8,8 @@
 	-fx-font-size: 24 pt;
 	-fx-fill: red;
 	-fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.2) , 0, 0.0 , 1 , 1 );
+}
+
+.nav-button-label-active .text {
+	-fx-fill: #474747;
 }

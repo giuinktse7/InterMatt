@@ -45,34 +45,86 @@ public class NavigationButton extends Button {
 	/**
 	 * Associates a view with this <code>NavigationButton</code>, and assigns it an action.
 	 */
-	public void initialize(ContentView view, EventHandler<ActionEvent> e, NavigationButton nextButton, Label descriptionLabel) {
+	public void initialize(ContentView view, EventHandler<ActionEvent> e, NavigationButton nextButton, Label descriptionLabel, ImageView styleArrow) {
+		this.view = view;
 		
-		//Since the last actual NavigationButton won't have a nextButton, create a dummy-button.
-		if (nextButton == null)
-			nextButton = new NavigationButton();
+		//Change the styleArrow image when disabled
+		if (styleArrow != null)
+		styleArrow.disabledProperty().addListener((obs, o, isDisabled) -> {
+			Image image;
+			
+			if (isDisabled)
+				image = new Image("resources/styleArrow_disabled.png", 192, 57, true, true);
+			else
+				image = new Image("resources/styleArrow.png", 192, 57, true, true);
+			
+			styleArrow.setImage(image);
+		});
+		
+		view.activeProperty().addListener((obs, o, isActive) -> {
+			if (isActive) {
+				//Used to disable the last arrow
+				if (this.getUserData() != null && this.getUserData().getClass().equals(String.class)) {
+					if (((String)this.getUserData()).equals("lastButton"))
+						styleArrow.setDisable(true);
+				}
+					
+				descriptionLabel.getStyleClass().add("nav-button-label-active");
+			}
+			else {
+				descriptionLabel.getStyleClass().remove("nav-button-label-active");
+			}
+		});
 		
 		this.nextButton = nextButton;
-		this.view = view;
+		
 		this.setOnAction(e);
 		
 		
-		disabledProperty().addListener((obs, oldValue, disabled) -> {
+		disabledProperty().addListener((obs, oldValue, isDisabled) -> {
+			//Update image
+			updateImage(false);
+			
+			//Update the style arrow when we get disabled/enabled
+			if (styleArrow != null)
+			styleArrow.setDisable(isDisabled);
+			
+			if (view.activeProperty().get())
+				descriptionLabel.getStyleClass().add("nav-button-label-active");
+			else
+				descriptionLabel.getStyleClass().remove("nav-button-label-active");
+			
+			
+			//Update the label
+			descriptionLabel.setDisable(isDisabled);
 			//If we were just disabled, disable the following button, too.
-			if (disabled)
+			if (isDisabled)
 				this.nextButton.disable();
 			//If we were just enabled, update our binds
 			else
 				enable();
-		});
-		
-		disabledProperty().addListener((obs, oldValue, newValue) -> {
-		updateImage(this.view.equals(newValue));
 		});
 		viewDisplay.getCurrentView().addListener((obs, oldValue, newValue) ->  updateImage(this.view.equals(newValue)));
 		
 		updateImage(this.view.equals(viewDisplay.getCurrentView().getValue()));
 		
 		bindings.getState().addListener((obs, o, n) -> setDisable(!n) );
+		
+		refresh();
+	}
+	
+	private void refresh() {
+		if (disabledProperty().get()) {
+			enable();
+			disable();
+		} else {
+			disable();
+			enable();
+		}
+	}
+	
+	public void initialize(ContentView view, EventHandler<ActionEvent> e, NavigationButton nextButton, Label descriptionLabel) {
+		initialize(view, e, nextButton, descriptionLabel, null);
 	}
 	
 	private void updateImage(boolean onSelectedPage) {
@@ -121,4 +173,6 @@ public class NavigationButton extends Button {
 	public void disable() {
 		this.setDisable(true);
 	}
+	
+	
 }

@@ -72,7 +72,7 @@
 												<ImageView fitHeight="36.0" fitWidth="48.0"
 													pickOnBounds="true" preserveRatio="true">
 													<image>
-														<Image url="@../resources/history_icon.png" />
+														<Image url="@../resources/history.png" />
 													</image>
 												</ImageView>
 											</graphic>
@@ -106,7 +106,7 @@
 												<ImageView fitHeight="36.0" fitWidth="48.0"
 													pickOnBounds="true" preserveRatio="true">
 													<image>
-														<Image url="@../resources/phone.png" />
+														<Image url="@../resources/contact.png" />
 													</image>
 												</ImageView>
 											</graphic>
@@ -156,7 +156,7 @@
 										</Label>
 									</children>
 								</VBox>
-								<ImageView fitHeight="57" pickOnBounds="true"
+								<ImageView fx:id="fromStoreArrow" fitHeight="57" pickOnBounds="true"
 									preserveRatio="true">
 									<image>
 										<Image url="@../resources/styleArrow.png" />
@@ -185,7 +185,7 @@
 										</Label>
 									</children>
 								</VBox>
-								<ImageView fitHeight="57" pickOnBounds="true"
+								<ImageView fx:id="fromCredentialsArrow" fitHeight="57" pickOnBounds="true"
 									preserveRatio="true">
 									<image>
 										<Image url="@../resources/styleArrow.png" />
@@ -214,7 +214,7 @@
 										</Label>
 									</children>
 								</VBox>
-								<ImageView fitHeight="57" pickOnBounds="true"
+								<ImageView fx:id="fromPurchaseArrow" fitHeight="57" pickOnBounds="true"
 									preserveRatio="true">
 									<image>
 										<Image url="@../resources/styleArrow.png" />
