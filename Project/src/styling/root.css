@@ -186,6 +186,65 @@
     -fx-margin:0;
     -fx-padding:0;
 }
+
+.modal-popup-exit-button:hover {
+	-fx-opacity: 0.7;
+}
+
+/* SCROLL BARS */
+/** CSS **/
+
+/* The main scrollbar CSS class of ListView */
+.scroll-bar:horizontal ,
+.scroll-bar:vertical{
+    -fx-background-color:transparent;
+	-fx-background-radius: 0em;
+    -fx-border-radius: 0em;
+}
+
+/* The increment and decrement button CSS class of scrollbar */
+.increment-button ,.scroll-pane .decrement-button {
+    -fx-background-color:transparent;
+	-fx-border-color: transparent;
+}
+
+/* The main scrollbar **track** CSS class  */
+.scroll-bar:horizontal .track ,
+.scroll-bar:vertical .track{
+     -fx-background-color: derive(gray, 95%);
+     -fx-border-width: 0px;
+	 -fx-background-radius: 0em;
+	 -fx-padding: 0;
+}
+
+/* The main scrollbar **thumb** CSS class which we drag every time (movable) */
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: derive(-scroll-thumb-color, 30%);
+    -fx-background-radius: 0em;
+}
+
+/* ------------------------------------------------------------------------------------- */
+/** EVENT CSS **/
+/* ------------------------------------------------------------------------------------- */
+
+
+/* The main scrollbar **thumb** CSS class on event of "hover" and "pressed" */
+.scroll-bar .thumb:hover {
+    -fx-background-color: derive(-scroll-thumb-color,15%);
+}
+
+.scroll-bar .thumb:pressed {
+	-fx-background-color: -scroll-thumb-color;
+}
+
+/* The increment and decrement button CSS class of scrollbar */
+
+.scroll-bar:vertical .increment-button ,
+.scroll-bar:vertical .decrement-button {
+    -fx-background-color: derive(gray, 95%);
+}
+
 .navigation-button{
 	-fx-margin:0;
     -fx-padding:0;
