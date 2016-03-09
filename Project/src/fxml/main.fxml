@@ -147,7 +147,7 @@
 										</Label>
 									</children>
 								</VBox>
-								<ImageView fitHeight="57" pickOnBounds="true"
+								<ImageView fx:id="fromStoreArrow" fitHeight="57" pickOnBounds="true"
 									preserveRatio="true">
 									<image>
 										<Image url="@../resources/styleArrow.png" />
@@ -176,7 +176,7 @@
 										</Label>
 									</children>
 								</VBox>
-								<ImageView fitHeight="57" pickOnBounds="true"
+								<ImageView fx:id="fromCredentialsArrow" fitHeight="57" pickOnBounds="true"
 									preserveRatio="true">
 									<image>
 										<Image url="@../resources/styleArrow.png" />
@@ -205,7 +205,7 @@
 										</Label>
 									</children>
 								</VBox>
-								<ImageView fitHeight="57" pickOnBounds="true"
+								<ImageView fx:id="fromPurchaseArrow" fitHeight="57" pickOnBounds="true"
 									preserveRatio="true">
 									<image>
 										<Image url="@../resources/styleArrow.png" />
