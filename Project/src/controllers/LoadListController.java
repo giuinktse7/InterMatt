@@ -44,7 +44,7 @@ public class LoadListController implements Initializable {
 	@FXML private Button removeButton;
 	@FXML private Label lblListName;
 	@FXML private ListView<HBox> lvLists;
-	@FXML private ListView<HBox> lvItems;
+	@FXML private ListView<AnchorPane> lvItems;
 	private List<ShoppingListHBox> lists;
 	private static IMatDataHandler db = IMatDataHandler.getInstance();
 	private ShoppingCartHandler sch = ShoppingCartHandler.getInstance(); 
@@ -170,30 +170,73 @@ public class LoadListController implements Initializable {
 	}
 
 	public void appendListItem(Product product, float quantity){ 
+		AnchorPane newItem = new AnchorPane();
+		// Load image
+		Image image = preserveRatio(product, 65);
+		ImageView picture = new ImageView(image);
+		AnchorPane.setLeftAnchor(picture, 14d);
+		AnchorPane.setBottomAnchor(picture, 3d);
 
-		AnchorPane ap = new AnchorPane();
+		newItem.getStyleClass().add("item-in-history-box");
 
+		// Setup name label
 		Label lblName = new Label(product.getName());
-		AnchorPane.setLeftAnchor(lblName, 0d);
-		lblName.setPrefWidth(120);
+		AnchorPane.setLeftAnchor(lblName, 94d);
+		lblName.setPrefWidth(190);
 		lblName.setAlignment(Pos.CENTER_LEFT);
+		lblName.getStyleClass().add("item-name");
 
+		// Setup quantity label
+		// Remove trailing zeros
 		DecimalFormat format = new DecimalFormat("0.#");
 		String amount = format.format(quantity).replace('.', ',');
 		Label lblQuantity = new Label(String.format("%s %s", amount, product.getUnitSuffix()));
-		AnchorPane.setLeftAnchor(lblQuantity, 160d);
+		AnchorPane.setLeftAnchor(lblQuantity, 280d);
 		lblQuantity.setPrefWidth(60);
 		lblQuantity.setAlignment(Pos.CENTER_LEFT);
+		lblQuantity.getStyleClass().add("item-quantity");
 
-		Label lblPrice = new Label(new DecimalFormat("#.##").format(product.getPrice() * quantity)+":-");
+		// Setup price label
+		Label lblPrice = new Label(formatZeros(quantity * product.getPrice()) + ":-");
 		lblPrice.setContentDisplay(ContentDisplay.RIGHT);
-		AnchorPane.setLeftAnchor(lblPrice, 240d);
-		lblPrice.setPrefWidth(90);
+		AnchorPane.setRightAnchor(lblPrice, 14d);
+		lblPrice.setPrefWidth(118);
 		lblPrice.setAlignment(Pos.CENTER_RIGHT);
+		lblPrice.getStyleClass().add("item-price");
 
-		ap.getChildren().addAll(lblName, lblQuantity, lblPrice);
-		HBox box = new HBox(ap);
+		Separator separator = new Separator(Orientation.HORIZONTAL);
+		AnchorPane.setLeftAnchor(separator, 0d);
+		AnchorPane.setRightAnchor(separator, 0d);
+		AnchorPane.setBottomAnchor(separator, 0d);
 
-		lvItems.getItems().add(box);
+		// Make sure the labels get the appropriate height
+		AnchorPane.setTopAnchor(lblName, 0d);
+		AnchorPane.setTopAnchor(lblQuantity, 0d);
+		AnchorPane.setTopAnchor(lblPrice, 0d);
+		AnchorPane.setBottomAnchor(lblName, 0d);
+		AnchorPane.setBottomAnchor(lblQuantity, 0d);
+		AnchorPane.setBottomAnchor(lblPrice, 0d);
+
+		/*
+		 * lblName.setId("red"); lblQuantity.setId("red");
+		 * lblPrice.setId("red");
+		 */
+
+		newItem.getChildren().addAll(picture, lblName, lblQuantity, lblPrice, separator);
+
+
+		lvItems.getItems().add(newItem);
 	}
+	
+	private String formatZeros(double value) {
+		String text = String.format("%.2f", value).replace('.', ',');
+		return text;
+	}
+	
+	private static Image preserveRatio(Product product, int newWidth) {
+		Image rawImage = db.getFXImage(product);
+		double ratio = rawImage.getWidth() / newWidth;
+		return db.getFXImage(product, newWidth, rawImage.getHeight() / ratio);
+	}
+	
 }

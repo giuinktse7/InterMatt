@@ -1,5 +1,7 @@
 package controllers;
 
+import interfaces.Action;
+
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -32,6 +34,13 @@ public class SaveListController implements Initializable {
 	private LoadListController llc = LoadListController.getInstance();
 	@Override
 	public void initialize(URL url, ResourceBundle bundle) {
+		bottomPane.setOnExit(new Action() {
+			@Override
+			public void call() {
+				txtListName.setText("");
+			}
+		});
+		
 		txtListName.textProperty().addListener((observable, oldValue, newValue) -> {
 			if (newValue.length() > 12){
 				txtListName.setText(oldValue);
