@@ -43,7 +43,7 @@ public class RecipeController implements Initializable {
 	}
 	
 	public void setDeliveryTimeText(String deliveryTime){
-		lblTimeOfDelivery.setText(deliveryTime);
+		lblPaymentType.setText(deliveryTime);
 	}
 	
 	public void setPaymentText(String paymentType){
