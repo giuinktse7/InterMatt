@@ -28,6 +28,8 @@ public class ModalPopup extends AnchorPane {
 	//TODO Temporary. Replace with a better solution.
 	private Action exitAction = null;
 	
+	private boolean first = true;
+	
 	public ModalPopup(FlowPane content) {
 		if (content != null) {
 			this.getChildren().add(content);
@@ -63,6 +65,7 @@ public class ModalPopup extends AnchorPane {
 	}
 	
 	public void show() {
+		if (first) {
 		setMaxWidth(Double.MAX_VALUE);
 		setMaxHeight(Double.MAX_VALUE);
 		
@@ -80,6 +83,7 @@ public class ModalPopup extends AnchorPane {
 		AnchorPane topPane = ((AnchorPane) ((Pane) content.getChildren().get(0)).getChildren().get(0));
 		Button exitButton = new Button();
 		exitButton.setStyle("-fx-background-color: transparent;");
+		exitButton.getStyleClass().add("modal-popup-exit-button");
 		
 		Image exitImage = new Image("resources/exit.png", 36, 36, true, true);
 		exitButton.setGraphic(new ImageView(exitImage));
@@ -94,10 +98,16 @@ public class ModalPopup extends AnchorPane {
 		toFront();
 		appearAnimation.play();
 		
+		first = false;
+		
 		this.setOnMousePressed(e -> {
 			if (!content.getChildren().get(0).hoverProperty().get())
 				close();
 			});
+		} else {
+			toFront();
+			appearAnimation.play();
+		}
 	}
 	
 	/** Closes the popup. */
