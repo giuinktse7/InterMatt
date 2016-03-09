@@ -110,7 +110,7 @@ public class PurchaseController implements Initializable {
 			
 			
 			String days[] = {"Söndag", "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag"};
-			String dayOfWeek = days[i];
+			String dayOfWeek = days[c.getTime().getDay()];
 			
 			String str = dayOfWeek + " " + c.getTime().getDate()+"/"+(c.getTime().getMonth() + 1);
 			dates.add(str);
