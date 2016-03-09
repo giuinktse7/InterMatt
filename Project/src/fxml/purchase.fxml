@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+
 <HBox id="purchasePane" fx:id="purchasePane" alignment="CENTER" minWidth="920" stylesheets="@../styling/credentials.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PurchaseController">
 	<children>
 		<VBox id="main_pane" fx:id="vbox_content_wrapper" alignment="TOP_CENTER" prefWidth="1200.0">
@@ -41,9 +44,9 @@
             </AnchorPane>
             <Group fx:id="toggleGroup" layoutY="85.0">
                <children>
-                  <ToggleButton fx:id="btn_pay_delivery" graphicTextGap="7.0" mnemonicParsing="false" onAction="#payment_mode_changed" selected="true" text="Betala vid leverans" textFill="#413e4a">
+                  <ToggleButton fx:id="btn_pay_delivery" graphicTextGap="7.0" mnemonicParsing="false" onAction="#payment_mode_changed" selected="true" styleClass="togglebutton" text="Betala vid leverans" textFill="#413e4a">
                      <font>
-                        <Font size="23.0" />
+                        <Font size="21.0" />
                      </font>
                      <graphic>
                         <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
@@ -56,9 +59,9 @@
                         <ToggleGroup fx:id="group_payments" />
                      </toggleGroup>
                   </ToggleButton>
-                  <ToggleButton fx:id="btn_pay_creditcard" alignment="CENTER_RIGHT" graphicTextGap="7.0" layoutX="603.0" mnemonicParsing="false" onAction="#payment_mode_changed" text="Betala med kort" textFill="#413e4a" toggleGroup="$group_payments">
+                  <ToggleButton fx:id="btn_pay_creditcard" alignment="CENTER_RIGHT" graphicTextGap="7.0" layoutX="603.0" mnemonicParsing="false" onAction="#payment_mode_changed" styleClass="togglebutton" text="Betala med kort" textFill="#413e4a" toggleGroup="$group_payments">
                      <font>
-                        <Font size="23.0" />
+                        <Font size="21.0" />
                      </font>
                      <graphic>
                         <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
@@ -68,9 +71,9 @@
                         </ImageView>
                      </graphic>
                   </ToggleButton>
-                  <ToggleButton fx:id="btn_pay_bill" graphicTextGap="7.0" layoutX="300.0" mnemonicParsing="false" onAction="#payment_mode_changed" text="Betala med faktura" textFill="#413e4a" toggleGroup="$group_payments">
+                  <ToggleButton fx:id="btn_pay_bill" graphicTextGap="7.0" layoutX="300.0" mnemonicParsing="false" onAction="#payment_mode_changed" styleClass="togglebutton" text="Betala med faktura" textFill="#413e4a" toggleGroup="$group_payments">
                      <font>
-                        <Font size="23.0" />
+                        <Font size="21.0" />
                      </font>
                      <graphic>
                         <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">

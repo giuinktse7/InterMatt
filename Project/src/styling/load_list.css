@@ -49,23 +49,75 @@
 	-fx-font-size: 24pt;
 }
 
-/*.button {
-	-fx-background-color: #f4f4f4, #f4f4f4;
-    -fx-background-insets: 0 0 0 0, 0, 0, 0;
-    -fx-background-radius: 3, 0, 0, 0;
-    -fx-border-width: 0 0 0 0, 0, 0, 0;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
-}
-.button .text {
-	-fx-fill: black;
-	-fx-color: #413e4a;
-	-fx-font-size: 21 pt;
-}
-.button:hover {
-	-fx-background-color: derive(f4f4f4, -10%);
+.list-view .scroll-bar:horizontal .increment-arrow,
+.list-view .scroll-bar:horizontal .decrement-arrow,
+.list-view .scroll-bar:horizontal .increment-button,
+.list-view .scroll-bar:horizontal .decrement-button {
+    -fx-padding:0;
 }
 
-*/
+
 #lblName{
 	-fx-font-size: 14pt;
 }
+
+.item-in-history-box {
+	-fx-background-color: transparent;
+}
+
+.item-in-history-box > .item-name .text {
+	-fx-font-size: 20 pt;
+	-fx-fill: #474747;
+}
+
+/* TEMP */
+.item-in-history-box > .item-price {
+}
+
+.item-in-history-box > .item-quantity .text {
+	-fx-font-size: 16 pt;
+	-fx-fill: #5E5E5E;
+}
+
+.item-in-history-box > .item-price .text {
+	-fx-font-family: "Helvetica";
+	-fx-font-size: 20 pt;
+	-fx-fill: #1A1A1A;
+}
+
+#product-list-view {
+	-fx-border-style: hidden hidden hidden hidden, hidden hidden hidden hidden;
+	-fx-border-color: #a3a3a3, #cccccc;
+	-fx-border-width: 2 0 0 0, 1 0 0 0;
+	-fx-border-insets: 1 0 0 0, 0;
+}
+
+#product-list-view .list-cell:even,
+#product-list-view .list-cell:odd {
+    -fx-background-color: white;
+}
+
+/* When the list-cell is selected and focused */
+#product-list-view:focused .list-cell:filled:focused:selected {
+    -fx-background-color: transparent, transparent, transparent;
+    -fx-background-insets: 0;
+}
+
+/* Separator */
+.separator {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.separator:vertical .line {
+    -fx-border-color: transparent transparent transparent #BDBDBD;
+    -fx-border-width: 1;
+    -fx-border-insets: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+#order-overview-box{
+	-fx-border-color:derive(gray,80%);
+}
+
