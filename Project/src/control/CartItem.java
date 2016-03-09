@@ -120,6 +120,9 @@ public class CartItem extends HBox {
 			if (text.equals("0"))
 				text = "1";
 			
+			if (text.equals("."))
+				text = "0.";
+		
 			txtAmount.setText(text);
 		});
 		
@@ -188,13 +191,9 @@ public class CartItem extends HBox {
 				double newQuantity = Double.parseDouble(newValue);
 				double change = (newQuantity - oldQuantity) * product.getPrice();
 				String fintPris = String.format("%.2f", newQuantity * product.getPrice());
-				System.out.println("FINA PRISET " + fintPris);
 
 				lblPrice.setText(fintPris);
-				System.out.println("#Förändringen i total " + change);
 				cartHandler.addToTotal(change);
-			}else{
-
 			}
 		});
 

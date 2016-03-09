@@ -69,7 +69,7 @@ public class MainController implements Initializable {
 	//Controllers
 	@FXML private StoreController storePaneController;
 	@FXML private CredentialsController credentialsPaneController;
-	@FXML private PurchaseController purchasePaneController;
+	@FXML private PurchaseTestController purchasePaneController;
 	@FXML private PurchaseHistoryController purchaseHistoryPopupController;
 	@FXML private LoadListController loadListPopupController;
 	@FXML private SaveListController saveListPopupController;

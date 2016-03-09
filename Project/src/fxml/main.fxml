@@ -49,10 +49,14 @@
 										<StackPane fx:id="contentPane" alignment="TOP_LEFT"
 											VBox.vgrow="ALWAYS">
 											<children>
-												<fx:include id="purchasePane" fx:id="purchasePane" source="purchase.fxml" />
-												<fx:include id="credentialsPane" fx:id="credentialsPane" source="credentials.fxml" />
-												<fx:include id="storePane" fx:id="storePane" source="store.fxml" />
-												<fx:include id="receiptPane" fx:id="receiptPane" source="receipt.fxml" />
+												<fx:include id="purchasePane" fx:id="purchasePane"
+													source="purchaseTest.fxml" />
+												<fx:include id="credentialsPane" fx:id="credentialsPane"
+													source="credentials.fxml" />
+												<fx:include id="storePane" fx:id="storePane"
+													source="store.fxml" />
+												<fx:include id="receiptPane" fx:id="receiptPane"
+													source="receipt.fxml" />
 											</children>
 										</StackPane>
 									</children>
@@ -63,56 +67,56 @@
 							<children>
 								<HBox AnchorPane.rightAnchor="21" AnchorPane.topAnchor="0">
 									<children>
-										<Button fx:id="historyButton" maxHeight="65" maxWidth="65" styleClass="topButtons"
-											mnemonicParsing="false">
-											<tooltip >
+										<Button fx:id="historyButton" maxHeight="65" maxWidth="65"
+											styleClass="topButtons" mnemonicParsing="false">
+											<tooltip>
 												<Tooltip text="Visa tidigare köp" />
 											</tooltip>
 											<graphic>
-												<ImageView fitHeight="65.0" fitWidth="65" styleClass="topImage"
-													pickOnBounds="true" preserveRatio="true">
+												<ImageView fitHeight="65.0" fitWidth="65"
+													styleClass="topImage" pickOnBounds="true" preserveRatio="true">
 													<image>
 														<Image url="@../resources/history.png" />
 													</image>
 												</ImageView>
 											</graphic>
-											<!--<HBox.margin>-->
-												<!--<Insets left="14.0" />-->
-											<!--</HBox.margin>-->
+											<!--<HBox.margin> -->
+											<!--<Insets left="14.0" /> -->
+											<!--</HBox.margin> -->
 										</Button>
-										<Button fx:id="helpButton" maxHeight="65" maxWidth="65" styleClass="topButtons"
-											mnemonicParsing="false">
+										<Button fx:id="helpButton" maxHeight="65" maxWidth="65"
+											styleClass="topButtons" mnemonicParsing="false">
 											<tooltip>
 												<Tooltip text="Hjälp" />
 											</tooltip>
 											<graphic>
-												<ImageView fitHeight="65.0" fitWidth="65" styleClass="topImage"
-													pickOnBounds="true" preserveRatio="true">
+												<ImageView fitHeight="65.0" fitWidth="65"
+													styleClass="topImage" pickOnBounds="true" preserveRatio="true">
 													<image>
 														<Image url="@../resources/help.png" />
 													</image>
 												</ImageView>
 											</graphic>
-											<!--<HBox.margin>-->
-												<!--<Insets left="14.0" />-->
-											<!--</HBox.margin>-->
+											<!--<HBox.margin> -->
+											<!--<Insets left="14.0" /> -->
+											<!--</HBox.margin> -->
 										</Button>
-										<Button fx:id="contactButton" maxHeight="65" maxWidth="65" styleClass="topButtons"
-											mnemonicParsing="false">
+										<Button fx:id="contactButton" maxHeight="65" maxWidth="65"
+											styleClass="topButtons" mnemonicParsing="false">
 											<tooltip>
 												<Tooltip text="Visa kontaktinformation" />
 											</tooltip>
 											<graphic>
-												<ImageView fitHeight="65.0" fitWidth="65" styleClass="topImage"
-													pickOnBounds="true" preserveRatio="true">
+												<ImageView fitHeight="65.0" fitWidth="65"
+													styleClass="topImage" pickOnBounds="true" preserveRatio="true">
 													<image>
 														<Image url="@../resources/contact.png" />
 													</image>
 												</ImageView>
 											</graphic>
-											<!--<HBox.margin>-->
-												<!--<Insets left="14.0" />-->
-											<!--</HBox.margin>-->
+											<!--<HBox.margin> -->
+											<!--<Insets left="14.0" /> -->
+											<!--</HBox.margin> -->
 										</Button>
 									</children>
 									<VBox.margin>
@@ -129,8 +133,13 @@
 					prefHeight="103.0" prefWidth="1057.0" styleClass="base-style"
 					xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
 					<children>
-
-
+						<HBox alignment="CENTER" layoutX="140.0" prefHeight="65"
+							prefWidth="917.0"
+							AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="140.0"
+							AnchorPane.topAnchor="0.0">
+							<Separator minWidth="1000" maxWidth="1000" prefWidth="1000"
+								prefHeight="1" minHeight="1" maxHeight="1" id="line-crossing-buttons" />
+						</HBox>
 						<HBox alignment="TOP_CENTER" layoutX="140.0" prefHeight="135.0"
 							prefWidth="917.0" AnchorPane.bottomAnchor="0.0"
 							AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="140.0"
@@ -142,8 +151,9 @@
 											minHeight="60.0" minWidth="60.0" mnemonicParsing="false"
 											prefHeight="60.0" prefWidth="60.0" styleClass="nav-button">
 											<graphic>
-												<ImageView fitHeight="80.0" fitWidth="80.0" styleClass="round-nav-button"
-													pickOnBounds="true" preserveRatio="true">
+												<ImageView fitHeight="80.0" fitWidth="80.0"
+													styleClass="round-nav-button" pickOnBounds="true"
+													preserveRatio="true">
 													<image>
 														<Image url="@../resources/previous1.png" />
 													</image>
@@ -158,7 +168,8 @@
 										</Label>
 									</children>
 								</VBox>
-								<ImageView fx:id="fromStoreArrow" visible="false" fitWidth="230" pickOnBounds="true" styleClass="line-between-nav-button"
+								<ImageView fx:id="fromStoreArrow" visible="false"
+									fitWidth="230" pickOnBounds="true" styleClass="line-between-nav-button"
 									preserveRatio="true">
 									<image>
 										<Image url="@../resources/line.png" />
@@ -171,8 +182,9 @@
 											mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0"
 											styleClass="nav-button">
 											<graphic>
-												<ImageView fitHeight="80.0" fitWidth="80.0" styleClass="round-nav-button"
-													pickOnBounds="true" preserveRatio="true">
+												<ImageView fitHeight="80.0" fitWidth="80.0"
+													styleClass="round-nav-button" pickOnBounds="true"
+													preserveRatio="true">
 													<image>
 														<Image url="@../resources/thisPage2.png" />
 													</image>
@@ -187,7 +199,8 @@
 										</Label>
 									</children>
 								</VBox>
-								<ImageView fx:id="fromCredentialsArrow" visible="false" fitWidth="230" pickOnBounds="true" styleClass="line-between-nav-button"
+								<ImageView fx:id="fromCredentialsArrow" visible="false"
+									fitWidth="230" pickOnBounds="true" styleClass="line-between-nav-button"
 									preserveRatio="true">
 									<image>
 										<Image url="@../resources/line.png" />
@@ -200,8 +213,9 @@
 											mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0"
 											styleClass="nav-button">
 											<graphic>
-												<ImageView disable="true" fitHeight="80.0" styleClass="round-nav-button"
-													fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+												<ImageView disable="true" fitHeight="80.0"
+													styleClass="round-nav-button" fitWidth="80.0" pickOnBounds="true"
+													preserveRatio="true">
 													<image>
 														<Image url="@../resources/disabled3.png" />
 													</image>
@@ -216,7 +230,8 @@
 										</Label>
 									</children>
 								</VBox>
-								<ImageView fx:id="fromPurchaseArrow" visible="false" fitWidth="230" pickOnBounds="true" styleClass="line-between-nav-button"
+								<ImageView fx:id="fromPurchaseArrow" visible="false"
+									fitWidth="230" pickOnBounds="true" styleClass="line-between-nav-button"
 									preserveRatio="true">
 									<image>
 										<Image url="@../resources/line.png" />
@@ -229,8 +244,9 @@
 											mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0"
 											styleClass="nav-button">
 											<graphic>
-												<ImageView fitHeight="80.0" fitWidth="80.0" styleClass="round-nav-button"
-													pickOnBounds="true" preserveRatio="true">
+												<ImageView fitHeight="80.0" fitWidth="80.0"
+													styleClass="round-nav-button" pickOnBounds="true"
+													preserveRatio="true">
 													<image>
 														<Image url="@../resources/disabled4.png" />
 													</image>
@@ -247,7 +263,7 @@
 								</VBox>
 							</children>
 						</HBox>
-						<Separator prefWidth="500" prefHeight="2" id="line-crossing-buttons" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+
 						<ArrowButton fx:id="prevButton" minWidth="-Infinity"
 							mnemonicParsing="false" prefHeight="80.0" prefWidth="130.0"
 							styleClass="nav-button" AnchorPane.leftAnchor="7.0"

@@ -107,92 +107,9 @@ public class CredentialsController implements Initializable {
 		txtCity.setText(db.getCustomer().getPostAddress());
 		txtEmail.setText(db.getCustomer().getEmail());
 	}
-
-	private BooleanBinding emptyTextFieldBinding(TextField textField) {
-		BooleanBinding binding = createBinding(textField, NON_EMPTY);
-		addErrorHandling(binding, textField);
-		return binding;
-	}
-	
-	private BooleanBinding emptySmartTextFieldBinding(SmartTextField smartTextField) {
-		BooleanBinding binding = createBinding(smartTextField.get(), NON_EMPTY);
-		binding.addListener((obs, o, n) -> smartTextField.update(n));
-		return binding;
-	}
-	
-	/**
-	 * 
-	 * @param binding the bind
-	 * @param textField the associated TextField
-	 */
-	private void addErrorHandling(BooleanBinding binding, TextField textField) {
-		binding.addListener((obs, oldValue, newValue) -> {
-			Label errorLabel = (Label) textField.getUserData();
-			if (!newValue) {
-				textField.getStyleClass().add("bad-input");
-				if (errorLabel != null)
-					errorLabel.setVisible(true);
-			} else {
-				textField.getStyleClass().remove("bad-input");
-				if (errorLabel != null)
-					errorLabel.setVisible(false);
-			}
-
-		});
-	}
-
-	private BooleanBinding ssnFieldBinding(TextField textField) {
-		BooleanBinding binding = createBinding(textField, GOOD_SSN);
-		binding.addListener((obs, oldValue, newValue) -> {
-			if (!newValue) {
-				textField.getStyleClass().add("bad-input");
-			} else {
-				textField.getStyleClass().remove("bad-input");
-			}
-		});
-		return binding;
-	}
-
-	private BooleanBinding mailFieldBinding(TextField textField) {
-		BooleanBinding binding = createBinding(textField, GOOD_MAIL);
-		binding.addListener((obs, oldValue, newValue) -> {
-			if (!newValue) {
-				textField.getStyleClass().add("bad-input");
-			} else {
-				textField.getStyleClass().remove("bad-input");
-			}
-
-		});
-		return binding;
-	}
-	
-	private BooleanBinding postalFieldBinding(TextField textField) {
-		BooleanBinding binding = createBinding(textField, GOOD_POSTAL);
-		binding.addListener((obs, oldValue, newValue) -> {
-			if (!newValue) {
-				textField.getStyleClass().add("bad-input");
-			} else {
-				textField.getStyleClass().remove("bad-input");
-			}
-
-		});
-		return binding;
-	}
 	
 	private BooleanBinding validationBinding(SmartTextField smartTextField, TextFieldValidator validator) {
 		BooleanBinding binding = createBinding(smartTextField.get(), validator);
-		binding.addListener((obs, o, n) -> smartTextField.update(n));
-		return binding;
-	}
-	
-	private BooleanBinding postalCodeBinding(SmartTextField smartTextField) {
-		BooleanBinding binding = createBinding(smartTextField.get(), GOOD_POSTAL);
-		binding.addListener((obs, o, n) -> smartTextField.update(n));
-		return binding;
-	}
-	
-	private BooleanBinding validateEmailBinding(SmartTextField smartTextField) {
-		BooleanBinding binding = createBinding(smartTextField.get(), GOOD_MAIL);
 		binding.addListener((obs, o, n) -> smartTextField.update(n));
 		return binding;
 	}

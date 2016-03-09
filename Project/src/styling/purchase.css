@@ -1,0 +1,59 @@
+#purchasePane {
+	-fx-background-color: #ffffff;
+}
+
+.pane-background {
+    -fx-background-color: #f2f2f2;
+}
+
+#main-pane {
+   -fx-background-color: #f2f2f2;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 2, 2);
+    -fx-border-width: 1px;
+    -fx-border-color: #413e4a;
+}
+
+#cb_card_year, #cb_card_month, #cb_delivery_date, #cb_delivery_time{
+    -fx-font-size: 18px;
+}
+
+.pay-method-label .text {
+	-fx-font-size: 28 pt;
+	-fx-fill: #4D4D4D;
+}
+
+.header .text {
+	-fx-font-size: 24 pt;
+	-fx-fill: #413e4a;
+}
+
+.payment-box {
+	-fx-background-color: derive(-buy-button-color, 25%);
+	-fx-border-width: 1px;
+	-fx-border-color: derive(-buy-button-color, -35%);
+	-fx-border-style: solid hidden solid solid;
+}
+
+.payment-box:hover {
+	-fx-background-color: derive(-buy-button-color, 45%);
+}
+
+.choice-box {
+	-fx-border-radius: 0px;
+	-fx-background-radius: 0px;
+	-fx-background-color: derive(white, -10%);
+	
+}
+
+#pane-title .text {
+	-fx-font-size: 32 pt;
+    -fx-fill: #413e4a;
+}
+
+.togglebutton{
+    -fx-opacity: 0.8;
+}
+
+.togglebutton:selected{
+    -fx-opacity: 1;
+}

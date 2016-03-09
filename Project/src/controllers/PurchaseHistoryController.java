@@ -59,9 +59,13 @@ public class PurchaseHistoryController implements Initializable {
 		
 		orders.forEach(order -> {
 			OrderOverviewBox orderBox = new OrderOverviewBox(order);
-			orderBox.setOnMouseClicked(e -> displayOrder(orderBox));
+			//orderBox.setOnMouseClicked(e -> displayOrder(orderBox));
 			ordersList.getItems().add(orderBox);
 			});
+		
+		ordersList.getSelectionModel().selectedItemProperty().addListener((obs, o, n) -> {
+			displayOrder(((OrderOverviewBox) n));
+		});
 		
 		//Show the first order if there is one
 		if (!ordersList.getItems().isEmpty()) {

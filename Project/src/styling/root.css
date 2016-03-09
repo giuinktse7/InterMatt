@@ -65,6 +65,10 @@
 	-fx-cursor: hand;
 }
 
+#searchTab {
+	-fx-cursor: normal;
+}
+
 .tab .flow-pane {
 	-fx-border-width: 1px;
 	-fx-border-color: red;
@@ -253,7 +257,7 @@
 	-fx-margin:0;
     -fx-padding:0;
 }
-.line-crossing-buttons{
-	-fx-border-width: 5 0 5 0;
-	-fx-border-color: red;
+#line-crossing-buttons *.line {
+	-fx-border-width: 2 0 2 0;
+	-fx-border-color: derive(gray, 70%);
 }

@@ -15,7 +15,7 @@
 							<content>
 								<HBox alignment="CENTER_LEFT" minWidth="300.0" prefWidth="925.0" styleClass="startTabContent">
 									<children>
-										<Label text="Dina mest köpa varor">
+										<Label text="Dina mest köpta varor">
 											<HBox.margin>
 												<Insets left="28.0" />
 											</HBox.margin>
@@ -103,7 +103,7 @@
 								</FlowPane>
 							</content>
 						</Tab>
-						<Tab id="invisibleTab" fx:id="invisibleTab" closable="false">
+						<Tab id="searchTab" fx:id="invisibleTab" closable="false">
 							<graphic>
 								<TextField id="search-field" fx:id="searchTextField" prefHeight="45" promptText="Sök" />
 							</graphic>

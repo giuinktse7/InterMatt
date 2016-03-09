@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox stylesheets="@../styling/purchase.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PurchaseTestController">
+	<children>
+		<VBox id="main-pane" alignment="TOP_CENTER" prefHeight="800" prefWidth="1000.0">
+			<children>
+				<AnchorPane prefHeight="76.0" styleClass="normal-background">
+					<children>
+						<Label id="pane-title" layoutX="34.0" layoutY="14.0" text="Leverans och Betalning" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
+					</children>
+					<VBox.margin>
+						<Insets />
+					</VBox.margin>
+				</AnchorPane>
+				<Separator prefWidth="200.0" />
+				<AnchorPane prefHeight="130.0" prefWidth="920.0" styleClass="normal-background">
+					<children>
+						<Label layoutX="34.0" layoutY="14.0" styleClass="header" text="När vill du ha maten levererad?" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="14.0" />
+						<ChoiceBox fx:id="cb_delivery_time" layoutX="260.0" layoutY="80.0" prefHeight="39.0" prefWidth="350.0" AnchorPane.leftAnchor="256.0" AnchorPane.topAnchor="80.0" />
+						<ChoiceBox fx:id="cb_delivery_date" layoutX="28.0" layoutY="80.0" prefHeight="39.0" prefWidth="200.0" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="80.0" />
+					</children>
+				</AnchorPane>
+				<Separator />
+				<AnchorPane>
+					<children>
+						<HBox id="payment-box-first" alignment="CENTER" prefHeight="80.0" prefWidth="333" styleClass="payment-box" AnchorPane.leftAnchor="0.0">
+							<children>
+								<Label alignment="CENTER" prefHeight="40.0" prefWidth="449.0" styleClass="pay-method-label" text="Betala med kort" textAlignment="CENTER" HBox.hgrow="ALWAYS" />
+							</children>
+						</HBox>
+						<FlowPane layoutX="14.0" layoutY="80.0" vgap="14.0" AnchorPane.leftAnchor="42.0">
+							<children>
+								<AnchorPane prefHeight="77.0" prefWidth="266.0">
+									<children>
+										<Label layoutX="164.0" text="Kreditkortsnummer" textFill="#413e4a" AnchorPane.leftAnchor="0.0">
+											<font>
+												<Font size="21.0" />
+											</font>
+										</Label>
+										<HBox layoutY="38.0" spacing="7.0" AnchorPane.leftAnchor="0.0">
+											<children>
+												<TextField fx:id="txt_cardnr_4" alignment="CENTER" prefHeight="31.0" prefWidth="65.0" promptText="0000">
+													<HBox.margin>
+														<Insets />
+													</HBox.margin>
+													<font>
+														<Font size="18.0" />
+													</font>
+												</TextField>
+												<TextField fx:id="txt_cardnr_3" alignment="CENTER" prefHeight="31.0" prefWidth="65.0" promptText="0000">
+													<HBox.margin>
+														<Insets />
+													</HBox.margin>
+													<font>
+														<Font size="18.0" />
+													</font>
+												</TextField>
+												<TextField fx:id="txt_cardnr_2" alignment="CENTER" prefHeight="31.0" prefWidth="65.0" promptText="0000">
+													<HBox.margin>
+														<Insets />
+													</HBox.margin>
+													<font>
+														<Font size="18.0" />
+													</font>
+												</TextField>
+												<TextField fx:id="txt_cardnr_1" alignment="CENTER" prefHeight="31.0" prefWidth="65.0" promptText="0000">
+													<HBox.margin>
+														<Insets />
+													</HBox.margin>
+													<font>
+														<Font size="18.0" />
+													</font>
+												</TextField>
+											</children>
+										</HBox>
+									</children>
+								</AnchorPane>
+								<AnchorPane prefHeight="77.0" prefWidth="266.0">
+									<children>
+										<Label layoutX="177.0" text="Utgångsdatum" textFill="#413e4a" AnchorPane.leftAnchor="0.0">
+											<font>
+												<Font size="21.0" />
+											</font>
+										</Label>
+										<HBox layoutY="38.0" prefHeight="39.0" prefWidth="281.0" spacing="7.0" AnchorPane.leftAnchor="0.0">
+											<children>
+												<ChoiceBox fx:id="cb_card_year" prefHeight="38.0" prefWidth="110.0">
+													<HBox.margin>
+														<Insets />
+													</HBox.margin>
+												</ChoiceBox>
+												<ChoiceBox fx:id="cb_card_month" prefHeight="38.0" prefWidth="163.0">
+													<HBox.margin>
+														<Insets />
+													</HBox.margin>
+												</ChoiceBox>
+											</children>
+										</HBox>
+									</children>
+								</AnchorPane>
+								<AnchorPane prefHeight="77.0" prefWidth="256.0">
+									<children>
+										<Label layoutX="94.0" text="CVC" textFill="#413e4a" AnchorPane.leftAnchor="0.0">
+											<font>
+												<Font size="21.0" />
+											</font>
+										</Label>
+										<HBox alignment="CENTER_LEFT" fillHeight="false" layoutX="14.0" layoutY="38.0" prefHeight="3.0" prefWidth="200.0" spacing="14.0" AnchorPane.leftAnchor="0.0">
+											<children>
+												<TextField fx:id="txt_card_cvv" alignment="CENTER" prefHeight="39.0" prefWidth="80.0" promptText="000">
+													<font>
+														<Font size="18.0" />
+													</font>
+												</TextField>
+												<Label text="Vad är CVC?" />
+											</children>
+										</HBox>
+									</children>
+								</AnchorPane>
+							</children>
+						</FlowPane>
+						<HBox alignment="CENTER" layoutX="333.0" prefHeight="80.0" prefWidth="333" styleClass="payment-box" AnchorPane.topAnchor="0.0">
+							<children>
+								<Label prefWidth="233.0" styleClass="pay-method-label" text="Betala med faktura" />
+							</children>
+						</HBox>
+						<HBox alignment="CENTER" layoutX="666.0" prefHeight="80.0" prefWidth="333" styleClass="payment-box">
+							<children>
+								<Label styleClass="pay-method-label" text="Betala vid leverans" />
+							</children>
+						</HBox>
+						<Label layoutX="345.0" layoutY="80.0" prefHeight="112.0" prefWidth="318.0" text="texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext" wrapText="true" />
+						<Label layoutX="674.0" layoutY="80.0" prefHeight="112.0" prefWidth="325.0" text="texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext" wrapText="true" />
+					</children>
+				</AnchorPane>
+			</children>
+			<HBox.margin>
+				<Insets bottom="56.0" left="56.0" right="56.0" top="56.0" />
+			</HBox.margin>
+		</VBox>
+	</children>
+</HBox>

@@ -3,18 +3,15 @@ package controllers;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
-import java.util.TreeSet;
 
 import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;
-import javafx.collections.ListChangeListener.Change;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
@@ -28,7 +25,6 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import se.chalmers.ait.dat215.project.*;
 import util.SubCategory;
@@ -64,6 +60,8 @@ public class StoreController implements Initializable {
 	private Label lblSearchResult;
 	
 	private SubCategory frequentlyBought = new SubCategory("frequently bought");
+	
+	private boolean recentSearch = false;
 
 	@Override
 	public void initialize(URL url, ResourceBundle bundle) {
@@ -74,6 +72,15 @@ public class StoreController implements Initializable {
 
 		//Takes care of most frequently bought
 		loadFrequentlyBought();
+		
+		invisibleTab.setOnSelectionChanged(event -> event.consume());
+		
+		mainTabPane.getSelectionModel().selectedIndexProperty().addListener((obs, o, n) -> {
+			if (n.intValue() == 7 && !recentSearch)
+				mainTabPane.getSelectionModel().select(o.intValue());
+			
+			recentSearch = false;
+		});
 		
 		ScrollPane.positionInArea(content, 0, 0, 800, 800, 0, new Insets(50, 0, 0, 0), HPos.CENTER, VPos.TOP, true);
 		
@@ -131,6 +138,9 @@ public class StoreController implements Initializable {
 		
 		for (int i = 0; i < stopAt; ++i)
 			frequentlyBought.addProduct(items.get(i).getProduct());
+		
+		populateStore(frequentlyBought);
+		mainTabPane.getSelectionModel().clearAndSelect(0);
 	}
 
 	private void refreshContentMargin() {
@@ -150,6 +160,7 @@ public class StoreController implements Initializable {
 	public ChangeListener<String> getSearchAction() {
 		return (obs, oldValue, newValue) -> {
 			/** Changes selected tab to "search" */
+			recentSearch = true;
 			mainTabPane.getSelectionModel().select(invisibleTab);
 			
 			List<Node> nodes = searchForItems(newValue);
@@ -291,10 +302,5 @@ public class StoreController implements Initializable {
 		superCategories.put(5, fridayCuddle);
 
 		return superCategories;
-	}
-	
-	// TODO Switch to a certain product, can probably use super-categories along with the subTabPanes variable to accomplish this
-	public void switchTo(Product p) {
-		
 	}
 }

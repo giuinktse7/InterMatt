@@ -92,7 +92,7 @@
 .tab {
 	-fx-background-insets: 0, 0.4em 0.25em 0.4em 0.25em;
 	-fx-background-radius: 0;
-	-fx-background-color: white, blue;
+	-fx-background-color: white, transparent;
 	-fx-padding: 0 1em 0 1em, 0;
 	
 	-fx-border-style: hidden;
@@ -128,6 +128,7 @@
     -fx-background-color: white, -fx-start-color;
     -fx-font-weight: bold;
 }
+
 .startTabContent { -fx-background-color: -fx-start-color; }
 #startTab:hover { -fx-background-color: -bg-color, linear-gradient(to top, derive(-fx-start-color, 35%), derive(-fx-start-color, 45%)); }
 #startTab:selected { -fx-background-color: -bg-color, -fx-start-color; }
@@ -217,6 +218,6 @@
 #search-result-label:disabled,
 .startTabContent .label .text {
 	-fx-font-size: 24pt;
-	-fx-fill: #ADADAD;
+	-fx-fill: #666666;
 	-fx-font-weight: bold;
 }
