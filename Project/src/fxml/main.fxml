@@ -65,11 +65,14 @@
 									<children>
 										<Button fx:id="historyButton" styleClass="top-header-button"
 											mnemonicParsing="false">
+											<tooltip >
+												<Tooltip text="Visa tidigare köp" />
+											</tooltip>
 											<graphic>
 												<ImageView fitHeight="36.0" fitWidth="48.0"
 													pickOnBounds="true" preserveRatio="true">
 													<image>
-														<Image url="@../resources/history_icon.png" />
+														<Image url="@../resources/history.png" />
 													</image>
 												</ImageView>
 											</graphic>
@@ -79,6 +82,9 @@
 										</Button>
 										<Button fx:id="helpButton" styleClass="top-header-button"
 											mnemonicParsing="false">
+											<tooltip>
+												<Tooltip text="Hjälp" />
+											</tooltip>
 											<graphic>
 												<ImageView fitHeight="36.0" fitWidth="48.0"
 													pickOnBounds="true" preserveRatio="true">
@@ -93,11 +99,14 @@
 										</Button>
 										<Button fx:id="contactButton" styleClass="top-header-button"
 											mnemonicParsing="false">
+											<tooltip>
+												<Tooltip text="Visa kontaktinformation" />
+											</tooltip>
 											<graphic>
 												<ImageView fitHeight="36.0" fitWidth="48.0"
 													pickOnBounds="true" preserveRatio="true">
 													<image>
-														<Image url="@../resources/phone.png" />
+														<Image url="@../resources/contact.png" />
 													</image>
 												</ImageView>
 											</graphic>
