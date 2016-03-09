@@ -61,8 +61,8 @@ public class AttributeTextField extends TextField {
 
 	public void replaceSelection(String text) {
 		String oldValue = getText();
-		if ((!text.matches("[A-Za-z]") && !text.matches("[-\\\\!\"#$%&()*+,./:;<=>?@\\[\\]^_{|}~]+")
-				|| (!isDouble(text) && text.charAt(text.length() - 1) != '.')) || (text.equals(".") && allowDoubles)) {
+		if ((!text.matches("[A-Za-z]") && !text.matches("[-\\\\!\"#$%&()*+,./:;<=>?@\\[\\]^_{|}~]+"))
+				|| (text.equals(".") && allowDoubles)) {
 			super.replaceSelection(text);
 		}
 		if (isAllowedValue(getText()) && !lessThanMax(getText())) {
