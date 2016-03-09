@@ -91,6 +91,14 @@
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 1, 0.0 , 0 , 1 );
 }
 
+.nav-button:hover{
+	-fx-opacity:0.7;
+}
+
+.arrow-button:hover{
+	-fx-opacity:0.7;
+}
+
 .base-style{
 	-fx-background-color: -fx-main-color;
 }
