@@ -182,16 +182,25 @@ public class CartItem extends HBox {
 
 		txtAmount.textProperty().addListener((obs, oldValue, newValue) -> {
 			decAmountBtn.setDisable(!isDouble(newValue) || Double.parseDouble(newValue) <= 1 );
-			
+
 			if (isDouble(newValue) && !oldValue.equals("")) {
 				double oldQuantity = Double.parseDouble(oldValue);
 				double newQuantity = Double.parseDouble(newValue);
 				double change = (newQuantity - oldQuantity) * product.getPrice();
+				String fintPris = String.format("%.2f", newQuantity * product.getPrice());
+				System.out.println("FINA PRISET " + fintPris);
+
+				lblPrice.setText(fintPris);
+				System.out.println("#Förändringen i total " + change);
 				cartHandler.addToTotal(change);
+			}else{
+
 			}
 		});
-		
-		lblPrice.textProperty().bind(Bindings.concat(quantityProperty().multiply(product.getPrice()), ":-"));
+
+
+
+//		lblPrice.textProperty().bind(Bindings.concat(quantityProperty().multiply(product.getPrice()), ":-"));
 		txtAmount.setText("1");
 		
 		//Bind the quantity textField and the quantity of the associated shoppingItem
@@ -220,7 +229,7 @@ public class CartItem extends HBox {
 		return this.product.getProductId() == (that.product.getProductId());
 	}
 	
-	private static boolean isDouble(String value) {
+	public static boolean isDouble(String value) {
 		try {
 			Double.parseDouble(value);
 			return value.charAt(0) != '.';
