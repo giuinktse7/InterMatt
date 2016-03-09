@@ -217,8 +217,8 @@ public class PurchaseController implements Initializable {
 		if (btn_pay_bill.isSelected()) {
 			pane_pay_bill_delivery.toFront();
 			pane_pay_bill_delivery.setVisible(true);
-			txt_pay_info.setText("Du betalar med pappersfaktura. Den skickas hem till dig och ska betalas inom 30 dagar. Detta är inte bra för miljön. Tänk på träden Hjördis. Illa.");
-			InformationStorage.setPaymentType(" och du får fakturan skickad till dig inom kort.");
+			txt_pay_info.setText("Du betalar med pappersfaktura. Du får fakturan med dina varor och den ska betalas inom 30 dagar efter detta.");
+			InformationStorage.setPaymentType(" och du får fakturan med dina varor.");
 			paymentProperty.setValue(PaymentMethod.BILL);
 		}
 

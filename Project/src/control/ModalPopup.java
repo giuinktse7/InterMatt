@@ -81,7 +81,7 @@ public class ModalPopup extends AnchorPane {
 		Button exitButton = new Button();
 		exitButton.setStyle("-fx-background-color: transparent;");
 		
-		Image exitImage = new Image("resources/remove.png", 36, 36, true, true);
+		Image exitImage = new Image("resources/exit.png", 36, 36, true, true);
 		exitButton.setGraphic(new ImageView(exitImage));
 		
 		AnchorPane.setRightAnchor(exitButton, 7d);

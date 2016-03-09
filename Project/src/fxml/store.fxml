@@ -4,6 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import java.lang.*?>
+<?import javafx.scene.text.Font?>
 <VBox id="storePane" fillWidth="true" minWidth="920" prefHeight="600.0" styleClass="backdrop" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StoreController">
 	<children>
 		<AnchorPane>
@@ -110,6 +111,9 @@
 								<HBox alignment="CENTER_LEFT" minWidth="300.0" prefWidth="925.0" styleClass="searchTabContent">
 									<children>
 										<Label id="search-result-label" fx:id="lblSearchResult">
+											<font>
+												<Font size="21.0" />
+											</font>
 											<HBox.margin>
 												<Insets left="28.0" />
 											</HBox.margin>
