@@ -50,9 +50,9 @@
 											VBox.vgrow="ALWAYS">
 											<children>
 												<fx:include id="purchasePane" fx:id="purchasePane" source="purchase.fxml" />
-												<fx:include fx:id="credentialsPane" source="credentials.fxml" />
-												<fx:include fx:id="storePane" source="store.fxml" />
-												<fx:include fx:id="receiptPane" source="receipt.fxml" />
+												<fx:include id="credentialsPane" fx:id="credentialsPane" source="credentials.fxml" />
+												<fx:include id="storePane" fx:id="storePane" source="store.fxml" />
+												<fx:include id="receiptPane" fx:id="receiptPane" source="receipt.fxml" />
 											</children>
 										</StackPane>
 									</children>
@@ -61,58 +61,58 @@
 						</AnchorPane>
 						<AnchorPane>
 							<children>
-								<HBox AnchorPane.rightAnchor="21" AnchorPane.topAnchor="18">
+								<HBox AnchorPane.rightAnchor="21" AnchorPane.topAnchor="0">
 									<children>
-										<Button fx:id="historyButton" styleClass="top-header-button"
+										<Button fx:id="historyButton" maxHeight="65" maxWidth="65" styleClass="topButtons"
 											mnemonicParsing="false">
 											<tooltip >
 												<Tooltip text="Visa tidigare köp" />
 											</tooltip>
 											<graphic>
-												<ImageView fitHeight="36.0" fitWidth="48.0"
+												<ImageView fitHeight="65.0" fitWidth="65" styleClass="topImage"
 													pickOnBounds="true" preserveRatio="true">
 													<image>
-														<Image url="@../resources/history.png" />
+														<Image url="@../resources/cuteGoat.png" />
 													</image>
 												</ImageView>
 											</graphic>
-											<HBox.margin>
-												<Insets left="14.0" />
-											</HBox.margin>
+											<!--<HBox.margin>-->
+												<!--<Insets left="14.0" />-->
+											<!--</HBox.margin>-->
 										</Button>
-										<Button fx:id="helpButton" styleClass="top-header-button"
+										<Button fx:id="helpButton" maxHeight="65" maxWidth="65" styleClass="topButtons"
 											mnemonicParsing="false">
 											<tooltip>
 												<Tooltip text="Hjälp" />
 											</tooltip>
 											<graphic>
-												<ImageView fitHeight="36.0" fitWidth="48.0"
+												<ImageView fitHeight="65.0" fitWidth="65" styleClass="topImage"
 													pickOnBounds="true" preserveRatio="true">
 													<image>
-														<Image url="@../resources/help.png" />
+														<Image url="@../resources/cuteGoat.png" />
 													</image>
 												</ImageView>
 											</graphic>
-											<HBox.margin>
-												<Insets left="14.0" />
-											</HBox.margin>
+											<!--<HBox.margin>-->
+												<!--<Insets left="14.0" />-->
+											<!--</HBox.margin>-->
 										</Button>
-										<Button fx:id="contactButton" styleClass="top-header-button"
+										<Button fx:id="contactButton" maxHeight="65" maxWidth="65" styleClass="topButtons"
 											mnemonicParsing="false">
 											<tooltip>
 												<Tooltip text="Visa kontaktinformation" />
 											</tooltip>
 											<graphic>
-												<ImageView fitHeight="36.0" fitWidth="48.0"
+												<ImageView fitHeight="65.0" fitWidth="65" styleClass="topImage"
 													pickOnBounds="true" preserveRatio="true">
 													<image>
-														<Image url="@../resources/contact.png" />
+														<Image url="@../resources/cuteGoat.png" />
 													</image>
 												</ImageView>
 											</graphic>
-											<HBox.margin>
-												<Insets left="14.0" />
-											</HBox.margin>
+											<!--<HBox.margin>-->
+												<!--<Insets left="14.0" />-->
+											<!--</HBox.margin>-->
 										</Button>
 									</children>
 									<VBox.margin>
