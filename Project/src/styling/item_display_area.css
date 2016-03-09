@@ -45,11 +45,6 @@
 	-fx-border-color: #eeeeee;
 }
 
-.item-display:hover {
-	-fx-border-width: 1px;
-	-fx-border-color: #52ff55;
-}
-
 .scroll-pane > .viewport {
    -fx-background-color: transparent;
 }
