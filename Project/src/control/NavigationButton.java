@@ -48,6 +48,8 @@ public class NavigationButton extends Button {
 	public void initialize(ContentView view, EventHandler<ActionEvent> e, NavigationButton nextButton, Label descriptionLabel, ImageView styleArrow) {
 		this.view = view;
 		
+		this.nextButton = nextButton;
+		
 		//Change the styleArrow image when disabled
 		if (styleArrow != null)
 		styleArrow.disabledProperty().addListener((obs, o, isDisabled) -> {
@@ -68,15 +70,12 @@ public class NavigationButton extends Button {
 					if (((String)this.getUserData()).equals("lastButton"))
 						styleArrow.setDisable(true);
 				}
-					
 				descriptionLabel.getStyleClass().add("nav-button-label-active");
 			}
 			else {
 				descriptionLabel.getStyleClass().remove("nav-button-label-active");
 			}
 		});
-		
-		this.nextButton = nextButton;
 		
 		this.setOnAction(e);
 		
@@ -99,10 +98,11 @@ public class NavigationButton extends Button {
 			descriptionLabel.setDisable(isDisabled);
 			//If we were just disabled, disable the following button, too.
 			if (isDisabled)
+				if (this.nextButton != null)
 				this.nextButton.disable();
 			//If we were just enabled, update our binds
 			else
-				enable();
+				bindings.refresh();
 		});
 		viewDisplay.getCurrentView().addListener((obs, oldValue, newValue) ->  updateImage(this.view.equals(newValue)));
 		
@@ -110,7 +110,7 @@ public class NavigationButton extends Button {
 		
 		bindings.getState().addListener((obs, o, n) -> setDisable(!n) );
 		
-		refresh();
+		//refresh();
 	}
 	
 	private void refresh() {

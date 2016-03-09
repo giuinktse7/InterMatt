@@ -50,9 +50,9 @@
 											VBox.vgrow="ALWAYS">
 											<children>
 												<fx:include id="purchasePane" fx:id="purchasePane" source="purchase.fxml" />
-												<fx:include fx:id="credentialsPane" source="credentials.fxml" />
-												<fx:include fx:id="storePane" source="store.fxml" />
-												<fx:include fx:id="receiptPane" source="receipt.fxml" />
+												<fx:include id="credentialsPane" fx:id="credentialsPane" source="credentials.fxml" />
+												<fx:include id="storePane" fx:id="storePane" source="store.fxml" />
+												<fx:include id="receiptPane" fx:id="receiptPane" source="receipt.fxml" />
 											</children>
 										</StackPane>
 									</children>
