@@ -27,7 +27,7 @@ public class RecipeController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		instance = this;
 		btnExit.setOnMouseClicked(e -> System.exit(0));
-		//btnBackToStore.setOnMouseClicked(e -> );	
+		btnBackToStore.setOnMouseClicked(e -> MainController.get().viewDisplay.showFirst());	
 	}
 
 	public static RecipeController getInstance(){
@@ -43,7 +43,7 @@ public class RecipeController implements Initializable {
 	}
 	
 	public void setDeliveryTimeText(String deliveryTime){
-		lblTimeOfDelivery.setText(deliveryTime);
+		lblPaymentType.setText(deliveryTime);
 	}
 	
 	public void setPaymentText(String paymentType){

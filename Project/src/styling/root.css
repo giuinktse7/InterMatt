@@ -158,3 +158,8 @@
 	-fx-font-size: 18pt;
 	-fx-fill: derive(#e55933, 85%);
 }
+
+.tooltip{
+     -fx-background-radius: 0 0 0 0;
+     -fx-font-size:1.5em;
+}

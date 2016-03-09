@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <?import java.net.URL?>
+
 <HBox id="receiptPane" alignment="CENTER" minWidth="920" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RecipeController">
     <children>
         <VBox id="main_pane" alignment="TOP_CENTER" prefHeight="800.0" prefWidth="1200.0">
@@ -28,7 +32,7 @@
                               <Font name="System Bold" size="21.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblTimeOfDelivery" text=" och betalning sker vid leverans" textFill="#413e4a">
+                        <Label fx:id="lblTimeOfDelivery" text="BETALNINGSMETOD" textFill="#413e4a">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -42,7 +46,7 @@
                               <Font size="21.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblPaymentType" text="Fredag 21/4 runt klockan 15:00" textFill="#413e4a">
+                        <Label fx:id="lblPaymentType" text="DAG DATUM runt klockan TID" textFill="#413e4a">
                            <font>
                               <Font name="System Bold" size="21.0" />
                            </font>

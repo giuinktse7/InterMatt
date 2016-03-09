@@ -91,5 +91,9 @@ public class ViewDisplay {
 		viewDisplay.show(view);
 	}
 	
+	public void showFirst() {
+		show(first);
+	}
+	
 	
 }
