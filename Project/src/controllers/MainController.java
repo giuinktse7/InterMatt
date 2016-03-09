@@ -215,7 +215,7 @@ public class MainController implements Initializable {
 	private void setPurchaseBinds() {
 		ContentView view = viewDisplay.getView(purchasePane);
 		BindingGroup group = btnToPurchase.getBindingGroup();
-		group.addBindings(credentialsPaneController.getBindings().and(not(RECEIPT_VIEW_ACTIVE)));
+		group.addBindings(credentialsPaneController.getBindings().and(CART_NONEMPTY).and(not(RECEIPT_VIEW_ACTIVE)));
 		
 		view.getBindingGroup().setAll(group.getBinds());
 	}
