@@ -163,3 +163,14 @@
      -fx-background-radius: 0 0 0 0;
      -fx-font-size:1.5em;
 }
+
+.topButtons{
+    -fx-background-color:transparent;
+    -fx-marging:0;
+    -fx-padding:0;
+}
+
+.topImage{
+    -fx-marging:0;
+    -fx-padding:0;
+}
