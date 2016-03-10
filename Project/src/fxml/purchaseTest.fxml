@@ -14,7 +14,7 @@
 
 <HBox alignment="TOP_CENTER" stylesheets="@../styling/purchase.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PurchaseTestController">
 	<children>
-		<VBox id="main-pane" fx:id="vbox_content_wrapper" prefHeight="620.0" prefWidth="1200" spacing="14.0">
+		<VBox id="main-pane" fx:id="vbox_content_wrapper" prefHeight="800" prefWidth="1200">
 			<children>
 				<AnchorPane prefHeight="76.0" styleClass="normal-background">
 					<children>
@@ -28,12 +28,12 @@
 				<AnchorPane prefHeight="130.0" styleClass="normal-background">
 					<children>
 						<Label layoutX="34.0" layoutY="14.0" styleClass="header" text="När vill du ha maten levererad?" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="14.0" />
-						<ChoiceBox fx:id="cb_delivery_time" layoutX="260.0" layoutY="80.0" prefHeight="39.0" prefWidth="350.0" AnchorPane.leftAnchor="256.0" AnchorPane.topAnchor="80.0" />
-						<ChoiceBox fx:id="cb_delivery_date" layoutX="28.0" layoutY="80.0" prefHeight="39.0" prefWidth="200.0" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="80.0" />
+						<ChoiceBox fx:id="cb_delivery_time" layoutX="260.0" layoutY="80.0" prefHeight="39.0" prefWidth="350.0" AnchorPane.leftAnchor="256.0" AnchorPane.topAnchor="67.0" />
+						<ChoiceBox fx:id="cb_delivery_date" layoutX="28.0" layoutY="80.0" prefHeight="39.0" prefWidth="200.0" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="67.0" />
 					</children>
 				</AnchorPane>
 				<Separator />
-				<AnchorPane>
+				<AnchorPane VBox.vgrow="ALWAYS">
 					<children>
 						<HBox AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 							<children>
@@ -54,13 +54,13 @@
 								</HBox>
 							</children>
 						</HBox>
-						<StackPane fx:id="payMethodStackPane" alignment="TOP_LEFT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+						<StackPane fx:id="payMethodStackPane" alignment="TOP_LEFT" maxHeight="207" prefHeight="207" prefWidth="1200" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
 							<children>
-								<FlowPane fx:id="payAtDeliveryPane" maxWidth="1200.0" prefHeight="373.0" prefWidth="1198.0" styleClass="flow-pane">
+								<FlowPane fx:id="payAtDeliveryPane" maxWidth="1200.0" prefHeight="270" prefWidth="1200" styleClass="flow-pane">
 									<children>
 										<Label alignment="TOP_LEFT" maxWidth="800" prefHeight="237.0" prefWidth="767.0" styleClass="info-text" text="Du betalar vid dörren när varorna har anlänt. Du kan betala med antingen kort eller kontanter." wrapText="true">
 											<FlowPane.margin>
-												<Insets left="28.0" right="28.0" />
+												<Insets left="28.0" right="28.0" top="49" />
 											</FlowPane.margin>
 										</Label>
 									</children>
@@ -69,7 +69,7 @@
 									<children>
 										<Label alignment="TOP_LEFT" maxWidth="800.0" prefHeight="238.0" prefWidth="790.0" styleClass="info-text" text="Du betalar med pappersfaktura. Du får fakturan med dina varor och den ska betalas inom 30 dagar efter detta." wrapText="true">
 											<FlowPane.margin>
-												<Insets right="14.0" />
+												<Insets left="28.0" right="28.0" top="49" />
 											</FlowPane.margin>
 										</Label>
 									</children>
@@ -87,15 +87,7 @@
 														</Label>
 														<HBox layoutY="38.0" spacing="7.0" AnchorPane.leftAnchor="0.0">
 															<children>
-																<TextField fx:id="txt_cardnr_4" alignment="CENTER" prefHeight="31.0" prefWidth="65.0" promptText="0000">
-																	<HBox.margin>
-																		<Insets />
-																	</HBox.margin>
-																	<font>
-																		<Font size="18.0" />
-																	</font>
-																</TextField>
-																<TextField fx:id="txt_cardnr_3" alignment="CENTER" prefHeight="31.0" prefWidth="65.0" promptText="0000">
+																<TextField fx:id="txt_cardnr_1" alignment="CENTER" prefHeight="31.0" prefWidth="65.0" promptText="0000">
 																	<HBox.margin>
 																		<Insets />
 																	</HBox.margin>
@@ -111,7 +103,15 @@
 																		<Font size="18.0" />
 																	</font>
 																</TextField>
-																<TextField fx:id="txt_cardnr_1" alignment="CENTER" prefHeight="31.0" prefWidth="65.0" promptText="0000">
+																<TextField fx:id="txt_cardnr_3" alignment="CENTER" prefHeight="31.0" prefWidth="65.0" promptText="0000">
+																	<HBox.margin>
+																		<Insets />
+																	</HBox.margin>
+																	<font>
+																		<Font size="18.0" />
+																	</font>
+																</TextField>
+																<TextField fx:id="txt_cardnr_4" alignment="CENTER" prefHeight="31.0" prefWidth="65.0" promptText="0000">
 																	<HBox.margin>
 																		<Insets />
 																	</HBox.margin>

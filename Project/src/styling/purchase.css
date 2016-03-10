@@ -18,8 +18,8 @@
 }
 
 .info-text {
-	-fx-font-size: 22pt;
-	-fx-fill: derive(black, 30%);
+	-fx-font-size: 18pt;
+	-fx-fill: derive(black, 10%);
 }
 
 .pay-method-label .text {
@@ -34,35 +34,31 @@
 }
 
 .payment-box {
-	-fx-background-color: #acd8b5;
+	-fx-background-color: #bbcebf;
 	-fx-border-width: 1px;
 	-fx-border-color: derive(-buy-button-color, -35%);
 	-fx-border-style: solid hidden solid solid;
 }
 
 .payment-box:hover {
-	-fx-background-color: derive(-buy-button-color, -15%);
+	-fx-background-color: derive(#bbcebf, 20%);
 }
 
 .selected-pay-box {
 	-fx-border-style: solid hidden hidden solid;
-	-fx-background-color: -buy-button-color;
+	-fx-background-color: derive(-buy-button-color, 35%);
+}
+
+.selected-pay-box:hover {
+	-fx-background-color: derive(-buy-button-color, 35%);
 }
 
 .flow-pane {
 	-fx-border-style: hidden solid solid solid, hidden solid solid solid;
-	-fx-border-color: -buy-button-color, derive(-buy-button-color, 15%);
+	-fx-border-color: -buy-button-color, derive(-buy-button-color, 50%);
 	-fx-border-width: 1px, 1px;
 	-fx-border-insets: 0, 1;
-	
-}
-
-.selected-pay-box:hover {
-	-fx-background-color: -buy-button-color;
-}
-
-.flow-pane {
-	-fx-background-color: -buy-button-color;
+	-fx-background-color: derive(-buy-button-color, 35%);
 }
 
 .choice-box {
