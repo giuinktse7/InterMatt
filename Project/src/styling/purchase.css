@@ -2,7 +2,7 @@
 	-fx-background-color: #ffffff;
 }
 
-.pane-background {
+.normal-background {
     -fx-background-color: #f2f2f2;
 }
 
@@ -17,9 +17,15 @@
     -fx-font-size: 18px;
 }
 
+.info-text {
+	-fx-font-size: 22pt;
+	-fx-fill: derive(black, 30%);
+}
+
 .pay-method-label .text {
 	-fx-font-size: 28 pt;
-	-fx-fill: #4D4D4D;
+	-fx-fill: black;
+	-fx-font-weight: bold;
 }
 
 .header .text {
@@ -28,25 +34,45 @@
 }
 
 .payment-box {
-	-fx-background-color: derive(-buy-button-color, 25%);
+	-fx-background-color: #acd8b5;
 	-fx-border-width: 1px;
 	-fx-border-color: derive(-buy-button-color, -35%);
 	-fx-border-style: solid hidden solid solid;
 }
 
 .payment-box:hover {
-	-fx-background-color: derive(-buy-button-color, 45%);
+	-fx-background-color: derive(-buy-button-color, -15%);
+}
+
+.selected-pay-box {
+	-fx-border-style: solid hidden hidden solid;
+	-fx-background-color: -buy-button-color;
+}
+
+.flow-pane {
+	-fx-border-style: hidden solid solid solid, hidden solid solid solid;
+	-fx-border-color: -buy-button-color, derive(-buy-button-color, 15%);
+	-fx-border-width: 1px, 1px;
+	-fx-border-insets: 0, 1;
+	
+}
+
+.selected-pay-box:hover {
+	-fx-background-color: -buy-button-color;
+}
+
+.flow-pane {
+	-fx-background-color: -buy-button-color;
 }
 
 .choice-box {
 	-fx-border-radius: 0px;
 	-fx-background-radius: 0px;
 	-fx-background-color: derive(white, -10%);
-	
 }
 
 #pane-title .text {
-	-fx-font-size: 32 pt;
+	-fx-font-size: 42 pt;
     -fx-fill: #413e4a;
 }
 

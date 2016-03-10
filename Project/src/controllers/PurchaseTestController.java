@@ -6,12 +6,15 @@ import interfaces.TextFieldValidator;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -36,6 +39,13 @@ import control.ModalPopup;
 
 public class PurchaseTestController implements Initializable {
 	
+	
+	//0 = card, 1 = delivery, 2 = invoice
+	IntegerProperty paymentType = new SimpleIntegerProperty(0);
+	
+	@FXML private StackPane payMethodStackPane;
+	@FXML private FlowPane payAtDeliveryPane, payByCardPane, payByInvoicePane;
+	@FXML private HBox cardPaymentBox, payAtDeliveryBox, payByInvoiceBox;
 	
 	// Payment toggle buttons
 	@FXML private ToggleButton btn_pay_creditcard;
@@ -71,20 +81,28 @@ public class PurchaseTestController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		payAtDeliveryPane.toFront();
+		
 		setupInputConstraints();
 		//payment_mode_changed();
 		
-		ToggleGroup toggleGroup = new ToggleGroup();
-		/*btn_pay_delivery.setToggleGroup(toggleGroup);
-		btn_pay_creditcard.setToggleGroup(toggleGroup);
-		btn_pay_bill.setToggleGroup(toggleGroup);*/
-
-		toggleGroup.selectedToggleProperty().addListener((ov, toggle, new_toggle) -> {
-            if (new_toggle == null) {
-                toggle.setSelected(true);
-
-            }
-        });
+		cardPaymentBox.setOnMousePressed(event -> selectCardPayment());
+		
+		payAtDeliveryBox.setOnMousePressed(event -> {
+			cardPaymentBox.getStyleClass().remove("selected-pay-box");
+			payAtDeliveryBox.getStyleClass().add("selected-pay-box");
+			payByInvoiceBox.getStyleClass().remove("selected-pay-box");
+			paymentProperty.setValue(PaymentMethod.DELIVERY);
+			payAtDeliveryPane.toFront();
+		});
+		
+		payByInvoiceBox.setOnMousePressed(event -> {
+			cardPaymentBox.getStyleClass().remove("selected-pay-box");
+			payAtDeliveryBox.getStyleClass().remove("selected-pay-box");
+			payByInvoiceBox.getStyleClass().add("selected-pay-box");
+			paymentProperty.setValue(PaymentMethod.BILL);
+			payByInvoicePane.toFront();
+		});
 		
 		setDeliveryDates();
 		
@@ -92,11 +110,21 @@ public class PurchaseTestController implements Initializable {
 		cb_delivery_date.selectionModelProperty().addListener(e -> InformationStorage.setDelivery(getDeliveryString()));
 		cb_delivery_time.selectionModelProperty().addListener(e -> InformationStorage.setDelivery(getDeliveryString()));
 		InformationStorage.setDelivery(getDeliveryString());
+		
+		selectCardPayment();
 	}
 	
 	private final BooleanBinding BILL_SELECTED = selectedPaymentBinding(PaymentMethod.BILL);
 	private final BooleanBinding CREDITCARD_SELECTED = selectedPaymentBinding(PaymentMethod.CREDITCARD);
 	private final BooleanBinding DELIVERY_SELECTED = selectedPaymentBinding(PaymentMethod.DELIVERY);
+	
+	private void selectCardPayment() {
+		cardPaymentBox.getStyleClass().add("selected-pay-box");
+		payAtDeliveryBox.getStyleClass().remove("selected-pay-box");
+		payByInvoiceBox.getStyleClass().remove("selected-pay-box");
+		paymentProperty.setValue(PaymentMethod.CREDITCARD);
+		payByCardPane.toFront();
+	}
 	
 	public void setDeliveryDates(){
 		List<String> dates = new ArrayList<String>();
