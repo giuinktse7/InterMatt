@@ -25,8 +25,9 @@
 }
 
 #cart-title-label .text {
-	-fx-font-size: 18pt;
+	-fx-font-size: 34 pt;
 	-fx-color: #413e4a;
+	-fx-font-family: "Gill Sans", "Gill Sans MT", sans-serif;
 }
 
 .name-label .text {
@@ -44,6 +45,10 @@
 .list-view:selected {
 	-fx-background-insets: 0;
 	-fx-background-color: white;
+}
+
+.list-cell:filled:hover {
+	-fx-background-color: derive(-buy-button-color, 80%);
 }
 
 .list-cell:even {

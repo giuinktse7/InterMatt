@@ -2,6 +2,7 @@ package control;
 
 import java.text.DecimalFormat;
 
+import controllers.MainController;
 import javafx.beans.value.ChangeListener;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
@@ -128,12 +129,9 @@ public class ItemInHistoryBox extends AnchorPane {
 		});
 		
 		setOnDragDone(event -> {
-			double sceneWidth = Screen.getPrimary().getVisualBounds().getWidth();
-			ModalPopup root = (ModalPopup)((Node)event.getSource()).getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent();
-			root.getContent().setAlignment(Pos.CENTER);
-			
-			root.setMaxWidth(sceneWidth);
-			root.setPrefWidth(sceneWidth);
+			/*ModalPopup historyPopup = MainController.get().getHistoryPopup();
+			historyPopup.setMouseTransparent(false);*/
+			MainController.get().restoreShade();
 			event.consume();
 		});
 		

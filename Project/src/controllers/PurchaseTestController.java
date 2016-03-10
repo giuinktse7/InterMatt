@@ -148,7 +148,6 @@ public class PurchaseTestController implements Initializable {
 			
 			String str = dayOfWeek + " " + c.getTime().getDate()+"/"+(c.getTime().getMonth() + 1);
 			dates.add(str);
-			System.out.println(str);
 		}
 		
 		cb_delivery_date.getItems().addAll(dates);

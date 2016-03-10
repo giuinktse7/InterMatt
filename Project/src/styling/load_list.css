@@ -20,6 +20,10 @@
     -fx-font-weight: bold;
 }
 
+.list-cell:selected {
+	-fx-background-color: transparent;
+}
+
 
 #modalTop {
 	-fx-background-color: #eaeaea;
@@ -27,7 +31,7 @@
 }
 
 .bottomPane {
-	-fx-background-color: rgba(0, 0, 0, 0.2);
+	-fx-background-color: transparent;
 }
 
 #content {
@@ -38,7 +42,7 @@
 #tableBox {
 	-fx-background-color: white;
 	-fx-border-width: 1px;
-	-fx-border-color: #dddddd;
+	-fx-border-color: black;
 }
 
 .table-view .label .text {
@@ -85,13 +89,6 @@
 	-fx-fill: #1A1A1A;
 }
 
-#product-list-view {
-	-fx-border-style: hidden hidden hidden hidden, hidden hidden hidden hidden;
-	-fx-border-color: #a3a3a3, #cccccc;
-	-fx-border-width: 2 0 0 0, 1 0 0 0;
-	-fx-border-insets: 1 0 0 0, 0;
-}
-
 #product-list-view .list-cell:even,
 #product-list-view .list-cell:odd {
     -fx-background-color: white;
@@ -99,8 +96,13 @@
 
 /* When the list-cell is selected and focused */
 #product-list-view:focused .list-cell:filled:focused:selected {
-    -fx-background-color: transparent, transparent, transparent;
+    -fx-background-color: transparent;
     -fx-background-insets: 0;
+}
+
+#product-list-view {
+	-fx-border-color: derive(gray, 70%);
+	-fx-border-width: 1px;
 }
 
 /* Separator */
@@ -117,7 +119,21 @@
     -fx-padding: 0;
 }
 
-#order-overview-box{
-	-fx-border-color:derive(gray,80%);
+.list-view {
+	-fx-background-color: white;
+	-fx-border-color: derive(gray, 70%);
+	-fx-border-width: 1px;
+}
+
+.list-cell:even:unselected {
+	-fx-background-color: -list-item-even-color;
+}
+
+.list-cell .text {
+	-fx-fill: black;
+}
+
+.list-cell:odd:unselected {
+	-fx-background-color: -list-item-odd-color;
 }
 

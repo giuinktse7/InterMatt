@@ -1,18 +1,8 @@
 package util;
 
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import com.sun.javafx.scene.traversal.Direction;
-
-import se.chalmers.ait.dat215.project.IMatDataHandler;
-import se.chalmers.ait.dat215.project.Order;
-import se.chalmers.ait.dat215.project.ShoppingItem;
 import controllers.MainController;
-import controllers.RecipeController;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 

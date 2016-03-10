@@ -93,12 +93,10 @@ public class CredentialsController implements Initializable {
 			db.getCustomer().setPostCode(txtPostalcode.getText());
 			db.getCustomer().setPostAddress(txtCity.getText());
 			db.getCustomer().setEmail(txtEmail.getText());
-			System.out.println("Saving user data");
 		}
 	}
 
 	public void restore_user_data() {
-		System.out.println("Restoring user data for: " + db.getCustomer().getFirstName());
 		txtLastname.setText(db.getCustomer().getLastName());
 		txtFirstname.setText(db.getCustomer().getFirstName());
 		txtSSN.setText(db.getCustomer().getPhoneNumber());

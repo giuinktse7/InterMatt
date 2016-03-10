@@ -48,7 +48,7 @@
 }
 
 #order-overview-box .list-cell:filled:hover {
-	-fx-background-color: derive(#AFE3BE, 20%);
+	-fx-background-color: derive(#2FA147, 65%);
 }
 
 /* The box that holds a single order overview */
@@ -101,8 +101,8 @@
 	-fx-fill: #1A1A1A;
 }
 
-.bottomPane {
-	-fx-background-color: rgba(0, 0, 0, 0.2);
+#bottomPane {
+	-fx-background-color: transparent;
 }
 
 #productListBox {
@@ -118,7 +118,7 @@
 .header .text {
 	-fx-font-size: 24pt;
 	-fx-fill: -header-color;
-	-fx-font-family: "Helvetica";
+	-fx-font-family: "Copperplate", "Copperplate Gothic Light", sans-serif;
 }
 
 .light-text .text {

@@ -76,6 +76,7 @@ public class CartItem extends HBox {
 
 	private void initialize() {
 		this.setFocusTraversable(false);
+		this.getStyleClass().add("cart-item");
 		Label name = new Label(product.getName());
 		name.getStyleClass().add("name-label");
 		
@@ -158,7 +159,6 @@ public class CartItem extends HBox {
 				newValue = "0" + newValue;
 			
 			if (isDouble(newValue)) {
-				System.out.println(newValue);
 				double oldQuantity = quantityProperty.get();
 				double newQuantity = newValue.isEmpty() ? 0 : Double.parseDouble(newValue);
 				double change = (newQuantity - oldQuantity) * product.getPrice();

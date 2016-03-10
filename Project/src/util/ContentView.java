@@ -68,7 +68,6 @@ public class ContentView {
 			// Handles enabling/disabling of the 'previous' arrow-button
 			previous.getBindingGroup().getState().addListener((obs, o, n) -> {
 				if (activeProperty.get()) {
-					System.out.println("heyy");
 					leftArrow.setDisable(!n.booleanValue());
 				}
 			});

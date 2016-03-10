@@ -40,6 +40,11 @@ public class PurchaseHistoryController implements Initializable {
 	
 	public void initialize(URL location, ResourceBundle resources) {
 		ordersList.setOrientation(Orientation.HORIZONTAL);
+		
+		ordersList.getSelectionModel().selectedItemProperty().addListener((obs, o, n) -> {
+			if (n != null)
+				displayOrder(((OrderOverviewBox) n));
+		});
 	}
 	
 	public void update() {
@@ -62,10 +67,6 @@ public class PurchaseHistoryController implements Initializable {
 			//orderBox.setOnMouseClicked(e -> displayOrder(orderBox));
 			ordersList.getItems().add(orderBox);
 			});
-		
-		ordersList.getSelectionModel().selectedItemProperty().addListener((obs, o, n) -> {
-			displayOrder(((OrderOverviewBox) n));
-		});
 		
 		//Show the first order if there is one
 		if (!ordersList.getItems().isEmpty()) {

@@ -33,6 +33,10 @@
 	-fx-background-color: -itempane-color;
 }
 
+.popup-shade {
+	-fx-background-color: rgba(0, 0, 0, 0.2);
+}
+
 #red {
 	-fx-border-width: 1px;
 	-fx-border-color: red;
@@ -57,12 +61,20 @@
 	-fx-focus-color: transparent;
 }
 
+.transparent {
+	-fx-background-color: transparent;
+}
+
 .button:hover,
 .navigation-button:hover,
 .arrow-button:hover,
 .order-box,
 .tab {
 	-fx-cursor: hand;
+}
+
+#popup-pane {
+	-fx-background-color: transparent;
 }
 
 #searchTab {

@@ -17,7 +17,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -39,6 +38,7 @@ public class MainController implements Initializable {
 	@FXML private ArrowButton nextButton;
 	
 	@FXML private Button contactButton, historyButton, helpButton;
+	@FXML private Pane popupShadePane, removeShadePane;
 	
 	//Labels for describing the different steps
 	@FXML private Label storeLabel, credentialsLabel, purchaseLabel, receiptLabel;
@@ -54,7 +54,7 @@ public class MainController implements Initializable {
 	
 	//The close-to-root stuff
 	@FXML private Pane shoppingCart;
-	@FXML private StackPane wrapperStackPane;
+	@FXML private StackPane rootStackPane, popupPane, wrapperStackPane;
 	@FXML private VBox mainContentWrapper;
 	
 	//The different views
@@ -85,11 +85,13 @@ public class MainController implements Initializable {
 		
 		me = this;
 		
+		popupShadePane.setMouseTransparent(true);
+		
 		//Necessary to disable the last arrow
 		btnToReceipt.setUserData("lastButton");
 		
 		//Give the popup-system required panes
-		ModalPopup.initialize(wrapperStackPane, mainContentWrapper);
+		ModalPopup.initialize(popupPane, wrapperStackPane, popupShadePane);
 		
 		//Start viewDisplay-system
 		viewDisplay = new ViewDisplay(contentPane);
@@ -155,14 +157,14 @@ public class MainController implements Initializable {
 
 		//Drag & drop:  resizing of window to 'highlight' the shopping cart.
 		purchaseHistoryPopup.setOnDragOver(e -> {
-			purchaseHistoryPopup.setMaxWidth(nextButton.getScene().getWidth() - shoppingCart.getWidth());
-			purchaseHistoryPopup.setPrefWidth(nextButton.getScene().getWidth() - shoppingCart.getWidth());
-			
+			popupPane.setMouseTransparent(true);
+			removeShadePane.getStyleClass().add("transparent");
 		});
-		
 		
 		//Show the store
 		viewDisplay.show(storeView);
+		
+		wrapperStackPane.toFront();
 	}
 	
 	private final BooleanBinding CART_NONEMPTY = Bindings.createBooleanBinding(() -> !cartHandler.emptyProperty().get(), cartHandler.emptyProperty());
@@ -176,14 +178,6 @@ public class MainController implements Initializable {
 		BooleanBinding binding = Bindings.createBooleanBinding(() -> isActiveView.get(), isActiveView);
 		
 		return binding;
-	}
-	
-	private void setStoreBinds() {
-		ContentView view = viewDisplay.getView(storePane);
-		
-		BindingGroup group = btnToStore.getBindingGroup();
-		
-		view.getBindingGroup().setAll(group.getBinds());
 	}
 	
 	private void setCredentialBinds() {
@@ -281,5 +275,14 @@ public class MainController implements Initializable {
 	
 	public BooleanBinding not(BooleanBinding binding) {
 		return binding.not();
+	}
+	
+	public ModalPopup getHistoryPopup() {
+		return this.purchaseHistoryPopup;
+	}
+	
+	public void restoreShade() {
+		removeShadePane.getStyleClass().remove("transparent");
+		popupPane.setMouseTransparent(false);
 	}
 }
