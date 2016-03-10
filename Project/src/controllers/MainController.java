@@ -43,8 +43,6 @@ public class MainController implements Initializable {
 	//Labels for describing the different steps
 	@FXML private Label storeLabel, credentialsLabel, purchaseLabel, receiptLabel;
 	
-	//Used for the drag & drop functionality
-	private final int AVG = 1374;
 
 	private static MainController me;
 	private static IMatDataHandler db = IMatDataHandler.getInstance();
@@ -157,9 +155,9 @@ public class MainController implements Initializable {
 
 		//Drag & drop:  resizing of window to 'highlight' the shopping cart.
 		purchaseHistoryPopup.setOnDragOver(e -> {
-			purchaseHistoryPopup.setMaxWidth(1000 + (nextButton.getScene().getWidth() - AVG) / 2);
-			purchaseHistoryPopup.setPrefWidth(1000 + (nextButton.getScene().getWidth() - AVG) / 2);
-			purchaseHistoryPopup.getContent().setAlignment(Pos.CENTER_RIGHT);
+			purchaseHistoryPopup.setMaxWidth(nextButton.getScene().getWidth() - shoppingCart.getWidth());
+			purchaseHistoryPopup.setPrefWidth(nextButton.getScene().getWidth() - shoppingCart.getWidth());
+			
 		});
 		
 		

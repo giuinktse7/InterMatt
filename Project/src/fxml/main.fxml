@@ -40,6 +40,7 @@
 						<StackPane HBox.hgrow="ALWAYS" fx:id="contentPane"
 							alignment="TOP_LEFT">
 							<children>
+							
 								<fx:include id="purchasePane" fx:id="purchasePane"
 									source="purchaseTest.fxml" />
 								<fx:include id="credentialsPane" fx:id="credentialsPane"
@@ -105,9 +106,7 @@
 						</AnchorPane>
 					</children>
 				</HBox>
-
-
-
+				
 				<AnchorPane VBox.vgrow="NEVER" stylesheets="@../styling/navigation_bar.css"
 					prefHeight="135" minHeight="135" prefWidth="1057.0" styleClass="base-style"
 					xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">

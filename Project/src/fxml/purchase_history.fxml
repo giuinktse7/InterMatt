@@ -14,7 +14,7 @@
 <ModalPopup fx:id="bottomPane" styleClass="bottomPane" stylesheets="@../styling/purchase_history.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PurchaseHistoryController">
 	<children>
 	<!-- Content is centered according to this pane:: HAS TO BE HERE! -->
-	<FlowPane alignment="CENTER">
+	<FlowPane alignment="CENTER" id="red">
 		<VBox>
 			<AnchorPane id="modalTop" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="45.0">
 				<children>
