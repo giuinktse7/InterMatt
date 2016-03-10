@@ -14,74 +14,63 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox id="purchasePane" fx:id="credentialsPane" alignment="TOP_CENTER" stylesheets="@../styling/purchase.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PurchaseTestController">
-   <children>
-      <VBox id="main-pane" fx:id="main_pane" prefHeight="800" prefWidth="1200">
+<HBox id="credentialsPane" fx:id="credentialsPane" alignment="TOP_CENTER" stylesheets="@../styling/credentials.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CredentialsController">
+	<children>
+		<VBox fx:id="main_pane" prefWidth="1200">
 			<children>
             <AnchorPane styleClass="normal-background">
                <children>
-                  <Label id="pane-title" layoutX="34.0" layoutY="14.0" text="Leverans och Betalning" AnchorPane.leftAnchor="49.0" AnchorPane.topAnchor="14.0" />
+                  <Label id="pane-title" layoutX="34.0" layoutY="14.0" text="Leverans och Betalning" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
                </children>
             </AnchorPane>
             <AnchorPane styleClass="normal-background">
                <children>
-                  <Label layoutX="34.0" layoutY="14.0" styleClass="header" text="När vill du ha maten levererad?" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="14.0" />
-                  <ChoiceBox fx:id="cb_delivery_time" layoutX="219.0" layoutY="67.0" prefHeight="39.0" prefWidth="337.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="219.0" AnchorPane.topAnchor="67.0" />
-                  <ChoiceBox fx:id="cb_delivery_date" layoutX="28.0" layoutY="80.0" prefHeight="39.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="67.0" />
+                  <Label layoutX="34.0" layoutY="14.0" styleClass="header" text="När vill du ha maten levererad?" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="14.0" />
+                  <ChoiceBox fx:id="cb_delivery_time" layoutX="260.0" layoutY="80.0" prefHeight="39.0" prefWidth="350.0" AnchorPane.leftAnchor="256.0" AnchorPane.topAnchor="67.0" />
+                  <ChoiceBox fx:id="cb_delivery_date" layoutX="28.0" layoutY="80.0" prefHeight="39.0" prefWidth="200.0" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="67.0" />
                </children>
-               <VBox.margin>
-                  <Insets left="49.0" />
-               </VBox.margin>
             </AnchorPane>
-            <AnchorPane prefHeight="111.0" prefWidth="1200.0" styleClass="normal-background">
+            <AnchorPane>
                <children>
-                  <Separator AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="21.0" />
-                  <HBox alignment="CENTER" AnchorPane.leftAnchor="49.0" AnchorPane.rightAnchor="49.0" AnchorPane.topAnchor="42.0">
+                  <Separator AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
+                  <Label id="header" layoutX="34.0" layoutY="14.0" text="Hur vill du betala?" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
+                  <HBox alignment="CENTER" AnchorPane.leftAnchor="49.0" AnchorPane.rightAnchor="49.0" AnchorPane.topAnchor="84.0">
                      <children>
                         <VBox id="pay-box1" fx:id="cardPaymentBox" alignment="CENTER" styleClass="payment-box" HBox.hgrow="SOMETIMES">
                            <children>
-                              <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../resources/creditcard.png" />
                                  </image>
                               </ImageView>
                               <Label alignment="CENTER" styleClass="pay-method-label" text="Betala med kort" textAlignment="CENTER" />
                            </children>
-                           <padding>
-                              <Insets bottom="7.0" top="7.0" />
-                           </padding>
                         </VBox>
                         <VBox id="pay-box2" fx:id="payAtDeliveryBox" alignment="CENTER" styleClass="payment-box" HBox.hgrow="SOMETIMES">
                            <children>
-                              <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../resources/delivery.png" />
                                  </image>
                               </ImageView>
                               <Label alignment="CENTER" styleClass="pay-method-label" text="Betala vid leverans" textAlignment="CENTER" />
                            </children>
-                           <padding>
-                              <Insets bottom="7.0" top="7.0" />
-                           </padding>
                         </VBox>
-                        <VBox id="pay-box3" fx:id="payByInvoiceBox" alignment="CENTER" styleClass="payment-box" HBox.hgrow="SOMETIMES">
+                        <VBox id="pay-box3" fx:id="payByInvoiceBox" alignment="CENTER" prefWidth="0.0" styleClass="payment-box" HBox.hgrow="SOMETIMES">
                            <children>
-                              <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../resources/bill.png" />
                                  </image>
                               </ImageView>
                               <Label alignment="CENTER" styleClass="pay-method-label" text="Betala med faktura" textAlignment="CENTER" />
                            </children>
-                           <padding>
-                              <Insets bottom="7.0" top="7.0" />
-                           </padding>
                         </VBox>
                      </children>
                   </HBox>
                </children>
             </AnchorPane>
-            <StackPane fx:id="payMethodStackPane" alignment="TOP_LEFT" prefHeight="225.0" prefWidth="1200.0" styleClass="normal-background">
+            <StackPane fx:id="payMethodStackPane" alignment="TOP_LEFT" prefHeight="156.0" prefWidth="1198.0">
                <children>
                   <FlowPane fx:id="payAtDeliveryPane" maxWidth="800" prefHeight="179.0" prefWidth="800.0" styleClass="flow-pane">
                      <children>
@@ -101,9 +90,9 @@
                         </Label>
                      </children>
                   </FlowPane>
-                  <FlowPane fx:id="payByCardPane" styleClass="flow-pane">
+                  <FlowPane fx:id="payByCardPane" prefHeight="175.0" prefWidth="1198.0" styleClass="flow-pane">
                      <children>
-                        <FlowPane maxWidth="606.0" prefHeight="179.0" prefWidth="546.0" vgap="14.0">
+                        <FlowPane maxWidth="606.0" prefHeight="221.0" prefWidth="546.0" vgap="14.0">
                            <children>
                               <AnchorPane prefWidth="266.0">
                                  <children>
@@ -170,14 +159,11 @@
                      </children>
                   </FlowPane>
                </children>
-               <VBox.margin>
-                  <Insets left="49.0" top="21.0" />
-               </VBox.margin>
             </StackPane>
 			</children>
 			<HBox.margin>
 				<Insets bottom="56.0" left="56.0" right="56.0" top="56.0" />
 			</HBox.margin>
 		</VBox>
-   </children>
+	</children>
 </HBox>

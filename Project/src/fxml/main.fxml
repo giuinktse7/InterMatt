@@ -34,35 +34,21 @@
 
 		<VBox fx:id="mainContentWrapper" fillWidth="true">
 			<children>
-				<HBox prefHeight="700.0" prefWidth="-Infinity" styleClass="backdrop"
-					VBox.vgrow="ALWAYS">
+				<HBox alignment="TOP_RIGHT" prefWidth="-Infinity"
+					styleClass="backdrop" VBox.vgrow="ALWAYS">
 					<children>
-						<AnchorPane HBox.hgrow="ALWAYS" AnchorPane.topAnchor="0"
-							AnchorPane.leftAnchor="0" AnchorPane.bottomAnchor="0">
-							<HBox.margin>
-								<Insets right="28.0" />
-							</HBox.margin>
+						<StackPane HBox.hgrow="ALWAYS" fx:id="contentPane"
+							alignment="TOP_LEFT">
 							<children>
-								<VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-									AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-									<children>
-										<StackPane fx:id="contentPane" alignment="TOP_LEFT"
-											VBox.vgrow="ALWAYS">
-											<children>
-												<fx:include id="purchasePane" fx:id="purchasePane"
-													source="purchaseTest.fxml" />
-												<fx:include id="credentialsPane" fx:id="credentialsPane"
-													source="credentials.fxml" />
-												<fx:include id="storePane" fx:id="storePane"
-													source="store.fxml" />
-												<fx:include id="receiptPane" fx:id="receiptPane"
-													source="receipt.fxml" />
-											</children>
-										</StackPane>
-									</children>
-								</VBox>
+								<fx:include id="purchasePane" fx:id="purchasePane"
+									source="purchaseTest.fxml" />
+								<fx:include id="credentialsPane" fx:id="credentialsPane"
+									source="credentials.fxml" />
+								<fx:include id="storePane" fx:id="storePane" source="store.fxml" />
+								<fx:include id="receiptPane" fx:id="receiptPane"
+									source="receipt.fxml" />
 							</children>
-						</AnchorPane>
+						</StackPane>
 						<AnchorPane>
 							<children>
 								<HBox AnchorPane.rightAnchor="21" AnchorPane.topAnchor="0">
@@ -80,9 +66,6 @@
 													</image>
 												</ImageView>
 											</graphic>
-											<!--<HBox.margin> -->
-											<!--<Insets left="14.0" /> -->
-											<!--</HBox.margin> -->
 										</Button>
 										<Button fx:id="helpButton" maxHeight="65" maxWidth="65"
 											styleClass="topButtons" mnemonicParsing="false">
@@ -97,9 +80,6 @@
 													</image>
 												</ImageView>
 											</graphic>
-											<!--<HBox.margin> -->
-											<!--<Insets left="14.0" /> -->
-											<!--</HBox.margin> -->
 										</Button>
 										<Button fx:id="contactButton" maxHeight="65" maxWidth="65"
 											styleClass="topButtons" mnemonicParsing="false">
@@ -114,9 +94,6 @@
 													</image>
 												</ImageView>
 											</graphic>
-											<!--<HBox.margin> -->
-											<!--<Insets left="14.0" /> -->
-											<!--</HBox.margin> -->
 										</Button>
 									</children>
 									<VBox.margin>
@@ -129,14 +106,15 @@
 					</children>
 				</HBox>
 
-				<AnchorPane stylesheets="@../styling/navigation_bar.css"
-					prefHeight="103.0" prefWidth="1057.0" styleClass="base-style"
+
+
+				<AnchorPane VBox.vgrow="NEVER" stylesheets="@../styling/navigation_bar.css"
+					prefHeight="135" minHeight="135" prefWidth="1057.0" styleClass="base-style"
 					xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
 					<children>
-						<HBox alignment="CENTER" layoutX="140.0" prefHeight="65"
-							prefWidth="917.0"
-							AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="140.0"
-							AnchorPane.topAnchor="0.0">
+						<HBox alignment="CENTER" prefHeight="100"
+							prefWidth="917.0" AnchorPane.leftAnchor="140.0"
+							AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="0.0">
 							<Separator minWidth="1000" maxWidth="1000" prefWidth="1000"
 								prefHeight="1" minHeight="1" maxHeight="1" id="line-crossing-buttons" />
 						</HBox>

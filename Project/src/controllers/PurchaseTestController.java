@@ -45,7 +45,7 @@ public class PurchaseTestController implements Initializable {
 	
 	@FXML private StackPane payMethodStackPane;
 	@FXML private FlowPane payAtDeliveryPane, payByCardPane, payByInvoicePane;
-	@FXML private HBox cardPaymentBox, payAtDeliveryBox, payByInvoiceBox;
+	@FXML private VBox cardPaymentBox, payAtDeliveryBox, payByInvoiceBox;
 	
 	// Payment toggle buttons
 	@FXML private ToggleButton btn_pay_creditcard;
@@ -89,19 +89,23 @@ public class PurchaseTestController implements Initializable {
 		cardPaymentBox.setOnMousePressed(event -> selectCardPayment());
 		
 		payAtDeliveryBox.setOnMousePressed(event -> {
+			if (paymentProperty.get() != PaymentMethod.DELIVERY) {
 			cardPaymentBox.getStyleClass().remove("selected-pay-box");
 			payAtDeliveryBox.getStyleClass().add("selected-pay-box");
 			payByInvoiceBox.getStyleClass().remove("selected-pay-box");
 			paymentProperty.setValue(PaymentMethod.DELIVERY);
 			payAtDeliveryPane.toFront();
+			}
 		});
 		
 		payByInvoiceBox.setOnMousePressed(event -> {
+			if (paymentProperty.get() != PaymentMethod.BILL) {
 			cardPaymentBox.getStyleClass().remove("selected-pay-box");
 			payAtDeliveryBox.getStyleClass().remove("selected-pay-box");
 			payByInvoiceBox.getStyleClass().add("selected-pay-box");
 			paymentProperty.setValue(PaymentMethod.BILL);
 			payByInvoicePane.toFront();
+			}
 		});
 		
 		setDeliveryDates();
@@ -119,11 +123,13 @@ public class PurchaseTestController implements Initializable {
 	private final BooleanBinding DELIVERY_SELECTED = selectedPaymentBinding(PaymentMethod.DELIVERY);
 	
 	private void selectCardPayment() {
+		if (paymentProperty.get() != PaymentMethod.CREDITCARD) {
 		cardPaymentBox.getStyleClass().add("selected-pay-box");
 		payAtDeliveryBox.getStyleClass().remove("selected-pay-box");
 		payByInvoiceBox.getStyleClass().remove("selected-pay-box");
 		paymentProperty.setValue(PaymentMethod.CREDITCARD);
 		payByCardPane.toFront();
+		}
 	}
 	
 	public void setDeliveryDates(){

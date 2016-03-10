@@ -1,10 +1,7 @@
 package control;
 
-import java.text.NumberFormat;
+import java.text.DecimalFormat;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Text;
-
-import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
@@ -20,42 +17,39 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.util.converter.NumberStringConverter;
 import se.chalmers.ait.dat215.project.Product;
 import util.ShoppingCartHandler;
 
-
 public class CartItem extends HBox {
 	private static ShoppingCartHandler cartHandler = ShoppingCartHandler.getInstance();
-	
+
 	private Product product;
 	private DoubleProperty quantityProperty = new SimpleDoubleProperty(1);
-	
+
 	public CartItem(Product product, Node... nodes) {
 		super(nodes);
 		this.product = product;
-		
+
 		initialize();
 	}
-	
+
 	public CartItem(Product product) {
 		this.product = product;
 		initialize();
 	}
-	
+
 	public DoubleProperty quantityProperty() {
 		return this.quantityProperty;
 	}
-	
+
 	public void setQuantity(double value) {
 		quantityProperty.set(value);
 	}
-	
+
 	public void addQuantity(double value) {
 		quantityProperty.set(quantityProperty.get() + value);
 	}
-	
+
 	public double getQuantity() {
 		return quantityProperty.get();
 	}
@@ -79,7 +73,7 @@ public class CartItem extends HBox {
 		} catch (NumberFormatException nfe) {
 		}
 	}
-	
+
 	private void initialize() {
 		this.setFocusTraversable(false);
 		Label name = new Label(product.getName());
@@ -89,42 +83,6 @@ public class CartItem extends HBox {
 		
 		txtAmount.setPrefWidth(65);
 		txtAmount.setMinHeight(35);
-		
-		txtAmount.focusedProperty().addListener((obs, o, n) -> {
-			String text = txtAmount.getText();
-			
-			//Set to 1 if value is 0 or not a double
-			if (!n && (text.isEmpty() || text.equals("0") || !isDouble(text)))
-				text = "1";
-			
-			//Remove dot if it is the last character
-			if (!n && text.charAt(text.length() - 1) == '.')
-				text = text.substring(0, text.length() - 1);
-			
-			//Remove beginning zeros
-			int i = 0;
-			while(text.length() > i + 1 && text.charAt(i) == '0')
-				++i;
-			
-			text = text.substring(i, text.length());
-			if (!text.isEmpty() && text.charAt(0) == '.')
-				text = "0" + text;
-			
-			if (text.isEmpty())
-				text = "1";
-			
-			//Remove dot if it is the last character
-			if (!n && text.charAt(text.length() - 1) == '.')
-				text = text.substring(0, text.length() - 1);
-			
-			if (text.equals("0"))
-				text = "1";
-			
-			if (text.equals("."))
-				text = "0.";
-		
-			txtAmount.setText(text);
-		});
 		
 		
 		Button decAmountBtn = new Button();
@@ -182,56 +140,90 @@ public class CartItem extends HBox {
 
 		this.getChildren().setAll(quantityBox, nameWrapperBox, priceWrapperBox);
 		this.setAlignment(Pos.CENTER_LEFT);
-
+		
+		quantityProperty.addListener((obs, o, n) -> {
+			DecimalFormat f = new DecimalFormat("0.##");
+			String k = f.format(n.doubleValue());
+			txtAmount.setText(k);
+			});
+		
 		txtAmount.textProperty().addListener((obs, oldValue, newValue) -> {
 			decAmountBtn.setDisable(!isDouble(newValue) || Double.parseDouble(newValue) <= 1 );
 
-			if (isDouble(newValue) && !oldValue.equals("")) {
-				double oldQuantity = Double.parseDouble(oldValue);
-				double newQuantity = Double.parseDouble(newValue);
+			//If empty, do nothing
+			if (newValue.isEmpty())
+				return;
+			
+			if (newValue.charAt(0) == '.')
+				newValue = "0" + newValue;
+			
+			if (isDouble(newValue)) {
+				System.out.println(newValue);
+				double oldQuantity = quantityProperty.get();
+				double newQuantity = newValue.isEmpty() ? 0 : Double.parseDouble(newValue);
 				double change = (newQuantity - oldQuantity) * product.getPrice();
-				String fintPris = String.format("%.2f", newQuantity * product.getPrice());
+				String fintPris = String.format("%.2f:-", newQuantity * product.getPrice());
 
 				lblPrice.setText(fintPris);
 				cartHandler.addToTotal(change);
+				quantityProperty.set(Double.parseDouble(newValue));
 			}
+
 		});
-
-
-
-//		lblPrice.textProperty().bind(Bindings.concat(quantityProperty().multiply(product.getPrice()), ":-"));
-		txtAmount.setText("1");
 		
-		//Bind the quantity textField and the quantity of the associated shoppingItem
-		NumberFormat format = NumberFormat.getNumberInstance();
-		format.setParseIntegerOnly(false);
-		Bindings.bindBidirectional(txtAmount.textProperty(), quantityProperty(), new NumberStringConverter(format));
+		txtAmount.focusedProperty().addListener((obs, oldValue, newValue) -> {
+			String text = txtAmount.getText();
+			
+			if (!text.isEmpty()) {
+				if (text.length() == 1 && text.charAt(0) == '0' )
+					text = "1";
+			
+			if (text.charAt(0) == '.')
+				if (text.length() != 1)
+					text = "0" + text;
+				else
+					text = "1";
+			} else
+				text = "1";
+			
+			if (text.charAt(text.length() - 1) == '.')
+				text = text.substring(0, text.length() - 1);
+			
+			if (isDouble(text) && Double.parseDouble(text) == 0)
+				text = "1";
+			
+			txtAmount.setText(text);
+		});
+		
+		txtAmount.setText("1");
 		
 		removeProductButton.setOnAction(event -> {
 			cartHandler.getItems().remove(this);
 		});
 	}
-	
+
 	/** Action to perform when the 'X' icon is pressed. */
 	public void setActionOnRemoveClick(EventHandler<ActionEvent> e) {
 	}
-	
-	
+
 	/** Returns true if they represent the same object */
 	public boolean equals(Object obj) {
-		if (obj == null) return false;
-		if (this == obj) return true;
-		if (!obj.getClass().equals(this.getClass())) return false;
-			
+		if (obj == null)
+			return false;
+		if (this == obj)
+			return true;
+		if (!obj.getClass().equals(this.getClass()))
+			return false;
+
 		CartItem that = (CartItem) obj;
-			
+
 		return this.product.getProductId() == (that.product.getProductId());
 	}
-	
+
 	public static boolean isDouble(String value) {
 		try {
 			Double.parseDouble(value);
-			return value.charAt(0) != '.';
+			return value.charAt(value.length() - 1) != '.' && value.charAt(0) != '.';
 		} catch (NumberFormatException nfe) {
 			return false;
 		}

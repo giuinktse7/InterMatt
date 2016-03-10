@@ -19,7 +19,7 @@ public class AttributeTextField extends TextField {
 		setMinWidth(25);
 		
 		//Maybe not use? Might not be necessary..
-		addEventFilter(KeyEvent.KEY_TYPED, numeric_Validation(5));
+		//addEventFilter(KeyEvent.KEY_TYPED, numeric_Validation(5));
 	}
 
 	private boolean isAllowedValue(String value) {
@@ -99,6 +99,7 @@ public class AttributeTextField extends TextField {
 			Double.parseDouble(value);
 			return true;
 		} catch (NumberFormatException nfe) {
+			System.out.println("Rip on " + value);
 			return false;
 		}
 	}

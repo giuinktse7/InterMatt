@@ -18,47 +18,78 @@
 }
 
 .info-text {
-	-fx-font-size: 18pt;
+	-fx-font-size: 21;
 	-fx-fill: derive(black, 10%);
 }
 
 .pay-method-label .text {
-	-fx-font-size: 28 pt;
-	-fx-fill: black;
-	-fx-font-weight: bold;
+	-fx-font-size: 26 pt;
+	-fx-fill: #394039;
+	-fx-font-family: Tahoma, Geneva, sans-serif;
 }
 
 .header .text {
-	-fx-font-size: 24 pt;
+	-fx-font-size: 21;
 	-fx-fill: #413e4a;
 }
 
 .payment-box {
-	-fx-background-color: #bbcebf;
+	-fx-background-color: #f2f2f2;
 	-fx-border-width: 1px;
-	-fx-border-color: derive(-buy-button-color, -35%);
-	-fx-border-style: solid hidden solid solid;
+	-fx-border-style: solid hidden solid hidden;
+	-fx-border-color: derive(#f2f2f2, -25%);
+	-fx-cursor: hand;
 }
 
 .payment-box:hover {
-	-fx-background-color: derive(#bbcebf, 20%);
+	-fx-border-width: 1px;
+	-fx-border-color: #73a564;
+	-fx-border-style: solid;
+}
+
+.payment-box:hover .label .text {
+	-fx-fill: #73a564;
 }
 
 .selected-pay-box {
-	-fx-border-style: solid hidden hidden solid;
-	-fx-background-color: derive(-buy-button-color, 35%);
+	-fx-border-width: 2px;
+	-fx-border-color: #73a564;
+	-fx-border-style: solid;
+	-fx-background-color: #f5f5f5;
+	-fx-cursor: normal;
 }
 
 .selected-pay-box:hover {
-	-fx-background-color: derive(-buy-button-color, 35%);
+	-fx-border-width: 2px;
+	-fx-border-color: #73a564;
+	-fx-border-style: solid;
+	-fx-background-color: #f5f5f5;
+}
+
+.selected-pay-box .label .text {
+	-fx-fill: #73a564;
+}
+
+#pay-box1 {
+	-fx-border-radius: 3 0 0 3;
+	-fx-border-style: solid;
+}
+
+#pay-box2 {
+	-fx-border-radius: 0;
+}
+
+#pay-box3 {
+	-fx-border-radius: 0 3 3 0;
+	-fx-border-style: solid;
+}
+
+.selected-pay-box:hover {
+	-fx-background-color: derive(#f2f2f2, 20%);
 }
 
 .flow-pane {
-	-fx-border-style: hidden solid solid solid, hidden solid solid solid;
-	-fx-border-color: -buy-button-color, derive(-buy-button-color, 50%);
-	-fx-border-width: 1px, 1px;
-	-fx-border-insets: 0, 1;
-	-fx-background-color: derive(-buy-button-color, 35%);
+	-fx-background-color: #f2f2f2;
 }
 
 .choice-box {
