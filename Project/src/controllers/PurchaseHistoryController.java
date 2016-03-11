@@ -57,14 +57,9 @@ public class PurchaseHistoryController implements Initializable {
 		
 		//Populate the order overview list
 		ordersList.getItems().clear();
-
-		// Setup the first vertical separator
-		Separator separator = new Separator();
-		separator.setOrientation(Orientation.VERTICAL);
 		
 		orders.forEach(order -> {
 			OrderOverviewBox orderBox = new OrderOverviewBox(order);
-			//orderBox.setOnMouseClicked(e -> displayOrder(orderBox));
 			ordersList.getItems().add(orderBox);
 			});
 		
@@ -72,7 +67,7 @@ public class PurchaseHistoryController implements Initializable {
 		if (!ordersList.getItems().isEmpty()) {
 			OrderOverviewBox box = new OrderOverviewBox(((OrderOverviewBox) ordersList.getItems().get(0)).getOrder());
 			displayOrder(box);
-			ordersList.getSelectionModel().select(0);
+			ordersList.getSelectionModel().clearAndSelect(0);
 		}
 	}
 	
